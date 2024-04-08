@@ -1,51 +1,694 @@
 ---
-title: "An Engaging Talk" 
-author: "John J. Curtin, Ph.D."
+title: "Monitoring Return to Substance Use with Personal Sensing"
+subtitle: "Capstone Presentation"
+author: "Kendra Wyant"
+date: "April 26, 2024"
 institute: "University of Wisconsin-Madison"
 format: 
   revealjs:
-    scrollable: true
-    chalkboard: true
     css: slides.css
 title-slide-attributes:
-  data-background-image: https://github.com/jjcurtin/lectures_science/blob/main/images/smartphone_know_you.png?raw=true
+  # data-background-image: https://github.com/jjcurtin/lectures_science/blob/main/images/smartphone_know_you.png?raw=true
   data-background-size: 35%
   data-background-repeat: no
   data-background-position: left 10% bottom 10%
 fig-cap-location: top
+slide-number: false
 editor_options: 
   chunk_output_type: console
 ---
-## Mental Healthcare Needs are High and Unmet {.smaller}
 
-- In 2019, [52 million]{style="color: red;"} Americans had an active mental illness
-  - More than half did not receive any [treatment]{style="color: red;"}
 
-::: {.notes}
-We have a mental health crisis in the U.S. and it is a crisis of **unmet** high need because our delivery of mental healthcare is deeply flawed. 
+```{r}
+#|echo: FALSE
 
-In 2019, **more than half of the 52 million Americans** with an active mental illness did not receive any treatment. **More than half**!
+# handle conflicts
+options(conflicts.policy = "depends.ok")
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/fun_ml.R?raw=true")
+tidymodels_conflictRules()
+
+library(tidyverse)
+library(tidymodels)
+library(tidyposterior)
+theme_set(theme_classic())
+
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/format_path.R?raw=true")
+```
+
+
+## Substance Use Treatment Barriers
+- Aversion to in person therapy (stigmatized mental health issue, asking for help is hard)
+- Availability (long wait times, geolocation barriers)
+- Affordability
+
+
+::: aside
+x in x people do not receive treatment for a substance use disorder.
+:::
+
+## Gaps in Current Treatment
+- Time-limited
+- Interventions limited to therapy schedule
+- Expects clients to recognize their risk of return to use
+
+## Personal Sensing
+- Describe
+- Potential for Mitigating Barriers to Treatment
+
+
+## Some Questions we First Need Answered
+1. Will people find collection of these personally sensed data acceptable?
+2. Can we predict risk of return to substance use with clinically useful accuracy?
+3. Can we predict risk of return to substance use with clinically useful temporal precision? 
+
+::: aside
+All the while considering burden associated with long-term monitoring (what is the minimum input we need from individuals?).
+:::
+
+## Two Notes to touch on
+1. *Lapse* = goal-inconsistent substance use
+     - Any reported alcohol use among people who have a goal of abstinence
+2. Area under the receiver operating curve (*auROC*) is our performance metric
+      - Essentially measures how well our model can discriminate between a positive (lapse) and negative (no lapse) case - 0.5-1.  
+      - Later we will talk about a few other metrics that are important when considering the usefulness of our models.
+
+
+## Participants
+- all four studies use the same dataset so I am going to briefly touch on the key demographics here
+
+
+# 1. Will people find collection of these personally sensed data acceptable?
+
+
+
+## Burden Description
+
+
+
+## Behavioral Measures of Acceptability 
+
+- compliance figure
+
+
+::: footer
+Wyant et al., 2023
 :::
 
 
 
-## Mental Healthcare Needs are High and Unmet {.smaller}
+## Self-Report Measures of Acceptability
 
-- [In 2019, 52 million Americans had an active mental illness]{style="color: grey;"}
-  - [More than half did not receive any treatment]{style="color: grey;"}
+- self-report plots
+
+::: footer
+Wyant et al., 2023
+:::
+
+## Free-Response Comments about Acceptability
+
+- 7 themes
+
+::: footer
+Wyant et al., 2023
+:::
 
 
-- [20 million]{style="color: red;"} adults had an active substance use disorder
-  - 9 out of 10 did not receive any treatment
+## Conclusions
+- Personal sensing is acceptable among people with alcohol use disorder
+- It can be used for long-term monitoring
+- People may have different preferences and needs depending on the personal sensing method
+
+
+
+
+
+
+
+::: {.notes}
+
+:::
+
+
+
+# 2. Can we predict risk of return to substance use with clinically useful accuracy?
+
+
+## Cellular Communications
+
+- Mostly passive personal sensing method
+
+
+## Cellular Communications for Predicting Next Hour Lapses back to Alcohol Use
+
+```{r}
+#| echo: false
+#| output: false
+path_models_fyp <- format_path("studydata/risk/models/meta/")
+
+model_fits_fyp <- read_csv(file.path(path_models_fyp, "best_model_fits_1hour_0_v2_10_x_10_kfold_fyp.csv"), col_types = cols()) |> 
+  select(id = n_repeat, id2 = n_fold, best_model = roc_auc) |> 
+  mutate(null_model = .5)
+
+set.seed(101)
+pp_fyp <- model_fits_fyp |> 
+  perf_mod(formula = statistic ~ model + (1 | id2/id),
+           transform = tidyposterior::logit_trans,  # for skewed & bounded AUC
+           iter = 2000, chains = 4,  
+           adapt_delta = .99,
+           family = gaussian) 
+```
+
+```{r}
+#| echo: false
+
+pp_fyp_tidy <- pp_fyp |> 
+  tidy(seed = 123)
+
+ci_fyp <- pp_fyp_tidy |> 
+  summary() |> 
+  mutate(model = factor(model, 
+                        levels = c("best_model", "null_model"),
+                        labels = c("Main", "Null")),
+         y = 750)
+
+pp_fyp_tidy |> 
+  mutate(model = factor(model, 
+                        levels = c("best_model", "null_model"),
+                        labels = c("Main", "Null"))) |>
+  ggplot() + 
+  geom_histogram(aes(x = posterior, fill = model), color = "black", alpha = .4, 
+                 bins = 60) +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean,
+                           color = model),
+               data = ci_fyp) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper, color = model),
+                data = ci_fyp) +
+  facet_wrap(~model, ncol = 1) +
+  scale_y_continuous("Posterior Probability") +
+  scale_x_continuous("Area Under ROC Curve") +
+  theme(legend.position = "none")
+  # geom_text(aes(c("Median = 0.90", "Median = 0.91", "Median = .93")))
+
+```
+
+*Annotate with Mean and CI values*
+
+::: footer
+Wyant & Curtin, *First Year Project*
+:::
+
+::: {.notes}
+
+10x10 1 hour (1x10 fit on chtc for model selection)
+
+Best configuration from model selection (validaiton) = random_forest, passive feats, hp1 = 50, hp2 = 2, hp3 = 10000, resample = up_1, feature_fun_type = "perc", roc_auc = .69, 122 features retained
+
+
+10x10 fits - mean roc_auc = .64 (mean posterior = )
+
+:::
+
+## Model Contrast
+
+```{r}
+ci_fyp <- pp_fyp |>
+  contrast_models(list("best_model"), 
+                  list("null_model")) |> 
+  summary(size = .01) |> 
+  mutate(contrast = factor(contrast, 
+                        levels = c("best_model vs null_model"),
+                        labels = c("Main vs. Null")),
+         y = 550)
+
+pp_fyp |> 
+  tidy(seed = 123) |>   
+  group_by(model) |> 
+  mutate(sample = row_number()) |> 
+  ungroup() |> 
+  pivot_wider(names_from = model, values_from = posterior) |> 
+  mutate("Main vs. Null" = best_model - null_model) |> 
+  pivot_longer(cols = "Main vs. Null",
+               names_to = "contrast",
+               values_to = "posterior") |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("Main vs. Null"))) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior), 
+                 color = "black", fill = "grey", alpha = .4, bins = 60) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean), color = "black", data = ci_fyp) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper), color = "black", data = ci_fyp) +
+  facet_wrap(~contrast) +
+  ylab("Posterior Probability") +
+  xlab("Model Contrast for AUC") +
+  theme(legend.position = "none") 
+```
+
+::: footer
+Wyant & Curtin, *First Year Project*
+:::
+
+
+## Conclusion
+
+- Cellular communications can detect lapse risk signal...
+- but not with high enough performance to be implemented clinically on its own.
+
+
+
+## Ecological Momentary Assessment (EMA)
+
+- Active sensing method (4x daily) 
+- Face valid constructs of relapse prevention
+- Also decided to extend beyond next hour predictions and look at prediction windows of next week, next day, and next hour
+
+
+
+## EMA for Predicting Next Week, Day, and Hour Lapses back to Alcohol Use
+
+```{r}
+#| echo: FALSE 
+#| output: False
+
+path_processed <- format_path("studydata/risk/data_processed/ema")
+path_models <- format_path("studydata/risk/models/ema")
+path_shared <- format_path("studydata/risk/data_processed/shared")
+
+auc_week <- read_rds(file.path(path_models, "outer_metrics_1week_0_v5_nested_main.rds")) |> 
+  arrange(outer_split_num) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_day <- read_rds(file.path(path_models, "outer_metrics_1day_0_v5_nested_main.rds")) |> 
+  arrange(outer_split_num) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_hour <- read_rds(file.path(path_models, "outer_metrics_1hour_0_v5_nested_main.rds")) |> 
+  arrange(outer_split_num) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+
+auc <- auc_week |> 
+  rename(week = roc_auc) |> 
+  mutate(day = auc_day$roc_auc,
+         hour = auc_hour$roc_auc) 
+
+auc_week_baseline <- read_rds(file.path(path_models, "outer_metrics_1week_0_v3_nested_baseline.rds")) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_day_baseline <- read_rds(file.path(path_models, "outer_metrics_1day_0_v3_nested_baseline.rds")) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_hour_baseline <- read_rds(file.path(path_models, "outer_metrics_1hour_0_v3_nested_baseline.rds")) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_baseline <- auc_week_baseline |> 
+  rename(week_baseline = roc_auc) |> 
+  mutate(day_baseline = auc_day_baseline$roc_auc,
+         hour_baseline = auc_hour_baseline$roc_auc) |> 
+  full_join(auc, by = c("repeat_num", "fold_num"))
+```
+
+```{r}
+#| echo: false
+#| output: false
+
+set.seed(101)
+pp <- auc |> 
+  rename(id = repeat_num,
+         id2 = fold_num) |> 
+  perf_mod(formula = statistic ~ model + (1 | id2/id),
+           transform = tidyposterior::logit_trans,  
+           iter = 2000, chains = 4,  
+           adapt_delta = .99,
+           family = gaussian) 
+
+pp_tidy <- pp |> 
+  tidy(seed = 123)
+
+ci <- pp_tidy |> 
+  summary() |> 
+  mutate(model = factor(model, levels = c("week", "day", "hour")),
+         y = 1000)
+```
+
+```{r}
+#| echo: false
+
+pp_tidy |> 
+  mutate(model = factor(model, levels = c("week", "day", "hour"))) |>
+  ggplot() + 
+  geom_histogram(aes(x = posterior, fill = model), color = "black", alpha = .4, 
+                 bins = 30) +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean,
+                           color = model),
+               data = ci) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper, color = model),
+                data = ci) +
+  facet_wrap(~model, ncol = 1) +
+  scale_y_continuous("Posterior Probability", breaks = c(0, 500, 1000)) +
+  # ylab("Posterior Probability Density") +
+  xlab("Area Under ROC Curve")  +
+  theme(legend.position = "none")
+  # geom_text(aes(c("Median = 0.90", "Median = 0.91", "Median = .93")))
+```
+
+*Annotate with mean and CI values*
+
+
+::: footer
+Wyant & Sant'Ana et al., *in press*
+:::
+
+## Model Contrasts
+
+```{r}
+#| echo: false
+
+ci <- pp |> 
+  contrast_models(list("hour","hour", "day"), 
+                list("week", "day", "week")) |> 
+  summary(size = .01) |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("hour vs week", "hour vs day", "day vs week"),
+                           labels = c("Hour vs. Week", "Hour vs. Day", "Day vs. Week")),
+         y = 850)
+
+pp |> 
+  tidy(seed = 123) |>   
+  group_by(model) |> 
+  mutate(sample = row_number()) |> 
+  ungroup() |> 
+  pivot_wider(names_from = model, values_from = posterior) |> 
+  mutate(hour_vs_week = hour - week,
+         hour_vs_day = hour - day,
+         day_vs_week = day - week) |> 
+  pivot_longer(cols = hour_vs_week:day_vs_week,
+               names_to = "contrast",
+               values_to = "posterior") |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("hour_vs_week", "hour_vs_day", "day_vs_week"),
+                           labels = c("Hour vs. Week", "Hour vs. Day", "Day vs. Week"))) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior), 
+                 color = "black", fill = "grey", alpha = .4, bins = 30) +
+  geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean), 
+               data = ci, show.legend = FALSE) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper), 
+               data = ci, show.legend = FALSE) +
+  # geom_text(data = ci, x = c(.0255, .043, .018), y = 700, 
+  #           label = str_c(round(ci$mean, 2), " [", round(ci$lower, 2), ", ", round(ci$upper, 2), "]")) +
+  facet_wrap(~contrast, ncol = 1) +
+  xlab("auROC difference") +
+  ylab("Count") +
+  theme(legend.position = "none")
+```
+
+::: footer
+Wyant & Sant'Ana et al., *in press*
+:::
 
 
 ::: {.notes}
 
 
-And for the 20 million adults suffering with a substance use disorder, it was worse still.
+:::
 
-**9 out of 10 without any treatment**
+## Table of performance metrics across models
+- unpack PPV
+
+
+## Relative Top Features
+- Global SHAP bar plot
+- Mention variance among observations but dont show sina plot
+- Discuss top predictor as previous lapses and introduce baseline comparison (number of previous lapses as single predictor)
+
+::: footer
+Wyant & Sant'Ana et al., *in press*
+:::
+
+## Baseline Model Contrasts
+
+```{r}
+#| echo: false
+#| output: false
+
+set.seed(101)
+pp_baseline <- auc_baseline |> 
+  rename(id = repeat_num,
+         id2 = fold_num) |> 
+  perf_mod(formula = statistic ~ model + (1 | id2/id),
+           transform = tidyposterior::logit_trans,  # for skewed & bounded AUC
+           iter = 2000, chains = 4,  
+           adapt_delta = .99,
+           family = gaussian) 
+
+ci_baseline <- contrast_models(pp_baseline, 
+                  list("hour","day", "week"), 
+                  list("hour_baseline", "day_baseline", "week_baseline")) |> 
+  summary(size = .01) |> 
+  mutate(contrast = factor(contrast,
+                           levels = c("week vs week_baseline",
+                                      "day vs day_baseline",
+                                      "hour vs hour_baseline"),
+                           labels = c("Week vs. Week Baseline",
+                                      "Day vs. Day Baseline",
+                                      "Hour vs. Hour Baseline")),
+         y = 1000)
+
+```
+
+```{r}
+#| echo: FALSE
+
+pp_baseline |>
+  tidy(seed = 123) |>
+  group_by(model) |>
+  mutate(sample = row_number()) |>
+  ungroup() |>
+  pivot_wider(names_from = model, values_from = posterior) |> 
+  mutate(hour_vs_hour_baseline = hour - hour_baseline,
+         day_vs_day_baseline = day - day_baseline,
+         week_vs_week_baseline = week - week_baseline) |>
+  pivot_longer(cols = hour_vs_hour_baseline:week_vs_week_baseline,
+               names_to = "contrast",
+               values_to = "posterior") |> 
+  mutate(contrast = factor(contrast,
+                           levels = c("week_vs_week_baseline",
+                                      "day_vs_day_baseline",
+                                      "hour_vs_hour_baseline"),
+                           labels = c("Week vs. Week Baseline",
+                                      "Day vs. Day Baseline",
+                                      "Hour vs. Hour Baseline"))) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior), 
+                 color = "black", fill = "light grey", 
+                 alpha = .4, bins = 30, show.legend = FALSE) +
+  geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
+  geom_segment(mapping = aes(y = y+600, yend = y+200, x = mean, xend = mean),
+               data = ci_baseline, show.legend = FALSE) +
+  geom_segment(mapping = aes(y = y+400, yend = y+400, x = lower, xend = upper), 
+               data = ci_baseline, show.legend = FALSE) +
+  facet_wrap(~contrast, ncol = 1) +
+  xlab("auROC difference") +
+  ylab("Count") +
+  theme(legend.position = "none")
+```
+
+::: footer
+Wyant & Sant'Ana et al., *in press*
+:::
+
+## Conclusions
+EMA can be used to predict lapses back to alcohol use
+- with high sensitivity and specificity
+- varying positive predictive value
+
+
+
+# 3. Can we predict risk of return to substance use with clinically useful temporal precision? 
+
+
+## Lag Study 
+
+- we have demonstrated we can predict lapses back to alcohol use from EMA data with high accuracy for next hour, next day, and next week.
+- Introduce idea of lagged predictions for making week models more useful (higher PPV, have time to implement intervention).
+
+
+## Lagged Predictions of Next Week Alcohol Lapses 
+
+
+```{r simulated data}
+#| echo: false
+
+sim_auroc <- tibble(lag = rep(0, 10),
+                    repeat_num = rep(1, 10),
+                    fold_num = seq(1:10),
+                    auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .88, sd = .04)) |> 
+  bind_rows(tibble(lag = rep(0, 10),
+                   repeat_num = rep(2, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .88, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(0, 10),
+                   repeat_num = rep(3, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .88, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(24, 10),
+                   repeat_num = rep(1, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .87, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(24, 10),
+                   repeat_num = rep(2, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0,mean = .87, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(24, 10),
+                   repeat_num = rep(3, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .87, sd = .04))) |> 
+  bind_rows(tibble(lag = rep(72, 10),
+                   repeat_num = rep(1, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .85, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(72, 10),
+                   repeat_num = rep(2, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .85, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(72, 10),
+                   repeat_num = rep(3, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .85, sd = .04))) |> 
+  bind_rows(tibble(lag = rep(168, 10),
+                   repeat_num = rep(1, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .82, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(168, 10),
+                   repeat_num = rep(2, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .82, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(168, 10),
+                   repeat_num = rep(3, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0,  mean = .82, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(336, 10),
+                   repeat_num = rep(1, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .78, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(336, 10),
+                   repeat_num = rep(2, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .78, sd = .04))) |> 
+   bind_rows(tibble(lag = rep(336, 10),
+                   repeat_num = rep(3, 10),
+                   fold_num = seq(1:10),
+                   auroc = truncnorm::rtruncnorm(n = 10, b = 1.0, mean = .78, sd = .04)))
+```
+
+```{r}
+#| output: false
+
+set.seed(101)
+pp <- sim_auroc |> 
+  pivot_wider(names_from = lag, values_from = auroc) |> 
+  rename(id = repeat_num,
+         id2 = fold_num) |> 
+  perf_mod(formula = statistic ~ model + (1 | id2/id),
+         transform = tidyposterior::logit_trans,  # for skewed & bounded AUC
+         adapt_delta = .99,
+         family = gaussian, 
+)  
+```
+
+```{r}
+pp_tidy <- pp |> 
+  tidy(seed = 123) 
+
+ci <- pp_tidy |> 
+  summary() |> 
+  mutate(model = factor(model, levels = c(0, 24, 72, 168, 336),
+                        labels = c("0 lag", "24 lag", "72 lag", "168 lag", "336 lag")),
+         y = 1000)
+
+pp_tidy |> 
+  mutate(model = factor(model, levels = c(0, 24, 72, 168, 336),
+                        labels = c("0 lag", "24 lag", "72 lag", "168 lag", "336 lag"))) |>
+  ggplot() + 
+  geom_histogram(aes(x = posterior, fill = model), color = "black", alpha = .4, 
+                 bins = 30) +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean,
+                           color = model),
+               data = ci) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper, color = model),
+                data = ci) +
+  facet_wrap(~model, ncol = 1) +
+  scale_y_continuous("Posterior Probability", breaks = c(0, 500, 1000)) +
+  xlab("Area Under ROC Curve") +
+  theme(legend.position = "none")
+```
+
+::: footer
+Wyant et al., *in prep*
+:::
+
+## Model Comparisons
+
+```{r}
+ci <- pp |>
+  contrast_models(list("0", "24", "72", "168"), 
+                  list("24", "72", "168", "336")) |> 
+  summary(size = .01) |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("0 vs 24", "24 vs 72", "72 vs 168", "168 vs 336")),
+         y = 700)
+
+pp |> 
+  tidy(seed = 123) |>   
+  group_by(model) |> 
+  mutate(sample = row_number()) |> 
+  ungroup() |> 
+  pivot_wider(names_from = model, values_from = posterior) |> 
+  mutate(`0 vs 24` = `0` - `24`,
+         `24 vs 72` = `24` - `72`,
+         `72 vs 168` = `72` - `168`,
+         `168 vs 336` = `168` - `336`) |> 
+  pivot_longer(cols = `0 vs 24`:`168 vs 336`,
+               names_to = "contrast",
+               values_to = "posterior") |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("0 vs 24", 
+                                      "24 vs 72", 
+                                      "72 vs 168",
+                                      "168 vs 336"))) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior), 
+                 color = "black", fill = "grey", 
+                 alpha = .4, bins = 30) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean), data = ci) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper), data = ci) +
+  facet_wrap(~contrast, ncol = 1) +
+  ylab("Posterior Probability") +
+  xlab("Model Contrast for AUC") +
+  theme(legend.position = "none")
+```
+
+::: footer
+Wyant et al., *in prep*
 :::
 
 
-
+## Future Directions
+- opioid use disorder (extending beyond alcohol use)
+- combining active and passive methods
+- non-abstinent and other harm reduction outcomes 
