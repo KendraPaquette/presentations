@@ -1,0 +1,243 @@
+---
+title: EMA Analyses
+author: Kendra Wyant
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#|echo: FALSE
+
+# handle conflicts
+options(conflicts.policy = "depends.ok")
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/fun_ml.R?raw=true")
+tidymodels_conflictRules()
+
+library(tidyverse)
+library(tidymodels)
+library(tidyposterior)
+theme_set(theme_classic())
+
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/format_path.R?raw=true")
+```
+
+
+```{r}
+#| echo: FALSE 
+#| output: False
+
+path_processed <- format_path("studydata/risk/data_processed/ema")
+path_models <- format_path("studydata/risk/models/ema")
+path_shared <- format_path("studydata/risk/data_processed/shared")
+
+auc_week <- read_rds(file.path(path_models, "outer_metrics_1week_0_v5_nested_main.rds")) |> 
+  arrange(outer_split_num) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_day <- read_rds(file.path(path_models, "outer_metrics_1day_0_v5_nested_main.rds")) |> 
+  arrange(outer_split_num) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_hour <- read_rds(file.path(path_models, "outer_metrics_1hour_0_v5_nested_main.rds")) |> 
+  arrange(outer_split_num) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+
+auc <- auc_week |> 
+  rename(week = roc_auc) |> 
+  mutate(day = auc_day$roc_auc,
+         hour = auc_hour$roc_auc) 
+
+auc_week_baseline <- read_rds(file.path(path_models, "outer_metrics_1week_0_v3_nested_baseline.rds")) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_day_baseline <- read_rds(file.path(path_models, "outer_metrics_1day_0_v3_nested_baseline.rds")) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_hour_baseline <- read_rds(file.path(path_models, "outer_metrics_1hour_0_v3_nested_baseline.rds")) |> 
+  mutate(repeat_num = rep(str_c("repeat", 1:3), each = 10),
+         fold_num = rep(str_c("fold", 1:10),3)) |>   # assumes 3x10 fold
+  select(repeat_num, fold_num, roc_auc)
+
+auc_baseline <- auc_week_baseline |> 
+  rename(week_baseline = roc_auc) |> 
+  mutate(day_baseline = auc_day_baseline$roc_auc,
+         hour_baseline = auc_hour_baseline$roc_auc) |> 
+  full_join(auc, by = c("repeat_num", "fold_num"))
+```
+
+```{r}
+#| echo: false
+#| output: false
+
+set.seed(101)
+pp <- auc |> 
+  rename(id = repeat_num,
+         id2 = fold_num) |> 
+  perf_mod(formula = statistic ~ model + (1 | id2/id),
+           transform = tidyposterior::logit_trans,  
+           iter = 2000, chains = 4,  
+           adapt_delta = .99,
+           family = gaussian) 
+
+pp_tidy <- pp |> 
+  tidy(seed = 123)
+
+ci <- pp_tidy |> 
+  summary() |> 
+  mutate(model = factor(model, levels = c("week", "day", "hour")),
+         y = 1000)
+```
+
+### Posteriors
+
+```{r}
+#| label: fig-ema-posteriors
+#| fig-cap: "Caption"
+
+pp_tidy |> 
+  mutate(model = factor(model, levels = c("week", "day", "hour"))) |>
+  ggplot() + 
+  geom_histogram(aes(x = posterior, fill = model), color = "black", alpha = .4, 
+                 bins = 30) +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean,
+                           color = model),
+               data = ci) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper, color = model),
+                data = ci) +
+  facet_wrap(~model, ncol = 1) +
+  scale_y_continuous("Posterior Probability", breaks = c(0, 500, 1000)) +
+  # ylab("Posterior Probability Density") +
+  xlab("Area Under ROC Curve")  +
+  theme(legend.position = "none")
+  # geom_text(aes(c("Median = 0.90", "Median = 0.91", "Median = .93")))
+```
+
+
+### Model Contrasts
+```{r}
+#| echo: false
+
+ci <- pp |> 
+  contrast_models(list("hour","hour", "day"), 
+                list("week", "day", "week")) |> 
+  summary(size = .01) |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("hour vs week", "hour vs day", "day vs week"),
+                           labels = c("Hour vs. Week", "Hour vs. Day", "Day vs. Week")),
+         y = 850)
+```
+
+
+```{r}
+#| label: fig-ema-contrasts
+#| fig-cap: "Caption"
+
+pp |> 
+  tidy(seed = 123) |>   
+  group_by(model) |> 
+  mutate(sample = row_number()) |> 
+  ungroup() |> 
+  pivot_wider(names_from = model, values_from = posterior) |> 
+  mutate(hour_vs_week = hour - week,
+         hour_vs_day = hour - day,
+         day_vs_week = day - week) |> 
+  pivot_longer(cols = hour_vs_week:day_vs_week,
+               names_to = "contrast",
+               values_to = "posterior") |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("hour_vs_week", "hour_vs_day", "day_vs_week"),
+                           labels = c("Hour vs. Week", "Hour vs. Day", "Day vs. Week"))) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior), 
+                 color = "black", fill = "grey", alpha = .4, bins = 30) +
+  geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean), 
+               data = ci, show.legend = FALSE) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper), 
+               data = ci, show.legend = FALSE) +
+  # geom_text(data = ci, x = c(.0255, .043, .018), y = 700, 
+  #           label = str_c(round(ci$mean, 2), " [", round(ci$lower, 2), ", ", round(ci$upper, 2), "]")) +
+  facet_wrap(~contrast, ncol = 1) +
+  xlab("auROC difference") +
+  ylab("Count") +
+  theme(legend.position = "none")
+```
+
+### Baseline Model Comparisons
+```{r}
+#| echo: false
+#| output: false
+
+set.seed(101)
+pp_baseline <- auc_baseline |> 
+  rename(id = repeat_num,
+         id2 = fold_num) |> 
+  perf_mod(formula = statistic ~ model + (1 | id2/id),
+           transform = tidyposterior::logit_trans,  # for skewed & bounded AUC
+           iter = 2000, chains = 4,  
+           adapt_delta = .99,
+           family = gaussian) 
+
+ci_baseline <- contrast_models(pp_baseline, 
+                  list("hour","day", "week"), 
+                  list("hour_baseline", "day_baseline", "week_baseline")) |> 
+  summary(size = .01) |> 
+  mutate(contrast = factor(contrast,
+                           levels = c("week vs week_baseline",
+                                      "day vs day_baseline",
+                                      "hour vs hour_baseline"),
+                           labels = c("Week vs. Week Baseline",
+                                      "Day vs. Day Baseline",
+                                      "Hour vs. Hour Baseline")),
+         y = 1000)
+
+```
+
+```{r}
+#| label: fig-ema-baseline
+#| fig-cap: "Caption"
+
+pp_baseline |>
+  tidy(seed = 123) |>
+  group_by(model) |>
+  mutate(sample = row_number()) |>
+  ungroup() |>
+  pivot_wider(names_from = model, values_from = posterior) |> 
+  mutate(hour_vs_hour_baseline = hour - hour_baseline,
+         day_vs_day_baseline = day - day_baseline,
+         week_vs_week_baseline = week - week_baseline) |>
+  pivot_longer(cols = hour_vs_hour_baseline:week_vs_week_baseline,
+               names_to = "contrast",
+               values_to = "posterior") |> 
+  mutate(contrast = factor(contrast,
+                           levels = c("week_vs_week_baseline",
+                                      "day_vs_day_baseline",
+                                      "hour_vs_hour_baseline"),
+                           labels = c("Week vs. Week Baseline",
+                                      "Day vs. Day Baseline",
+                                      "Hour vs. Hour Baseline"))) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior), 
+                 color = "black", fill = "light grey", 
+                 alpha = .4, bins = 30, show.legend = FALSE) +
+  geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
+  geom_segment(mapping = aes(y = y+600, yend = y+200, x = mean, xend = mean),
+               data = ci_baseline, show.legend = FALSE) +
+  geom_segment(mapping = aes(y = y+400, yend = y+400, x = lower, xend = upper), 
+               data = ci_baseline, show.legend = FALSE) +
+  facet_wrap(~contrast, ncol = 1) +
+  xlab("auROC difference") +
+  ylab("Count") +
+  theme(legend.position = "none")
+```

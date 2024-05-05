@@ -1,0 +1,117 @@
+---
+title: EMA Analyses
+author: Kendra Wyant
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#|echo: FALSE
+
+# handle conflicts
+options(conflicts.policy = "depends.ok")
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/fun_ml.R?raw=true")
+tidymodels_conflictRules()
+
+library(tidyverse)
+library(tidymodels)
+library(tidyposterior)
+theme_set(theme_classic())
+
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/format_path.R?raw=true")
+```
+
+### Posterior Probabilities
+```{r}
+#| echo: false
+#| output: false
+path_models_fyp <- format_path("studydata/risk/models/meta/")
+
+model_fits_fyp <- read_csv(file.path(path_models_fyp, "best_model_fits_1hour_0_v2_10_x_10_kfold_fyp.csv"), col_types = cols()) |> 
+  select(id = n_repeat, id2 = n_fold, best_model = roc_auc) |> 
+  mutate(null_model = .5)
+
+set.seed(101)
+pp_fyp <- model_fits_fyp |> 
+  perf_mod(formula = statistic ~ model + (1 | id2/id),
+           transform = tidyposterior::logit_trans,  # for skewed & bounded AUC
+           iter = 2000, chains = 4,  
+           adapt_delta = .99,
+           family = gaussian) 
+```
+
+```{r}
+#| echo: false
+
+pp_fyp_tidy <- pp_fyp |> 
+  tidy(seed = 123)
+
+ci_fyp <- pp_fyp_tidy |> 
+  summary() |> 
+  mutate(model = factor(model, 
+                        levels = c("best_model", "null_model"),
+                        labels = c("Main", "Null")),
+         y = 750)
+```
+
+```{r}
+#| label: fig-fyp-posteriors
+
+pp_fyp_tidy |> 
+  mutate(model = factor(model, 
+                        levels = c("best_model", "null_model"),
+                        labels = c("Main", "Null"))) |>
+  ggplot() + 
+  geom_histogram(aes(x = posterior, fill = model), color = "black", alpha = .4, 
+                 bins = 60) +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean,
+                           color = model),
+               data = ci_fyp) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper, color = model),
+                data = ci_fyp) +
+  facet_wrap(~model, ncol = 1) +
+  scale_y_continuous("Posterior Probability") +
+  scale_x_continuous("Area Under ROC Curve") +
+  theme(legend.position = "none")
+  # geom_text(aes(c("Median = 0.90", "Median = 0.91", "Median = .93")))
+
+```
+
+### Model Contrasts
+```{r}
+ci_fyp <- pp_fyp |>
+  contrast_models(list("best_model"), 
+                  list("null_model")) |> 
+  summary(size = .01) |> 
+  mutate(contrast = factor(contrast, 
+                        levels = c("best_model vs null_model"),
+                        labels = c("Main vs. Null")),
+         y = 550)
+```
+
+```{r}
+#| label: fig-fyp-contrasts
+
+pp_fyp |> 
+  tidy(seed = 123) |>   
+  group_by(model) |> 
+  mutate(sample = row_number()) |> 
+  ungroup() |> 
+  pivot_wider(names_from = model, values_from = posterior) |> 
+  mutate("Main vs. Null" = best_model - null_model) |> 
+  pivot_longer(cols = "Main vs. Null",
+               names_to = "contrast",
+               values_to = "posterior") |> 
+  mutate(contrast = factor(contrast, 
+                           levels = c("Main vs. Null"))) |> 
+  ggplot() +
+  geom_histogram(aes(x = posterior), 
+                 color = "black", fill = "grey", alpha = .4, bins = 60) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean), color = "black", data = ci_fyp) +
+  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper), color = "black", data = ci_fyp) +
+  facet_wrap(~contrast) +
+  ylab("Posterior Probability") +
+  xlab("Model Contrast for AUC") +
+  theme(legend.position = "none") 
+```
