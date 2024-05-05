@@ -76,6 +76,8 @@ auc_baseline <- auc_week_baseline |>
   full_join(auc, by = c("repeat_num", "fold_num"))
 ```
 
+### Confusion matrix
+
 Predictions
 ```{r}
 preds_day <- read_rds(file.path(path_models, "outer_preds_1day_0_v5_nested_main.rds")) |> 
@@ -89,28 +91,6 @@ preds_week <- read_rds(file.path(path_models, "outer_preds_1week_0_v5_nested_mai
 preds_hour <- read_rds(file.path(path_models, "outer_preds_1hour_0_v5_nested_main.rds")) |> 
   group_by(id_obs, label) |> 
   summarize(probability = mean(prob_beta), .groups = "drop") 
-
-
-
-set.seed(102030)
-day <- preds_day |> 
-  # slice_sample(n = 20000) |> 
-  mutate(window = "day",
-         window = factor(window)) |> 
-  ggplot(aes(group = window)) +
-  geom_jitter(aes(x = probability, y = window, color = label), alpha = .4) +
-  geom_vline(xintercept = j_thres_day, linetype = "dashed") +
-  scale_color_manual(values = c("#6C3483", "grey")) + 
-  theme(legend.position = "bottom",
-        axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        legend.title = element_blank(),
-        axis.line.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        panel.background = element_rect(fill='transparent'), 
-        plot.background = element_rect(fill='transparent', color=NA))
-
-ggsave('day_pred.png', day, bg='transparent', width = 8, height = 4)
 ```
 
 ```{r}
@@ -143,7 +123,6 @@ j_thres_hour <- roc_hour_full |>
   pull(.threshold)
 ```
 
-cm
 ```{r}
 preds_day <- preds_day |> 
   mutate(estimate = if_else(probability > j_thres_day, "Lapse", "No lapse"),
@@ -155,6 +134,32 @@ cm <- tibble(truth = preds_day$label,
 
 cm
 ```
+
+### Jitter plot
+
+```{r}
+
+day <- preds_day |> 
+  mutate(window = "day",
+         window = factor(window)) |> 
+  ggplot(aes(group = window)) +
+  geom_jitter(aes(x = probability, y = window, color = label), alpha = .4) +
+  geom_vline(xintercept = j_thres_day, linetype = "dashed") +
+  scale_color_manual(values = c("#6C3483", "grey")) + 
+  theme(legend.position = "bottom",
+        axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        legend.title = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.background = element_rect(fill='transparent'), 
+        plot.background = element_rect(fill='transparent', color=NA))
+
+day 
+
+# ggsave('day_pred.png', day, bg='transparent', width = 8, height = 4)
+```
+
 
 
 ```{r}
@@ -213,124 +218,7 @@ pp_tidy |>
 ```
 
 
-### Model Contrasts
-```{r}
-#| echo: false
 
-ci <- pp |> 
-  contrast_models(list("hour","hour", "day"), 
-                list("week", "day", "week")) |> 
-  summary(size = .01) |> 
-  mutate(contrast = factor(contrast, 
-                           levels = c("hour vs week", "hour vs day", "day vs week"),
-                           labels = c("Hour vs. Week", "Hour vs. Day", "Day vs. Week")),
-         y = 850)
-```
-
-
-```{r}
-#| label: fig-ema-contrasts
-#| fig-cap: "Caption"
-
-pp |> 
-  tidy(seed = 123) |>   
-  group_by(model) |> 
-  mutate(sample = row_number()) |> 
-  ungroup() |> 
-  pivot_wider(names_from = model, values_from = posterior) |> 
-  mutate(hour_vs_week = hour - week,
-         hour_vs_day = hour - day,
-         day_vs_week = day - week) |> 
-  pivot_longer(cols = hour_vs_week:day_vs_week,
-               names_to = "contrast",
-               values_to = "posterior") |> 
-  mutate(contrast = factor(contrast, 
-                           levels = c("hour_vs_week", "hour_vs_day", "day_vs_week"),
-                           labels = c("Hour vs. Week", "Hour vs. Day", "Day vs. Week"))) |> 
-  ggplot() +
-  geom_histogram(aes(x = posterior), 
-                 color = "black", fill = "grey", alpha = .4, bins = 30) +
-  geom_vline(xintercept = 0, color = "black", linetype = "dashed") +
-  geom_segment(mapping = aes(y = y+100, yend = y-100, x = mean, xend = mean), 
-               data = ci, show.legend = FALSE) +
-  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper), 
-               data = ci, show.legend = FALSE) +
-  # geom_text(data = ci, x = c(.0255, .043, .018), y = 700, 
-  #           label = str_c(round(ci$mean, 2), " [", round(ci$lower, 2), ", ", round(ci$upper, 2), "]")) +
-  facet_wrap(~contrast, ncol = 1) +
-  xlab("auROC difference") +
-  ylab("Count") +
-  theme(legend.position = "none")
-```
-
-### Baseline Model Comparisons
-```{r}
-#| echo: false
-#| output: false
-
-set.seed(101)
-pp_baseline <- auc_baseline |> 
-  rename(id = repeat_num,
-         id2 = fold_num) |> 
-  perf_mod(formula = statistic ~ model + (1 | id2/id),
-           transform = tidyposterior::logit_trans,  # for skewed & bounded AUC
-           iter = 2000, chains = 4,  
-           adapt_delta = .99,
-           family = gaussian) 
-
-ci_baseline <- contrast_models(pp_baseline, 
-                  list("hour","day", "week"), 
-                  list("hour_baseline", "day_baseline", "week_baseline")) |> 
-  summary(size = .01) |> 
-  mutate(contrast = factor(contrast,
-                           levels = c("week vs week_baseline",
-                                      "day vs day_baseline",
-                                      "hour vs hour_baseline"),
-                           labels = c("Week vs. Week Baseline",
-                                      "Day vs. Day Baseline",
-                                      "Hour vs. Hour Baseline")),
-         y = 1000)
-
-```
-
-```{r}
-#| label: fig-ema-baseline
-#| fig-cap: "Caption"
-
-pp_baseline |>
-  tidy(seed = 123) |>
-  group_by(model) |>
-  mutate(sample = row_number()) |>
-  ungroup() |>
-  pivot_wider(names_from = model, values_from = posterior) |> 
-  mutate(hour_vs_hour_baseline = hour - hour_baseline,
-         day_vs_day_baseline = day - day_baseline,
-         week_vs_week_baseline = week - week_baseline) |>
-  pivot_longer(cols = hour_vs_hour_baseline:week_vs_week_baseline,
-               names_to = "contrast",
-               values_to = "posterior") |> 
-  mutate(contrast = factor(contrast,
-                           levels = c("week_vs_week_baseline",
-                                      "day_vs_day_baseline",
-                                      "hour_vs_hour_baseline"),
-                           labels = c("Week vs. Week Baseline",
-                                      "Day vs. Day Baseline",
-                                      "Hour vs. Hour Baseline"))) |> 
-  ggplot() +
-  geom_histogram(aes(x = posterior, color = contrast, fill = contrast),  
-                  bins = 40, show.legend = FALSE) +
-    scale_color_manual(values = c("#4A235A", "#D4AC0D", "#0B5345")) +
-  scale_fill_manual(values = c("#D7BDE2", "#F9E79F", "#A2D9CE")) +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  geom_segment(mapping = aes(y = y+600, yend = y+200, x = mean, xend = mean, color = contrast),
-               data = ci_baseline, show.legend = FALSE) +
-  geom_segment(mapping = aes(y = y+400, yend = y+400, x = lower, xend = upper, color = contrast), 
-               data = ci_baseline, show.legend = FALSE) +
-  facet_wrap(~contrast, ncol = 1) +
-  xlab("auROC difference") +
-  ylab("Count") +
-  theme(legend.position = "none")
-```
 
 
 ### Shapley
