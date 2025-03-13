@@ -35,6 +35,7 @@ editor_options:
 
 :::{.column width = "40%"}
 
+![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){height = 50}
 :::
 :::
 
@@ -59,7 +60,6 @@ Generally, we do not treat AUD very well. We have treatments that work, but few 
 
 :::{.column width = "50%"}
 :::{.fragment}
-:::{.nonincremental}
 Barriers:
 
 - Cost and insurance reimbursement issues
@@ -69,8 +69,7 @@ Barriers:
 - Patient dropout
 - Changes in patients' clinical needs over time
 
-<span style="font-size: 20px">Dennis and Scott 2007; Tai and Volkow 2013; McKay 2021</span>
-:::
+<span style="font-size: 20px; margin-left: 40px">Dennis and Scott 2007; Tai and Volkow 2013; McKay 2021</span>
 :::
 :::
 
@@ -85,36 +84,80 @@ Substance use treatment has been shown to be most effective when care is prescri
 
 ## Relapse Prevention
 
+- Relapses can occur at any point in recovery
+- Relapse is preceded by high-risk situations
+- These situations differ between individuals and within an individual over time
 
-## Recovery Monitoring and Support System
+:::{.notes}
+Continuing care for relapse prevention is an important part of recovery.
+
+Relapses can occur at any point, even after years of successful moderation or abstinence.
+
+Although for some people, it may feel as if a relapse comes out of nowhere, we have an extant relapse prevention literature that suggests relapse is preceded by high-risk situations These include emotional or cognitive states (affect, craving), environmental contingencies (stressful events, or risky situations),  and physiological states (arousal).
+
+Importantly, high-risk situations differ between individuals and within an individual over-time. In other words, different people will need different supports at different times.
+
+Personalized risk monitoring could help patients adapt their lifestyles, behaviors, and supports to their changing needs.
+
+But we don’t have the resources for long-term clinician care and long-term continuous self-monitoring is really hard!
+:::
 
 
 ## Machine Learning and Digital Data
 
+:::{.notes}
+Imagine a smartphone app that could alert patients of changes in their relapse risk and make personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.
 
-## Ecological Momentary Assessment (EMA)
+So How do we get here?
+
+We need 2 things.
+
+We need a rich and densely sampled source of risk-relevant data and 
+we need accurate machine learning models that can both predict and contextualize relapse risk.
+
+:::
+
+## Recovery Monitoring and Support System
+
+
+## Ecological Momentary Assessment
 
 
 ## Study Goals
 
+Use EMA to:
+
 1. Predict immediate lapses back to alcohol use (i.e., next 24 hours).
+
+:::{.fragment}
 2. Predict lapses occuring in a 24 hour window 2 weeks from now.
+:::
+
+:::{.notes}
+Narrow prediction window widths like our next hour or next day model are well suited for addressing immediate risk. These models can be updated hourly or daily to provide individuals information about changes in their risk and make supportive recommendations based on the top features. 
+
+This goes back to my early example about an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.
+
+Importantly, this assumes that the recommendations can be implemented immediately, likely in a smartphone app.
+
+But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next hour!
+
+Given that the next week model may not have sufficient temporal specificity to recommend immediate action. Its clinical utility could come from being able to shift this coarser window width into the future. In essence creating a “time-lagged” model that could provide people with increased lead time to implement supports not immediately available to them.
+
+In this study I wanted to see if I could maintain clinically meaningful model performance as I shifted the 1 week window further into the future.
+
+:::
 
 ## Design
 
-:::{.nonincremental}
-
 - 3-month longitudinal study
 - Participants completed 4 surveys daily
-:::
 
 :::{.fragment}
-:::{.nonicremental}
 - 279 features
 - Outcome = lapse or no lapse
 - XGBoost algorithm
 - Grouped nested k-fold cross-validation
-:::
 :::
 
 
@@ -167,9 +210,9 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 
 ## Next Steps
 
-- Opitimize grant - determining how to best deliver feedback about risk to individuals.
+- Delivering risk-relevant feedback
 
-- Combine EMA with other digital data (e.g., geolocation) to increase the number of model features for personalized recommendations.
+- add chat bubbles
 
 ::: {.notes}
 
@@ -178,3 +221,21 @@ Returning again to the idea that these models will be most effective embedded in
 One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse and the most important features driving that lapse prediction. In addition, we could imagine contextualizing this information further by determining whether someone’s predicted probability has increased or decreased in the last week or using domain expertise to provide specific recommendations for recovery engagement.  In a recently funded grant in our lab, we plan to look what combination of risk-relevant information leads to optimal engagement and clinical recovery outcomes. 
 
 :::
+
+## Next Steps
+
+- Delivering risk-relevant feedback
+
+- Predictions with longer lag times
+
+:::{.notes}
+In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. Participants only provided EMA for up to three months. Therefore, a lag time of two weeks between the prediction time point and start of the prediction window means data from 2 out of the 12 possible weeks is not being used. This loss of data could be one reason we saw a decrease in model performance with increased lag times. 
+:::
+
+## Next Steps
+
+- Delivering risk-relevant feedback
+
+- Predictions with longer lag times
+
+- Combine EMA with other digital data (e.g., geolocation) to increase the number of model features for personalized recommendations.

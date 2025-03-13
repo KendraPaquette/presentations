@@ -33,6 +33,15 @@
 .reveal ul {
     list-style-type: "\25A1   " !important;
     padding-left: 50px;
+    padding-right: 10px;
+    width: 90%;
+    font-size: 35px;
+    font-family: 'Abadi Extra Light', Sans-Serif;
+}
+
+.reveal ol {
+    padding-left: 50px;
+    padding-right: 10px;
     width: 90%;
     font-size: 35px;
     font-family: 'Abadi Extra Light', Sans-Serif;
