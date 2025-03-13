@@ -204,22 +204,43 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 
 - Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.
 
+:::{.fragment}
 - In models that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance between groups
 
-- show fairness fig from RISK2
+*show fairness fig from RISK2*
+:::
+
+
 
 ## Next Steps
 
 - Delivering risk-relevant feedback
 
-- add chat bubbles
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true)
+:::
+
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true)
+:::
+
+:::{fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true)
+:::
+
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true)
+:::
 
 ::: {.notes}
 
-Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system. There are a few next steps we need to take. 
+Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.  
 
-One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse and the most important features driving that lapse prediction. In addition, we could imagine contextualizing this information further by determining whether someone’s predicted probability has increased or decreased in the last week or using domain expertise to provide specific recommendations for recovery engagement.  In a recently funded grant in our lab, we plan to look what combination of risk-relevant information leads to optimal engagement and clinical recovery outcomes. 
+One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual. It is quite possible though that this could have iatrogenic effects. For example, it could trigger an abstinence violation effect where the individual thinks well Im probably going to lapse anyway so why try.
 
+Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.
+
+But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of these risk-relevant information lead to optimal engagement and clinical recovery outcomes. =
 :::
 
 ## Next Steps
@@ -227,6 +248,9 @@ One crucial step is to investigate how to communicate information from our model
 - Delivering risk-relevant feedback
 
 - Predictions with longer lag times
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true)
+
 
 :::{.notes}
 In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. Participants only provided EMA for up to three months. Therefore, a lag time of two weeks between the prediction time point and start of the prediction window means data from 2 out of the 12 possible weeks is not being used. This loss of data could be one reason we saw a decrease in model performance with increased lag times. 
@@ -239,3 +263,14 @@ In such a system, we can imagine that even longer lags (i.e., more advanced warn
 - Predictions with longer lag times
 
 - Combine EMA with other digital data (e.g., geolocation) to increase the number of model features for personalized recommendations.
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true)
+
+:::{.notes}
+A recovery monitoring and support system will require new data to update model predictions. A model only using EMA could raise measurement burden concerns. Research suggests people can comply with effortful sensing methods (e.g., 4x daily EMA) while using substances but still we can imagine this could be quite burdensome.
+
+We have begun to explore how we can supplement our models with data from other lower burden sensing methods. For example, geolocation is a passive sensing method that could compliment EMA well. 
+
+Additionally adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people
+:::
+
