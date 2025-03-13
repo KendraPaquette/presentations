@@ -1,0 +1,180 @@
+---
+title: "Lagged predictions of next day alcohol use for personalized continuing care support"
+subtitle: "Kendra Wyant"
+author: "Gaylen Fronk, Jiachen Yu, John J. Curtin"
+date: "April 3, 2025"
+institute: "University of Wisconsin-Madison"
+format: 
+  revealjs:
+    css: slides.css
+    incremental: false  
+    logo: arc_logo.png
+    footer: "Collaborative Perspectives on Addiction 2025"
+slide-number: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+## Alcohol Use Disorder
+
+::: {.columns}
+
+:::{.column width = "60%"}
+
+- Chronic disease
+
+:::{.fragment}
+- Continuing care for ongoing monitoring and early reintervention
+:::
+
+:::{.fragment}
+- Alcohol use disorder treatment is lacking
+:::
+:::
+
+:::{.column width = "40%"}
+
+:::
+:::
+
+::: {.notes}
+Alcohol use disorder is a chronic disease, characterized by high relapse rates, frequent reentry into treatment, and an increased risk of mortality.
+
+Continuing care, including ongoing monitoring and early re-intervention, has been well established as the gold standard for managing chronic health conditions such as diabetes, asthma, and HIV. 
+
+Generally, we do not treat AUD very well. We have treatments that work, but few individuals receive them.  And those that do receive treatment often receive time-limited care focused on initial symptom reduction. 
+:::
+
+
+## Continuing Care
+
+::: {.columns}
+
+:::{.column width = "50%"}
+{{< embed ../notebooks/treatment_figure.qmd#samhsa >}}
+
+<span style="font-size: 20px; margin-left: 20px;">SAMHSA 2022</span>
+:::
+
+:::{.column width = "50%"}
+:::{.fragment}
+:::{.nonincremental}
+Barriers:
+
+- Cost and insurance reimbursement issues
+- Lack of collaborative provider teams
+- Passive referral processes
+- Geographic barriers 
+- Patient dropout
+- Changes in patients' clinical needs over time
+
+<span style="font-size: 20px">Dennis and Scott 2007; Tai and Volkow 2013; McKay 2021</span>
+:::
+:::
+:::
+
+:::
+
+::: {.notes}
+To illustrate, of the almost 30 million US adults with an active AUD in 2022. It is estimated that about12% received any treatment.
+We do not have data to know how many people receive long term support or continuing care after initial treatment, but given these numbers we can imagine it is much lower.
+
+Substance use treatment has been shown to be most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged. Yet, for reasons including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time, most treatment is time-limited and aimed at acute substance use reduction and symptom stabilization. This leaves a large treatment gap when it comes to long-term continuing care for substance use disorders.
+:::
+
+## Relapse Prevention
+
+
+## Recovery Monitoring and Support System
+
+
+## Machine Learning and Digital Data
+
+
+## Ecological Momentary Assessment (EMA)
+
+
+## Study Goals
+
+1. Predict immediate lapses back to alcohol use (i.e., next 24 hours).
+2. Predict lapses occuring in a 24 hour window 2 weeks from now.
+
+## Design
+
+:::{.nonincremental}
+
+- 3-month longitudinal study
+- Participants completed 4 surveys daily
+:::
+
+:::{.fragment}
+:::{.nonicremental}
+- 279 features
+- Outcome = lapse or no lapse
+- XGBoost algorithm
+- Grouped nested k-fold cross-validation
+:::
+:::
+
+
+::: {.notes}
+Participants completed 4 daily surveys for up to three months
+
+They reported: 
+The greatest intensity of craving, arousal, and valence since the last survey.  
+
+Stressful events, risky situations and pleasant events encountered since their last survey
+
+Future stressful events, risky situations and efficacy looking in the next week
+
+And any alcohol use they had not yet reported.
+
+We used all 10 EMA items plus 7 demographic questions to engineer our features. We had a total of 279 features. 
+Time and day of alcohol use to generate our outcome labels of lapse or no lapse.
+We considered a range of statistical algorithms, but XGBoost consistently emerged as our best model in validation sets so for evaluation we only considered XGBoost.
+We used grouped nested k-fold cross-validation to ensure our models were evaluated on new data from new individuals
+
+:::
+
+## Participants
+
+## Adherence
+
+## Model Performance
+
+
+## Feature Importance
+
+
+## Model Fairness
+
+
+## Conclusions
+
+- We can achieve clinically meaningful performance up to 2 weeks out
+- Advanced notice for treatment supports that are not immediately available
+- A more representative training sample is critical for developing fair models
+
+
+## Next Steps
+
+- Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.
+
+- In models that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance between groups
+
+- show fairness fig from RISK2
+
+## Next Steps
+
+- Opitimize grant - determining how to best deliver feedback about risk to individuals.
+
+- Combine EMA with other digital data (e.g., geolocation) to increase the number of model features for personalized recommendations.
+
+::: {.notes}
+
+Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system. There are a few next steps we need to take. 
+
+One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse and the most important features driving that lapse prediction. In addition, we could imagine contextualizing this information further by determining whether someone’s predicted probability has increased or decreased in the last week or using domain expertise to provide specific recommendations for recovery engagement.  In a recently funded grant in our lab, we plan to look what combination of risk-relevant information leads to optimal engagement and clinical recovery outcomes. 
+
+:::
