@@ -1,7 +1,7 @@
 ---
 title: "Lagged predictions of next day alcohol use for personalized continuing care support"
 subtitle: "Kendra Wyant"
-author: "Gaylen Fronk, Jiachen Yu, John J. Curtin"
+author: "Gaylen Fronk, Coco Yu, John J. Curtin"
 date: "April 3, 2025"
 institute: "University of Wisconsin-Madison"
 format: 
@@ -112,19 +112,26 @@ But we don’t have the resources for long-term clinician care and long-term con
 
 ## Recovery Monitoring and Support System
 
+::: {.columns}
 :::{.column width = "50%"}
 - Highly scalable
-- Personalized adaptive recommendations
-- Prompt individuals to engage with support at times of high risk
-:::
-
 
 :::{.fragment}
-:::{.column width = "50%"}
-
-
+- Personalized adaptive recommendations
 :::
 
+:::{.fragment}
+- Prompt individuals to engage with support at times of high risk
+:::
+:::
+
+
+
+:::{.column width = "50%"}
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem.png?raw=true)
+:::
+:::
 :::
 
 :::{.notes}
@@ -165,16 +172,24 @@ Machine learning models can handle high dimensional feature sets from feature en
 
 ## Ecological Momentary Assessment
 
+:::{.columns}
 :::{.column width = "50%"}
 - Direct and frequent insight into subjective feelings and experiences
+
+:::{.fragment}
 - Constructs easily map onto well-studied risk factors for lapse
+:::
+
+:::{.fragment}
 - Appears to be well-tolerated
+:::
 
 :::
 
 
 :::{.column width = "50%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){height = 20%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true)
+:::
 :::
 
 :::{.notes}
@@ -214,7 +229,8 @@ These “time-lagged” predictions could give people advanced warning to implem
 
 - 3-month longitudinal study
 - Participants completed 4 surveys daily
-
+    - craving, arousal, valence, stressful events, risky situations, pleasant events, efficacy, alcohol use
+    
 :::{.fragment}
 - 279 features
 - Outcome = lapse or no lapse
@@ -226,7 +242,7 @@ These “time-lagged” predictions could give people advanced warning to implem
 ::: {.notes}
 Participants completed 4 daily surveys for up to three months
 
-They reported: 
+Each survey had 10 items that asked about 
 The greatest intensity of craving, arousal, and valence since the last survey.  
 
 Stressful events, risky situations and pleasant events encountered since their last survey
@@ -239,7 +255,6 @@ We used all 10 EMA items plus 7 demographic questions to engineer our features. 
 Time and day of alcohol use to generate our outcome labels of lapse or no lapse.
 We considered a range of statistical algorithms, but XGBoost consistently emerged as our best model in validation sets so for evaluation we only considered XGBoost.
 We used grouped nested k-fold cross-validation to ensure our models were evaluated on new data from new individuals
-
 :::
 
 ## Participants
@@ -252,6 +267,7 @@ Additionally, all of our participants had a goal of abstinence which made it eas
 :::
 
 ## Adherence
+
 
 ## Model Performance
 
@@ -292,23 +308,32 @@ Additionally, all of our participants had a goal of abstinence which made it eas
 - Delivering risk-relevant feedback
 
 
-
+:::{.columns}
+:::{.column width = "25%"}
 :::{.fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true)
 :::
+:::
 
+:::{.column width = "25%"}
 :::{.fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true)
 :::
+:::
 
+:::{.column width = "25%"}
 :::{fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true)
 :::
-
-:::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true)
 :::
 
+:::{.column width = "25%"}
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_4.png?raw=true)
+:::
+:::
+
+:::
 
 ::: {.notes}
 
@@ -354,6 +379,28 @@ Additionally adding more data sources gives us more features and that could mean
 
 ## Aknowledgements
 
-- lab members and staff
-- grant number
-- qr code for study site
+:::{.columns}
+:::{.column width = "50%"}
+Co-authors: 
+
+- John J. Curtin, PI
+- Gaylen Fronk
+- Coco Yu
+
+Other contributors:
+
+- Sarah Sant'Ana
+- Claire Punturieri
+- Susan Wanta
+- Madison Herrmann
+- Colin Maggard
+:::
+
+:::{.column width = "50%"}
+This research was supported by NIAAA R01 AA024391 to John J. Curtin
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true)
+:::
+
+:::

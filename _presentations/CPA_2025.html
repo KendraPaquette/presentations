@@ -6,10 +6,10 @@
 <script src="CPA_2025_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="CPA_2025_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="CPA_2025_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="CPA_2025_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="CPA_2025_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
-  <meta name="author" content="Gaylen Fronk, Jiachen Yu, John J. Curtin">
+  <meta name="author" content="Gaylen Fronk, Coco Yu, John J. Curtin">
   <meta name="dcterms.date" content="2025-04-03">
   <title>Lagged predictions of next day alcohol use for personalized continuing care support</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="CPA_2025_files/libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="CPA_2025_files/libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
   <link rel="stylesheet" href="slides.css">
   <link href="CPA_2025_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="CPA_2025_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -135,7 +135,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Gaylen Fronk, Jiachen Yu, John J. Curtin 
+Gaylen Fronk, Coco Yu, John J. Curtin 
 </div>
         <p class="quarto-title-affiliation">
             University of Wisconsin-Madison
@@ -185,6 +185,17 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <h2>Continuing Care</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/treatment_figure.qmd" data-notebook-title="Treatment figure with SAMHSA 2022 data" data-notebook-cellid="cell-samhsa">
+<div id="cell-samhsa" class="cell" data-out-align="right">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-treatment_figure-samhsa-output-1.png" id="samhsa"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p><span style="font-size: 20px; margin-left: 20px;">SAMHSA 2022</span></p>
 </div><div class="column" style="width:50%;">
 <div class="fragment">
@@ -219,14 +230,22 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <h2>Relapse Prevention</h2>
 <ul>
 <li>Relapses can occur at any point in recovery</li>
-<li>Relapse is preceded by high-risk situations</li>
-<li>These situations differ between individuals and within an individual over time</li>
 </ul>
+<div class="fragment">
+<ul>
+<li>Risk factors are individualized, dynamic, and interactive</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Optimal supports to address risk factors vary across individuals and within an individual over time</li>
+</ul>
+</div>
 <aside class="notes">
 <p>Continuing care for relapse prevention is an important part of recovery.</p>
 <p>Relapses can occur at any point, even after years of successful moderation or abstinence.</p>
-<p>Although for some people, it may feel as if a relapse comes out of nowhere, we have an extant relapse prevention literature that suggests relapse is preceded by high-risk situations These include emotional or cognitive states (affect, craving), environmental contingencies (stressful events, or risky situations), and physiological states (arousal).</p>
-<p>Importantly, high-risk situations differ between individuals and within an individual over-time. In other words, different people will need different supports at different times.</p>
+<p>The risk factors preceding relapse during recovery are individualized, numerous, dynamic, interactive, and non-linear.</p>
+<p>Therefore, the optimal supports to address these risk factors vary both across individuals and within an individual over time. In other words, different people will need different supports at different times.</p>
 <p>Personalized risk monitoring could help patients adapt their lifestyles, behaviors, and supports to their changing needs.</p>
 <p>But we don’t have the resources for long-term clinician care and long-term continuous self-monitoring is really hard!</p>
 <style type="text/css">
@@ -241,13 +260,26 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
           display:block!important;
       }</style></aside>
 </section>
-<section id="machine-learning-and-digital-data" class="slide level2">
-<h2>Machine Learning and Digital Data</h2>
+<section id="recovery-monitoring-and-support-system" class="slide level2">
+<h2>Recovery Monitoring and Support System</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Highly scalable</li>
+<li>Personalized adaptive recommendations</li>
+<li>Prompt individuals to engage with support at times of high risk</li>
+</ul>
+</div><div class="fragment">
+<div class="column" style="width:50%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem.png?raw=true"></p>
+</div></div>
+</div>
 <aside class="notes">
-<p>Imagine a smartphone app that could alert patients of changes in their relapse risk and make personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.</p>
-<p>So How do we get here?</p>
-<p>We need 2 things.</p>
-<p>We need a rich and densely sampled source of risk-relevant data and we need accurate machine learning models that can both predict and contextualize relapse risk.</p>
+<p>An algorithm-guided recovery monitoring and support system could help patients self-monitor their risk for relapse.</p>
+<p>This system could provide a scalable option for low-cost, long-term monitoring; offer personalized, adaptive recommendations aligned with evidenced-based care; and prompt individuals to engage with support at times of high risk.</p>
+<p>For example individuals could receive daily messages about changes in their relapse risk and receive personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.</p>
+<p>For such a system to exist, we need two things. One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.</p>
+<p>Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -260,11 +292,62 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
           display:block!important;
       }</style></aside>
 </section>
-<section id="recovery-monitoring-and-support-system" class="slide level2">
-<h2>Recovery Monitoring and Support System</h2>
+<section id="machine-learning-and-digital-data" class="slide level2">
+<h2>Machine Learning and Digital Data</h2>
+<ul>
+<li>High dimensional feature sets</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Non-linear and interactive relationships between features and lapse risk probability</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Interpretability of feature importance</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment [EMA], geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors that is necessary for prediction of future lapses with high temporal precision.</p>
+<p>Machine learning models can handle high dimensional feature sets from feature engineering densely sampled raw data over time. They can also accommodate non-linear and interactive relationships between features and lapse risk probability. Additionally, methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="ecological-momentary-assessment" class="slide level2">
 <h2>Ecological Momentary Assessment</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Direct and frequent insight into subjective feelings and experiences</li>
+<li>Constructs easily map onto well-studied risk factors for lapse</li>
+<li>Appears to be well-tolerated</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true">{height = 20%}</p>
+</div></div>
+<aside class="notes">
+<p>It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment, such as the relapse prevention model</p>
+<p>Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout SUD recovery.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="study-goals" class="slide level2">
 <h2>Study Goals</h2>
@@ -282,8 +365,8 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <p>This goes back to my early example about an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.</p>
 <p>Importantly, this assumes that the recommendations can be implemented immediately, likely in a smartphone app.</p>
 <p>But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next hour!</p>
-<p>Given that the next week model may not have sufficient temporal specificity to recommend immediate action. Its clinical utility could come from being able to shift this coarser window width into the future. In essence creating a “time-lagged” model that could provide people with increased lead time to implement supports not immediately available to them.</p>
-<p>In this study I wanted to see if I could maintain clinically meaningful model performance as I shifted the 1 week window further into the future.</p>
+<p>Therefore, in this project we also shifted the 24 hour prediction window 2-weeks into the future. So essentially will someone lapse in a 24 hour window two weeks from now.</p>
+<p>These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -300,7 +383,10 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <h2>Design</h2>
 <ul>
 <li>3-month longitudinal study</li>
-<li>Participants completed 4 surveys daily</li>
+<li>Participants completed 4 surveys daily
+<ul>
+<li>craving, arousal, valence, stressful events, risky situations, pleasant events, efficacy, alcohol use</li>
+</ul></li>
 </ul>
 <div class="fragment">
 <ul>
@@ -312,7 +398,7 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 </div>
 <aside class="notes">
 <p>Participants completed 4 daily surveys for up to three months</p>
-<p>They reported: The greatest intensity of craving, arousal, and valence since the last survey.</p>
+<p>Each survey had 10 items that asked about The greatest intensity of craving, arousal, and valence since the last survey.</p>
 <p>Stressful events, risky situations and pleasant events encountered since their last survey</p>
 <p>Future stressful events, risky situations and efficacy looking in the next week</p>
 <p>And any alcohol use they had not yet reported.</p>
@@ -331,6 +417,20 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 </section>
 <section id="participants" class="slide level2">
 <h2>Participants</h2>
+<aside class="notes">
+<p>We looked at the predictive utility of EMA for alcohol lapse prediction in a sample of 151 participants with moderate to severe alcohol use disorder in Madison, WI.</p>
+<p>Additionally, all of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="adherence" class="slide level2">
 <h2>Adherence</h2>
@@ -348,12 +448,20 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <h2>Conclusions</h2>
 <ul>
 <li>We can achieve clinically meaningful performance up to 2 weeks out</li>
+</ul>
+<div class="fragment">
+<ul>
 <li>Advanced notice for treatment supports that are not immediately available</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
 <li>A more representative training sample is critical for developing fair models</li>
 </ul>
+</div>
 </section>
-<section id="next-steps" class="slide level2">
-<h2>Next Steps</h2>
+<section id="current-future-directions" class="slide level2">
+<h2>Current Future Directions</h2>
 <ul>
 <li>Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.</li>
 </ul>
@@ -364,23 +472,29 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <p><em>show fairness fig from RISK2</em></p>
 </div>
 </section>
-<section id="next-steps-1" class="slide level2">
-<h2>Next Steps</h2>
+<section id="current-future-directions-1" class="slide level2">
+<h2>Current Future Directions</h2>
 <ul>
 <li>Delivering risk-relevant feedback</li>
 </ul>
+<div class="columns">
+<div class="column" style="width:25%;">
 <div class="fragment">
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true"></p>
 </div>
+</div><div class="column" style="width:25%;">
 <div class="fragment">
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true"></p>
 </div>
+</div><div class="column" style="width:25%;">
 <div class="{fragment}">
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true"></p>
 </div>
+</div><div class="column" style="width:25%;">
 <div class="fragment">
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true"></p>
 </div>
+</div></div>
 <aside class="notes">
 <p>Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.</p>
 <p>One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual. It is quite possible though that this could have iatrogenic effects. For example, it could trigger an abstinence violation effect where the individual thinks well Im probably going to lapse anyway so why try.</p>
@@ -398,14 +512,14 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
           display:block!important;
       }</style></aside>
 </section>
-<section id="next-steps-2" class="slide level2">
-<h2>Next Steps</h2>
+<section id="current-future-directions-2" class="slide level2">
+<h2>Current Future Directions</h2>
 <ul>
 <li><p>Delivering risk-relevant feedback</p></li>
 <li><p>Predictions with longer lag times</p></li>
 </ul>
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true">{fig-align = right; width=80%}</p>
-<aside class="notes">
+
+<img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true" class="r-stretch"><aside class="notes">
 <p>In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. Participants only provided EMA for up to three months. Therefore, a lag time of two weeks between the prediction time point and start of the prediction window means data from 2 out of the 12 possible weeks is not being used. This loss of data could be one reason we saw a decrease in model performance with increased lag times.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -419,8 +533,8 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
           display:block!important;
       }</style></aside>
 </section>
-<section id="next-steps-3" class="slide level2">
-<h2>Next Steps</h2>
+<section id="current-future-directions-3" class="slide level2">
+<h2>Current Future Directions</h2>
 <ul>
 <li><p>Delivering risk-relevant feedback</p></li>
 <li><p>Predictions with longer lag times</p></li>
@@ -442,6 +556,17 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="aknowledgements" class="slide level2">
+<h2>Aknowledgements</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Co-authors: - John J. Curtin, PI - Gaylen Fronk - Coco Yu</p>
+<p>Other contributors: - Sarah Sant’Ana - Claire Punturieri - Susan Wanta - Madison Herrmann - Colin Maggard</p>
+</div><div class="column" style="width:50%;">
+<p>This research was supported by NIAAA R01 AA024391 to John J. Curtin</p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true"></p>
+</div></div>
 
 </section>
     </div>
