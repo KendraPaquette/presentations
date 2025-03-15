@@ -6,8 +6,8 @@
 <script src="CPA_2025_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="CPA_2025_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="CPA_2025_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="CPA_2025_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+<link href="CPA_2025_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Gaylen Fronk, Jiachen Yu, John J. Curtin">
   <meta name="dcterms.date" content="2025-04-03">
@@ -163,7 +163,7 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 </ul>
 </div>
 </div><div class="column" style="width:40%;">
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true">{height = 50}</p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true">{height = 50%}</p>
 </div></div>
 <aside class="notes">
 <p>Alcohol use disorder is a chronic disease, characterized by high relapse rates, frequent reentry into treatment, and an increased risk of mortality.</p>
@@ -185,17 +185,6 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <h2>Continuing Care</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="quarto-embed-nb-cell" data-notebook="C:\Users\kpaquette2\presentations\notebooks\treatment_figure.qmd" data-notebook-title="Treatment figure with SAMHSA 2022 data" data-notebook-cellid="cell-samhsa">
-<div id="cell-samhsa" class="cell" data-out-align="right">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-treatment_figure-samhsa-output-1.png" id="samhsa"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
 <p><span style="font-size: 20px; margin-left: 20px;">SAMHSA 2022</span></p>
 </div><div class="column" style="width:50%;">
 <div class="fragment">
@@ -228,18 +217,58 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 </section>
 <section id="relapse-prevention" class="slide level2">
 <h2>Relapse Prevention</h2>
-</section>
-<section id="recovery-monitoring-and-support-system" class="slide level2">
-<h2>Recovery Monitoring and Support System</h2>
+<ul>
+<li>Relapses can occur at any point in recovery</li>
+<li>Relapse is preceded by high-risk situations</li>
+<li>These situations differ between individuals and within an individual over time</li>
+</ul>
+<aside class="notes">
+<p>Continuing care for relapse prevention is an important part of recovery.</p>
+<p>Relapses can occur at any point, even after years of successful moderation or abstinence.</p>
+<p>Although for some people, it may feel as if a relapse comes out of nowhere, we have an extant relapse prevention literature that suggests relapse is preceded by high-risk situations These include emotional or cognitive states (affect, craving), environmental contingencies (stressful events, or risky situations), and physiological states (arousal).</p>
+<p>Importantly, high-risk situations differ between individuals and within an individual over-time. In other words, different people will need different supports at different times.</p>
+<p>Personalized risk monitoring could help patients adapt their lifestyles, behaviors, and supports to their changing needs.</p>
+<p>But we don’t have the resources for long-term clinician care and long-term continuous self-monitoring is really hard!</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="machine-learning-and-digital-data" class="slide level2">
 <h2>Machine Learning and Digital Data</h2>
+<aside class="notes">
+<p>Imagine a smartphone app that could alert patients of changes in their relapse risk and make personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.</p>
+<p>So How do we get here?</p>
+<p>We need 2 things.</p>
+<p>We need a rich and densely sampled source of risk-relevant data and we need accurate machine learning models that can both predict and contextualize relapse risk.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="recovery-monitoring-and-support-system" class="slide level2">
+<h2>Recovery Monitoring and Support System</h2>
 </section>
 <section id="ecological-momentary-assessment" class="slide level2">
 <h2>Ecological Momentary Assessment</h2>
 </section>
 <section id="study-goals" class="slide level2">
 <h2>Study Goals</h2>
+<p>Use EMA to:</p>
 <ol type="1">
 <li>Predict immediate lapses back to alcohol use (i.e., next 24 hours).</li>
 </ol>
@@ -248,6 +277,24 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <li>Predict lapses occuring in a 24 hour window 2 weeks from now.</li>
 </ol>
 </div>
+<aside class="notes">
+<p>Narrow prediction window widths like our next hour or next day model are well suited for addressing immediate risk. These models can be updated hourly or daily to provide individuals information about changes in their risk and make supportive recommendations based on the top features.</p>
+<p>This goes back to my early example about an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.</p>
+<p>Importantly, this assumes that the recommendations can be implemented immediately, likely in a smartphone app.</p>
+<p>But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next hour!</p>
+<p>Given that the next week model may not have sufficient temporal specificity to recommend immediate action. Its clinical utility could come from being able to shift this coarser window width into the future. In essence creating a “time-lagged” model that could provide people with increased lead time to implement supports not immediately available to them.</p>
+<p>In this study I wanted to see if I could maintain clinically meaningful model performance as I shifted the 1 week window further into the future.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="design" class="slide level2">
 <h2>Design</h2>
@@ -308,20 +355,82 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <section id="next-steps" class="slide level2">
 <h2>Next Steps</h2>
 <ul>
-<li><p>Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.</p></li>
-<li><p>In models that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance between groups</p></li>
-<li><p>show fairness fig from RISK2</p></li>
+<li>Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.</li>
 </ul>
+<div class="fragment">
+<ul>
+<li>In models that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance between groups</li>
+</ul>
+<p><em>show fairness fig from RISK2</em></p>
+</div>
 </section>
 <section id="next-steps-1" class="slide level2">
 <h2>Next Steps</h2>
 <ul>
-<li><p>Opitimize grant - determining how to best deliver feedback about risk to individuals.</p></li>
+<li>Delivering risk-relevant feedback</li>
+</ul>
+<div class="fragment">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true"></p>
+</div>
+<div class="fragment">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true"></p>
+</div>
+<div class="{fragment}">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true"></p>
+</div>
+<div class="fragment">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true"></p>
+</div>
+<aside class="notes">
+<p>Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.</p>
+<p>One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual. It is quite possible though that this could have iatrogenic effects. For example, it could trigger an abstinence violation effect where the individual thinks well Im probably going to lapse anyway so why try.</p>
+<p>Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.</p>
+<p>But another thing our model’s give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of these risk-relevant information lead to optimal engagement and clinical recovery outcomes. =</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="next-steps-2" class="slide level2">
+<h2>Next Steps</h2>
+<ul>
+<li><p>Delivering risk-relevant feedback</p></li>
+<li><p>Predictions with longer lag times</p></li>
+</ul>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true">{fig-align = right; width=80%}</p>
+<aside class="notes">
+<p>In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. Participants only provided EMA for up to three months. Therefore, a lag time of two weeks between the prediction time point and start of the prediction window means data from 2 out of the 12 possible weeks is not being used. This loss of data could be one reason we saw a decrease in model performance with increased lag times.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="next-steps-3" class="slide level2">
+<h2>Next Steps</h2>
+<ul>
+<li><p>Delivering risk-relevant feedback</p></li>
+<li><p>Predictions with longer lag times</p></li>
 <li><p>Combine EMA with other digital data (e.g., geolocation) to increase the number of model features for personalized recommendations.</p></li>
 </ul>
-<aside class="notes">
-<p>Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system. There are a few next steps we need to take.</p>
-<p>One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse and the most important features driving that lapse prediction. In addition, we could imagine contextualizing this information further by determining whether someone’s predicted probability has increased or decreased in the last week or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of risk-relevant information leads to optimal engagement and clinical recovery outcomes.</p>
+
+<img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true" class="r-stretch"><aside class="notes">
+<p>A recovery monitoring and support system will require new data to update model predictions. A model only using EMA could raise measurement burden concerns. Research suggests people can comply with effortful sensing methods (e.g., 4x daily EMA) while using substances but still we can imagine this could be quite burdensome.</p>
+<p>We have begun to explore how we can supplement our models with data from other lower burden sensing methods. For example, geolocation is a passive sensing method that could compliment EMA well.</p>
+<p>Additionally adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

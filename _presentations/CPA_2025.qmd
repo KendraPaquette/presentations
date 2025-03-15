@@ -35,7 +35,7 @@ editor_options:
 
 :::{.column width = "40%"}
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){height = 50}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){height = 50%}
 :::
 :::
 
@@ -200,7 +200,7 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 - A more representative training sample is critical for developing fair models
 
 
-## Next Steps
+## Current Future Directions
 
 - Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.
 
@@ -212,9 +212,11 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 
 
 
-## Next Steps
+## Current Future Directions
 
 - Delivering risk-relevant feedback
+
+
 
 :::{.fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true)
@@ -232,6 +234,7 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true)
 :::
 
+
 ::: {.notes}
 
 Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.  
@@ -243,7 +246,7 @@ Another option would be to anchor the predicted probability to the individual. F
 But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of these risk-relevant information lead to optimal engagement and clinical recovery outcomes. =
 :::
 
-## Next Steps
+## Current Future Directions
 
 - Delivering risk-relevant feedback
 
@@ -256,7 +259,7 @@ But another thing our model's give us are the most important features driving th
 In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. Participants only provided EMA for up to three months. Therefore, a lag time of two weeks between the prediction time point and start of the prediction window means data from 2 out of the 12 possible weeks is not being used. This loss of data could be one reason we saw a decrease in model performance with increased lag times. 
 :::
 
-## Next Steps
+## Current Future Directions
 
 - Delivering risk-relevant feedback
 
@@ -274,3 +277,8 @@ We have begun to explore how we can supplement our models with data from other l
 Additionally adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people
 :::
 
+## Aknowledgements
+
+- lab members and staff
+- grant number
+- qr code for study site
