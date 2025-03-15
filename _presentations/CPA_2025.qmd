@@ -132,10 +132,11 @@ An algorithm-guided recovery monitoring and support system could help patients s
 
 This system could provide a scalable option for low-cost, long-term monitoring; offer personalized, adaptive recommendations aligned with evidenced-based care; and prompt individuals to engage with support at times of high risk.
 
-Imagine a smartphone app that could alert patients of changes in their relapse risk and make personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.
+For example individuals could receive daily messages about changes in their relapse risk and receive personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.
 
 For such a system to exist, we need two things. 
-One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data. 
+One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
+
 Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
 :::
 
@@ -165,19 +166,23 @@ Machine learning models can handle high dimensional feature sets from feature en
 ## Ecological Momentary Assessment
 
 :::{.column width = "50%"}
-- Subjective experiences
-- Clear targets for intervention
-- High compliance and accetpability
+- Direct and frequent insight into subjective feelings and experiences
+- Constructs easily map onto well-studied risk factors for lapse
+- Appears to be well-tolerated
+
 :::
 
 
 :::{.column width = "50%"}
-
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){height = 20%}
 :::
 
 :::{.notes}
 
-Ecological momentary assessment (EMA) may be particularly well-suited for lapse prediction because it can provide privileged access to the subjective experiences (e.g., craving, affect, stress, motivation, self-efficacy) that are targets for change in evidence based approaches for relapse prevention. Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout SUD recovery.
+It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment, such as the relapse prevention model 
+
+Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout SUD recovery.
+
 :::
 
 ## Study Goals
@@ -199,9 +204,9 @@ Importantly, this assumes that the recommendations can be implemented immediatel
 
 But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next hour!
 
-Given that the next week model may not have sufficient temporal specificity to recommend immediate action. Its clinical utility could come from being able to shift this coarser window width into the future. In essence creating a “time-lagged” model that could provide people with increased lead time to implement supports not immediately available to them.
+Therefore, in this project we also shifted the 24 hour prediction window 2-weeks into the future. So essentially will someone lapse in a 24 hour window two weeks from now.
 
-In this study I wanted to see if I could maintain clinically meaningful model performance as I shifted the 1 week window further into the future.
+These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.
 
 :::
 
@@ -239,6 +244,13 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 
 ## Participants
 
+
+:::{.notes}
+We looked at the predictive utility of EMA for alcohol lapse prediction in a sample of 151 participants with moderate to severe alcohol use disorder in Madison, WI.
+
+Additionally, all of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
+:::
+
 ## Adherence
 
 ## Model Performance
@@ -253,8 +265,14 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 ## Conclusions
 
 - We can achieve clinically meaningful performance up to 2 weeks out
+
+:::{.fragment}
 - Advanced notice for treatment supports that are not immediately available
+:::
+
+:::{.fragment}
 - A more representative training sample is critical for developing fair models
+:::
 
 
 ## Current Future Directions
