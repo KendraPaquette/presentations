@@ -85,17 +85,23 @@ Substance use treatment has been shown to be most effective when care is prescri
 ## Relapse Prevention
 
 - Relapses can occur at any point in recovery
-- Relapse is preceded by high-risk situations
-- These situations differ between individuals and within an individual over time
+
+::: {.fragment}
+- Risk factors are individualized, dynamic, and interactive
+:::
+
+::: {.fragment}
+- Optimal supports to address risk factors vary across individuals and within an individual over time
+:::
 
 :::{.notes}
 Continuing care for relapse prevention is an important part of recovery.
 
 Relapses can occur at any point, even after years of successful moderation or abstinence.
 
-Although for some people, it may feel as if a relapse comes out of nowhere, we have an extant relapse prevention literature that suggests relapse is preceded by high-risk situations These include emotional or cognitive states (affect, craving), environmental contingencies (stressful events, or risky situations),  and physiological states (arousal).
+The risk factors preceding relapse during recovery are individualized, numerous, dynamic, interactive, and non-linear.
 
-Importantly, high-risk situations differ between individuals and within an individual over-time. In other words, different people will need different supports at different times.
+Therefore, the optimal supports to address these risk factors vary both across individuals and within an individual over time. In other words, different people will need different supports at different times.
 
 Personalized risk monitoring could help patients adapt their lifestyles, behaviors, and supports to their changing needs.
 
@@ -103,25 +109,76 @@ But we don’t have the resources for long-term clinician care and long-term con
 :::
 
 
-## Machine Learning and Digital Data
 
-:::{.notes}
-Imagine a smartphone app that could alert patients of changes in their relapse risk and make personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.
+## Recovery Monitoring and Support System
 
-So How do we get here?
+:::{.column width = "50%"}
+- Highly scalable
+- Personalized adaptive recommendations
+- Prompt individuals to engage with support at times of high risk
+:::
 
-We need 2 things.
 
-We need a rich and densely sampled source of risk-relevant data and 
-we need accurate machine learning models that can both predict and contextualize relapse risk.
+:::{.fragment}
+:::{.column width = "50%"}
+
 
 :::
 
-## Recovery Monitoring and Support System
+:::
+
+:::{.notes}
+An algorithm-guided recovery monitoring and support system could help patients self-monitor their risk for relapse.
+
+This system could provide a scalable option for low-cost, long-term monitoring; offer personalized, adaptive recommendations aligned with evidenced-based care; and prompt individuals to engage with support at times of high risk.
+
+Imagine a smartphone app that could alert patients of changes in their relapse risk and make personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.
+
+For such a system to exist, we need two things. 
+One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data. 
+Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
+:::
+
+
+
+## Machine Learning and Digital Data
+
+- High dimensional feature sets
+
+::: {.fragment}
+- Non-linear and interactive relationships between features and lapse risk probability
+:::
+
+:::{.fragment}
+- Interpretability of feature importance
+:::
+
+:::{.notes}
+
+Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment [EMA], geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors that is necessary for prediction of future lapses with high temporal precision.
+
+Machine learning models can handle high dimensional feature sets from feature engineering densely sampled raw data over time. They can also accommodate non-linear and interactive relationships between features and lapse risk probability. Additionally, methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time.
+
+:::
 
 
 ## Ecological Momentary Assessment
 
+:::{.column width = "50%"}
+- Subjective experiences
+- Clear targets for intervention
+- High compliance and accetpability
+:::
+
+
+:::{.column width = "50%"}
+
+:::
+
+:::{.notes}
+
+Ecological momentary assessment (EMA) may be particularly well-suited for lapse prediction because it can provide privileged access to the subjective experiences (e.g., craving, affect, stress, motivation, self-efficacy) that are targets for change in evidence based approaches for relapse prevention. Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout SUD recovery.
+:::
 
 ## Study Goals
 

@@ -15,9 +15,12 @@ library(tidyverse)
 
 theme_set(theme_classic())
 
-devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/format_path.R?raw=true")
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/format_path.R?raw=true",
+                     sha1 = "7b16d5bd2edc7abd5bbd964da4a3705d50646b68")
 
-path_data <- ("R:/studydata/other/samhsa")
+# path_data <- format_path("studydata/other/samhsa")
+
+path_data <- "/Volumes/jjcurtin/studydata/other/samhsa"
 
 load(here::here(path_data, "NSDUH_2022.Rdata"))
 ```
