@@ -9,7 +9,7 @@
 <link href="CPA_2025_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.42">
 
-  <meta name="author" content="Gaylen Fronk, Coco Yu, John J. Curtin">
+  <meta name="author" content="Gaylen Fronk, Jiachen Yu, John J. Curtin">
   <meta name="dcterms.date" content="2025-04-03">
   <title>Lagged predictions of next day alcohol use for personalized continuing care support</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -135,7 +135,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Gaylen Fronk, Coco Yu, John J. Curtin 
+Gaylen Fronk, Jiachen Yu, John J. Curtin 
 </div>
         <p class="quarto-title-affiliation">
             University of Wisconsin-Madison
@@ -163,12 +163,12 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </ul>
 </div>
 </div><div class="column" style="width:40%;">
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true">{height = 50%}</p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true"></p>
 </div></div>
 <aside class="notes">
 <p>Alcohol use disorder is a chronic disease, characterized by high relapse rates, frequent reentry into treatment, and an increased risk of mortality.</p>
 <p>Continuing care, including ongoing monitoring and early re-intervention, has been well established as the gold standard for managing chronic health conditions such as diabetes, asthma, and HIV.</p>
-<p>Generally, we do not treat AUD very well. We have treatments that work, but few individuals receive them. And those that do receive treatment often receive time-limited care focused on initial symptom reduction.</p>
+<p>When it come to AUD we generally do not treat it very well. We have treatments that work, but few individuals receive them. Additionally, substance use treatment is most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged. But those that do receive treatment often receive time-limited care focused on initial symptom reduction.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -212,8 +212,8 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </div>
 </div></div>
 <aside class="notes">
-<p>To illustrate, of the almost 30 million US adults with an active AUD in 2022. It is estimated that about12% received any treatment. We do not have data to know how many people receive long term support or continuing care after initial treatment, but given these numbers we can imagine it is much lower.</p>
-<p>Substance use treatment has been shown to be most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged. Yet, for reasons including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time, most treatment is time-limited and aimed at acute substance use reduction and symptom stabilization. This leaves a large treatment gap when it comes to long-term continuing care for substance use disorders.</p>
+<p>To illustrate, of the almost 30 million US adults with an active AUD in 2022, it is estimated that about 12% received any treatment. We do not have data to know how many people receive long term support or continuing care after initial treatment, but given these numbers we can imagine it is much lower.</p>
+<p>Especially considering the many well documented barriers including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time. This leaves a large treatment gap when it comes to long-term continuing care for substance use disorders.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -244,10 +244,10 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <aside class="notes">
 <p>Continuing care for relapse prevention is an important part of recovery.</p>
 <p>Relapses can occur at any point, even after years of successful moderation or abstinence.</p>
-<p>The risk factors preceding relapse during recovery are individualized, numerous, dynamic, interactive, and non-linear.</p>
+<p>The risk factors preceding relapse during recovery are individualized, numerous, dynamic and interactive.</p>
 <p>Therefore, the optimal supports to address these risk factors vary both across individuals and within an individual over time. In other words, different people will need different supports at different times.</p>
 <p>Personalized risk monitoring could help patients adapt their lifestyles, behaviors, and supports to their changing needs.</p>
-<p>But we don’t have the resources for long-term clinician care and long-term continuous self-monitoring is really hard!</p>
+<p>But we don’t have the resources for long-term continuous clinician care and self-monitoring is really hard!</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -264,9 +264,11 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <h2>Recovery Monitoring and Support System</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div class="fragment">
 <ul>
 <li>Highly scalable</li>
 </ul>
+</div>
 <div class="fragment">
 <ul>
 <li>Personalized adaptive recommendations</li>
@@ -302,9 +304,11 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </section>
 <section id="machine-learning-and-digital-data" class="slide level2">
 <h2>Machine Learning and Digital Data</h2>
+<div class="fragment">
 <ul>
 <li>High dimensional feature sets</li>
 </ul>
+</div>
 <div class="fragment">
 <ul>
 <li>Non-linear and interactive relationships between features and lapse risk probability</li>
@@ -316,8 +320,8 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </ul>
 </div>
 <aside class="notes">
-<p>Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment [EMA], geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors that is necessary for prediction of future lapses with high temporal precision.</p>
-<p>Machine learning models can handle high dimensional feature sets from feature engineering densely sampled raw data over time. They can also accommodate non-linear and interactive relationships between features and lapse risk probability. Additionally, methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time.</p>
+<p>Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors necessary for precise prediction.</p>
+<p>Machine learning models can handle high dimensional feature sets. They can accommodate non-linear and interactive relationships between features and lapse risk probability. Additionally, methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -351,8 +355,9 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true"></p>
 </div></div>
 <aside class="notes">
-<p>It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment, such as the relapse prevention model</p>
-<p>Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout SUD recovery.</p>
+<p>EMA may be one promising sensing method for lapse prediction.</p>
+<p>It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment like the relapse prevention model</p>
+<p>Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout recovery.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -377,11 +382,12 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </ol>
 </div>
 <aside class="notes">
-<p>Narrow prediction window widths like our next hour or next day model are well suited for addressing immediate risk. These models can be updated hourly or daily to provide individuals information about changes in their risk and make supportive recommendations based on the top features.</p>
-<p>This goes back to my early example about an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.</p>
+<p>In this study we use ema to predict immediate lapses back to alcohol use (i.e., next 24 hours).</p>
+<p>This model could be updated daily to provide individuals information about changes in their risk and make supportive recommendations for immediate action based on the top features.</p>
+<p>Earlier I gave the example of an urge surfing recommendation for someone with strong cravings. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.</p>
 <p>Importantly, this assumes that the recommendations can be implemented immediately, likely in a smartphone app.</p>
-<p>But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next hour!</p>
-<p>Therefore, in this project we also shifted the 24 hour prediction window 2-weeks into the future. So essentially will someone lapse in a 24 hour window two weeks from now.</p>
+<p>But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next 24 hours!</p>
+<p>Therefore, in this project we also built a model that shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.</p>
 <p>These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -434,8 +440,9 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <section id="participants" class="slide level2">
 <h2>Participants</h2>
 <aside class="notes">
-<p>We looked at the predictive utility of EMA for alcohol lapse prediction in a sample of 151 participants with moderate to severe alcohol use disorder in Madison, WI.</p>
-<p>Additionally, all of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.</p>
+<p>Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area.</p>
+<p>Our sample was predominantly non-Hispanic White with personal incomes above the 2024 federal poverty line. We had equal representation of men and women and the average age was 41 years.</p>
+<p>All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -450,15 +457,338 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </section>
 <section id="adherence" class="slide level2">
 <h2>Adherence</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/burden_analyses.qmd" data-notebook-title="EMA Analyses" data-notebook-cellid="cell-compliance">
+<div id="cell-compliance" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-burden_analyses-compliance-output-1.png" id="compliance"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>3.1 of 4 surveys completed daily (78.4% compliance)</li>
+<li>95% compliance for completing at least one survey daily</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Participants on average completed 3.1 of the four EMAs each day (78.4% compliance overall). Participants completed at least one EMA on 95.0% of days.</p>
+<p>The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol and 1x daily EMA over number of weeks on study. We found participants on average were able to sustain EMA adherence over the full three months.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="model-performance" class="slide level2">
 <h2>Model Performance</h2>
+<div class="cols">
+<div class="column" style="width:20%;">
+
+</div><div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-none">
+<div id="cell-pp-none" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-none-output-1.png" id="pp-none"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+
+</div></div>
+<aside class="notes">
+<p>We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case. Scores can range from .5 - 1, with .5 indicating a classifier with chance performance and 1 indicating a classifier with perfect performance.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="model-performance-1" class="slide level2">
+<h2>Model Performance</h2>
+<div class="cols">
+<div class="column" style="width:20%;">
+
+</div><div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-nolag">
+<div id="cell-pp-nolag" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-nolag-output-1.png" id="pp-nolag"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+
+</div></div>
+<aside class="notes">
+<p>here is the distribution of posterior probabilities for auroc for the no lag model. The median posterior probability was .90 (depicted as the vertical solid line). The Horizonatal lines depict 95% Bayesian credible interval (CI). This interval was relatively narrow and did not contain .5.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="model-performance-2" class="slide level2">
+<h2>Model Performance</h2>
+<div class="cols">
+<div class="column" style="width:20%;">
+
+</div><div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp">
+<div id="cell-pp" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-output-1.png" id="pp"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<div class="fragment">
+<p><span style="font-size: 25px; margin-left: 20px;">Median auROC difference:</span></p>
+<p><span style="font-size: 25px; margin-left: 20px;">0.063 [0.053, 0.073]</span>.</p>
+<p><span style="font-size: 25px; margin-left: 20px;">Probability that models differ = 1</span></p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Here is the distribution for the two week model. Median posterior probability for auroc was .84.</p>
+<p>The median difference in posterior probability for these two models was .06, and there was a 1.0 probability that the lagged model performed worse than the no lag model. However, auROCs of .8 and higher are generally considered to indicate good performance.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="feature-importance" class="slide level2">
 <h2>Feature Importance</h2>
+<div class="cols">
+<div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-global">
+<div id="cell-global" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-global-output-1.png" id="global"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+
+</div></div>
+<aside class="notes">
+<p>Global feature importance is an indicator of how important a feature category was to the model’s predictions, on average (i.e., across all participants and all observations).</p>
+<p>This plot displays the global importance for feature categories for the no lag and 2-week lag models. Feature categories are ordered by their aggregate global importance. The importance of each feature category for each model is displayed separately by color.</p>
+<p>The relative ordering of important features remained somewhat consistent across the two models. Past use, future efficacy, and craving were the top three features for all models. However the magnitude of their importance varried somewhat. Additionally, for the two-week model future risky situations emerged as an important feature, whereas with the no lag model past stressful events were more important.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="feature-importance-1" class="slide level2">
+<h2>Feature Importance</h2>
+<div class="cols">
+<div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-global">
+<div id="cell-global" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-global-output-1.png" id="global"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-local">
+<div id="cell-local" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-local-output-1.png" id="local"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>Local feature importance is an indicator of how important a feature category is at a specific prediction timepoint (i.e., for a single individual at a single moment in time). Local importance can be used to map feature categories onto clinical interventions and recommendations (e.g., What does this individual need right now?).</p>
+<p>The figure on the right shows the range of local feature importance for each EMA feature category for the no lag and 2-week lag models. This plot suggests that even feature categories with low global importance (e.g., past pleasant event) have a wide range of local importance values, suggesting that for seem people at some moments these features are clinically important.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="model-fairness" class="slide level2">
 <h2>Model Fairness</h2>
+<div class="fragment">
+<div class="cols">
+<div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-sex">
+<div id="cell-pp-dem-no-lag-sex" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-no-lag-sex-output-1.png" id="pp-dem-no-lag-sex"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-race">
+<div id="cell-pp-dem-no-lag-race" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-no-lag-race-output-1.png" id="pp-dem-no-lag-race"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-income">
+<div id="cell-pp-dem-no-lag-income" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-no-lag-income-output-1.png" id="pp-dem-no-lag-income"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+<aside class="notes">
+<p>In this study we also looked at how fair our models were for three dichotomized demographic groups with known disparities in access to substance use treatment and substance use outcomes – sex at birth (female vs.&nbsp;male), race and ethnicity (not White vs.&nbsp;non-Hispanic White), and income (below poverty vs.&nbsp;above poverty).</p>
+<p>Our models performed worse for participants who were not white and had an income below the federal poverty line.</p>
+<p>The largest contributing factor is likely the lack of diversity in our training data.</p>
+<p>Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group. We also saw a similar pattern in our income groups.</p>
+<p>In just a moment I’m going to return to this issue and discuss what we are currently doing to address this.</p>
+<p>We did however have equal representation of men and women, and we still saw differences in performance. We chose our EMA items based on domain expertise and years of relapse risk research. It is possible that these constructs more precisely describe relapse risk factors for men than for women. This could mean that more research is needed to identify relapse risk factors for women (and other groups underrepresented in the literature more broadly).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="model-fairness-1" class="slide level2">
+<h2>Model Fairness</h2>
+<div class="cols">
+<div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-lag-sex">
+<div id="cell-pp-dem-lag-sex" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-lag-sex-output-1.png" id="pp-dem-lag-sex"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-lag-race">
+<div id="cell-pp-dem-lag-race" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-lag-race-output-1.png" id="pp-dem-lag-race"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-lag-income">
+<div id="cell-pp-dem-lag-income" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-lag-income-output-1.png" id="pp-dem-lag-income"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>And we saw this pattern with the lagged model as well and there did not appear to be any interactions between lag and demographic group.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="conclusions" class="slide level2">
 <h2>Conclusions</h2>
@@ -475,18 +805,42 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <li>A more representative training sample is critical for developing fair models</li>
 </ul>
 </div>
+<aside class="notes">
+<p>Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out.</p>
+<p>Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol use. Many important relapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the prediction time point. Still, the benefit of advanced notice of relapse risk likely outweighs the cost to performance.</p>
+<p>Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="current-future-directions" class="slide level2">
 <h2>Current Future Directions</h2>
 <ul>
 <li>Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.</li>
 </ul>
-<div class="fragment">
-<ul>
-<li>In models that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance between groups</li>
-</ul>
-<p><em>show fairness fig from RISK2</em></p>
-</div>
+<aside class="notes">
+<p>This is the first thing we are working to address in current future directions.</p>
+<p>We are in the process of collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models. And we are optimistic about this.</p>
+<p>In EMA models from our lab that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance across these same groups.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="current-future-directions-1" class="slide level2">
 <h2>Current Future Directions</h2>
@@ -496,15 +850,15 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <div class="columns">
 <div class="column" style="width:25%;">
 <div class="fragment">
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true"></p>
-</div>
-</div><div class="column" style="width:25%;">
-<div class="fragment">
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true"></p>
 </div>
 </div><div class="column" style="width:25%;">
-<div class="{fragment}">
+<div class="fragment">
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true"></p>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="{fragment}">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true"></p>
 </div>
 </div><div class="column" style="width:25%;">
 <div class="fragment">
@@ -513,9 +867,9 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </div></div>
 <aside class="notes">
 <p>Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.</p>
-<p>One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual. It is quite possible though that this could have iatrogenic effects. For example, it could trigger an abstinence violation effect where the individual thinks well Im probably going to lapse anyway so why try.</p>
+<p>One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual.</p>
 <p>Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.</p>
-<p>But another thing our model’s give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of these risk-relevant information lead to optimal engagement and clinical recovery outcomes. =</p>
+<p>But another thing our model’s give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -536,7 +890,7 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </ul>
 
 <img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true" class="r-stretch"><aside class="notes">
-<p>In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. Participants only provided EMA for up to three months. Therefore, a lag time of two weeks between the prediction time point and start of the prediction window means data from 2 out of the 12 possible weeks is not being used. This loss of data could be one reason we saw a decrease in model performance with increased lag times.</p>
+<p>In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. If you remember participants only provided EMA for up to three months. This means data from 2 out of the 12 possible weeks is not being used for predictions. This loss of data could be one reason we saw a decrease in model performance.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -558,9 +912,7 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 </ul>
 
 <img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true" class="r-stretch"><aside class="notes">
-<p>A recovery monitoring and support system will require new data to update model predictions. A model only using EMA could raise measurement burden concerns. Research suggests people can comply with effortful sensing methods (e.g., 4x daily EMA) while using substances but still we can imagine this could be quite burdensome.</p>
-<p>We have begun to explore how we can supplement our models with data from other lower burden sensing methods. For example, geolocation is a passive sensing method that could compliment EMA well.</p>
-<p>Additionally adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people</p>
+<p>Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -577,14 +929,11 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <h2>Aknowledgements</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Co-authors:</p>
+<p>Contributors:</p>
 <ul>
 <li>John J. Curtin, PI</li>
 <li>Gaylen Fronk</li>
-<li>Coco Yu</li>
-</ul>
-<p>Other contributors:</p>
-<ul>
+<li>Jiachen Yu</li>
 <li>Sarah Sant’Ana</li>
 <li>Claire Punturieri</li>
 <li>Susan Wanta</li>
@@ -595,6 +944,21 @@ Gaylen Fronk, Coco Yu, John J. Curtin
 <p>This research was supported by NIAAA R01 AA024391 to John J. Curtin</p>
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true"></p>
 </div></div>
+<aside class="notes">
+<p>I would like to thank all of the people in my lab who have made contributions to the research presented today.</p>
+<p>The QR code on the screen links to our study website where we have made the manuscript and all annotated analysis scripts available.</p>
+<p>I’m happy to answer any questions now.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 
 </section>
     </div>

@@ -1,7 +1,7 @@
 ---
 title: "Lagged predictions of next day alcohol use for personalized continuing care support"
 subtitle: "Kendra Wyant"
-author: "Gaylen Fronk, Coco Yu, John J. Curtin"
+author: "Gaylen Fronk, Jiachen Yu, John J. Curtin"
 date: "April 3, 2025"
 institute: "University of Wisconsin-Madison"
 format: 
@@ -35,7 +35,7 @@ editor_options:
 
 :::{.column width = "40%"}
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){height = 50%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true)
 :::
 :::
 
@@ -44,7 +44,7 @@ Alcohol use disorder is a chronic disease, characterized by high relapse rates, 
 
 Continuing care, including ongoing monitoring and early re-intervention, has been well established as the gold standard for managing chronic health conditions such as diabetes, asthma, and HIV. 
 
-Generally, we do not treat AUD very well. We have treatments that work, but few individuals receive them.  And those that do receive treatment often receive time-limited care focused on initial symptom reduction. 
+When it come to AUD we generally do not treat it very well. We have treatments that work, but few individuals receive them. Additionally, substance use treatment is most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged. But those that do receive treatment often receive time-limited care focused on initial symptom reduction.
 :::
 
 
@@ -76,10 +76,10 @@ Barriers:
 :::
 
 ::: {.notes}
-To illustrate, of the almost 30 million US adults with an active AUD in 2022. It is estimated that about12% received any treatment.
+To illustrate, of the almost 30 million US adults with an active AUD in 2022, it is estimated that about 12% received any treatment.
 We do not have data to know how many people receive long term support or continuing care after initial treatment, but given these numbers we can imagine it is much lower.
 
-Substance use treatment has been shown to be most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged. Yet, for reasons including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time, most treatment is time-limited and aimed at acute substance use reduction and symptom stabilization. This leaves a large treatment gap when it comes to long-term continuing care for substance use disorders.
+Especially considering the many well documented barriers including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time. This leaves a large treatment gap when it comes to long-term continuing care for substance use disorders.
 :::
 
 ## Relapse Prevention
@@ -99,13 +99,13 @@ Continuing care for relapse prevention is an important part of recovery.
 
 Relapses can occur at any point, even after years of successful moderation or abstinence.
 
-The risk factors preceding relapse during recovery are individualized, numerous, dynamic, interactive, and non-linear.
+The risk factors preceding relapse during recovery are individualized, numerous, dynamic and interactive.
 
 Therefore, the optimal supports to address these risk factors vary both across individuals and within an individual over time. In other words, different people will need different supports at different times.
 
 Personalized risk monitoring could help patients adapt their lifestyles, behaviors, and supports to their changing needs.
 
-But we don’t have the resources for long-term clinician care and long-term continuous self-monitoring is really hard!
+But we don’t have the resources for long-term continuous clinician care and self-monitoring is really hard!
 :::
 
 
@@ -114,7 +114,10 @@ But we don’t have the resources for long-term clinician care and long-term con
 
 ::: {.columns}
 :::{.column width = "50%"}
+
+::: {.fragment}
 - Highly scalable
+:::
 
 :::{.fragment}
 - Personalized adaptive recommendations
@@ -151,7 +154,9 @@ Two, the system must have access to a model that can predict substance use with 
 
 ## Machine Learning and Digital Data
 
+::: {.fragment}
 - High dimensional feature sets
+:::
 
 ::: {.fragment}
 - Non-linear and interactive relationships between features and lapse risk probability
@@ -163,9 +168,9 @@ Two, the system must have access to a model that can predict substance use with 
 
 :::{.notes}
 
-Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment [EMA], geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors that is necessary for prediction of future lapses with high temporal precision.
+Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors necessary for precise prediction.
 
-Machine learning models can handle high dimensional feature sets from feature engineering densely sampled raw data over time. They can also accommodate non-linear and interactive relationships between features and lapse risk probability. Additionally, methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time.
+Machine learning models can handle high dimensional feature sets. They can accommodate non-linear and interactive relationships between features and lapse risk probability. Additionally, methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction.
 
 :::
 
@@ -193,10 +198,11 @@ Machine learning models can handle high dimensional feature sets from feature en
 :::
 
 :::{.notes}
+EMA may be one promising sensing method for lapse prediction.
 
-It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment, such as the relapse prevention model 
+It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment like the relapse prevention model 
 
-Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout SUD recovery.
+Furthermore, individuals with SUDs have found EMA to be acceptable for sustained measurement for up to a year with relatively high compliance, suggesting that this method is feasible for long-term monitoring throughout recovery.
 
 :::
 
@@ -211,15 +217,17 @@ Use EMA to:
 :::
 
 :::{.notes}
-Narrow prediction window widths like our next hour or next day model are well suited for addressing immediate risk. These models can be updated hourly or daily to provide individuals information about changes in their risk and make supportive recommendations based on the top features. 
+In this study we use ema to predict immediate lapses back to alcohol use (i.e., next 24 hours).
 
-This goes back to my early example about an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.
+This model could be updated daily to provide individuals information about changes in their risk and make supportive recommendations for immediate action based on the top features. 
+
+Earlier I gave the example of an urge surfing recommendation for someone with strong cravings. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.
 
 Importantly, this assumes that the recommendations can be implemented immediately, likely in a smartphone app.
 
-But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next hour!
+But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next 24 hours!
 
-Therefore, in this project we also shifted the 24 hour prediction window 2-weeks into the future. So essentially will someone lapse in a 24 hour window two weeks from now.
+Therefore, in this project we also built a model that shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.
 
 These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.
 
@@ -261,22 +269,193 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 
 
 :::{.notes}
-We looked at the predictive utility of EMA for alcohol lapse prediction in a sample of 151 participants with moderate to severe alcohol use disorder in Madison, WI.
+Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area.
 
-Additionally, all of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
+Our sample was predominantly non-Hispanic White with personal incomes above the 2024 federal poverty line. We had equal representation of men and women and the average age was 41 years.
+
+All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
 :::
 
 ## Adherence
 
+:::{.columns}
+:::{.column width = "50%"}
+{{< embed ../notebooks/burden_analyses.qmd#compliance >}}
+:::
+
+:::{.column width = "50%"}
+- 3.1 of 4 surveys completed daily (78.4% compliance)
+- 95% compliance for completing at least one survey daily
+:::
+:::
+
+:::{.notes}
+Participants on average completed 3.1 of the four EMAs each day (78.4% compliance overall). Participants completed at least one EMA on 95.0% of days. 
+
+The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol and 1x daily EMA over number of weeks on study. We found participants on average were able to sustain EMA adherence over the full three months.
+:::
 
 ## Model Performance
+
+:::{.cols}
+:::{.column width = "20%"}
+:::
+:::{.column width = "50%"}
+{{< embed ../notebooks/lag_figs.qmd#pp-none >}}
+:::
+:::{.column width = "30%"}
+:::
+:::
+
+:::{.notes}
+We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5  - 1, with .5 indicating a classifier with chance performance and 1 indicating a classifier with perfect performance. 
+:::
+
+## Model Performance
+
+:::{.cols}
+
+:::{.column width = "20%"}
+:::
+:::{.column width = "50%"}
+{{< embed ../notebooks/lag_figs.qmd#pp-nolag >}}
+:::
+:::{.column width = "30%"}
+:::
+:::
+
+:::{.notes}
+here is the distribution of posterior probabilities for auroc for the no lag model. The median posterior probability was .90 (depicted as the vertical solid line). The Horizonatal lines depict 95% Bayesian credible interval (CI). This interval was relatively narrow and did not contain .5. 
+:::
+
+
+## Model Performance
+
+:::{.cols}
+
+:::{.column width = "20%"}
+:::
+:::{.column width = "50%"}
+{{< embed ../notebooks/lag_figs.qmd#pp >}}
+:::
+:::{.column width = "30%"}
+
+:::{.fragment}
+<span style="font-size: 25px; margin-left: 20px;">Median auROC difference:</span>	   
+
+<span style="font-size: 25px; margin-left: 20px;">0.063	[0.053, 0.073]</span>.  	
+
+<span style="font-size: 25px; margin-left: 20px;">Probability that models differ = 1</span>
+:::
+:::
+
+:::
+
+:::{.notes}
+Here is the distribution for the two week model. Median posterior probability for auroc was .84. 
+
+The median difference in posterior probability for these two models was .06, and there was a 1.0 probability that the lagged model performed worse than the no lag model. However, auROCs of .8 and higher are generally considered to indicate good performance. 
+:::
 
 
 ## Feature Importance
 
+:::{.cols}
+:::{.column width = "50%"}
+{{< embed ../notebooks/lag_figs.qmd#global >}}
+:::
+
+:::{.column width = "50%"}
+
+:::
+:::
+
+:::{.notes}
+Global feature importance is an indicator of how important a feature category was to the model’s predictions, on average (i.e., across all participants and all observations).
+
+This plot displays the global importance for feature categories for the no lag and 2-week lag models. Feature categories are ordered by their aggregate global importance. The importance of each feature category for each model is displayed separately by color. 
+
+The relative ordering of important features remained somewhat consistent across the two models. Past use, future efficacy, and craving were the top three features for all models. However the magnitude of their importance varried somewhat. Additionally, for the two-week model future risky situations emerged as an important feature, whereas with the no lag model past stressful events were more important.
+
+:::
+
+## Feature Importance
+
+:::{.cols}
+:::{.column width = "50%"}
+{{< embed ../notebooks/lag_figs.qmd#global >}}
+:::
+
+:::{.column width = "50%"}
+{{< embed ../notebooks/lag_figs.qmd#local >}}
+:::
+:::
+
+:::{.notes}
+
+Local feature importance is an indicator of how important a feature category is at a specific prediction timepoint (i.e., for a single individual at a single moment in time). Local importance can be used to map feature categories onto clinical interventions and recommendations (e.g., What does this individual need right now?). 
+
+The figure on the right shows the range of local feature importance for each EMA feature category for the no lag and 2-week lag models. This plot suggests that even feature categories with low global importance (e.g., past pleasant event) have a wide range of local importance values, suggesting that for seem people at some moments these features are clinically important.
+:::
 
 ## Model Fairness
 
+:::{.fragment}
+
+:::{.cols}
+:::{.column width = "33%"}
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-sex >}}
+:::
+
+:::{.column width = "33%"}
+
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-race >}}
+:::
+
+:::{.column width = "33%"}
+
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-income >}}
+:::
+:::
+:::
+
+:::{.notes}
+
+In this study we also looked at how fair our models were for three dichotomized demographic groups with known disparities in access to substance use treatment and substance use outcomes – sex at birth (female vs. male), race and ethnicity (not White vs. non-Hispanic White), and income (below poverty vs. above poverty).
+
+Our models performed  worse for participants who were not white and had an income below the federal poverty line. 
+
+The largest contributing factor is likely the lack of diversity in our training data.
+
+Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group. We also saw a similar pattern in our income groups.
+
+In just a moment I'm going to return to this issue and discuss what we are currently doing to address this.
+
+We did however have equal representation of men and women, and we still saw differences in performance. We chose our EMA items based on domain expertise and years of relapse risk research. It is possible that these constructs more precisely describe relapse risk factors for men than for women. This could mean that more research is needed to identify relapse risk factors for women (and other groups underrepresented in the literature more broadly).
+
+:::
+
+## Model Fairness
+
+:::{.cols}
+:::{.column width = "33%"}
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-lag-sex >}}
+:::
+
+:::{.column width = "33%"}
+
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-lag-race >}}
+:::
+
+:::{.column width = "33%"}
+
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-lag-income >}}
+:::
+:::
+
+:::{.notes}
+And we saw this pattern with the lagged model as well and there did not appear to be any interactions between lag and demographic group.
+:::
 
 ## Conclusions
 
@@ -290,15 +469,24 @@ Additionally, all of our participants had a goal of abstinence which made it eas
 - A more representative training sample is critical for developing fair models
 :::
 
+:::{.notes}
+Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out. 
+
+Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol use. Many important relapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the prediction time point. Still, the benefit of advanced notice of relapse risk likely outweighs the cost to performance.
+
+Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
+:::
 
 ## Current Future Directions
 
 - Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.
 
-:::{.fragment}
-- In models that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance between groups
+:::{.notes}
+This is the first thing we are working to address in current future directions.
 
-*show fairness fig from RISK2*
+We are in the process of collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models. And we are optimistic about this.
+
+In EMA models from our lab that predict opioid lapses we have found that an adequately diverse sample resulted in comparative performance across these same groups.
 :::
 
 
@@ -339,11 +527,11 @@ Additionally, all of our participants had a goal of abstinence which made it eas
 
 Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.  
 
-One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual. It is quite possible though that this could have iatrogenic effects. For example, it could trigger an abstinence violation effect where the individual thinks well Im probably going to lapse anyway so why try.
+One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual. 
 
 Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.
 
-But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of these risk-relevant information lead to optimal engagement and clinical recovery outcomes. =
+But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
 :::
 
 ## Current Future Directions
@@ -356,7 +544,7 @@ But another thing our model's give us are the most important features driving th
 
 
 :::{.notes}
-In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. Participants only provided EMA for up to three months. Therefore, a lag time of two weeks between the prediction time point and start of the prediction window means data from 2 out of the 12 possible weeks is not being used. This loss of data could be one reason we saw a decrease in model performance with increased lag times. 
+In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. If you remember participants only provided EMA for up to three months. This means data from 2 out of the 12 possible weeks is not being used for predictions. This loss of data could be one reason we saw a decrease in model performance. 
 :::
 
 ## Current Future Directions
@@ -370,11 +558,7 @@ In such a system, we can imagine that even longer lags (i.e., more advanced warn
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true)
 
 :::{.notes}
-A recovery monitoring and support system will require new data to update model predictions. A model only using EMA could raise measurement burden concerns. Research suggests people can comply with effortful sensing methods (e.g., 4x daily EMA) while using substances but still we can imagine this could be quite burdensome.
-
-We have begun to explore how we can supplement our models with data from other lower burden sensing methods. For example, geolocation is a passive sensing method that could compliment EMA well. 
-
-Additionally adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people
+Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.
 :::
 
 ## Aknowledgements
@@ -385,7 +569,7 @@ Contributors:
 
 - John J. Curtin, PI
 - Gaylen Fronk
-- Coco Yu
+- Jiachen Yu
 - Sarah Sant'Ana
 - Claire Punturieri
 - Susan Wanta
@@ -400,4 +584,12 @@ This research was supported by NIAAA R01 AA024391 to John J. Curtin
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true)
 :::
 
+:::
+
+:::{.notes}
+I would like to thank all of the people in my lab who have made contributions to the research presented today. 
+
+The QR code on the screen links to our study website where we have made the manuscript and all annotated analysis scripts available.
+
+I'm happy to answer any questions now.
 :::
