@@ -20,7 +20,7 @@ editor_options:
 
 ::: {.columns}
 
-:::{.column width = "60%"}
+:::{.column width = "70%"}
 
 - Chronic disease
 
@@ -33,9 +33,9 @@ editor_options:
 :::
 :::
 
-:::{.column width = "40%"}
+:::{.column width = "30%"}
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true)
+![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){.absolute top=0 right=0 height=100%}
 :::
 :::
 
@@ -67,7 +67,7 @@ Barriers:
 - Passive referral processes
 - Geographic barriers 
 - Patient dropout
-- Changes in patients' clinical needs over time
+- Changes in clinical needs over time
 
 <span style="font-size: 20px; margin-left: 40px">Dennis and Scott 2007; Tai and Volkow 2013; McKay 2021</span>
 :::
@@ -79,7 +79,7 @@ Barriers:
 To illustrate, of the almost 30 million US adults with an active AUD in 2022, it is estimated that about 12% received any treatment.
 We do not have data to know how many people receive long term support or continuing care after initial treatment, but given these numbers we can imagine it is much lower.
 
-Especially considering the many well documented barriers including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time. This leaves a large treatment gap when it comes to long-term continuing care for substance use disorders.
+Especially considering the many well documented barriers including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time. This leaves a large treatment gap when it comes to long-term continuing care for alcohol use disorder.
 :::
 
 ## Relapse Prevention
@@ -147,7 +147,7 @@ For example individuals could receive daily messages about changes in their rela
 For such a system to exist, we need two things. 
 One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
 
-Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
+Two, the system must have access to a model that can predict alcohol use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
 :::
 
 
@@ -178,7 +178,7 @@ Machine learning models can handle high dimensional feature sets. They can accom
 ## Ecological Momentary Assessment
 
 :::{.columns}
-:::{.column width = "50%"}
+:::{.column width = "60%"}
 - Direct and frequent insight into subjective feelings and experiences
 
 :::{.fragment}
@@ -192,8 +192,8 @@ Machine learning models can handle high dimensional feature sets. They can accom
 :::
 
 
-:::{.column width = "50%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true)
+:::{.column width = "40%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=0 right=0 height=100%}
 :::
 :::
 
@@ -210,10 +210,10 @@ Furthermore, individuals with SUDs have found EMA to be acceptable for sustained
 
 Use EMA to:
 
-1. Predict immediate lapses back to alcohol use (i.e., next 24 hours).
+1. Predict immediate lapses back to alcohol use (i.e., next 24 hours)
 
 :::{.fragment}
-2. Predict lapses occuring in a 24 hour window 2 weeks from now.
+2. Predict lapses occuring in a 24 hour window 2 weeks from now
 :::
 
 :::{.notes}
@@ -292,7 +292,7 @@ All of our participants had a goal of abstinence which made it easier for us to 
 :::{.notes}
 Participants on average completed 3.1 of the four EMAs each day (78.4% compliance overall). Participants completed at least one EMA on 95.0% of days. 
 
-The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol and 1x daily EMA over number of weeks on study. We found participants on average were able to sustain EMA adherence over the full three months.
+The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1x daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain EMA adherence over the full three months.
 :::
 
 ## Model Performance
@@ -341,11 +341,11 @@ here is the distribution of posterior probabilities for auroc for the no lag mod
 :::{.column width = "30%"}
 
 :::{.fragment}
-<span style="font-size: 25px; margin-left: 20px;">Median auROC difference:</span>	   
+<span style="font-size: 25px;">Median auROC difference:</span>	   
 
-<span style="font-size: 25px; margin-left: 20px;">0.063	[0.053, 0.073]</span>.  	
+<span style="font-size: 25px;">0.063	[0.053, 0.073]</span>   	
 
-<span style="font-size: 25px; margin-left: 20px;">Probability that models differ = 1</span>
+<span style="font-size: 25px;">Probability that models differ = 1</span>
 :::
 :::
 
@@ -371,11 +371,13 @@ The median difference in posterior probability for these two models was .06, and
 :::
 
 :::{.notes}
+We can use feature importance to contextualize model performance. 
+
 Global feature importance is an indicator of how important a feature category was to the model’s predictions, on average (i.e., across all participants and all observations).
 
 This plot displays the global importance for feature categories for the no lag and 2-week lag models. Feature categories are ordered by their aggregate global importance. The importance of each feature category for each model is displayed separately by color. 
 
-The relative ordering of important features remained somewhat consistent across the two models. Past use, future efficacy, and craving were the top three features for all models. However the magnitude of their importance varried somewhat. Additionally, for the two-week model future risky situations emerged as an important feature, whereas with the no lag model past stressful events were more important.
+The relative ordering of important features remained somewhat consistent across the two models. Past use, future efficacy, and craving were the top three features for both models. However the magnitude of their importance varried somewhat. Additionally, for the two-week model future risky situations emerged as an important feature, whereas with the no lag model past stressful events were more important.
 
 :::
 
@@ -431,7 +433,7 @@ Even with our coarse dichotomous grouping of race we only had 20 participants in
 
 In just a moment I'm going to return to this issue and discuss what we are currently doing to address this.
 
-We did however have equal representation of men and women, and we still saw differences in performance. We chose our EMA items based on domain expertise and years of relapse risk research. It is possible that these constructs more precisely describe relapse risk factors for men than for women. This could mean that more research is needed to identify relapse risk factors for women (and other groups underrepresented in the literature more broadly).
+We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of relapse risk research. It is possible that these constructs more precisely describe relapse risk factors for men than for women. This could mean that more research is needed to identify relapse risk factors for women (and other groups underrepresented in the literature more broadly).
 
 :::
 
@@ -454,7 +456,7 @@ We did however have equal representation of men and women, and we still saw diff
 :::
 
 :::{.notes}
-And we saw this pattern with the lagged model as well and there did not appear to be any interactions between lag and demographic group.
+And we saw this pattern with the lagged model as well.
 :::
 
 ## Conclusions
@@ -470,7 +472,7 @@ And we saw this pattern with the lagged model as well and there did not appear t
 :::
 
 :::{.notes}
-Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out. 
+In conclusion, Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out. 
 
 Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol use. Many important relapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the prediction time point. Still, the benefit of advanced notice of relapse risk likely outweighs the cost to performance.
 
@@ -479,7 +481,7 @@ Finally, these models are not yet clinically implementable. The most notable fla
 
 ## Current Future Directions
 
-- Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models.
+- Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models
 
 :::{.notes}
 This is the first thing we are working to address in current future directions.
@@ -496,31 +498,21 @@ In EMA models from our lab that predict opioid lapses we have found that an adeq
 - Delivering risk-relevant feedback
 
 
-:::{.columns}
-:::{.column width = "25%"}
+
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true)
-:::
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true){.absolute left=100 width=22%}
 :::
 
-:::{.column width = "25%"}
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true)
-:::
-:::
-
-:::{.column width = "25%"}
-:::{fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true)
-:::
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true){.absolute left=200 bottom=20 width=35%}
 :::
 
-:::{.column width = "25%"}
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_4.png?raw=true)
-:::
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true){.absolute right=200 width=30%}
 :::
 
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_4.png?raw=true){.absolute right=20 bottom=20 width=30%}
 :::
 
 ::: {.notes}
@@ -540,7 +532,7 @@ But another thing our model's give us are the most important features driving th
 
 - Predictions with longer lag times
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true)
+![](https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true){.absolute right=10 bottom=10 height=40%}
 
 
 :::{.notes}
@@ -555,16 +547,21 @@ In such a system, we can imagine that even longer lags (i.e., more advanced warn
 
 - Combine EMA with other digital data (e.g., geolocation) to increase the number of model features for personalized recommendations.
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true)
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=400 bottom=10}
 
 :::{.notes}
 Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.
 :::
 
-## Aknowledgements
+## Acknowledgements
 
 :::{.columns}
-:::{.column width = "50%"}
+
+:::{.column width = "5%"}
+
+:::
+
+:::{.column width = "45%"}
 Contributors:  
 
 - John J. Curtin, PI
@@ -577,11 +574,16 @@ Contributors:
 - Colin Maggard
 :::
 
-:::{.column width = "50%"}
-This research was supported by NIAAA R01 AA024391 to John J. Curtin
+:::{.column width = "45%"}
+<span style="font-size: 30px;">This research was supported by NIAAA R01 AA024391 to John J. Curtin</span>
 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true)
+![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){.absolute right=300 bottom=200 height=30%}
+
+:::
+
+:::{.column width = "5%"}
+
 :::
 
 :::
