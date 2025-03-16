@@ -311,19 +311,19 @@ Additionally, all of our participants had a goal of abstinence which made it eas
 :::{.columns}
 :::{.column width = "25%"}
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true)
-:::
-:::
-
-:::{.column width = "25%"}
-:::{.fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true)
 :::
 :::
 
 :::{.column width = "25%"}
-:::{fragment}
+:::{.fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true)
+:::
+:::
+
+:::{.column width = "25%"}
+:::{fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true)
 :::
 :::
 
@@ -381,14 +381,11 @@ Additionally adding more data sources gives us more features and that could mean
 
 :::{.columns}
 :::{.column width = "50%"}
-Co-authors: 
+Contributors:  
 
 - John J. Curtin, PI
 - Gaylen Fronk
 - Coco Yu
-
-Other contributors:
-
 - Sarah Sant'Ana
 - Claire Punturieri
 - Susan Wanta
