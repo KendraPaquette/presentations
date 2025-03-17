@@ -267,6 +267,7 @@ We used grouped nested k-fold cross-validation to ensure our models were evaluat
 
 ## Participants
 
+{{< embed ../notebooks/ema_demographics.qmd#fig-demographics >}}
 
 :::{.notes}
 Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area.

@@ -1,0 +1,199 @@
+---
+title: "EMA demographics fig"
+author: "John Curtin and Kendra Wyant"
+editor_options: 
+  chunk_output_type: console
+---
+
+## Overview and Setup
+
+Creates a paneled figure for EMA study demograhics
+
+### Set up environment
+```{r}
+# handle conflicts
+options(conflicts.policy = "depends.ok")
+
+library(tidyverse)
+theme_set(theme_classic()) 
+
+# Paths
+devtools::source_url("https://github.com/jjcurtin/lab_support/blob/main/format_path.R?raw=true",
+                     sha1 = "7b16d5bd2edc7abd5bbd964da4a3705d50646b68")
+# source("../../lab_support/format_path.R")
+path_processed <- format_path("studydata/risk/data_processed/ema")
+path_shared <- format_path("studydata/risk/data_processed/shared")
+```
+
+
+### Read in data
+
+```{r}
+disposition <- read_csv(file.path(path_processed, "disposition.csv"), 
+                        col_types = "ccDDcccccccccc")
+screen <- read_csv(file.path(path_shared, "screen.csv"), 
+                   col_types = cols()) |>
+  filter(subid %in% subset(disposition, analysis == "yes")$subid) |> 
+  mutate(across(dsm5_1:dsm5_11, ~ if_else(.x == "Yes", 1, 0))) |>  
+  rowwise() |>  
+  mutate(aud_total = sum(c(dsm5_1, dsm5_2, dsm5_3, dsm5_4, dsm5_5, dsm5_6, dsm5_7, 
+                              dsm5_8, dsm5_9, dsm5_10, dsm5_11))) |> 
+  ungroup() |> 
+  select(age = dem_1, sex = dem_2, white = dem_3, educ = dem_5, 
+         income = dem_7, ms = dem_8, aud_total)   |> 
+  mutate(white = if_else(white == "White/Caucasian", "White/Non-hispanic", "Other")) |> 
+  mutate(educ = case_match(educ, 
+                  "2-Year degree" ~ "Some college",
+                  "High school or GED" ~ "<= High school", 
+                  "Less than high school or GED degree" ~ "<= High school",
+                  "College degree" ~ "4 year college degree",
+                  .default = educ)) |> 
+  mutate(ms = case_match(ms,
+                "Never Married" ~ "Never married",
+                "Separated" ~ "Divorced",
+                .default = ms)) |> 
+  mutate(income =  income / 1000)
+```
+
+## Pie Charts
+
+Education
+
+```{r}
+fig_educ <- screen |>
+  mutate(group = educ) |> 
+  mutate(group = fct(group, levels = c(
+    "<= High school", "Some college",
+    "4 year college degree", "Advanced degree"
+  ))) |>
+  count(group) |>
+  ggplot(aes(x = "", y = n, fill = group)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0, direction = -1) +
+  scale_fill_manual(values = c("#b0bec5", "#263238", "#ef9a9a", "white")) +
+  geom_text(aes(label = group), position = position_stack(vjust = 0.7),
+  size = 6) + 
+  theme_void() +
+  theme(legend.title = element_blank(), legend.position = "none") +
+  ggtitle(NULL) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(title = element_text(size = 16, face = "bold"))
+```
+
+Race/ethnicity
+```{r}
+fig_race <- screen |>
+  mutate(group = white) |> 
+  count(group) |>
+  ggplot(aes(x = "", y = n, fill = group)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0, direction = -1) +
+  scale_fill_manual(values = c("#b0bec5", "#ef9a9a")) +
+  geom_text(aes(label = group), position = position_stack(vjust = 0.7),
+  size = 6) + 
+  theme_void() +
+  theme(legend.title = element_blank(), legend.position = "none") +
+  ggtitle(NULL) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(title = element_text(size = 16, face = "bold"))
+```
+
+Sex
+
+```{r}
+fig_sex <- screen |>
+  mutate(group = sex) |> 
+  count(group) |>
+  ggplot(aes(x = "", y = n, fill = group)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0, direction = -1) +
+  scale_fill_manual(values = c("#b0bec5", "#ef9a9a")) +
+  geom_text(aes(label = group), position = position_stack(vjust = 0.7),
+  size = 6) + 
+  theme_void() +
+  theme(legend.title = element_blank(), legend.position = "none") +
+  ggtitle(NULL) +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(title = element_text(size = 16, face = "bold"))
+```
+
+
+
+## Histograms
+
+AUD Sx
+
+```{r}
+#| label: fig-aud_symptoms 
+#| fig-cap: AUD Symptom Count
+#| fig-height: 6
+#| fig-width: 6
+
+fig_aud <- screen |>
+  ggplot(aes(x = aud_total)) +
+  geom_histogram(bins = 11, fill = "#263238", color = "white") +
+  labs(x = "Number of AUD Symptoms", y = NULL) +
+  ggtitle(NULL) +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  scale_x_continuous(breaks = seq(1, 11),
+                       limits = c(1, 11)) +
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16)) +
+  theme(title = element_text(size = 16, face = "bold"),
+        axis.line.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+Age
+```{r}
+fig_age <- screen |>
+  ggplot(aes(x = age)) +
+  geom_histogram(fill = "#263238", color = "white", bins = 30) +
+  labs(x = "Age", y = NULL) +
+  ggtitle(NULL) +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16)) +
+  theme(title = element_text(size = 16, face = "bold"),
+        axis.line.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+Income
+
+```{r}
+fig_income <- screen |>
+  ggplot(aes(x = income)) +
+  geom_histogram(fill = "#263238", color = "white", bins = 30) +
+  labs(x = "Income ($ in thousands)", y = NULL) +
+  ggtitle(NULL) +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  theme(axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 16),
+        axis.title.y = element_text(size = 16)) +
+  theme(title = element_text(size = 16, face = "bold"),
+        axis.line.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank())
+```
+
+
+## Combined 
+
+Combined all six demographics plots into one figure
+
+```{r}
+#| label: fig-demographics 
+#| fig-cap: Demographics 
+#| fig-height: 6
+#| fig-width: 10
+
+cowplot::plot_grid(fig_sex, fig_race, fig_educ, fig_income, fig_age, fig_aud,  nrow = 2, ncol = 3)
+```
