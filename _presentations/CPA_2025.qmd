@@ -22,15 +22,17 @@ editor_options:
 
 :::{.column width = "70%"}
 
-- Chronic disease
+- Chronic condition
 
 :::{.fragment}
-- Continuing care for ongoing monitoring and early reintervention
+- Initial treatments are effective
 :::
 
 :::{.fragment}
-- Alcohol use disorder treatment is lacking
+- Continuing care is gold-standard of care for chronic conditions
 :::
+
+
 :::
 
 :::{.column width = "30%"}
@@ -40,54 +42,21 @@ editor_options:
 :::
 
 ::: {.notes}
-Alcohol use disorder is a chronic disease, characterized by high relapse rates, frequent reentry into treatment, and an increased risk of mortality.
+Alcohol use disorder is a chronic disease, characterized by high relapse rates, substantial co-morbidity with other physical and mental health problems, and an increased risk of mortality.
 
-Continuing care, including ongoing monitoring and early re-intervention, has been well established as the gold standard for managing chronic health conditions such as diabetes, asthma, and HIV. 
+Initial treatments, including medication and evidenced-based psychosocial treatments are efficacious for symptom stabilization and harm reduction when provided. Unfortunately, too often individuals do not receive treatment [@substanceabuseandmentalhealthservicesadministration2023NSDUHDetailed]. 
 
-When it come to AUD we generally do not treat it very well. We have treatments that work, but few individuals receive them. Additionally, substance use treatment is most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged. But those that do receive treatment often receive time-limited care focused on initial symptom reduction.
+Equally concerning, is the lack of continuing support and care provided to individuals after completing initial treatment. Continuing care, including on-going monitoring, tailored adjustments to lifestyle and behaviors over time, and when necessary re-engagement with more intensive treatment, is the gold standard for treating chronic conditions, like diabetes, hypertension, and asthma. Similarly, alcohol use treatment has been shown to be most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged in their recovery. 
+
 :::
 
 
-## Continuing Care
+## Alcohol Use Disorder
 
-::: {.columns}
+- Continuing care is lacking for alcohol use disorder
 
-:::{.column width = "50%"}
-{{< embed ../notebooks/treatment_figure.qmd#samhsa >}}
-
-<span style="font-size: 20px; margin-left: 20px;">SAMHSA 2022</span>
-:::
-
-:::{.column width = "50%"}
 :::{.fragment}
-Barriers:
-
-- Cost and insurance reimbursement issues
-- Lack of collaborative provider teams
-- Passive referral processes
-- Geographic barriers 
-- Patient dropout
-- Changes in clinical needs over time
-
-<span style="font-size: 20px; margin-left: 40px">Dennis and Scott 2007; Tai and Volkow 2013; McKay 2021</span>
-:::
-:::
-
-:::
-
-::: {.notes}
-To illustrate, of the almost 30 million US adults with an active AUD in 2022, it is estimated that about 12% received any treatment.
-We do not have data to know how many people receive long term support or continuing care after initial treatment, but given these numbers we can imagine it is much lower.
-
-Especially considering the many well documented barriers including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time. This leaves a large treatment gap when it comes to long-term continuing care for alcohol use disorder.
-:::
-
-## Relapse Prevention
-
-- Relapses can occur at any point in recovery
-
-::: {.fragment}
-- Risk factors are individualized, dynamic, and interactive
+- Risk factors are individualized, numerous, dynamic, and interactive
 :::
 
 ::: {.fragment}
@@ -95,17 +64,16 @@ Especially considering the many well documented barriers including cost and insu
 :::
 
 :::{.notes}
-Continuing care for relapse prevention is an important part of recovery.
 
-Relapses can occur at any point, even after years of successful moderation or abstinence.
+Yet at this time our current treatment system for alcohol use disorder does not not appear to have the capacity for long-term clinician-delivered care, nor does that appear to be the focus. There are several reasons for this discontinuity, including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time. 
 
-The risk factors preceding relapse during recovery are individualized, numerous, dynamic and interactive.
+Still this leaves individuals left to determine on their own "How can I best support my recovery today?"
 
-Therefore, the optimal supports to address these risk factors vary both across individuals and within an individual over time. In other words, different people will need different supports at different times.
+This type of self-monitoring can be extremely difficult. The risk factors that precede lapse (i.e., single instances of goal-inconsistent alcohol use) and full relapse back to harmful use during recovery are individualized, numerous, dynamic and interactive. 
 
-Personalized risk monitoring could help patients adapt their lifestyles, behaviors, and supports to their changing needs.
+Therefore, the optimal supports to address these risk factors and encourage continued, successful recovery vary both across individuals and within an individual over time.
 
-But we don’t have the resources for long-term continuous clinician care and self-monitoring is really hard!
+
 :::
 
 
@@ -115,10 +83,6 @@ But we don’t have the resources for long-term continuous clinician care and se
 ::: {.columns}
 :::{.column width = "50%"}
 
-::: {.fragment}
-- Highly scalable
-:::
-
 :::{.fragment}
 - Personalized adaptive recommendations
 :::
@@ -126,6 +90,7 @@ But we don’t have the resources for long-term continuous clinician care and se
 :::{.fragment}
 - Prompt individuals to engage with support at times of high risk
 :::
+
 :::
 
 
@@ -138,11 +103,47 @@ But we don’t have the resources for long-term continuous clinician care and se
 :::
 
 :::{.notes}
-An algorithm-guided recovery monitoring and support system could help patients self-monitor their risk for relapse.
 
-This system could provide a scalable option for low-cost, long-term monitoring; offer personalized, adaptive recommendations aligned with evidenced-based care; and prompt individuals to engage with support at times of high risk.
+An algorithm-guided recovery monitoring and support system could help patients monitor their current and future risk of lapse and make adjustments in their activities and supports to meet their recovery goals after initial treatment. 
 
-For example individuals could receive daily messages about changes in their relapse risk and receive personalized recommendations based on top features contributing to their risk. Like an urge surfing recommendation for someone with strong cravings.
+Such a tool could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk. 
+
+For example, individuals could receive daily messages about changes in their lapse risk and receive personalized recommendations based on top features contributing to their risk, like an urge surfing recommendation for someone with strong cravings. 
+
+:::
+
+
+## Recovery Monitoring and Support System
+
+::: {.columns}
+:::{.column width = "49%"}
+
+:::{}
+- Personalized adaptive recommendations  
+:::
+
+:::{}
+- Prompt individuals to engage with support at times of high risk
+:::
+
+:::{}
+- Scalable to address unmet need
+:::
+
+:::
+
+:::{.column width = "1%"}
+:::
+
+:::{.column width = "50%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem.png?raw=true)
+:::
+
+:::
+
+:::{.notes}
+
+Moreover, it would provide a scalable option for long-term monitoring and support to address the substantial unmet need for continuing care for alcohol use disorder. 
 
 For such a system to exist, we need two things. 
 One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
@@ -237,14 +238,10 @@ These “time-lagged” predictions could give people advanced warning to implem
 
 - 3-month longitudinal study
 - Participants completed 4 surveys daily
-    - craving, arousal, valence, stressful events, risky situations, pleasant events, efficacy, alcohol use
-    
-:::{.fragment}
-- 279 features
-- Outcome = lapse or no lapse
-- XGBoost algorithm
-- Grouped nested k-fold cross-validation
-:::
+    - Craving, arousal, valence 
+    - Past stressful events, risky situations, pleasant events
+    - Future stressful events, risky situations, efficacy
+    - Alcohol use
 
 
 ::: {.notes}
@@ -258,8 +255,25 @@ Stressful events, risky situations and pleasant events encountered since their l
 Future stressful events, risky situations and efficacy looking in the next week
 
 And any alcohol use they had not yet reported.
+:::
 
-We used all 10 EMA items plus 7 demographic questions to engineer our features. We had a total of 279 features. 
+## Design
+
+- 3-month longitudinal study
+- Participants completed 4 surveys daily
+    - Craving, arousal, valence 
+    - Past stressful events, risky situations, pleasant events
+    - Future stressful events, risky situations, efficacy
+    - Alcohol use
+
+- Outcome = lapse or no lapse
+- XGBoost algorithm
+- Grouped nested k-fold cross-validation
+
+
+
+::: {.notes}
+We used all 10 EMA items plus 7 demographic questions to engineer our features.   
 Time and day of alcohol use to generate our outcome labels of lapse or no lapse.
 We considered a range of statistical algorithms, but XGBoost consistently emerged as our best model in validation sets so for evaluation we only considered XGBoost.
 We used grouped nested k-fold cross-validation to ensure our models were evaluated on new data from new individuals
@@ -434,7 +448,7 @@ Even with our coarse dichotomous grouping of race we only had 20 participants in
 
 In just a moment I'm going to return to this issue and discuss what we are currently doing to address this.
 
-We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of relapse risk research. It is possible that these constructs more precisely describe relapse risk factors for men than for women. This could mean that more research is needed to identify relapse risk factors for women (and other groups underrepresented in the literature more broadly).
+We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of lapse and relapse risk research. It is possible that these constructs more precisely describe lapse risk factors for men than for women. This could mean that more research is needed to identify lapse risk factors for women (and other groups underrepresented in the literature more broadly).
 
 :::
 
@@ -475,14 +489,15 @@ And we saw this pattern with the lagged model as well.
 :::{.notes}
 In conclusion, Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out. 
 
-Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol use. Many important relapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the prediction time point. Still, the benefit of advanced notice of relapse risk likely outweighs the cost to performance.
+Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the prediction time point. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
 
 Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
 :::
 
 ## Current Future Directions
 
-- Collecting data from a more diverse sample of individuals with alcohol use disorder to improve our models
+- Improve our models by adding more diverse training data
+
 
 :::{.notes}
 This is the first thing we are working to address in current future directions.
@@ -496,7 +511,9 @@ In EMA models from our lab that predict opioid lapses we have found that an adeq
 
 ## Current Future Directions
 
-- Delivering risk-relevant feedback
+- Improve our models by adding more diverse training data
+
+- Optimize the delivery of risk-relevant feedback
 
 
 
@@ -505,35 +522,37 @@ In EMA models from our lab that predict opioid lapses we have found that an adeq
 :::
 
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true){.absolute left=200 bottom=20 width=35%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true){.absolute left=250 bottom=10 width=35%}
 :::
 
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true){.absolute right=200 width=30%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true){.absolute right=300 width=30%}
 :::
 
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_4.png?raw=true){.absolute right=20 bottom=20 width=30%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_4.png?raw=true){.absolute right=40 bottom=10 width=30%}
 :::
 
 ::: {.notes}
 
 Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.  
 
-One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay this information to the individual. 
+One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay current and future risk information to the individual. 
 
 Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.
 
-But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement. In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
+But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement.
+
+In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
 :::
 
 ## Current Future Directions
 
-- Delivering risk-relevant feedback
+- Improve our models by adding more diverse training data
 
-- Predictions with longer lag times
+- Optimize the delivery of risk-relevant feedback
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/plan.png?raw=true){.absolute right=10 bottom=10 height=40%}
+- Increase lag time for more advanced warning
 
 
 :::{.notes}
@@ -542,13 +561,15 @@ In such a system, we can imagine that even longer lags (i.e., more advanced warn
 
 ## Current Future Directions
 
-- Delivering risk-relevant feedback
+- Improve our models by adding more diverse training data
 
-- Predictions with longer lag times
+- Optimize the delivery of risk-relevant feedback
 
-- Combine EMA with other digital data (e.g., geolocation) to increase the number of model features for personalized recommendations.
+- Increase lag time for more advanced warning
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=400 bottom=10}
+- Combine EMA with other digital data (e.g., geolocation) 
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=420 bottom=10 height=40%}
 
 :::{.notes}
 Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.
@@ -576,10 +597,18 @@ Contributors:
 :::
 
 :::{.column width = "45%"}
+<span style="font-size: 30px;">Study Website:</span>
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){.absolute right=300 bottom=280 height=30%}
+
+\
+\
+\
+\
+\
+
 <span style="font-size: 30px;">This research was supported by NIAAA R01 AA024391 to John J. Curtin</span>
-
-
-![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){.absolute right=300 bottom=200 height=30%}
 
 :::
 
