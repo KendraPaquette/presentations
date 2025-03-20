@@ -159,7 +159,7 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 </div>
 <div class="fragment">
 <ul>
-<li>Continuing care is gold-standard of care for chronic conditions</li>
+<li>Continuing care is gold-standard for chronic conditions</li>
 </ul>
 </div>
 </div><div class="column" style="width:30%;">
@@ -361,20 +361,22 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <h2>Study Goals</h2>
 <p>Use EMA to:</p>
 <ol type="1">
-<li>Predict immediate lapses back to alcohol use (i.e., next 24 hours)</li>
+<li>Predict <span style="color: #c5050c;"><strong>immediate risk</strong></span> of a lapse back to alcohol use (i.e., in the next 24 hours)</li>
 </ol>
 <div class="fragment">
 <ol start="2" type="1">
-<li>Predict lapses occuring in a 24 hour window 2 weeks from now</li>
+<li>Predict <span style="color: #c5050c;"><strong>future risk</strong></span> of a lapse back to alcohol use (i.e., in a 24 hour window 2 weeks from now)</li>
 </ol>
 </div>
 <aside class="notes">
-<p>In this study we use ema to predict immediate lapses back to alcohol use (i.e., next 24 hours).</p>
+<p>In this study our goal was to predict immediate and future lapse risk for imrpoving adaptive, tailored continuing care support.</p>
+<p>To do this we built two models using EMA data.</p>
+<p>Our first model predicts immediate risk of a lapse back to alcohol use (anytime in the next 24 hours).</p>
 <p>This model could be updated daily to provide individuals information about changes in their risk and make supportive recommendations for immediate action based on the top features.</p>
 <p>Earlier I gave the example of an urge surfing recommendation for someone with strong cravings. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.</p>
 <p>Importantly, this assumes that the recommendations can be implemented immediately, likely in a smartphone app.</p>
 <p>But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next 24 hours!</p>
-<p>Therefore, in this project we also built a model that shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.</p>
+<p>Therefore, we also fit a second model to predict future risk of a lapse back to alcohol use. For this model we shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.</p>
 <p>These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -434,8 +436,8 @@ Gaylen Fronk, Jiachen Yu, John J. Curtin
 <li>Grouped nested k-fold cross-validation</li>
 </ul>
 <aside class="notes">
-<p>We used all 10 EMA items plus 7 demographic questions to engineer our features.<br>
-Time and day of alcohol use to generate our outcome labels of lapse or no lapse. We considered a range of statistical algorithms, but XGBoost consistently emerged as our best model in validation sets so for evaluation we only considered XGBoost. We used grouped nested k-fold cross-validation to ensure our models were evaluated on new data from new individuals</p>
+<p>We used all 10 EMA items plus 7 demographic questions to engineer our features, which serve as the inputs to our model.<br>
+Time and day of alcohol was used to generate our outcome labels of lapse or no lapse. Our statistical algorithm was XGBoost. We used grouped nested k-fold cross-validation as our resampling method to ensure our models were evaluated on new data from new individuals</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -448,18 +450,18 @@ Time and day of alcohol use to generate our outcome labels of lapse or no lapse.
           display:block!important;
       }</style></aside>
 </section>
-<section id="participants" class="slide level2">
-<h2>Participants</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/ema_demographics.qmd" data-notebook-title="EMA demographics fig" data-notebook-cellid="cell-fig-demographics">
-<div id="cell-fig-demographics" class="cell" data-fig-height="6" data-fig-width="10">
+<section id="participants-n-151" class="slide level2">
+<h2>Participants (<em>N</em> = 151)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/ema_demographics.qmd" data-notebook-title="EMA demographics fig" data-notebook-cellid="cell-fig-demographics-1">
+<div id="cell-fig-demographics-1" class="cell" data-fig-height="5.75" data-fig-width="12">
 <div class="cell-output cell-output-display">
-<div id="fig-demographics" class="quarto-float quarto-figure quarto-figure-center">
+<div id="fig-demographics-1" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-demographics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="CPA_2025_files/figure-revealjs/..-notebooks-ema_demographics-fig-demographics-output-1.png">
+<div aria-describedby="fig-demographics-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="CPA_2025_files/figure-revealjs/..-notebooks-ema_demographics-fig-demographics-1-output-1.png" id="fig-demographics-1">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-demographics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Demographics
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-demographics-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
 </figcaption>
 </figure>
 </div>
@@ -468,7 +470,39 @@ Figure&nbsp;1: Demographics
 </div>
 <aside class="notes">
 <p>Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area.</p>
-<p>Our sample was predominantly non-Hispanic White with personal incomes above the 2024 federal poverty line. We had equal representation of men and women and the average age was 41 years.</p>
+<p>Our sample was predominantly non-Hispanic White with personal incomes above the 2024 federal poverty line. We had equal representation of men and women.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-151-1" class="slide level2">
+<h2>Participants (<em>N</em> = 151)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/ema_demographics.qmd" data-notebook-title="EMA demographics fig" data-notebook-cellid="cell-fig-demographics-2">
+<div id="cell-fig-demographics-2" class="cell" data-fig-height="5.75" data-fig-width="12">
+<div class="cell-output cell-output-display">
+<div id="fig-demographics-2" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-demographics-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="CPA_2025_files/figure-revealjs/..-notebooks-ema_demographics-fig-demographics-2-output-1.png" id="fig-demographics-2">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-demographics-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>and the average age was 41 years.</p>
 <p>All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -708,18 +742,6 @@ Figure&nbsp;1: Demographics
 <div class="fragment">
 <div class="cols">
 <div class="column" style="width:33%;">
-<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-sex">
-<div id="cell-pp-dem-no-lag-sex" class="cell">
-<div class="cell-output cell-output-display">
-<div>
-<figure>
-<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-no-lag-sex-output-1.png" id="pp-dem-no-lag-sex"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:33%;">
 <div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-race">
 <div id="cell-pp-dem-no-lag-race" class="cell">
 <div class="cell-output cell-output-display">
@@ -743,15 +765,16 @@ Figure&nbsp;1: Demographics
 </div>
 </div>
 </div>
+</div><div class="column" style="width:33%;">
+
 </div></div>
 </div>
 <aside class="notes">
 <p>In this study we also looked at how fair our models were for three dichotomized demographic groups with known disparities in access to substance use treatment and substance use outcomes – sex at birth (female vs.&nbsp;male), race and ethnicity (not White vs.&nbsp;non-Hispanic White), and income (below poverty vs.&nbsp;above poverty).</p>
 <p>Our models performed worse for participants who were not white and had an income below the federal poverty line.</p>
 <p>The largest contributing factor is likely the lack of diversity in our training data.</p>
-<p>Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group. We also saw a similar pattern in our income groups.</p>
+<p>Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group (compared to 131 in the White group). We also saw a similar pattern in our income groups (with 49 people in the below poverty group and 102 people in the above poverty group).</p>
 <p>In just a moment I’m going to return to this issue and discuss what we are currently doing to address this.</p>
-<p>We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of lapse and relapse risk research. It is possible that these constructs more precisely describe lapse risk factors for men than for women. This could mean that more research is needed to identify lapse risk factors for women (and other groups underrepresented in the literature more broadly).</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -768,18 +791,60 @@ Figure&nbsp;1: Demographics
 <h2>Model Fairness</h2>
 <div class="cols">
 <div class="column" style="width:33%;">
-<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-lag-sex">
-<div id="cell-pp-dem-lag-sex" class="cell">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-race">
+<div id="cell-pp-dem-no-lag-race" class="cell">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-lag-sex-output-1.png" id="pp-dem-lag-sex"></p>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-no-lag-race-output-1.png" id="pp-dem-no-lag-race"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div><div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-income">
+<div id="cell-pp-dem-no-lag-income" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-no-lag-income-output-1.png" id="pp-dem-no-lag-income"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-no-lag-sex">
+<div id="cell-pp-dem-no-lag-sex" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-no-lag-sex-output-1.png" id="pp-dem-no-lag-sex"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<p>We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of lapse and relapse risk research. It is possible that these constructs more precisely describe lapse risk factors for men than for women. This could mean that more research is needed to identify lapse risk factors for women (and other groups underrepresented in the literature more broadly).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="model-fairness-2" class="slide level2">
+<h2>Model Fairness</h2>
+<div class="cols">
+<div class="column" style="width:33%;">
 <div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-lag-race">
 <div id="cell-pp-dem-lag-race" class="cell">
 <div class="cell-output cell-output-display">
@@ -798,6 +863,18 @@ Figure&nbsp;1: Demographics
 <div>
 <figure>
 <p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-lag-income-output-1.png" id="pp-dem-lag-income"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/kendrawyant/presentations/notebooks/lag_figs.qmd" data-notebook-title="Make All Figures for Main Manuscript" data-notebook-cellid="cell-pp-dem-lag-sex">
+<div id="cell-pp-dem-lag-sex" class="cell">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="CPA_2025_files/figure-revealjs/..-notebooks-lag_figs-pp-dem-lag-sex-output-1.png" id="pp-dem-lag-sex"></p>
 </figure>
 </div>
 </div>

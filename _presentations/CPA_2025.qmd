@@ -29,7 +29,7 @@ editor_options:
 :::
 
 :::{.fragment}
-- Continuing care is gold-standard of care for chronic conditions
+- Continuing care is gold-standard for chronic conditions
 :::
 
 
@@ -211,14 +211,18 @@ Furthermore, individuals with SUDs have found EMA to be acceptable for sustained
 
 Use EMA to:
 
-1. Predict immediate lapses back to alcohol use (i.e., next 24 hours)
+1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next 24 hours)
 
 :::{.fragment}
-2. Predict lapses occuring in a 24 hour window 2 weeks from now
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window 2 weeks from now)
 :::
 
 :::{.notes}
-In this study we use ema to predict immediate lapses back to alcohol use (i.e., next 24 hours).
+In this study our goal was to predict immediate and future lapse risk for imrpoving adaptive, tailored continuing care support.
+
+To do this we built two models using EMA data.
+
+Our first model predicts immediate risk of a lapse back to alcohol use (anytime in the next 24 hours).
 
 This model could be updated daily to provide individuals information about changes in their risk and make supportive recommendations for immediate action based on the top features. 
 
@@ -228,7 +232,7 @@ Importantly, this assumes that the recommendations can be implemented immediatel
 
 But the best recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next 24 hours!
 
-Therefore, in this project we also built a model that shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.
+Therefore, we also fit a second model to predict future risk of a lapse back to alcohol use. For this model we shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.
 
 These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.
 
@@ -273,20 +277,29 @@ And any alcohol use they had not yet reported.
 
 
 ::: {.notes}
-We used all 10 EMA items plus 7 demographic questions to engineer our features.   
-Time and day of alcohol use to generate our outcome labels of lapse or no lapse.
-We considered a range of statistical algorithms, but XGBoost consistently emerged as our best model in validation sets so for evaluation we only considered XGBoost.
-We used grouped nested k-fold cross-validation to ensure our models were evaluated on new data from new individuals
+We used all 10 EMA items plus 7 demographic questions to engineer our features, which serve as the inputs to our model.   
+Time and day of alcohol was used to generate our outcome labels of lapse or no lapse.
+Our statistical algorithm was XGBoost.
+We used grouped nested k-fold cross-validation as our resampling method to ensure our models were evaluated on new data from new individuals
 :::
 
-## Participants
+## Participants (*N* = 151)
 
-{{< embed ../notebooks/ema_demographics.qmd#fig-demographics >}}
+{{< embed ../notebooks/ema_demographics.qmd#fig-demographics-1 >}}
 
 :::{.notes}
 Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area.
 
-Our sample was predominantly non-Hispanic White with personal incomes above the 2024 federal poverty line. We had equal representation of men and women and the average age was 41 years.
+Our sample was predominantly non-Hispanic White with personal incomes above the 2024 federal poverty line. We had equal representation of men and women.
+:::
+
+## Participants (*N* = 151)
+
+{{< embed ../notebooks/ema_demographics.qmd#fig-demographics-2 >}}
+
+
+:::{.notes}
+and the average age was 41 years.
 
 All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
 :::
@@ -420,18 +433,19 @@ The figure on the right shows the range of local feature importance for each EMA
 :::{.fragment}
 
 :::{.cols}
-:::{.column width = "33%"}
-{{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-sex >}}
-:::
 
 :::{.column width = "33%"}
-
 {{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-race >}}
 :::
 
 :::{.column width = "33%"}
 
 {{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-income >}}
+:::
+
+:::{.column width = "33%"}
+
+
 :::
 :::
 :::
@@ -444,9 +458,32 @@ Our models performed  worse for participants who were not white and had an incom
 
 The largest contributing factor is likely the lack of diversity in our training data.
 
-Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group. We also saw a similar pattern in our income groups.
+Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group (compared to 131 in the White group). We also saw a similar pattern in our income groups (with 49 people in the below poverty group and 102 people in the above poverty group).
 
 In just a moment I'm going to return to this issue and discuss what we are currently doing to address this.
+
+:::
+
+## Model Fairness
+
+:::{.cols}
+
+:::{.column width = "33%"}
+
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-race >}}
+:::
+
+:::{.column width = "33%"}
+
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-income >}}
+:::
+
+:::{.column width = "33%"}
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-no-lag-sex >}}
+:::
+:::
+
+:::{.notes}
 
 We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of lapse and relapse risk research. It is possible that these constructs more precisely describe lapse risk factors for men than for women. This could mean that more research is needed to identify lapse risk factors for women (and other groups underrepresented in the literature more broadly).
 
@@ -456,10 +493,6 @@ We did however have equal representation of men and women, and we still saw diff
 
 :::{.cols}
 :::{.column width = "33%"}
-{{< embed ../notebooks/lag_figs.qmd#pp-dem-lag-sex >}}
-:::
-
-:::{.column width = "33%"}
 
 {{< embed ../notebooks/lag_figs.qmd#pp-dem-lag-race >}}
 :::
@@ -468,6 +501,11 @@ We did however have equal representation of men and women, and we still saw diff
 
 {{< embed ../notebooks/lag_figs.qmd#pp-dem-lag-income >}}
 :::
+
+:::{.column width = "33%"}
+{{< embed ../notebooks/lag_figs.qmd#pp-dem-lag-sex >}}
+:::
+
 :::
 
 :::{.notes}
