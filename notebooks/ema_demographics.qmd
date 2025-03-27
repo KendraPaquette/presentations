@@ -132,7 +132,7 @@ Income
 fig_income <- screen |>
   ggplot(aes(x = income)) +
   geom_histogram(fill = "#263238", color = "white", bins = 30) +
-  labs(title = NULL, x = "Income") +
+  labs(title = NULL, x = "Income", y = NULL) +
   theme(text = element_text(size = 16, face = "bold"),
         axis.line.y = element_blank(),
         axis.text.y = element_blank(),

@@ -42,11 +42,11 @@ editor_options:
 :::
 
 ::: {.notes}
-Alcohol use disorder is a chronic disease, characterized by high relapse rates, substantial co-morbidity with other physical and mental health problems, and an increased risk of mortality.
+Alcohol use disorder is a chronic condition with high relapse rates, substantial co-morbidity with mental and physical health issues, and increased mortality risk.
 
-Initial treatments, including medication and evidenced-based psychosocial treatments are efficacious for symptom stabilization and harm reduction when provided. Unfortunately, too often individuals do not receive treatment [@substanceabuseandmentalhealthservicesadministration2023NSDUHDetailed]. 
+Initial treatments, including medication and evidence-based psychosocial interventions, are effective. Unfortunately, many individuals never receive treatment. And for those who do, a critical gap in care often emerges once initial treatment ends.
 
-Equally concerning, is the lack of continuing support and care provided to individuals after completing initial treatment. Continuing care, including on-going monitoring, tailored adjustments to lifestyle and behaviors over time, and when necessary re-engagement with more intensive treatment, is the gold standard for treating chronic conditions, like diabetes, hypertension, and asthma. Similarly, alcohol use treatment has been shown to be most effective when care is prescribed over longer durations and involves active efforts to keep patients engaged in their recovery. 
+Continuing care, including on-going monitoring, adaptive support, and when necessary re-engagement with more intensive treatment, is the gold standard to support sustained recovery for chronic conditions, like diabetes and hypertension. Similarly, alcohol use treatment is most effective when provided over longer durations with active efforts to keep patients engaged in their recovery. 
 
 :::
 
@@ -64,16 +64,11 @@ Equally concerning, is the lack of continuing support and care provided to indiv
 :::
 
 :::{.notes}
+Yet, our current treatment system lacks the capacity for long-term clinician-delivered care, nor does that appear to be the primary focus. Several barriers contribute to this discontinuity, including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers, patient dropout, and changes in clinical needs over time.
 
-Yet at this time our current treatment system for alcohol use disorder does not not appear to have the capacity for long-term clinician-delivered care, nor does that appear to be the focus. There are several reasons for this discontinuity, including cost and insurance reimbursement issues, lack of collaborative provider teams, passive referral processes, geographic barriers to accessing services, patient dropout, and changes in the patient’s clinical needs over time. 
+As a result, individuals are often left to ask themselves: "How can I best support my recovery today?"
 
-Still this leaves individuals left to determine on their own "How can I best support my recovery today?"
-
-This type of self-monitoring can be extremely difficult. The risk factors that precede lapse (i.e., single instances of goal-inconsistent alcohol use) and full relapse back to harmful use during recovery are individualized, numerous, dynamic and interactive. 
-
-Therefore, the optimal supports to address these risk factors and encourage continued, successful recovery vary both across individuals and within an individual over time.
-
-
+The challenge is that risk factors for relapse are highly individualized, dynamic, and interactive — making self-monitoring difficult. The optimal supports needed to address these risks vary both across individuals and within an individual over time.
 :::
 
 
@@ -104,11 +99,11 @@ Therefore, the optimal supports to address these risk factors and encourage cont
 
 :::{.notes}
 
-An algorithm-guided recovery monitoring and support system could help patients monitor their current and future risk of lapse and make adjustments in their activities and supports to meet their recovery goals after initial treatment. 
+An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse, or goal-inconsistent alcohol use, after initial treatment and adjust their lifestyle, behaviors and support accordingly.
 
 Such a tool could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk. 
 
-For example, individuals could receive daily messages about changes in their lapse risk and receive personalized recommendations based on top features contributing to their risk, like an urge surfing recommendation for someone with strong cravings. 
+For example, individuals could receive daily messages about changes in their lapse risk, along with tailored recommendations based on key risk factors, like an urge-surfing activity for someone experiencing strong cravings.
 
 :::
 
@@ -143,7 +138,7 @@ For example, individuals could receive daily messages about changes in their lap
 
 :::{.notes}
 
-Moreover, it would provide a scalable option for long-term monitoring and support to address the substantial unmet need for continuing care for alcohol use disorder. 
+Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in alcohol use disorder treatment.
 
 For such a system to exist, we need two things. 
 One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
@@ -169,9 +164,9 @@ Two, the system must have access to a model that can predict alcohol use with hi
 
 :::{.notes}
 
-Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors necessary for precise prediction.
+Advances in both smartphone sensing of digital data and machine learning now make adaptive recovery monitoring and support possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation tracking) allow for frequent, longitudinal measurement of key risk factors, necessary for temporally precise prediction of lapse risk.
 
-Machine learning models can handle high dimensional feature sets. They can accommodate non-linear and interactive relationships between features and lapse risk probability. Additionally, methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction.
+Machine learning models, can handle high-dimensional feature sets and accomodate non-linear and interactive relationships between features and lapse risk probability. And methods from interpretable machine learning can be used to understand the which risk features contribute most strongly to a lapse prediction.
 
 :::
 
@@ -218,9 +213,9 @@ Use EMA to:
 :::
 
 :::{.notes}
-In this study our goal was to predict immediate and future lapse risk for imrpoving adaptive, tailored continuing care support.
+In this study our goal was to develop models that predict both immediate and future lapse risk to improve adaptive, tailored continuing care support.
 
-To do this we built two models using EMA data.
+To achieve this, we built two models using EMA data:
 
 Our first model predicts immediate risk of a lapse back to alcohol use (anytime in the next 24 hours).
 
@@ -278,8 +273,8 @@ And any alcohol use they had not yet reported.
 
 ::: {.notes}
 We used all 10 EMA items plus 7 demographic questions to engineer our features, which serve as the inputs to our model.   
-Time and day of alcohol was used to generate our outcome labels of lapse or no lapse.
-Our statistical algorithm was XGBoost.
+Time and day of alcohol was used to generate our outcome labels of lapse or no lapse.  
+Our statistical algorithm was XGBoost.   
 We used grouped nested k-fold cross-validation as our resampling method to ensure our models were evaluated on new data from new individuals
 :::
 
@@ -290,7 +285,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 :::{.notes}
 Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area.
 
-Our sample was predominantly non-Hispanic White with personal incomes above the 2024 federal poverty line. We had equal representation of men and women.
+Our sample was predominantly non-Hispanic White. We had equal representation of men and women.
 :::
 
 ## Participants (*N* = 151)
@@ -299,7 +294,7 @@ Our sample was predominantly non-Hispanic White with personal incomes above the 
 
 
 :::{.notes}
-and the average age was 41 years.
+the average age was 41 years.
 
 All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
 :::
@@ -318,7 +313,7 @@ All of our participants had a goal of abstinence which made it easier for us to 
 :::
 
 :::{.notes}
-Participants on average completed 3.1 of the four EMAs each day (78.4% compliance overall). Participants completed at least one EMA on 95.0% of days. 
+Participants on average completed 3 of the 4 EMAs each day. Participants completed at least one EMA on 95.0% of days. 
 
 The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1x daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain EMA adherence over the full three months.
 :::
@@ -336,7 +331,7 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 :::
 
 :::{.notes}
-We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5  - 1, with .5 indicating a classifier with chance performance and 1 indicating a classifier with perfect performance. 
+We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
 :::
 
 ## Model Performance
@@ -353,7 +348,7 @@ We used area under the roc curve to evaluate model performance. auroc is the pro
 :::
 
 :::{.notes}
-here is the distribution of posterior probabilities for auroc for the no lag model. The median posterior probability was .90 (depicted as the vertical solid line). The Horizonatal lines depict 95% Bayesian credible interval (CI). This interval was relatively narrow and did not contain .5. 
+here is the distribution of posterior probabilities for auroc for the no lag model. The median posterior probability was .90 (depicted as the vertical solid line). The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5. 
 :::
 
 
@@ -388,44 +383,35 @@ The median difference in posterior probability for these two models was .06, and
 
 ## Feature Importance
 
-:::{.cols}
-:::{.column width = "50%"}
 {{< embed ../notebooks/lag_figs.qmd#global >}}
-:::
 
-:::{.column width = "50%"}
 
-:::
-:::
 
 :::{.notes}
-We can use feature importance to contextualize model performance. 
+We can use feature importance values to contextualize model performance. 
 
-Global feature importance is an indicator of how important a feature category was to the model’s predictions, on average (i.e., across all participants and all observations).
 
-This plot displays the global importance for feature categories for the no lag and 2-week lag models. Feature categories are ordered by their aggregate global importance. The importance of each feature category for each model is displayed separately by color. 
+This plot shows on average, across all participants and all observations, how much each feature category contributes to the model's predictions.
 
-The relative ordering of important features remained somewhat consistent across the two models. Past use, future efficacy, and craving were the top three features for both models. However the magnitude of their importance varried somewhat. Additionally, for the two-week model future risky situations emerged as an important feature, whereas with the no lag model past stressful events were more important.
+On the y-axis Feature categories are ordered by their aggregate importance across the two models. The importance of each feature category on the x-axis is displayed separately by color for each model. 
+
+The relative ordering of important features remained somewhat consistent across the two models. Past use, future efficacy, and craving were the top three features for both models. However on average features were less important for the two week model, consistent with its lower performance.
 
 :::
 
 ## Feature Importance
 
-:::{.cols}
-:::{.column width = "50%"}
-{{< embed ../notebooks/lag_figs.qmd#global >}}
-:::
 
-:::{.column width = "50%"}
 {{< embed ../notebooks/lag_figs.qmd#local >}}
-:::
-:::
+
 
 :::{.notes}
 
-Local feature importance is an indicator of how important a feature category is at a specific prediction timepoint (i.e., for a single individual at a single moment in time). Local importance can be used to map feature categories onto clinical interventions and recommendations (e.g., What does this individual need right now?). 
+When it comes to making a personalized recommendation for a recovery activity or support, we want to know what feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?
 
-The figure on the right shows the range of local feature importance for each EMA feature category for the no lag and 2-week lag models. This plot suggests that even feature categories with low global importance (e.g., past pleasant event) have a wide range of local importance values, suggesting that for seem people at some moments these features are clinically important.
+This figure shows the range of all individual feature importance values across all people and all days.
+
+This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for seem people at some moments these features are clinically important.
 :::
 
 ## Model Fairness
@@ -452,7 +438,7 @@ The figure on the right shows the range of local feature importance for each EMA
 
 :::{.notes}
 
-In this study we also looked at how fair our models were for three dichotomized demographic groups with known disparities in access to substance use treatment and substance use outcomes – sex at birth (female vs. male), race and ethnicity (not White vs. non-Hispanic White), and income (below poverty vs. above poverty).
+In this study we also looked at how fair our models were for three dichotomized demographic groups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
 
 Our models performed  worse for participants who were not white and had an income below the federal poverty line. 
 
@@ -527,7 +513,7 @@ And we saw this pattern with the lagged model as well.
 :::{.notes}
 In conclusion, Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out. 
 
-Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the prediction time point. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
+Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the start of the prediction window. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
 
 Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
 :::
@@ -584,26 +570,12 @@ But another thing our model's give us are the most important features driving th
 In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
 :::
 
-## Current Future Directions
-
-- Improve our models by adding more diverse training data
-
-- Optimize the delivery of risk-relevant feedback
-
-- Increase lag time for more advanced warning
-
-
-:::{.notes}
-In such a system, we can imagine that even longer lags (i.e., more advanced warning) could be helpful. In the present study, we were limited by how much time we could lag predictions. If you remember participants only provided EMA for up to three months. This means data from 2 out of the 12 possible weeks is not being used for predictions. This loss of data could be one reason we saw a decrease in model performance. 
-:::
 
 ## Current Future Directions
 
 - Improve our models by adding more diverse training data
 
 - Optimize the delivery of risk-relevant feedback
-
-- Increase lag time for more advanced warning
 
 - Combine EMA with other digital data (e.g., geolocation) 
 
@@ -657,7 +629,7 @@ Contributors:
 :::
 
 :::{.notes}
-I would like to thank all of the people in my lab who have made contributions to the research presented today. 
+I would like to thank all of the people who have contributed to the ideas and research presented today. 
 
 The QR code on the screen links to our study website where we have made the manuscript and all annotated analysis scripts available.
 
