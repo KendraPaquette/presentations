@@ -1,0 +1,4 @@
+- source: CPA_2025.qmd
+  quarto-pub:
+    - id: ed757856-740a-4b22-9f8b-2adb43da3065
+      url: https://kendra-wyant.quarto.pub/cpa_2025

@@ -1,8 +1,0 @@
-- source: talk.qmd
-  quarto-pub:
-    - id: abe17e94-2dc9-404b-8e9a-26c4d5ffb2f6
-      url: https://jjcurtin.quarto.pub/an-engaging-talk-6c90
-- source: CPA_2025.qmd
-  quarto-pub:
-    - id: 01ee3a51-6681-4e3d-85bc-2ed4345fd52c
-      url: https://kendra-wyant.quarto.pub/lagged-predictions-of-next-week-alcohol-use-for-personalized-continuing-care-support
