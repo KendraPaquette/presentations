@@ -282,13 +282,36 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 ## Participants (*N* = 151)
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 8
+#| fig-align: center
+ 
+source("figs/dem_figs.R")
 
+fig_aud
 ```
 
 
 :::{.notes}
-Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area.
+Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area. All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
+:::
 
+
+## Participants (*N* = 151)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+library(patchwork)
+
+fig_race + fig_sex
+```
+
+
+
+:::{.notes}
 Our sample was predominantly non-Hispanic White. We had equal representation of men and women.
 :::
 
@@ -296,23 +319,29 @@ Our sample was predominantly non-Hispanic White. We had equal representation of 
 
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
 
+fig_age + fig_income
 ```
 
-
 :::{.notes}
-the average age was 41 years.
-
-All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
+The average age was 41 years and average income was $34000.
 :::
 
-## Adherence
+## EMA Completion
 
 :::{.columns}
 :::{.column width = "50%"}
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 7
 
+source("figs/ema_figs.R")
+
+fig_compliance
 ```
 
 :::
@@ -334,14 +363,17 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 :::{.cols}
 :::{.column width = "20%"}
 :::
-:::{.column width = "50%"}
+:::{.column width = "60%"}
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 8
 
+pp_empty
 ```
 
 :::
-:::{.column width = "30%"}
+:::{.column width = "20%"}
 :::
 :::
 
@@ -355,14 +387,17 @@ We used area under the roc curve to evaluate model performance. auroc is the pro
 
 :::{.column width = "20%"}
 :::
-:::{.column width = "50%"}
+:::{.column width = "60%"}
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 8
 
+pp_no_lag
 ```
 
 :::
-:::{.column width = "30%"}
+:::{.column width = "20%"}
 :::
 :::
 
@@ -377,21 +412,26 @@ here is the distribution of posterior probabilities for auroc for the no lag mod
 
 :::{.column width = "20%"}
 :::
-:::{.column width = "50%"}
+:::{.column width = "60%"}
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 8
 
+pp_full
 ```
 
 :::
-:::{.column width = "30%"}
+:::{.column width = "20%"}
 
 :::{.fragment}
-<span style="font-size: 25px;">Median auROC difference:</span>	   
+<span style="font-size: 20px;">Median auROC difference:</span>	   
 
-<span style="font-size: 25px;">0.063	[0.053, 0.073]</span>   	
+<span style="font-size: 20px;">0.063	[0.053, 0.073]</span>   	
 
-<span style="font-size: 25px;">Probability that models differ = 1</span>
+\
+
+<span style="font-size: 20px;">Probability that models differ: 1.0</span>
 :::
 :::
 
@@ -404,11 +444,15 @@ The median difference in posterior probability for these two models was .06, and
 :::
 
 
-## Feature Importance
+## Average Feature Importance
 
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 9
+#| fig-align: center
 
+global
 ```
 
 
@@ -425,11 +469,15 @@ The relative ordering of important features remained somewhat consistent across 
 
 :::
 
-## Feature Importance
+## Individual Feature Importance
 
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 9
+#| fig-align: center
 
+local
 ```
 
 
@@ -444,18 +492,35 @@ This plot suggests that even feature categories with low average importance (e.g
 
 ## Model Fairness
 
-:::{.fragment}
-
 
 ```{r}
-# use cow_plot with NULL placeholder
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_empty + income_empty + sex_empty
 ```
 
-:::
 
 :::{.notes}
 
 In this study we also looked at how fair our models were for three dichotomized demographic groups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
+
+:::
+
+## Model Fairness
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_no_lag + income_no_lag + sex_empty
+```
+
+
+:::{.notes}
 
 Our models performed  worse for participants who were not white and had an income below the federal poverty line. 
 
@@ -470,7 +535,11 @@ In just a moment I'm going to return to this issue and discuss what we are curre
 ## Model Fairness
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
 
+race_no_lag + income_no_lag + sex_no_lag
 ```
 
 
@@ -483,7 +552,11 @@ We did however have equal representation of men and women, and we still saw diff
 ## Model Fairness
 
 ```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
 
+race_lag + income_lag + sex_lag
 ```
 
 
@@ -572,7 +645,7 @@ In a recently funded grant in our lab, we plan to look what combination of risk-
 
 - Combine EMA with other digital data (e.g., geolocation) 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=420 bottom=10 height=40%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=420 bottom=30 height=40%}
 
 :::{.notes}
 Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.
