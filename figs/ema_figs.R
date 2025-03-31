@@ -143,7 +143,7 @@ local <- local_all |>
   ylab("Raw Shapley Value") +
   xlab(NULL) +
   labs(color = NULL) +
-  scale_color_manual(values = c("#263238", "#c5050c")) +
+  scale_color_manual(values = c("#c5050c", "#263238")) +
   theme(legend.position = "right",
         text = element_text(size = 20))+
   geom_hline(aes(yintercept = 0), linetype = "dashed",

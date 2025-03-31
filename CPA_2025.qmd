@@ -21,7 +21,7 @@ editor_options:
 
 ::: {.columns}
 
-:::{.column width = "70%"}
+:::{.column width = "66%"}
 
 - Chronic condition
 
@@ -34,6 +34,9 @@ editor_options:
 :::
 
 
+:::
+
+:::{.column width = "4%"}
 :::
 
 :::{.column width = "30%"}
@@ -175,7 +178,7 @@ Machine learning models, can handle high-dimensional feature sets and accomodate
 ## Ecological Momentary Assessment
 
 :::{.columns}
-:::{.column width = "60%"}
+:::{.column width = "58%"}
 - Direct and frequent insight into subjective feelings and experiences
 
 :::{.fragment}
@@ -186,6 +189,9 @@ Machine learning models, can handle high-dimensional feature sets and accomodate
 - Appears to be well-tolerated
 :::
 
+:::
+
+:::{.column width = "2%"}
 :::
 
 
@@ -645,7 +651,7 @@ In a recently funded grant in our lab, we plan to look what combination of risk-
 
 - Combine EMA with other digital data (e.g., geolocation) 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=420 bottom=30 height=40%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=330 bottom=50 height=40%}
 
 :::{.notes}
 Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.
@@ -676,7 +682,7 @@ Contributors:
 <span style="font-size: 30px;">Study Website:</span>
 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){.absolute right=300 bottom=280 height=30%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){.absolute right=260 bottom=280 height=30%}
 
 \
 \
