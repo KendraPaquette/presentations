@@ -622,7 +622,7 @@ In EMA models from our lab that predict opioid lapses we have found that an adeq
 :::
 
 :::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true){.absolute right=300 width=30%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true){.absolute right=330 width=30%}
 :::
 
 :::{.fragment}
@@ -651,7 +651,8 @@ In a recently funded grant in our lab, we plan to look what combination of risk-
 
 - Combine EMA with other digital data (e.g., geolocation) 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){.absolute right=330 bottom=50 height=40%}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){style="display: block; margin: auto; height: 40vh; width: auto;"}
 
 :::{.notes}
 Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.
@@ -678,25 +679,18 @@ Contributors:
 - Colin Maggard
 :::
 
-:::{.column width = "45%"}
+:::{.column width = "50%"}
 <span style="font-size: 30px;">Study Website:</span>
 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){.absolute right=260 bottom=280 height=30%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){style="display: block; margin: auto; height: 30vh; width: auto;"}
 
-\
-\
-\
-\
 \
 
 <span style="font-size: 30px;">This research was supported by NIAAA R01 AA024391 to John J. Curtin</span>
 
 :::
 
-:::{.column width = "5%"}
-
-:::
 
 :::
 
