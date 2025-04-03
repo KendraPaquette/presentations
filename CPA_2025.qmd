@@ -228,7 +228,7 @@ Our first model predicts immediate risk of a lapse back to alcohol use (anytime 
 
 This model could provide individuals daily insight into their immediate lapse risk and suggest recommendations that could be done in that moment. 
 
-Earlier I gave the example of an urge surfing recommendation for someone with strong cravings. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
+Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
 
 What's key here is that this assumes that the recommendations can be implemented immediately, likely in a smartphone app.
 
@@ -250,7 +250,7 @@ Use EMA to:
 :::{.notes}
 Therefore, we also fit a second model to predict future risk of a lapse back to alcohol use. For this model we shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.
 
-These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.
+This “time-lagged” model could give people advanced warning to implement supports not immediately available to them, such as scheduling positive or pleasant activities, increasing social engagement, or attending a peer-led recovery meeting.
 
 :::
 
@@ -375,7 +375,7 @@ fig_compliance
 :::{.notes}
 Participants on average completed 3 of the 4 EMAs each day. Participants completed at least one EMA on 95.0% of days. 
 
-The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1x daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain high rates of EMA completion over the full three months.
+The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1 daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain high rates of EMA completion over the full three months.
 :::
 
 ## Model Performance
@@ -503,7 +503,7 @@ local
 
 :::{.notes}
 
-When it comes to making a personalized recommendation for a recovery activity or support, we want to know what feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?
+But, when it comes to making a personalized recommendation for a recovery activity or support, we want to know which feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?
 
 This figure shows the range of all individual feature importance values across all people and all days.
 
@@ -524,7 +524,7 @@ race_empty + income_empty + sex_empty
 
 :::{.notes}
 
-In this study we also looked at how fair our models were for three dichotomized demographic groups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
+In this study we also looked at how fair our models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
 
 :::
 
@@ -669,7 +669,7 @@ In a recently funded grant in our lab, we plan to look what combination of risk-
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){style="display: block; margin: auto; height: 40vh; width: auto;"}
 
 :::{.notes}
-Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of important features for better personalization of support recommendations without increasing burden.
+Finally, we have begun to build models that combine EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of important features for better personalization of support recommendations without increasing burden.
 :::
 
 ## Acknowledgements
