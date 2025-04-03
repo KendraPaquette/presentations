@@ -144,10 +144,12 @@ For example, individuals could receive daily messages about changes in their lap
 
 Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in alcohol use disorder treatment.
 
-For such a system to exist, we need two things. 
+For such a system to exist, we need at least three things. 
 One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
 
 Two, the system must have access to a model that can predict alcohol use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
+
+Three, the model must perform fairly. The accuracy of the predictions and usefulness and relevance of the recommendations should be similar for everyone.
 :::
 
 
@@ -215,9 +217,7 @@ Use EMA to:
 
 1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next 24 hours)
 
-:::{.fragment}
-2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window 2 weeks from now)
-:::
+
 
 :::{.notes}
 In this study our goal was to develop models that predict both immediate and future lapse risk to improve adaptive, tailored continuing care support.
@@ -226,14 +226,28 @@ To achieve this, we built two models using EMA data:
 
 Our first model predicts immediate risk of a lapse back to alcohol use (anytime in the next 24 hours).
 
-This model could be updated daily to provide individuals information about changes in their risk and make supportive recommendations for immediate action based on the top features. 
+This model could provide individuals daily insight into their immediate lapse risk and suggest recommendations that could be done in that moment. 
 
-Earlier I gave the example of an urge surfing recommendation for someone with strong cravings. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or offering encouragement when someone has gone a certain length of time without drinking.
+Earlier I gave the example of an urge surfing recommendation for someone with strong cravings. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
 
-Importantly, this assumes that the recommendations can be implemented immediately, likely in a smartphone app.
+What's key here is that this assumes that the recommendations can be implemented immediately, likely in a smartphone app.
 
 But the best clinical recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next 24 hours!
 
+:::
+
+## Study Goals
+
+
+Use EMA to:
+
+1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next 24 hours)
+
+:::{}
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window 2 weeks from now)
+:::
+
+:::{.notes}
 Therefore, we also fit a second model to predict future risk of a lapse back to alcohol use. For this model we shifted the 24 hour prediction window 2-weeks into the future. So essentially this model predicts the probability that someone will lapse in a 24 hour window two weeks from now.
 
 These “time-lagged” predictions could give people advanced warning to implement supports not immediately available to them.
@@ -493,7 +507,7 @@ When it comes to making a personalized recommendation for a recovery activity or
 
 This figure shows the range of all individual feature importance values across all people and all days.
 
-This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for seem people at some moments these features are clinically important.
+This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for some people at some moments these features are clinically important.
 :::
 
 ## Model Fairness
@@ -655,7 +669,7 @@ In a recently funded grant in our lab, we plan to look what combination of risk-
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/phones.png?raw=true){style="display: block; margin: auto; height: 40vh; width: auto;"}
 
 :::{.notes}
-Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of features for better personalization of support recommendations without increasing burden.
+Finally, we have begun to build models that combing EMA with data from other lower burden sensing methods, like geolocation and cellular communications. Including these types of digital data could increase the number of important features for better personalization of support recommendations without increasing burden.
 :::
 
 ## Acknowledgements
@@ -697,7 +711,7 @@ Contributors:
 :::{.notes}
 I would like to thank all of the people who have contributed to the ideas and research presented today. 
 
-The QR code on the screen links to our study website where we have made the manuscript and all annotated analysis scripts available.
+The QR code on the screen links to our study website where we have made the manuscript and all annotated analysis scripts available for this project.
 
 I'm happy to answer any questions now.
 :::
