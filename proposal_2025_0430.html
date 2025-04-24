@@ -11,7 +11,7 @@
 
   <meta name="author" content="Kendra Wyant">
   <meta name="dcterms.date" content="2025-04-30">
-  <title>Dissertation Proposal</title>
+  <title>Predicting lapses back to substance use for continuing care support</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -131,7 +131,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Dissertation Proposal</h1>
+  <h1 class="title">Predicting lapses back to substance use for continuing care support</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -614,6 +614,12 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
           display:block!important;
       }</style></aside>
 </section>
+<section id="study-1-results-average-important-features" class="slide level2">
+<h2>Study 1 Results: Average Important Features</h2>
+</section>
+<section id="study-1-results-individual-important-features" class="slide level2">
+<h2>Study 1 Results: Individual Important Features</h2>
+</section>
 <section id="study-2-results-performance" class="slide level2">
 <h2>Study 2 Results: Performance</h2>
 </section>
@@ -698,20 +704,33 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <section id="conclusions" class="slide level2">
 <h2>Conclusions</h2>
 <ul>
-<li>We can achieve clinically meaningful performance up to 2 weeks out</li>
+<li><p>We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance</p></li>
+<li><p>We can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time</p></li>
+<li><p>These models that predict and characterize immediate risk of lapse are well-suited for just in time personalized interventions</p></li>
 </ul>
-<div class="fragment">
-<ul>
-<li>Advanced notice for treatment supports that are not immediately available</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>A more representative training sample is critical for developing fair models</li>
-</ul>
-</div>
 <aside class="notes">
-<p>In conclusion, Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out.</p>
+<p>In study 1 we found that</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="conclusions-1" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li><p>We can achieve clinically meaningful performance up to 2 weeks out</p></li>
+<li><p>Advanced notice for treatment supports that are not immediately available</p></li>
+<li><p>A more representative training sample is critical for developing fair models</p></li>
+</ul>
+<aside class="notes">
+<p>In study 2 we found that we can achieve clinically meaningful performance up to two weeks out.</p>
 <p>Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the start of the prediction window. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.</p>
 <p>Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.</p>
 <style type="text/css">
@@ -734,6 +753,19 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <li>Generalize to substance other than alcohol</li>
 <li>Add geolocation data</li>
 </ul>
+<aside class="notes">
+<p>Mention benefits of geolocation data and that people generally opt in to provide it</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="proposed-study-3-1" class="slide level2">
 <h2>Proposed Study 3</h2>
@@ -750,6 +782,151 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <section id="proposed-study-4-1" class="slide level2">
 <h2>Proposed Study 4</h2>
 <p>Specific aims:</p>
+</section>
+<section id="design-2" class="slide level2">
+<h2>Design</h2>
+<ul>
+<li>12-month longitudinal study</li>
+<li>Participants completed 1 daily suvey
+<ul>
+<li>Craving, pain, risky situations, stressful events, and pleasant events</li>
+<li>Depressed, angry, anxious, relaxed, and happy</li>
+<li>Sleep quality</li>
+<li>MOUD adherence</li>
+<li>Motivation and confidence</li>
+<li>Opioid and other drug and alcohol use</li>
+</ul></li>
+<li>Outcome = lapse or no lapse back to opioid use</li>
+</ul>
+<aside class="notes">
+<p>16 items - update items</p>
+<p>intensity of craving, pain, risky situations, stressful events, and pleasant events since their last survey.</p>
+<p>How depressed, angry, anxious, relaxed, and happy they have felt in the past 24 hours</p>
+<p>Their quality of sleep</p>
+<p>Whether they took their MOUD as prescribed.</p>
+<p>How motivated and how confident they were to avoid using opioids,</p>
+<p>The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-324" class="slide level2">
+<h2>Participants (<em>N</em> = 324)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Our sample consisted of 324 participants from 38 states in the US in early recovery from opioid use disorder. Participants were either currently enrolled in an MOUD program or enrolled in or recently completed an IOP program.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-324-1" class="slide level2">
+<h2>Participants (<em>N</em> = 324)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more representation of men than women.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-324-2" class="slide level2">
+<h2>Participants (<em>N</em> = 324)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Most participants were between 26-45 years and had an annual income below $25,000</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="daily-survey-completion" class="slide level2">
+<h2>Daily Survey Completion</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-11-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>71.4% compliance</li>
+</ul>
+</div></div>
+<aside class="notes">
+
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions?</h2>
 </section>
 <section id="raceethnicity" class="slide level2">
 <h2>Race/Ethnicity</h2>
@@ -844,7 +1021,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="images/arc_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-
+<p>Dissertation Proposal</p>
 </div>
 </div></div>
 

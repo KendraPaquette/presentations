@@ -1,5 +1,5 @@
 ---
-title: "Dissertation Proposal"
+title: "Predicting lapses back to substance use for continuing care support"
 author: "Kendra Wyant"
 date: "April 30, 2025"
 institute: "University of Wisconsin-Madison"
@@ -9,7 +9,7 @@ format:
     incremental: false  
     auto-stretch: false
     logo: images/arc_logo.png
-    footer: ""
+    footer: "Dissertation Proposal"
 slide-number: false
 editor_options: 
   chunk_output_type: console
@@ -470,18 +470,28 @@ We did however have equal representation of men and women, and we still saw diff
 
 ## Conclusions
 
-- We can achieve clinically meaningful performance up to 2 weeks out
+- We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
 
-:::{.fragment}
-- Advanced notice for treatment supports that are not immediately available
-:::
+- We can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
 
-:::{.fragment}
-- A more representative training sample is critical for developing fair models
-:::
+- These models that predict and characterize immediate risk of lapse are well-suited for just in time personalized interventions
 
 :::{.notes}
-In conclusion, Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out. 
+
+In study 1 we found that
+
+:::
+
+## Conclusions
+
+- We can achieve clinically meaningful performance up to 2 weeks out
+
+- Advanced notice for treatment supports that are not immediately available
+
+- A more representative training sample is critical for developing fair models
+
+:::{.notes}
+In study 2 we found that we can achieve clinically meaningful performance up to two weeks out. 
 
 Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the start of the prediction window. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
 
@@ -497,6 +507,10 @@ Address limitations of previous studies by:
 - More diverse training data
 - Generalize to substance other than alcohol
 - Add geolocation data
+
+:::{.notes}
+Mention benefits of geolocation data  and that people generally opt in to provide it
+:::
 
 ## Proposed Study 3
 
@@ -518,6 +532,113 @@ Specific aims:
 
 
 
+## Design
+
+- 12-month longitudinal study
+- Participants completed 1 daily suvey
+    - Craving, pain, risky situations, stressful events, and pleasant events
+    - Depressed, angry, anxious, relaxed, and happy
+    - Sleep quality
+    - MOUD adherence
+    - Motivation and confidence
+    - Opioid and other drug and alcohol use
+- Outcome = lapse or no lapse back to opioid use
+    
+:::{.notes}
+16 items - update items
+
+intensity of craving, pain, risky situations, stressful events, and pleasant events since their last survey.
+
+How depressed, angry, anxious, relaxed, and happy they have felt in the past 24 hours
+
+Their quality of sleep
+
+Whether they took their MOUD as prescribed. 
+
+How motivated and how confident they were to avoid using opioids,
+
+The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours 
+
+Our outcome for these studies is lapse or no lapse back to opioid use in a 24 hour window
+:::
+
+## Participants (*N* = 324)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 8
+#| fig-align: center
+ 
+source("figs/risk2_dem_figs.R")
+
+fig_oud
+```
+
+
+:::{.notes}
+Our sample consisted of 324 participants from 38 states in the US in early recovery from opioid use disorder. Participants were either currently enrolled in an MOUD program or enrolled in or recently completed an IOP program.
+:::
+
+
+## Participants (*N* = 324)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+fig_race + fig_sex
+```
+
+
+
+:::{.notes}
+Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more representation of men than women.
+:::
+
+## Participants (*N* = 324)
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+fig_age + fig_income
+```
+
+:::{.notes}
+Most participants were between 26-45 years and had an annual income below $25,000
+:::
+
+## Daily Survey Completion
+
+:::{.columns}
+:::{.column width = "50%"}
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 7
+
+source("figs/risk2_ema_figs.R")
+
+fig_risk2_compliance
+```
+
+:::
+
+:::{.column width = "50%"}
+- 71.4% compliance
+:::
+:::
+
+:::{.notes}
+
+:::
+
+
+## Questions?
+
 
 
 
@@ -530,10 +651,6 @@ race <- read_csv("data/risk2_race.csv",
                  show_col_types = FALSE)
 
 race |> 
-  select(-race_other_text) |> 
-  pivot_longer(race_ai_an:race_other, names_to = "race") |> 
-  mutate(race = str_remove(race, "race_")) |> 
-  filter(value == "yes") |> 
   count(race) |> 
   mutate(perc = n/324) |> 
   kableExtra::kbl(digits = 2) |> 
