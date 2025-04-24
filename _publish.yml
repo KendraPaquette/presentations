@@ -2,3 +2,7 @@
   quarto-pub:
     - id: ed757856-740a-4b22-9f8b-2adb43da3065
       url: https://kendra-wyant.quarto.pub/cpa_2025
+- source: proposal_2025_0430.qmd
+  quarto-pub:
+    - id: ea5044f1-786b-4b3d-b951-1a15b66e85ec
+      url: https://kendra-wyant.quarto.pub/proposal_slidedeck

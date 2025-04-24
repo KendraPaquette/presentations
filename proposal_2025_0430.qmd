@@ -1,0 +1,586 @@
+---
+title: "Dissertation Proposal"
+author: "Kendra Wyant"
+date: "April 30, 2025"
+institute: "University of Wisconsin-Madison"
+format: 
+  revealjs:
+    css: slides.css
+    incremental: false  
+    auto-stretch: false
+    logo: images/arc_logo.png
+    footer: ""
+slide-number: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+## Alcohol Use Disorder
+
+::: {.columns}
+
+:::{.column width = "66%"}
+
+- Chronic condition
+
+:::{.fragment}
+- Initial treatments are effective
+:::
+
+:::{.fragment}
+- Continuing care is gold-standard for chronic conditions
+:::
+
+
+:::
+
+:::{.column width = "4%"}
+:::
+
+:::{.column width = "30%"}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){.absolute top=0 right=0 height=100%}
+:::
+:::
+
+::: {.notes}
+Alcohol use disorder is a chronic condition with high relapse rates, substantial co-morbidity with mental and physical health issues, and increased mortality risk.
+
+Initial treatments, including medication and evidence-based psychosocial interventions, are effective. Unfortunately, many individuals never receive treatment. And for those who do, a critical gap in care often emerges once initial treatment ends.
+
+Continuing care, including on-going monitoring, adaptive support, and when necessary re-engagement with more intensive treatment, is the gold standard for chronic conditions, like diabetes and hypertension. Similarly, alcohol use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
+
+:::
+
+
+## Alcohol Use Disorder
+
+- Continuing care is lacking for alcohol use disorder
+
+:::{.fragment}
+- Risk factors are individualized, numerous, dynamic, and interactive
+:::
+
+::: {.fragment}
+- Optimal supports to address risk factors vary across individuals and within an individual over time
+:::
+
+:::{.notes}
+Yet, our current treatment system lacks the capacity for long-term clinician-delivered care, and instead the primary focus is on symptom stabilization and harm reduction. 
+
+Without ongoing support, many individuals are left to navigate recovery alone, asking themselves: How can I best support my recovery today? Which tool in my toolkit fits what I need right now?
+
+The challenge is that risk factors for relapse are highly individualized, dynamic, and interactive — making self-monitoring difficult. And the optimal supports needed to address these risks vary both across individuals and within an individual over time.
+:::
+
+
+
+## Recovery Monitoring and Support System
+
+::: {.columns}
+:::{.column width = "50%"}
+
+:::{.fragment}
+- Personalized adaptive recommendations
+:::
+
+:::{.fragment}
+- Prompt individuals to engage with support at times of high risk
+:::
+
+:::
+
+
+
+:::{.column width = "50%"}
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem.png?raw=true)
+:::
+:::
+:::
+
+:::{.notes}
+
+An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse, or goal-inconsistent alcohol use, after initial treatment and adjust their lifestyle, behaviors and support accordingly.
+
+Such a system could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk. 
+
+For example, individuals could receive daily messages about changes in their lapse risk, along with recommendations based on their key risk factors, like an urge-surfing recommendation for someone experiencing strong cravings.
+
+:::
+
+
+## Recovery Monitoring and Support System
+
+::: {.columns}
+:::{.column width = "49%"}
+
+:::{}
+- Personalized adaptive recommendations  
+:::
+
+:::{}
+- Prompt individuals to engage with support at times of high risk
+:::
+
+:::{}
+- Scalable to address unmet need
+:::
+
+:::
+
+:::{.column width = "1%"}
+:::
+
+:::{.column width = "50%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem.png?raw=true)
+:::
+
+:::
+
+:::{.notes}
+
+Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in alcohol use disorder treatment.
+
+For such a system to exist, we need at least three things. 
+One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
+
+Two, the system must have access to a model that can predict alcohol use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
+
+Three, the model must perform fairly. The accuracy of the predictions and usefulness and relevance of the recommendations should be similar for everyone.
+:::
+
+
+
+## Machine Learning and Digital Data
+
+::: {.fragment}
+- High dimensional feature sets
+:::
+
+::: {.fragment}
+- Non-linear and interactive relationships between features and lapse risk probability
+:::
+
+:::{.fragment}
+- Interpretability of feature importance
+:::
+
+:::{.notes}
+
+Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation tracking) allow for frequent, longitudinal measurement of key risk factors, necessary for temporally precise prediction of lapse risk.
+
+Machine learning models, can handle high-dimensional feature sets and accomodate non-linear and interactive relationships between features and lapse risk probability. And methods from interpretable machine learning can be used to understand which features contribute most to a lapse prediction.
+
+:::
+
+## Study 1 and 2
+
+1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window in the future)
+
+:::{.notes}
+The goals of studies 1-2 were to develop models that predict both immediate and future lapse risk to improve adaptive, tailored continuing care support.
+
+In study 1:
+
+We built models to predict immediate risk of a lapse back to alcohol use with varying temporal precision (anytime in the next week, next day, or next hour).
+
+These models can provide individuals daily insight into their immediate lapse risk and suggest recommendations that could be done in that moment. 
+
+Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
+
+What's key here is that this assumes that the recommendations can be implemented immediately, likely in a smartphone app.
+
+But the best clinical recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next 24 hours!
+:::
+
+## Study 1 and 2
+
+1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window in the future)
+
+:::{.notes}
+So in study 2:
+
+we built additional models to predict future risk of lapses back to alcohol use. In these models we shifted the 24 hour prediction window 1 day, 3 days, 1 week or 2 weeks into the future. 
+
+This “time-lagged” model could give people advanced warning to implement supports not immediately available to them, such as scheduling positive or pleasant activities, increasing social engagement, or attending a peer-led recovery meeting.
+:::
+
+
+## Ecological Momentary Assessment
+
+:::{.columns}
+:::{.column width = "58%"}
+- Direct and frequent insight into subjective feelings and experiences
+
+:::{.fragment}
+- Constructs easily map onto well-studied risk factors for lapse
+:::
+
+:::{.fragment}
+- Appears to be well-tolerated
+:::
+
+:::
+
+:::{.column width = "2%"}
+:::
+
+
+:::{.column width = "40%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=0 right=0 height=100%}
+:::
+:::
+
+:::{.notes}
+For these studies we used ecological momentary assessment.
+
+EMA may be one promising sensing method for lapse prediction.
+
+It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment like the relapse prevention model 
+
+Furthermore, individuals with substance use disorders have found EMA to be acceptable for sustained measurement for up to a year with relatively high completion rates, suggesting that this method is feasible for long-term monitoring throughout recovery.
+
+:::
+
+
+## Design
+
+- 3-month longitudinal study
+- Participants completed 4 surveys daily
+    - Craving, arousal, valence 
+    - Past stressful events, risky situations, pleasant events
+    - Future stressful events, risky situations, efficacy
+    - Alcohol use
+
+
+::: {.notes}
+Participants completed 4 daily surveys for up to three months
+
+Each survey had 10 items that asked about 
+The greatest intensity of craving, arousal, and valence since the last survey.  
+
+Stressful events, risky situations and pleasant events encountered since their last survey
+
+Future stressful events, risky situations and efficacy looking in the next week
+
+And any alcohol use they had not yet reported.
+:::
+
+## Design
+
+- 3-month longitudinal study
+- Participants completed 4 surveys daily
+    - Craving, arousal, valence 
+    - Past stressful events, risky situations, pleasant events
+    - Future stressful events, risky situations, efficacy
+    - Alcohol use
+
+- Outcome = lapse or no lapse
+- XGBoost algorithm
+- Grouped nested k-fold cross-validation
+
+
+
+::: {.notes}
+We used all 10 EMA items plus 7 demographic questions to engineer our features, which serve as the inputs to our model.   
+Time and day of alcohol was used to generate our outcome labels of lapse or no lapse.  
+Our statistical algorithm was XGBoost.   
+We used grouped nested k-fold cross-validation as our resampling method to ensure our models were evaluated on new data from new individuals
+:::
+
+## Participants (*N* = 151)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 8
+#| fig-align: center
+ 
+source("figs/dem_figs.R")
+
+fig_aud
+```
+
+
+:::{.notes}
+Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area. All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
+:::
+
+
+## Participants (*N* = 151)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+library(patchwork)
+
+fig_race + fig_sex
+```
+
+
+
+:::{.notes}
+Our sample was predominantly non-Hispanic White. We had equal representation of men and women.
+:::
+
+## Participants (*N* = 151)
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+fig_age + fig_income
+```
+
+:::{.notes}
+The average age was 41 years and average income was $34000.
+:::
+
+## EMA Completion
+
+:::{.columns}
+:::{.column width = "50%"}
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 7
+
+source("figs/ema_figs.R")
+
+fig_compliance
+```
+
+:::
+
+:::{.column width = "50%"}
+- 3.1 of 4 surveys completed daily (78.4% compliance)
+- 95% compliance for completing at least one survey daily
+:::
+:::
+
+:::{.notes}
+Participants on average completed 3 of the 4 EMAs each day. Participants completed at least one EMA on 95.0% of days. 
+
+The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1 daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain high rates of EMA completion over the full three months.
+:::
+
+
+## Study 1 Results: Performance
+
+:::{.notes}
+We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
+:::
+
+
+## Study 1 Results: Performance
+
+:::{.notes}
+here is the distribution of posterior probabilities for auroc for the lapse predictions in the next week, day, and hour. The median posterior probability was .90 (depicted as the vertical solid line). The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5. 
+:::
+
+
+
+## Study 1 Results: Average Important Features
+
+
+
+## Study 1 Results: Individual Important Features
+
+
+
+
+## Study 2 Results: Performance
+
+
+
+
+
+
+
+
+## Study 2 Results: Model Fairness
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_empty + income_empty + sex_empty
+```
+
+
+:::{.notes}
+
+In this study we also looked at how fair our models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
+
+:::
+
+## Study 2 Results: Model Fairness
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_no_lag + income_no_lag + sex_empty
+```
+
+
+:::{.notes}
+
+Our models performed  worse for participants who were not white and had an income below the federal poverty line. 
+
+The largest contributing factor is likely the lack of diversity in our training data.
+
+Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group (compared to 131 in the White group). We also saw a similar pattern in our income groups (with 49 people in the below poverty group and 102 people in the above poverty group).
+
+In just a moment I'm going to return to this issue and discuss what we are currently doing to address this.
+
+:::
+
+## Study 2 Results: Model Fairness
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_no_lag + income_no_lag + sex_no_lag
+```
+
+
+:::{.notes}
+
+We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of lapse and relapse risk research. It is possible that these constructs more precisely describe lapse risk factors for men than for women. This could mean that more research is needed to identify lapse risk factors for women (and other groups underrepresented in the literature more broadly).
+
+:::
+
+
+
+## Conclusions
+
+- We can achieve clinically meaningful performance up to 2 weeks out
+
+:::{.fragment}
+- Advanced notice for treatment supports that are not immediately available
+:::
+
+:::{.fragment}
+- A more representative training sample is critical for developing fair models
+:::
+
+:::{.notes}
+In conclusion, Our models performed exceptionally well with median posterior probabilities for auROCs of .84 - .90. This suggests we can achieve clinically meaningful performance up to two weeks out. 
+
+Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the start of the prediction window. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
+
+Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
+:::
+
+
+## Proposed Study 3
+
+Address limitations of previous studies by:  
+
+
+- More diverse training data
+- Generalize to substance other than alcohol
+- Add geolocation data
+
+## Proposed Study 3
+
+Specific aims:   
+
+
+## Proposed Study 4
+
+Address limitations of previous studies by:  
+
+
+- Personalized models
+- Single model for immediate and lagged predictions
+
+
+## Proposed Study 4
+
+Specific aims:   
+
+
+
+
+
+
+## Race/Ethnicity
+
+```{r}
+#| echo: false
+
+race <- read_csv("data/risk2_race.csv",
+                 show_col_types = FALSE)
+
+race |> 
+  select(-race_other_text) |> 
+  pivot_longer(race_ai_an:race_other, names_to = "race") |> 
+  mutate(race = str_remove(race, "race_")) |> 
+  filter(value == "yes") |> 
+  count(race) |> 
+  mutate(perc = n/324) |> 
+  kableExtra::kbl(digits = 2) |> 
+  kableExtra::kable_classic()
+```
+
+
+## Race/Ethnicity {.scrollable}
+
+34 participants selected 2 or more races
+```{r}
+#| echo: false
+
+# subs <- race |> 
+#   pivot_longer(cols = starts_with("race")) |> 
+#   filter(name != "race_other_text") |> 
+#   filter(value == "yes") |> 
+#   group_by(subid) |> 
+#   summarize(n = n()) |> 
+#   filter(n > 1)  
+# 
+# race |> 
+#   filter(subid %in% subs$subid) |> 
+#   select(-race_other_text) |> 
+#   mutate(across(everything(), ~ ifelse(. == "yes", 
+#                                        kableExtra::cell_spec(., background = "yellow"), 
+#                                        .))) |> 
+#   kableExtra::kbl(escape = FALSE) |> 
+#   kableExtra::kable_classic() 
+```
+
+![](figs/risk2_race.png)
+
+## Prediction Windows
+
+- proposed 6am to 6am. 
+- Daily Survey opens at 6 am every morning
+- Could consider 12 pm to 12 pm to increase chances of getting Daily Survey from that day.
+
+:::{.notes}
+6am to 6am would guarantee we get new survey if they complete it.
+
+What happens if someone completes survey after 12 pm and before noon next day? Only use most recent in model?
+:::
+
+## EMA completion times
+
+
+## Lapse times
+
