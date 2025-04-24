@@ -6,16 +6,11 @@
   width: 100% !important;
 }
 
-.slide-background-content {
-  background-image: url("https://raw.githubusercontent.com/jjcurtin/slide_decks/refs/heads/main/images/title_slide.png") !important;
-  overflow: visible !important;
-  background-size: 100vw !important;
-}
-
 
 .reveal .quarto-title-block {
   font-size: 30px !important;
   font-family: 'Abadi Extra Light', Sans-Serif;
+  text-align: left;
 }
 
 .reveal h1 {

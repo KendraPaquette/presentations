@@ -13,6 +13,11 @@ format:
 slide-number: false
 editor_options: 
   chunk_output_type: console
+title-slide-attributes:
+  data-background-image: images/title_slide.png
+  data-background-size: cover
+  data-background-repeat: no
+  data-background-position: right top
 ---
 
 
