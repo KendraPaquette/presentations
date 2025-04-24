@@ -500,6 +500,10 @@ Finally, these models are not yet clinically implementable. The most notable fla
 
 ## Proposed Study 3 and 4 
 
+*New data set!*
+
+- National sample of individuals in early recovery for opioid use disorder
+
 ## Design
 
 - 12-month longitudinal study
@@ -536,15 +540,14 @@ Our outcome for these studies is lapse or no lapse back to opioid use in a 24 ho
 
 :::{.columns}
 :::{.column width = "58%"}
-- Direct and frequent insight into subjective feelings and experiences
+- Passively sensed
 
-:::{.fragment}
-- Constructs easily map onto well-studied risk factors for lapse
-:::
+- May provide insight into information difficult to measure with self-report
 
-:::{.fragment}
-- Appears to be well-tolerated
-:::
+- Adds additional features for personalizing support recommendations
+
+- Appears to be acceptable
+
 
 :::
 
@@ -553,7 +556,7 @@ Our outcome for these studies is lapse or no lapse back to opioid use in a 24 ho
 
 
 :::{.column width = "40%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=0 right=0 height=100%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/location.jpg?raw=true){.absolute top=0 right=0 height=100%}
 :::
 :::
 
