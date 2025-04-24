@@ -751,10 +751,14 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <ul>
 <li>More diverse training data</li>
 <li>Generalize to substance other than alcohol</li>
+<li>Longer duration of recovery</li>
 <li>Add geolocation data</li>
 </ul>
 <aside class="notes">
-<p>Mention benefits of geolocation data and that people generally opt in to provide it</p>
+<p>The data in this study will offer more diversity with regard to race/ethnicity, income, and geographic location. We expect that improving the quality of the training data with respect to diversity will help to address issues of fairness.</p>
+<p>We will also determine whether lapse prediction models can be generalized to other drugs beyond alcohol. Participants in this study will be seeking abstinence from opioids. A successful model will demonstrate that lapse prediction can be done with a drug where its use is illegal and people may be less willing to provide information about lapses and risk factors.</p>
+<p>Participants provided data for 12 months. Thus, this study will also show the feasibility of using self-report data over long periods of recovery (i.e., 12 months).</p>
+<p>We also will be using geolocation data in addition to self-report data. Geolocation sensing is a passive sensing method that could compliment daily surveys well. It could provide insight into information difficult to measure with self-report (e.g., the amount of time spent in risky locations, or changes in routine that could indicate life stressors) or that would add additional burden by increasing the number of questions on the daily surveys. Furthermore, by adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people. And we have also found that the people generally opt in to providing us geolocation data suggesting it might be acceptable.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -770,6 +774,11 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <section id="proposed-study-3-1" class="slide level2">
 <h2>Proposed Study 3</h2>
 <p>Specific aims:</p>
+<ol type="1">
+<li><p>Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</p></li>
+<li><p>Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes - race/ethnicity (not White vs.&nbsp;non-Hispanic White), income (below $25,000 vs.&nbsp;above $25,000), sex at birth (female vs.&nbsp;male), and geographic location (rural vs.&nbsp;other).</p></li>
+<li><p>Describe the relative importance of features on model performance.</p></li>
+</ol>
 </section>
 <section id="proposed-study-4" class="slide level2">
 <h2>Proposed Study 4</h2>
@@ -778,10 +787,44 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <li>Personalized models</li>
 <li>Single model for immediate and lagged predictions</li>
 </ul>
+<aside class="notes">
+<p>State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual’s own data to make future predictions about lapse risk for that single individual.</p>
+<p>We could imagine these personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen.</p>
+<p>A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="proposed-study-4-1" class="slide level2">
 <h2>Proposed Study 4</h2>
 <p>Specific aims:</p>
+<ol type="1">
+<li><p>Evaluate the performance of personalized state-space models that predict immediate (next day) opioid lapse risk from geolocation and daily surveys.</p></li>
+<li><p>Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).</p></li>
+<li><p>Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3 - race/ethnicity (not White vs.&nbsp;non-Hispanic White), income (below $25,000 vs.&nbsp;above $25,000), sex at birth (female vs.&nbsp;male), and geographic location (rural vs.&nbsp;other).</p></li>
+</ol>
+<aside class="notes">
+<p>Compare the performance of state-space models to our traditional machine learning model in study 3 (chapter 4) to determine if individualized models that account for time are superior for lapse risk prediction.</p>
+<p>This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="design-2" class="slide level2">
 <h2>Design</h2>
@@ -806,6 +849,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <p>Whether they took their MOUD as prescribed.</p>
 <p>How motivated and how confident they were to avoid using opioids,</p>
 <p>The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours</p>
+<p>Our outcome for these studies is lapse or no lapse back to opioid use in a 24 hour window</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

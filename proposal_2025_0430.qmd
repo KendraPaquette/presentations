@@ -484,82 +484,21 @@ In study 1 we found that
 
 ## Conclusions
 
-- We can achieve clinically meaningful performance up to 2 weeks out
+- We can achieve clinically meaningful performance up to 2 weeks into the future
 
-- Advanced notice for treatment supports that are not immediately available
+- These models offer the benefit of advanced notice for treatment supports that are not immediately available
 
 - A more representative training sample is critical for developing fair models
 
 :::{.notes}
-In study 2 we found that we can achieve clinically meaningful performance up to two weeks out. 
+In study 2 we found that we can achieve clinically meaningful performance up to two weeks into the future. 
 
 Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the start of the prediction window. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
 
 Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
 :::
 
-
-## Proposed Study 3
-
-Address limitations of previous studies by:  
-
-- More diverse training data
-- Generalize to substance other than alcohol
-- Longer duration of recovery
-- Add geolocation data
-
-:::{.notes}
-The data in this study will offer more diversity with regard to race/ethnicity, income, and geographic location. We expect that improving the quality of the training data with respect to diversity will help to address issues of fairness. 
-
-We will also determine whether lapse prediction models can be generalized to other drugs beyond alcohol. Participants in this study will be seeking abstinence from opioids. A successful model will demonstrate that lapse prediction can be done with a drug where its use is illegal and people may be less willing to provide information about lapses and risk factors. 
-
-Participants provided data for 12 months. Thus, this study will also show the feasibility of using self-report data over long periods of recovery (i.e., 12 months).
-
-We also will be using geolocation data in addition to self-report data. Geolocation sensing is a passive sensing method that could compliment daily surveys well. It could provide insight into information difficult to measure with self-report (e.g., the amount of time spent in risky locations, or changes in routine that could indicate life stressors) or that would add additional burden by increasing the number of questions on the daily surveys. Furthermore, by adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people. And we have also found that the people generally opt in to providing us geolocation data suggesting it might be acceptable.
-:::
-
-## Proposed Study 3
-
-Specific aims:   
-
-1. Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
-
-2. Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes - race/ethnicity (not White vs. non-Hispanic White), income (below \$25,000 vs. above \$25,000), sex at birth (female vs. male), and geographic location (rural vs. other).
-
-3. Describe the relative importance of features on model performance.
-
-
-## Proposed Study 4
-
-Address limitations of previous studies by:  
-
-- Personalized models
-- Single model for immediate and lagged predictions
-
-:::{.notes}
-State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual's own data to make future predictions about lapse risk for that single individual.
-
-We could imagine these personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen.
-
-A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.
-:::
-
-## Proposed Study 4
-
-Specific aims:   
-
-1. Evaluate the performance of personalized state-space models that predict immediate (next day) opioid lapse risk from geolocation and daily surveys.
-
-2. Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).
-
-3. Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3 - race/ethnicity (not White vs. non-Hispanic White), income (below \$25,000 vs. above \$25,000), sex at birth (female vs. male), and geographic location (rural vs. other).
-
-
-:::{.notes}
-Compare the performance of state-space models to our traditional machine learning model in study 3 (chapter 4) to determine if individualized models that account for time are superior for lapse risk prediction.
-
-This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.
-:::
+## Proposed Study 3 and 4 
 
 ## Design
 
@@ -574,6 +513,8 @@ This will involve three model comparisons between the immediate, 2-week and 1-mo
 - Outcome = lapse or no lapse back to opioid use
     
 :::{.notes}
+Participants completed 1X daily surveys for up to 12 months
+
 16 items - update items
 
 intensity of craving, pain, risky situations, stressful events, and pleasant events since their last survey.
@@ -589,6 +530,39 @@ How motivated and how confident they were to avoid using opioids,
 The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours 
 
 Our outcome for these studies is lapse or no lapse back to opioid use in a 24 hour window
+:::
+
+## Geolocation 
+
+:::{.columns}
+:::{.column width = "58%"}
+- Direct and frequent insight into subjective feelings and experiences
+
+:::{.fragment}
+- Constructs easily map onto well-studied risk factors for lapse
+:::
+
+:::{.fragment}
+- Appears to be well-tolerated
+:::
+
+:::
+
+:::{.column width = "2%"}
+:::
+
+
+:::{.column width = "40%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=0 right=0 height=100%}
+:::
+:::
+
+:::{.notes}
+In addition to the self-report data, participants provided their continuous geolocation data. 
+
+Geolocation sensing is a passive sensing method that could compliment daily surveys well. It could provide insight into information difficult to measure with self-report (e.g., the amount of time spent in risky locations, or changes in routine that could indicate life stressors) or that would add additional burden by increasing the number of questions on the daily surveys. Furthermore, by adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people. 
+
+And while providing geolocation for this project was required, in a previous project, where it was optional, we found nearly all participants opted in to providing geolocation data for a relatively small financial incentive (compared to their other payments). This leads us to believe sensing could be acceptable and feasible for use in a recovery monitoring and support system.
 :::
 
 ## Participants (*N* = 324)
@@ -664,6 +638,70 @@ fig_risk2_compliance
 :::{.notes}
 
 :::
+
+
+## Proposed Study 3
+
+Address limitations of previous studies by:  
+
+- More diverse training data
+- Generalize to substance other than alcohol
+- Longer duration of recovery
+- Adds geolocation data
+
+:::{.notes}
+These data offer more diversity with regard to race/ethnicity, income, and geographic location. We expect that improving the quality of the training data with respect to diversity will help to address issues of fairness. 
+
+We can also determine whether lapse prediction models can be generalized to other drugs beyond alcohol. Participants in this study will be seeking abstinence from opioids. A successful model will demonstrate that lapse prediction can be done with a drug where its use is illegal and people may be less willing to provide information about lapses and risk factors. 
+
+Participants provided data for 12 months. Thus, this study will also show the feasibility of using self-report data over long periods of recovery (i.e., 12 months).
+
+We also will be using geolocation data in addition to self-report data. I already mentioned some of the potential benefits of this addition.
+:::
+
+## Proposed Study 3
+
+Specific aims:   
+
+1. Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
+
+2. Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes - race/ethnicity (not White vs. non-Hispanic White), income (below \$25,000 vs. above \$25,000), sex at birth (female vs. male), and geographic location (rural vs. other).
+
+3. Describe the relative importance of features on model performance.
+
+
+## Proposed Study 4
+
+Address limitations of previous studies by:  
+
+- Personalized models
+- Single model for immediate and lagged predictions
+
+:::{.notes}
+State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual's own data to make future predictions about lapse risk for that single individual.
+
+We could imagine these personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen.
+
+A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.
+:::
+
+## Proposed Study 4
+
+Specific aims:   
+
+1. Evaluate the performance of personalized state-space models that predict immediate (next day) opioid lapse risk from geolocation and daily surveys.
+
+2. Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).
+
+3. Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3 - race/ethnicity (not White vs. non-Hispanic White), income (below \$25,000 vs. above \$25,000), sex at birth (female vs. male), and geographic location (rural vs. other).
+
+
+:::{.notes}
+Compare the performance of state-space models to our traditional machine learning model in study 3 (chapter 4) to determine if individualized models that account for time are superior for lapse risk prediction.
+
+This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.
+:::
+
 
 
 ## Questions?
