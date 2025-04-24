@@ -500,9 +500,16 @@ Finally, these models are not yet clinically implementable. The most notable fla
 
 ## Proposed Study 3 and 4 
 
-*New data set!*
+<div style="text-align: center;">
 
-- National sample of individuals in early recovery for opioid use disorder
+**New sensing data set!**
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/celebrate.jpg?raw=true)
+
+
+*National sample of individuals in early recovery for opioid use disorder*
+
+</div>
 
 ## Design
 
@@ -707,7 +714,7 @@ This will involve three model comparisons between the immediate, 2-week and 1-mo
 
 
 
-## Questions?
+##   
 
 
 
@@ -734,25 +741,23 @@ race |>
 ```{r}
 #| echo: false
 
-# subs <- race |> 
-#   pivot_longer(cols = starts_with("race")) |> 
-#   filter(name != "race_other_text") |> 
-#   filter(value == "yes") |> 
-#   group_by(subid) |> 
-#   summarize(n = n()) |> 
-#   filter(n > 1)  
-# 
-# race |> 
-#   filter(subid %in% subs$subid) |> 
-#   select(-race_other_text) |> 
-#   mutate(across(everything(), ~ ifelse(. == "yes", 
-#                                        kableExtra::cell_spec(., background = "yellow"), 
-#                                        .))) |> 
-#   kableExtra::kbl(escape = FALSE) |> 
-#   kableExtra::kable_classic() 
+subs <- race |>
+  group_by(subid) |>
+  summarize(n = n()) |>
+  filter(n > 1)
+
+race |>
+  filter(subid %in% subs$subid) |>
+  rename(name = race) |> 
+  mutate(race = "yes") |> 
+  pivot_wider(names_from = name, values_from = race, values_fill = "no") |>       
+  mutate(across(everything(), ~ ifelse(. == "yes", 
+                                       kableExtra::cell_spec(., background = "yellow"), 
+                                      .))) |> 
+  kableExtra::kbl(escape = FALSE) |>
+  kableExtra::kable_classic()
 ```
 
-![](figs/risk2_race.png)
 
 ## Prediction Windows
 
