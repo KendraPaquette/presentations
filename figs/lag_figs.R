@@ -213,12 +213,12 @@ race_no_lag <- pp_tidy_dem |>
   mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) |> 
   ggplot() + 
   geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#b0bec5") +
+                 bins = 60, fill = "#ef9a9a") +
   geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag") |> 
+               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag") |> 
                  mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
   geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag")  |> 
+               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag")  |> 
                  mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
   facet_grid(model~group) +
   geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
@@ -284,12 +284,12 @@ income_no_lag <- pp_tidy_dem |>
   mutate(model = factor(model, levels = c("below poverty", "above poverty"))) |> 
   ggplot() + 
   geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#b0bec5") +
+                 bins = 60, fill = "#ef9a9a") +
   geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag") |> 
+               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag") |> 
                  mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
   geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag")  |> 
+               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag")  |> 
                  mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
   facet_grid(model~group) +
   geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
@@ -357,11 +357,11 @@ sex_no_lag <- pp_tidy_dem |>
   filter(str_detect(group, "Sex")) |> 
   ggplot() + 
   geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#b0bec5") +
+                 bins = 60, fill = "#ef9a9a") +
   geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag") ) +
+               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag") ) +
   geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag")  ) +
+               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag")  ) +
   facet_grid(model~group) +
   geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
   scale_y_continuous(NULL) +
@@ -409,12 +409,12 @@ ci <- read_csv(here::here("data/lag_ci.csv"),
 lag_posteriors <- pp_tidy |> 
   mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) |>
   ggplot() + 
-  geom_histogram(aes(x = posterior), fill = "light grey", color = "black", linewidth = .5,  
+  geom_histogram(aes(x = posterior), fill = "#ef9a9a", color = "black", linewidth = .5,  
                  bins = 60) +
   geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci) +
+               linewidth = .5, color = "black", data = ci) +
   geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci) +
+               linewidth = .5, color = "black", data = ci) +
   facet_wrap(~model, ncol = 1) +
   geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
   scale_y_continuous("Count") +
@@ -425,15 +425,18 @@ lag_posteriors <- pp_tidy |>
 lag_posteriors_empty <- pp_tidy |> 
   mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) |>
   ggplot() + 
-  geom_histogram(aes(x = posterior), fill = "white", color = "white", linewidth = .5,  
+  geom_histogram(aes(x = posterior, fill = model, color = model), linewidth = .5,  
                  bins = 60) +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci, color = "white") +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci, color = "white") +
+  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median, color = model),
+               linewidth = .5, data = ci) +
+  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper, color = model),
+               linewidth = .5, data = ci) +
   facet_wrap(~model, ncol = 1) +
   geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
   scale_y_continuous("Count") +
+  scale_fill_manual(values = c("#ef9a9a", "white", "white", "white", "white")) +
+  scale_color_manual(values = c("black", "white", "white", "white", "white")) +
   xlab("Posterior probability for auROC") +
   expand_limits(x = c(.5, 1)) +
-  theme_classic() 
+  theme_classic() +
+  theme(legend.position = "none")

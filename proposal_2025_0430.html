@@ -331,13 +331,13 @@ Kendra Wyant
 <li><p>Predict <span style="color: #c5050c;"><strong>future risk</strong></span> of a lapse back to alcohol use (i.e., in a 24 hour window in the future)</p></li>
 </ol>
 <aside class="notes">
-<p>The goals of studies 1-2 were to develop models that predict both immediate and future lapse risk to improve adaptive, tailored continuing care support.</p>
+<p>Studies 1-2 are complete so I am going to quickly go through what we found to set the stage for studies 3-4.</p>
+<p>In studies 1-2 we used machine learning and sensing data to predict both immediate and future alcohol lapse risk.</p>
 <p>In study 1:</p>
 <p>We built models to predict immediate risk of a lapse back to alcohol use with varying temporal precision (anytime in the next week, next day, or next hour).</p>
 <p>These models can provide individuals daily insight into their immediate lapse risk and suggest recommendations that could be done in that moment.</p>
 <p>Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.</p>
-<p>What’s key here is that this assumes that the recommendations can be implemented immediately, likely in a smartphone app.</p>
-<p>But the best clinical recommendation might not be able to be done immediately. Imagine trying to schedule a therapy appointment in the next 24 hours!</p>
+<p>What’s key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -358,7 +358,7 @@ Kendra Wyant
 </ol>
 <aside class="notes">
 <p>So in study 2:</p>
-<p>we built additional models to predict future risk of lapses back to alcohol use. In these models we shifted the 24 hour prediction window 1 day, 3 days, 1 week or 2 weeks into the future.</p>
+<p>we built additional models to predict future risk of lapses back to alcohol use. In these models we shifted a 24 hour prediction window 1 day, 3 days, 1 week or 2 weeks into the future.</p>
 <p>This “time-lagged” model could give people advanced warning to implement supports not immediately available to them, such as scheduling positive or pleasant activities, increasing social engagement, or attending a peer-led recovery meeting.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -395,7 +395,7 @@ Kendra Wyant
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true" class="absolute" style="top: 0px; right: 0px; height: 100%; "></p>
 </div></div>
 <aside class="notes">
-<p>For these studies we used ecological momentary assessment.</p>
+<p>We started in these early studies with ecological momentary assessment or EMA as our sensing data stream.</p>
 <p>EMA may be one promising sensing method for lapse prediction.</p>
 <p>It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment like the relapse prevention model</p>
 <p>Furthermore, individuals with substance use disorders have found EMA to be acceptable for sustained measurement for up to a year with relatively high completion rates, suggesting that this method is feasible for long-term monitoring throughout recovery.</p>
@@ -424,6 +424,7 @@ Kendra Wyant
 </ul></li>
 </ul>
 <aside class="notes">
+<p>Both studies used the same data set.</p>
 <p>Participants completed 4 daily surveys for up to three months</p>
 <p>Each survey had 10 items that asked about The greatest intensity of craving, arousal, and valence since the last survey.</p>
 <p>Stressful events, risky situations and pleasant events encountered since their last survey</p>
@@ -620,7 +621,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 <aside class="notes">
 <p>here is the distribution of posterior probabilities for auroc for the lapse predictions in the next week, day, and hour. The median posterior probabilities were .90, .91, and .93 for next week, day and hour models respectively. The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5.</p>
-<p>I also want to bring your attention to the day model in red because from here on out I will only be focussing on day level models. This is for a couple reasons and I am happy to talk more about why I zeroed into this prediction window width later in our discussion.</p>
+<p>I also want to bring your attention to the day model in red because from here on out I will only be focussing on day level models. This is for a couple reasons and I am happy to talk more about why I landed on this prediction window width later in our discussion.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -645,7 +646,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div>
 <aside class="notes">
-<p>We can use feature importance values to contextualize model performance.</p>
+<p>We also showed that we can use feature importance values to contextualize model performance.</p>
 <p>Looking at our next day model, this plot shows on average, across all participants and all observations, how much each feature category contributes to the model’s predictions.</p>
 <p>Past use, future efficacy, and craving were the top three features.</p>
 <style type="text/css">
@@ -698,6 +699,19 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>Next I will show the posterior distributions for auROC for our lagged models, anchored to no lag on the top.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="study-2-results-performance-1" class="slide level2">
 <h2>Study 2 Results: Performance</h2>
@@ -710,6 +724,19 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>As models were lagged further into the future model performance decreased. However, even at our most lagged model, 2-weeks into the future the median auROC was .84 which is typically considered good performance.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="study-2-results-model-fairness" class="slide level2">
 <h2>Study 2 Results: Model Fairness</h2>
@@ -723,7 +750,8 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div>
 <aside class="notes">
-<p>In this study we also looked at how fair our models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs.&nbsp;non-Hispanic White), income (below poverty vs.&nbsp;above poverty), and sex at birth (female vs.&nbsp;male).</p>
+<p>In study 1, we failed to assess model fairness. In recent years, the machine learning field has begun to understand the critical importance of evaluating model fairness when algorithms are used to inform important decisions or recommendations.</p>
+<p>Therefore, in study 2 we explicitly evaluated how fair our models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs.&nbsp;non-Hispanic White), income (below poverty vs.&nbsp;above poverty), and sex at birth (female vs.&nbsp;male).</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -751,7 +779,6 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <p>Our models performed worse for participants who were not white and had an income below the federal poverty line.</p>
 <p>The largest contributing factor is likely the lack of diversity in our training data.</p>
 <p>Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group (compared to 131 in the White group). We also saw a similar pattern in our income groups (with 49 people in the below poverty group and 102 people in the above poverty group).</p>
-<p>In just a moment I’m going to return to this issue and discuss what we are currently doing to address this.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -776,7 +803,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div>
 <aside class="notes">
-<p>We did however have equal representation of men and women, and we still saw differences in performance. We are not sure exactly why this is. We did choose our EMA items based on domain expertise and years of lapse and relapse risk research. It is possible that these constructs more precisely describe lapse risk factors for men than for women. This could mean that more research is needed to identify lapse risk factors for women (and other groups underrepresented in the literature more broadly).</p>
+<p>We did however have equal representation of men and women, and we still saw differences in performance. I am not sure exactly why this is, but I have some hypotheses I would be happy to talk about during our discussion.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -794,10 +821,15 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <ul>
 <li><p>We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance</p></li>
 <li><p>We can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time</p></li>
-<li><p>These models that predict and characterize immediate risk of lapse are well-suited for just in time personalized interventions</p></li>
+<li><p>These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately</p></li>
 </ul>
 <aside class="notes">
 <p>In study 1 we found that</p>
+<ul>
+<li><p>We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance</p></li>
+<li><p>and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time</p></li>
+<li><p>These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app</p></li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -835,11 +867,40 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="proposed-study-3-and-4" class="slide level2">
 <h2>Proposed Study 3 and 4</h2>
+<aside class="notes">
+<p>Next I want to talk introduce two follow up studies for building on the overall goal of developing a fair, accurate, and helpful algorithm that could be used in a recovery monitoring and support system.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="proposed-study-3-and-4-1" class="slide level2">
+<h2>Proposed Study 3 and 4</h2>
 <div style="text-align: center;">
 <p><strong>New sensing data set!</strong></p>
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/celebrate.jpg?raw=true"></p>
 <p><em>National sample of individuals in early recovery for opioid use disorder</em></p>
 </div>
+<aside class="notes">
+<p>These studies come from a new sensing data set that I am really excited about. It contains sensing data and opioid lapse reports from a national sample of individuals in early recovery for opioid use disorder.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="design-2" class="slide level2">
 <h2>Design</h2>
@@ -1018,6 +1079,15 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="proposed-study-3" class="slide level2">
 <h2>Proposed Study 3</h2>
+<p>Specific aims:</p>
+<ol type="1">
+<li><p>Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</p></li>
+<li><p>Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes - race/ethnicity (not White vs.&nbsp;non-Hispanic White), income (below $25,000 vs.&nbsp;above $25,000), sex at birth (female vs.&nbsp;male), and geographic location (rural vs.&nbsp;other).</p></li>
+<li><p>Describe the relative importance of features on model performance.</p></li>
+</ol>
+</section>
+<section id="proposed-study-3-1" class="slide level2">
+<h2>Proposed Study 3</h2>
 <p>Address limitations of previous studies by:</p>
 <ul>
 <li>More diverse training data</li>
@@ -1042,30 +1112,21 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
           display:block!important;
       }</style></aside>
 </section>
-<section id="proposed-study-3-1" class="slide level2">
-<h2>Proposed Study 3</h2>
-<p>Specific aims:</p>
-<ol type="1">
-<li><p>Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</p></li>
-<li><p>Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes - race/ethnicity (not White vs.&nbsp;non-Hispanic White), income (below $25,000 vs.&nbsp;above $25,000), sex at birth (female vs.&nbsp;male), and geographic location (rural vs.&nbsp;other).</p></li>
-<li><p>Describe the relative importance of features on model performance.</p></li>
-</ol>
-</section>
 <section id="proposed-study-3-2" class="slide level2">
 <h2>Proposed Study 3</h2>
 <p>Methods:</p>
 </section>
 <section id="proposed-study-4" class="slide level2">
 <h2>Proposed Study 4</h2>
-<p>Address limitations of previous studies by:</p>
-<ul>
-<li>Personalized models</li>
-<li>Single model for immediate and lagged predictions</li>
-</ul>
+<p>Specific aims:</p>
+<ol type="1">
+<li><p>Evaluate the performance of personalized state-space models that predict immediate (next day) opioid lapse risk from geolocation and daily surveys.</p></li>
+<li><p>Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).</p></li>
+<li><p>Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3 - race/ethnicity (not White vs.&nbsp;non-Hispanic White), income (below $25,000 vs.&nbsp;above $25,000), sex at birth (female vs.&nbsp;male), and geographic location (rural vs.&nbsp;other).</p></li>
+</ol>
 <aside class="notes">
-<p>State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual’s own data to make future predictions about lapse risk for that single individual.</p>
-<p>We could imagine these personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen.</p>
-<p>A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.</p>
+<p>Compare the performance of state-space models to our traditional machine learning model in study 3 (chapter 4) to determine if individualized models that account for time are superior for lapse risk prediction.</p>
+<p>This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1080,15 +1141,15 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="proposed-study-4-1" class="slide level2">
 <h2>Proposed Study 4</h2>
-<p>Specific aims:</p>
-<ol type="1">
-<li><p>Evaluate the performance of personalized state-space models that predict immediate (next day) opioid lapse risk from geolocation and daily surveys.</p></li>
-<li><p>Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).</p></li>
-<li><p>Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3 - race/ethnicity (not White vs.&nbsp;non-Hispanic White), income (below $25,000 vs.&nbsp;above $25,000), sex at birth (female vs.&nbsp;male), and geographic location (rural vs.&nbsp;other).</p></li>
-</ol>
+<p>Address limitations of previous studies by:</p>
+<ul>
+<li>Personalized models</li>
+<li>Single model for immediate and lagged predictions</li>
+</ul>
 <aside class="notes">
-<p>Compare the performance of state-space models to our traditional machine learning model in study 3 (chapter 4) to determine if individualized models that account for time are superior for lapse risk prediction.</p>
-<p>This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.</p>
+<p>State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual’s own data to make future predictions about lapse risk for that single individual.</p>
+<p>We could imagine these personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen.</p>
+<p>A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1528,6 +1589,29 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 
 </div>
 </div>
+</section>
+<section id="sex-at-birth" class="slide level2">
+<h2>Sex at Birth</h2>
+<ol type="1">
+<li><p>Bias in EMA items</p></li>
+<li><p>Under or less accurate reporting due to stigma</p></li>
+<li><p>Geolocation as having potential for data-driven categories - location variance or unique locations? Time without movement?</p></li>
+</ol>
+<aside class="notes">
+<p>We chose our EMA items based on domain expertise and decades of relapse risk research. However, prior to 1993 National Institute of Health Revitalization Act (Studies et al.&nbsp;1994) that mandated the inclusion of minorities and women in research, women were mostly excluded from most substance abuse treatment research due to their childbearing potential (Vannicelli and Nash 1984). As a result, it is possible that these constructs more precisely describe relapse risk factors for men than for women. This could mean that more research is needed to identify relapse risk factors for women (e.g., interpersonal relationship problems (Walitzer and Dearing 2006), hormonal changes (McHugh et al.&nbsp;2018)), and other groups underrepresented in the literature more broadly.</p>
+<p>An alternative approach could be to use a data-driven (bottom-up) approach to identify patterns and characteristics predictive of lapse in specific groups. Compared to traditional, theory-driven (top-down) methods, data-driven features reduce potential bias in features by minimizing researcher involvement. For example, applying natural language processing to text message content could allow new categories of features to emerge. These categories may or may not align with existing theoretical concepts of lapse and relapse, but because they are generated from participants’ own words, they may serve as reliable indicators of lapse risk for certain individuals.</p>
+<p>Stigma around substance use (e.g., societal expectations for women regarding attractiveness, cleanliness and motherhood (Meyers et al.&nbsp;2021)) may feel less trusting in disclosing substance use (Marwick and Boyd 2018). These experiences could result in individuals under-reporting lapses and/or risk factors, contributing to the gap in model performance. We saw a comparable, or slightly higher, percentage of lapse reports for disadvantaged compared to advantaged groups: race/ethnicity (6%, not White vs.&nbsp;8%, non-Hispanic White), income (12%, below poverty vs.&nbsp;7%, above poverty), sex at birth (9%, female vs.&nbsp;7%, male). However, comparable lapse labels (i.e., reported lapses) does not necessarily equate comparable reporting (i.e., proportion of true lapses reported).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="prediction-windows" class="slide level2">
 <h2>Prediction Windows</h2>
