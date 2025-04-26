@@ -34,34 +34,36 @@ pp_plot_empty <- pp_tidy |>
                         labels = c("Week", "Day", "Hour"))) |>
   ggplot() +
   geom_histogram(aes(x = posterior, fill = model), color = "white", alpha = .8,
-                 bins = 30) +
-  geom_segment(mapping = aes(y = y+100, yend = y-100, x = median, xend = median,
+                 bins = 60) +
+  geom_segment(mapping = aes(y = 2100, yend = 1900, x = median, xend = median,
                              color = model), show.legend = FALSE, data = ci) +
-  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper, color = model),
+  geom_segment(mapping = aes(y = 2000, yend = 2000, x = lower, xend = upper, color = model),
                show.legend = FALSE, data = ci) +
   facet_wrap(~model, ncol = 1) +
-  scale_y_continuous("Count", breaks = c(0, 500, 1000)) +
+  scale_y_continuous("Count", breaks = c(0, 500, 1000, 1500)) +
   scale_fill_manual(values = c("white", "white", "white")) +
   scale_color_manual(values = c("white", "white", "white")) +
+  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
+  expand_limits(x = c(.5, 1)) +
   xlab("Posterior probability for auROC") +
-  theme(strip.background = element_blank(),
-        strip.text.x = element_blank())
-
+  theme(legend.position = "none")
 
 pp_plot <- pp_tidy |>
   mutate(model = factor(model, levels = c("week", "day", "hour"),
                         labels = c("Week", "Day", "Hour"))) |>
   ggplot() +
   geom_histogram(aes(x = posterior, fill = model), color = "black", alpha = .8,
-                 bins = 30) +
-  geom_segment(mapping = aes(y = y+100, yend = y-100, x = median, xend = median,
+                 bins = 60) +
+  geom_segment(mapping = aes(y = 2100, yend = 1900, x = median, xend = median,
                              color = model), show.legend = FALSE, data = ci) +
-  geom_segment(mapping = aes(y = y, yend = y, x = lower, xend = upper, color = model),
+  geom_segment(mapping = aes(y = 2000, yend = 2000, x = lower, xend = upper, color = model),
                show.legend = FALSE, data = ci) +
   facet_wrap(~model, ncol = 1) +
-  scale_y_continuous("Count", breaks = c(0, 500, 1000)) +
-  scale_fill_manual(values = c("#b0bec5", "#ef9a9a", "black")) +
-  scale_color_manual(values = c("#263238", "#c5050c", "black")) +
+  scale_y_continuous("Count", breaks = c(0, 500, 1000, 1500)) +
+  scale_fill_manual(values = c("#b0bec5", "#ef9a9a", "#b0bec5")) +
+  scale_color_manual(values = c("#263238", "#c5050c", "#263238")) +
+  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
+  expand_limits(x = c(.5, 1)) +
   xlab("Posterior probability for auROC") +
-  theme(strip.background = element_blank(),
-        strip.text.x = element_blank())
+  theme(legend.position = "none")
+

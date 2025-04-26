@@ -3,13 +3,11 @@ theme_set(theme_classic())
 
 # Read in data
 
-pp_tidy <- read_csv(here::here("data/pp_tidy.csv"), 
-                    show_col_types = FALSE) |>
-  mutate(model = factor(model, levels = c("No lag", "2 weeks")))
+pp_tidy <- read_csv(here::here("data/lag_pp_tidy.csv"), 
+                    show_col_types = FALSE) 
 
-ci <- read_csv(here::here("data/ci.csv"), 
-               show_col_types = FALSE) |>
-  mutate(model = factor(model, levels = c("No lag", "2 weeks")))
+ci <- read_csv(here::here("data/lag_ci.csv"), 
+               show_col_types = FALSE) 
 
 global_all <- read_csv(here::here("data/global_all.csv"),
                        show_col_types = FALSE) |>
@@ -419,8 +417,8 @@ lag_posteriors <- pp_tidy |>
                linewidth = .5, data = ci) +
   facet_wrap(~model, ncol = 1) +
   geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Posterior Probability") +
-  xlab("Area Under ROC Curve") +
+  scale_y_continuous("Count") +
+  xlab("Posterior probability for auROC") +
   expand_limits(x = c(.5, 1)) +
   theme_classic() 
 
@@ -435,7 +433,7 @@ lag_posteriors_empty <- pp_tidy |>
                linewidth = .5, data = ci, color = "white") +
   facet_wrap(~model, ncol = 1) +
   geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Posterior Probability") +
-  xlab("Area Under ROC Curve") +
+  scale_y_continuous("Count") +
+  xlab("Posterior probability for auROC") +
   expand_limits(x = c(.5, 1)) +
   theme_classic() 
