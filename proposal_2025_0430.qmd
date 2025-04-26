@@ -21,7 +21,7 @@ title-slide-attributes:
 ---
 
 
-## Alcohol Use Disorder
+## Substance Use Disorders
 
 ::: {.columns}
 
@@ -50,18 +50,18 @@ title-slide-attributes:
 :::
 
 ::: {.notes}
-Alcohol use disorder is a chronic condition with high relapse rates, substantial co-morbidity with mental and physical health issues, and increased mortality risk.
+Substance use disorders are chronic condition with high relapse rates, substantial co-morbidity with mental and physical health issues, and increased mortality risk.
 
 Initial treatments, including medication and evidence-based psychosocial interventions, are effective. Unfortunately, many individuals never receive treatment. And for those who do, a critical gap in care often emerges once initial treatment ends.
 
-Continuing care, including on-going monitoring, adaptive support, and when necessary re-engagement with more intensive treatment, is the gold standard for chronic conditions, like diabetes and hypertension. Similarly, alcohol use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
+Continuing care, including on-going monitoring, adaptive support, and when necessary re-engagement with more intensive treatment, is the gold standard for chronic conditions, like diabetes and hypertension. Similarly, substance use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
 
 :::
 
 
-## Alcohol Use Disorder
+## Substance Use Disorders
 
-- Continuing care is lacking for alcohol use disorder
+- Continuing care is lacking for substance use disorders
 
 :::{.fragment}
 - Risk factors are individualized, numerous, dynamic, and interactive
@@ -107,7 +107,7 @@ The challenge is that risk factors for relapse are highly individualized, dynami
 
 :::{.notes}
 
-An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse, or goal-inconsistent alcohol use, after initial treatment and adjust their lifestyle, behaviors and support accordingly.
+An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse, or goal-inconsistent substance use, after initial treatment and adjust their lifestyle, behaviors and support accordingly.
 
 Such a system could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk. 
 
@@ -146,12 +146,12 @@ For example, individuals could receive daily messages about changes in their lap
 
 :::{.notes}
 
-Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in alcohol use disorder treatment.
+Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in substance use disorder treatment.
 
 For such a system to exist, we need at least three things. 
 One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
 
-Two, the system must have access to a model that can predict alcohol use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
+Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
 
 Three, the model must perform fairly. The accuracy of the predictions and usefulness and relevance of the recommendations should be similar for everyone.
 :::
