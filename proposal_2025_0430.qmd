@@ -555,7 +555,7 @@ In study 1 we found that
 :::{.notes}
 In study 2 we found that we can achieve clinically meaningful performance up to two weeks into the future. 
 
-Model performance did decrease when prediction windows were shifted further into the future. This is not surprising given what we know about prediction and alcohol lapse. Many important lapse risk factors are fluctuating processes that can change day-by-day, if not more frequently. So when looking 2-weeks out, features are less proximal to the start of the prediction window. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
+Model performance did decrease when prediction windows were shifted further into the future. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
 
 Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
 :::
@@ -564,7 +564,7 @@ Finally, these models are not yet clinically implementable. The most notable fla
 
 
 :::{.notes}
-Next I want to talk introduce two follow up studies for building on the overall goal of developing a fair, accurate, and helpful algorithm that could be used in a recovery monitoring and support system.
+Next I want to introduce two follow up studies for building on the overall goal of developing a fair, accurate, and helpful algorithm that could be used in a recovery monitoring and support system.
 :::
 
 
@@ -584,7 +584,7 @@ Next I want to talk introduce two follow up studies for building on the overall 
 
 :::{.notes}
 
-These studies come from a new sensing data set that I am really excited about. It contains sensing data and opioid lapse reports from a national sample of individuals in early recovery for opioid use disorder.
+These studies come from a new sensing data set that I am really excited about. It contains sensing data and opioid lapse reports from a national sample of individuals in early recovery for opioid use disorder. Participants were either currently enrolled in an MOUD program or enrolled in or recently completed an IOP program.
 :::
 
 ## Design
@@ -602,7 +602,7 @@ These studies come from a new sensing data set that I am really excited about. I
 :::{.notes}
 Participants completed 1X daily surveys for up to 12 months
 
-16 items - update items
+16 items -
 
 intensity of craving, pain, risky situations, stressful events, and pleasant events since their last survey.
 
@@ -665,7 +665,7 @@ fig_oud
 
 
 :::{.notes}
-Our sample consisted of 324 participants from 38 states in the US in early recovery from opioid use disorder. Participants were either currently enrolled in an MOUD program or enrolled in or recently completed an IOP program.
+Our sample consisted of 324 participants from 38 states in the US in early recovery from opioid use disorder. Here is a distribution of endorsed DSM-5 opioid use symptoms
 :::
 
 
@@ -879,6 +879,15 @@ What happens if someone completes survey after 12 pm and before noon next day? O
 
 ## EMA completion times
 
+```{r}
+ema_completion
+```
+
+
 
 ## Lapse times
+
+```{r}
+lapse_fig
+```
 
