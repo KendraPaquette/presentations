@@ -359,7 +359,7 @@ The average age was 41 years and average income was $34000.
 #| fig-height: 5.5
 #| fig-width: 7
 
-source("figs/ema_figs.R")
+source("figs/lag_figs.R")
 
 fig_compliance
 ```
@@ -381,35 +381,75 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 
 ## Study 1 Results: Performance
 
+```{r}
+source("figs/ema_figs.R")
+source("figs/lag_figs.R")
+
+pp_plot_empty
+```
+
+
 :::{.notes}
 We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
 :::
 
-
 ## Study 1 Results: Performance
 
+```{r}
+pp_plot
+```
+
+
+
 :::{.notes}
-here is the distribution of posterior probabilities for auroc for the lapse predictions in the next week, day, and hour. The median posterior probability was .90 (depicted as the vertical solid line). The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5. 
+here is the distribution of posterior probabilities for auroc for the lapse predictions in the next week, day, and hour. The median posterior probabilities were .90, .91, and .93 for next week, day and hour models respectively. The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5. 
+
+I also want to bring your attention to the day model in red because from here on out I will only be focussing on day level models. This is for a couple reasons and I am happy to talk more about why I zeroed into this prediction window width later in our discussion.
 :::
 
 
 
 ## Study 1 Results: Average Important Features
 
+```{r}
+global_0lag
+```
+
+
+:::{.notes}
+We can use feature importance values to contextualize model performance. 
+
+Looking at our next day model, this plot shows on average, across all participants and all observations, how much each feature category contributes to the model's predictions.
+
+Past use, future efficacy, and craving were the top three features.
+:::
 
 
 ## Study 1 Results: Individual Important Features
 
+```{r}
+local_0lag
+```
 
+:::{.notes}
+But, when it comes to making a personalized recommendation for a recovery activity or support, we want to know which feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?
 
+This figure shows the range of all individual feature importance values across all people and all days for the next day model.
+
+This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for some people at some moments these features are clinically important.
+:::
 
 ## Study 2 Results: Performance
 
+```{r}
+lag_posteriors_empty
+```
 
+## Study 2 Results: Performance
 
-
-
-
+```{r}
+lag_posteriors
+```
 
 
 ## Study 2 Results: Model Fairness
@@ -685,6 +725,11 @@ Specific aims:
 3. Describe the relative importance of features on model performance.
 
 
+## Proposed Study 3
+
+Methods:
+
+
 ## Proposed Study 4
 
 Address limitations of previous studies by:  
@@ -716,6 +761,11 @@ Compare the performance of state-space models to our traditional machine learnin
 
 This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.
 :::
+
+
+## Proposed Study 4
+
+Methods:
 
 
 

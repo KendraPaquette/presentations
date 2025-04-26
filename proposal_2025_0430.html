@@ -584,6 +584,15 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="study-1-results-performance" class="slide level2">
 <h2>Study 1 Results: Performance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
 <aside class="notes">
 <p>We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case. Scores can range from .5, Chance performance - 1, perfect performance.</p>
 <style type="text/css">
@@ -600,8 +609,17 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="study-1-results-performance-1" class="slide level2">
 <h2>Study 1 Results: Performance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
 <aside class="notes">
-<p>here is the distribution of posterior probabilities for auroc for the lapse predictions in the next week, day, and hour. The median posterior probability was .90 (depicted as the vertical solid line). The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5.</p>
+<p>here is the distribution of posterior probabilities for auroc for the lapse predictions in the next week, day, and hour. The median posterior probabilities were .90, .91, and .93 for next week, day and hour models respectively. The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -616,9 +634,57 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="study-1-results-average-important-features" class="slide level2">
 <h2>Study 1 Results: Average Important Features</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We can use feature importance values to contextualize model performance.</p>
+<p>Looking at our next day model, this plot shows on average, across all participants and all observations, how much each feature category contributes to the model’s predictions.</p>
+<p>Past use, future efficacy, and craving were the top three features.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="study-1-results-individual-important-features" class="slide level2">
 <h2>Study 1 Results: Individual Important Features</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>But, when it comes to making a personalized recommendation for a recovery activity or support, we want to know which feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?</p>
+<p>This figure shows the range of all individual feature importance values across all people and all days for the next day model.</p>
+<p>This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for some people at some moments these features are clinically important.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="study-2-results-performance" class="slide level2">
 <h2>Study 2 Results: Performance</h2>
@@ -629,7 +695,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
 </figure>
 </div>
 </div>
@@ -654,7 +720,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
 </figure>
 </div>
 </div>
@@ -682,7 +748,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
 </figure>
 </div>
 </div>
@@ -827,7 +893,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
 </figure>
 </div>
 </div>
@@ -852,7 +918,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -877,7 +943,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -904,7 +970,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-11-1.png" width="672"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-15-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -963,6 +1029,10 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <li><p>Describe the relative importance of features on model performance.</p></li>
 </ol>
 </section>
+<section id="proposed-study-3-2" class="slide level2">
+<h2>Proposed Study 3</h2>
+<p>Methods:</p>
+</section>
 <section id="proposed-study-4" class="slide level2">
 <h2>Proposed Study 4</h2>
 <p>Address limitations of previous studies by:</p>
@@ -1008,6 +1078,10 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="proposed-study-4-2" class="slide level2">
+<h2>Proposed Study 4</h2>
+<p>Methods:</p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
