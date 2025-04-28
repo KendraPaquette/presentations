@@ -117,9 +117,15 @@ shap_levels <- global_all |>
   pull(variable_grp) |>
   levels()
 
+shap_levels_0lag <- global_all |> 
+  filter(model == "No lag") |> 
+  mutate(variable_grp = reorder(variable_grp, mean_value, sum)) |>
+  pull(variable_grp) |>
+  levels()
+
 global_0lag <- global_all |>
   filter(model == "No lag") |> 
-  mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |> 
+  mutate(variable_grp = factor(variable_grp, levels = shap_levels_0lag)) |> 
   ggplot() +
   geom_bar(aes(x = variable_grp, y = mean_value, fill = model), 
            stat = "identity", position = "dodge") +
@@ -147,7 +153,7 @@ global <- global_all |>
 # Local Shapley plot
 local_0lag <- local_all |> 
   filter(model == "No lag") |> 
-  mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |> 
+  mutate(variable_grp = factor(variable_grp, levels = shap_levels_0lag)) |> 
   ggplot() +
   geom_segment(aes(x = variable_grp, y = min, yend = max, group = model,
                    color = model),

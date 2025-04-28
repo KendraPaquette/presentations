@@ -195,7 +195,7 @@ In study 1:
 
 We built models to predict immediate risk of a lapse back to alcohol use with varying temporal precision (anytime in the next week, next day, or next hour).
 
-These models can provide individuals daily insight into their immediate lapse risk and suggest recommendations that could be done in that moment. 
+These models can provide individuals insight into their immediate lapse risk and suggest recommendations that could be done in that moment. 
 
 Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
 
@@ -213,7 +213,7 @@ So in study 2:
 
 we built additional models to predict future risk of lapses back to alcohol use. In these models we shifted a 24 hour prediction window 1 day, 3 days, 1 week or 2 weeks into the future. 
 
-This “time-lagged” model could give people advanced warning to implement supports not immediately available to them, such as scheduling positive or pleasant activities, increasing social engagement, or attending a peer-led recovery meeting.
+These “time-lagged” models could give people advanced warning to implement supports not immediately available to them, such as scheduling positive or pleasant activities, increasing social engagement, or attending a peer-led recovery meeting.
 :::
 
 
@@ -243,13 +243,13 @@ This “time-lagged” model could give people advanced warning to implement sup
 :::
 
 :::{.notes}
-We started in these early studies with ecological momentary assessment or EMA as our sensing data stream.
+We started with ecological momentary assessment or EMA as our sensing data stream.
 
 EMA may be one promising sensing method for lapse prediction.
 
 It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment like the relapse prevention model 
 
-Furthermore, individuals with substance use disorders have found EMA to be acceptable for sustained measurement for up to a year with relatively high completion rates, suggesting that this method is feasible for long-term monitoring throughout recovery.
+Furthermore, individuals with substance use disorders have found EMA to be acceptable for sustained measurement for up to a year with relatively high completion rates, suggesting it is feasible for long-term monitoring.
 
 :::
 
@@ -295,8 +295,8 @@ And any alcohol use they had not yet reported.
 
 
 ::: {.notes}
-We used all 10 EMA items plus 7 demographic questions to engineer our features, which serve as the inputs to our model.   
-Time and day of alcohol was used to generate our outcome labels of lapse or no lapse.  
+We used all 10 EMA items plus some demographic questions to engineer our features.   
+Time and day of alcohol use was used to generate our outcome labels of lapse or no lapse.  
 Our statistical algorithm was XGBoost.   
 We used grouped nested k-fold cross-validation as our resampling method to ensure our models were evaluated on new data from new individuals
 :::
@@ -375,7 +375,7 @@ fig_compliance
 :::
 
 :::{.notes}
-Participants on average completed 3 of the 4 EMAs each day. Participants completed at least one EMA on 95.0% of days. 
+Participants on average completed 3 of the 4 EMAs each day and completed at least one EMA on 95.0% of days. 
 
 The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1 daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain high rates of EMA completion over the full three months.
 :::
@@ -384,6 +384,8 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 ## Study 1 Results: Performance
 
 ```{r}
+#| fig-align: center
+
 source("figs/ema_figs.R")
 source("figs/lag_figs.R")
 
@@ -392,21 +394,23 @@ pp_plot_empty
 
 
 :::{.notes}
-We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
+For both studies we used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
 :::
 
 ## Study 1 Results: Performance
 
 ```{r}
+#| fig-align: center
+
 pp_plot
 ```
 
 
 
 :::{.notes}
-here is the distribution of posterior probabilities for auroc for the lapse predictions in the next week, day, and hour. The median posterior probabilities were .90, .91, and .93 for next week, day and hour models respectively. The Horizonatal line depicts the 95% Bayesian credible interval. This interval was relatively narrow and did not contain .5. 
+here, from top to bottom, are the distributions of posterior probabilities for auroc for predicting lapses in the next week, day, and hour. Median posterior probabilities ranged from .90, to .93. 
 
-I also want to bring your attention to the day model in red because from here on out I will only be focussing on day level models. This is for a couple reasons and I am happy to talk more about why I landed on this prediction window width later in our discussion.
+You will notice I am highlight the day model in red. This is because from here on out I will only be focussing prediction window widths of 24 hours, or 1 day. This is for a couple of reasons and I am happy to talk more about why I landed on this prediction window width later in our discussion.
 :::
 
 
@@ -414,6 +418,8 @@ I also want to bring your attention to the day model in red because from here on
 ## Study 1 Results: Average Important Features
 
 ```{r}
+#| fig-align: center
+
 global_0lag
 ```
 
@@ -430,6 +436,8 @@ Past use, future efficacy, and craving were the top three features.
 ## Study 1 Results: Individual Important Features
 
 ```{r}
+#| fig-align: center
+
 local_0lag
 ```
 
@@ -444,6 +452,8 @@ This plot suggests that even feature categories with low average importance (e.g
 ## Study 2 Results: Performance
 
 ```{r}
+#| fig-align: center
+
 lag_posteriors_empty
 ```
 
@@ -456,6 +466,8 @@ Next I will show the posterior distributions for auROC for our lagged models, an
 ## Study 2 Results: Performance
 
 ```{r}
+#| fig-align: center
+
 lag_posteriors
 ```
 
@@ -648,7 +660,21 @@ In addition to the self-report data, participants provided their continuous geol
 
 Geolocation sensing is a passive sensing method that could compliment daily surveys well. It could provide insight into information difficult to measure with self-report (e.g., the amount of time spent in risky locations, or changes in routine that could indicate life stressors) or that would add additional burden by increasing the number of questions on the daily surveys. Furthermore, by adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people. 
 
-And while providing geolocation for this project was required, in a previous project, where it was optional, we found nearly all participants opted in to providing geolocation data for a relatively small financial incentive (compared to their other payments). This leads us to believe sensing could be acceptable and feasible for use in a recovery monitoring and support system.
+And while providing geolocation for this project was required, in our previous project, it was optional ans we found nearly all participants opted in to providing geolocation data for a relatively small financial incentive (compared to their other payments). This leads us to believe geolocation sensing could be acceptable and feasible for use in a recovery monitoring and support system.
+:::
+
+## Geolocation 
+
+- Type of location
+- Activity done at location
+- Pleasantness and Unpleasantness of experience
+- Helpfulness and harmfulness to recovery
+
+:::{.notes}
+Each month we asked participants self-report questions about their frequently visited locations. We did this as part of a longer monthly survey participants were paid to take each month.
+
+For places participants visited more than twice in a month we asked:
+about the type of location, what they do there, how pleasant and unpleasant their experience is there, and how much this place helps and harms their recovery from opioids.
 :::
 
 ## Participants (*N* = 324)
@@ -665,7 +691,7 @@ fig_oud
 
 
 :::{.notes}
-Our sample consisted of 324 participants from 38 states in the US in early recovery from opioid use disorder. Here is a distribution of endorsed DSM-5 opioid use symptoms
+Our sample consisted of 324 participants from 38 states in the US in early recovery from opioid use disorder. The majority of our participants had severe opioid use disorder.
 :::
 
 
@@ -722,84 +748,196 @@ fig_risk2_compliance
 :::
 
 :::{.notes}
-
+On average participants completed about 71% of the daily surveys. There was some drop off in completion rates in the first three months and then itr remained pretty stable over the remaining 9 months.
 :::
 
 
-## Proposed Study 3
+## Proposed Study 3: Specific Aims
+
+Specific aims:   
+
+1. <span style="color: #c5050c;">**Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.**</span>
+
+:::{.columns}
+:::{.column width = "7%"}
+
+:::
+
+:::{.column width = "80%"}
+::: {.incremental}
+- Predict immediate (i.e., in the next 24 hours) lapses back to opioid use
+- 24-hour prediction windows roll day-by-day (6am to 6am)
+- XGBoost algorithm
+- Grouped nested k-fold cross-validation
+- Report Median posterior probability for auROC and Bayesian CI
+:::
+:::
+:::
+
+:::{.notes}
+Our first aim is to evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
+
+We will only predict immediate lapses back to opioid use (i.e., in the next 24 hours) .
+
+The 24-hour prediction windows roll day-by-day starting at 6 am in the participant’s own time zone. 
+
+Our methods will be similar as our previous studies - We will fit xgboost model configurations and use grouped nested k-fold cross-validation for model selection and evaluation.
+
+We will report the Median posterior probability for auROC and Bayesian CI
+
+This study will build on our previous studies in that it will allow us to determine whether lapse prediction models can be generalized to other drugs beyond alcohol. A successful model will demonstrate that lapse prediction can be done with a drug where its use is illegal and people may be less willing to provide information about lapses and risk factors. 
+
+Participants provided data for 12 months. Thus, this study will also show the feasibility of using self-report data over long periods of recovery (i.e., 12 months).
+
+We also will be using geolocation data in addition to self-report data. I already mentioned some of the potential benefits of this addition, but we can imagine this would improve model performance.
+:::
+
+## Proposed Study 3: Specific Aims
 
 Specific aims:   
 
 1. Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
 
-2. Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes - race/ethnicity (not White vs. non-Hispanic White), income (below \$25,000 vs. above \$25,000), sex at birth (female vs. male), and geographic location (rural vs. other).
+2. <span style="color: #c5050c;">**Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.**</span>
 
-3. Describe the relative importance of features on model performance.
+:::{.columns}
+:::{.column width = "7%"}
 
+:::
 
-## Proposed Study 3
-
-Address limitations of previous studies by:  
-
-- More diverse training data
-- Generalize to substance other than alcohol
-- Longer duration of recovery
-- Adds geolocation data
+:::{.column width = "80%"}
+::: {.fragment}
+  - race/ethnicity (not White vs. non-Hispanic White)
+  - income (below \$25,000 vs. above \$25,000)
+  - sex at birth (female vs. male)
+  - geographic location (rural vs. other)
+:::
+:::
+:::
 
 :::{.notes}
+Our second aim is to Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.
+
 These data offer more diversity with regard to race/ethnicity, income, and geographic location. We expect that improving the quality of the training data with respect to diversity will help to address issues of fairness. 
 
-We can also determine whether lapse prediction models can be generalized to other drugs beyond alcohol. Participants in this study will be seeking abstinence from opioids. A successful model will demonstrate that lapse prediction can be done with a drug where its use is illegal and people may be less willing to provide information about lapses and risk factors. 
+We are proposing four dichotomous groups, however I would love to hear thoughts on whether these groups make sense or seem appropriate during our discussion:
 
-Participants provided data for 12 months. Thus, this study will also show the feasibility of using self-report data over long periods of recovery (i.e., 12 months).
+- race/ethnicity (not White vs. non-Hispanic White)
+- income (below \$25,000 vs. above \$25,000)
+- sex at birth (female vs. male)
+- geographic location (rural vs. other)
 
-We also will be using geolocation data in addition to self-report data. I already mentioned some of the potential benefits of this addition.
+We will conduct Bayesian group comparisons to assess the likelihood that each model performs differently by group. We will report the precise posterior probability for the difference in auROCs and the 95% Bayesian CIs for each model comparison.
 :::
 
 
-## Proposed Study 3
-
-Methods:
-
-
-## Proposed Study 4
+## Proposed Study 3: Specific Aims
 
 Specific aims:   
 
-1. Evaluate the performance of personalized state-space models that predict immediate (next day) opioid lapse risk from geolocation and daily surveys.
+1. Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
+
+2. Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.
+
+3. <span style="color: #c5050c;">**Describe the relative importance of features on model performance.**</span>
+
+:::{.notes}
+
+I will use shapley values as I did in tthe previous studies to understand how important features are on average and individually to the model's predictions. I expect we will see new important features emerge from the expansion of our EMA items and the addition of geolocation data. 
+:::
+
+
+
+## Proposed Study 4: Specific Aims
+
+Specific aims:   
+
+1. <span style="color: #c5050c;">**Evaluate the performance of personalized state-space models that predict immediate opioid lapse risk from geolocation and daily surveys.**
+
+:::{.columns}
+:::{.column width = "7%"}
+
+:::
+
+:::{.column width = "80%"}
+::: {.incremental}
+- Predict immediate (i.e., in the next 24 hours) lapses back to opioid use
+- 24-hour prediction windows roll day-by-day (6am to 6am)
+- First label starts on day 14
+- State-space model trained on individual data
+- Group-level Bayesian priors (from different individuals)
+- Repeated k-fold cross-validation
+- Report Median posterior probability for auROC and Bayesian CI
+:::
+:::
+:::
+
+:::{.notes}
+So up until this point I have only been focussed on using traditional machine learning approaches for predicting lapses. While machine learning has a lot of benefits as mentioned earlier for predicting complex clinical phenomena there are also limitations.
+
+The most notable, when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data. 
+
+State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual's own data to make future predictions about lapse risk for that single individual.
+
+The first aim of this study is to Evaluate the performance of personalized state-space models that predict immediate opioid lapse risk from geolocation and daily surveys. 
+
+We will use same day-by-day rolling 24 hour windows as study 3.
+
+The first label for each participant will be two weeks after their study start date. This will ensure we have at least two weeks of daily surveys and geolocation data.
+
+We will use 3 repeats of 10 fold cross validation to generate group-level Bayesian priors from held-in data. These priors are more important for early labels where less data is available for a specific individual.
+
+We will Report the Median posterior probability for auROC and Bayesian CI for our state-space model and conduct a bayesian model comparison where we compare the performance of the state-space models to our traditional machine learning model in study 3. This well help us determine if individualized models that account for time and latent states are superior for lapse risk prediction.
+
+:::
+
+
+## Proposed Study 4: Specific Aims
+
+Specific aims:   
+
+1. Evaluate the performance of personalized state-space models that predict immediateopioid lapse risk from geolocation and daily surveys.
+
+2. <span style="color: #c5050c;">**Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk.**
+
+:::{.column width = "7%"}
+
+:::
+
+:::{.column width = "80%"}
+::: {.fragment}
+- Lapses in the next 2 weeks and next 1 month
+- Model contrasts: immediate vs. 2 weeks, immediate vs. 1 month, 2 weeks vs. 1 month
+- Report posterior probability for difference in auROC and Bayesian CI for each model contrast
+:::
+:::
+:::
+
+
+
+:::{.notes}
+A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.
+
+Therefore in our second aim we will use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).
+
+This will involve three model comparisons between the immediate, 2-week and 1-month lagged models. We will report the precise posterior probability for the difference in auROCs and the 95% Bayesian CIs for each model comparison.
+:::
+
+
+## Proposed Study 4: Specific Aims
+
+Specific aims:   
+
+1. Evaluate the performance of personalized state-space models that predict immediateopioid lapse risk from geolocation and daily surveys.
 
 2. Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).
 
-3. Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3 - race/ethnicity (not White vs. non-Hispanic White), income (below \$25,000 vs. above \$25,000), sex at birth (female vs. male), and geographic location (rural vs. other).
+3. <span style="color: #c5050c;">**Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3.**</span>
 
 
 :::{.notes}
-Compare the performance of state-space models to our traditional machine learning model in study 3 (chapter 4) to determine if individualized models that account for time are superior for lapse risk prediction.
-
-This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.
+We could imagine that personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen. Therefore we will also explicitly Assess model fairness in model performance for immediate lapses across the same important subgroups from study 3 as a third aim. 
 :::
-
-
-## Proposed Study 4
-
-Address limitations of previous studies by:  
-
-- Personalized models
-- Single model for immediate and lagged predictions
-
-:::{.notes}
-State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual's own data to make future predictions about lapse risk for that single individual.
-
-We could imagine these personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen.
-
-A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.
-:::
-
-
-
-## Proposed Study 4
-
-Methods:
 
 
 
