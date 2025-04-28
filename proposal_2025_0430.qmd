@@ -158,35 +158,37 @@ Three, the model must perform fairly. The accuracy of the predictions and useful
 
 
 
-## Machine Learning and Digital Data
+## Sensing Data and Machine Learning
+
+
+- Frequent and temporally precise measurement
+
 
 ::: {.fragment}
-- High dimensional feature sets
-:::
-
-::: {.fragment}
-- Non-linear and interactive relationships between features and lapse risk probability
+- Predict lapse tisk
 :::
 
 :::{.fragment}
-- Interpretability of feature importance
+- Understand prospective risk factors
 :::
 
 :::{.notes}
 
-Advances in both smartphone sensing of digital data and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation tracking) allow for frequent, longitudinal measurement of key risk factors, necessary for temporally precise prediction of lapse risk.
+Advances in both smartphone sensing and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation tracking) allow for frequent and temporally precise measurement of key risk factors to be used as inputs for lapse prediction.
 
-Machine learning models, can handle high-dimensional feature sets and accomodate non-linear and interactive relationships between features and lapse risk probability. And methods from interpretable machine learning can be used to understand which features contribute most to a lapse prediction.
+An array of techniques broadly from machine learning can be used to accurately predict lapse risk and highlight prospective risk factors.
 
+My Goal is to develop an algorithm that can be situated in a recovery monitoring and support system.
 :::
 
 ## Study 1 and 2
 
 1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
 
-2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window in the future)
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., 1 day, 3 days, 1 week or 2 weeks in the future)
 
 :::{.notes}
+
 Studies 1-2 are complete so I am going to quickly go through what we found to set the stage for studies 3-4.
 
 In studies 1-2 we used machine learning and sensing data to predict both immediate and future alcohol lapse risk.
@@ -207,7 +209,7 @@ What's key here is that this assumes that the recommendations can be implemented
 1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
 
 
-2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window in the future)
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., 1 day, 3 days, 1 week or 2 weeks in the future)
 
 :::{.notes}
 So in study 2:
@@ -724,7 +726,7 @@ fig_age + fig_income
 ```
 
 :::{.notes}
-Most participants were between 26-45 years and had an annual income below $25,000
+Most participants were between 26-45 years and had an annual household income below $25,000
 :::
 
 ## Daily Survey Completion
@@ -762,7 +764,7 @@ On average participants completed about 71% of the daily surveys. There was some
 
 :::
 
-:::{.column width = "80%"}
+:::{.column width = "90%"}
 ::: {.incremental}
 - Predict immediate (i.e., in the next 24 hours) lapses back to opioid use
 - 24-hour prediction windows roll day-by-day (6am to 6am)
@@ -778,7 +780,7 @@ Our first aim is to evaluate the performance of a machine learning model that pr
 
 We will only predict immediate lapses back to opioid use (i.e., in the next 24 hours) .
 
-The 24-hour prediction windows roll day-by-day starting at 6 am in the participant’s own time zone. 
+The 24-hour prediction windows roll day-by-day starting at 6 am in the participant’s own time zone starting on day 7. 
 
 Our methods will be similar as our previous studies - We will fit xgboost model configurations and use grouped nested k-fold cross-validation for model selection and evaluation.
 
@@ -852,22 +854,19 @@ I will use shapley values as I did in tthe previous studies to understand how im
 
 :::
 
-:::{.column width = "80%"}
+:::{.column width = "90%"}
 ::: {.incremental}
 - Predict immediate (i.e., in the next 24 hours) lapses back to opioid use
-- 24-hour prediction windows roll day-by-day (6am to 6am)
-- First label starts on day 14
+- 24-hour prediction windows roll day-by-day (6 am to 6 am)
 - Group-level Bayesian priors (from different individuals)
-- Repeated k-fold cross-validation
 - Report Median posterior probability for auROC and Bayesian CI
+- Report posterior probability for difference in auROC and Bayesian CI for model comparison
 :::
 :::
 :::
 
 :::{.notes}
-So up until this point I have only been focussed on using traditional machine learning approaches for predicting lapses. While machine learning has a lot of benefits as mentioned earlier for predicting complex clinical phenomena there are also limitations.
-
-The most notable, when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data. 
+So up until this point I have only been focussed on using traditional machine learning algorithms for predicting lapses. While there are a lot of benefits for prediction with these algorithms complex a notable limitation, when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data. 
 
 State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual's own data to make future predictions about lapse risk for that single individual.
 
@@ -875,9 +874,7 @@ The first aim of this study is to Evaluate the performance of personalized state
 
 We will use same day-by-day rolling 24 hour windows as study 3.
 
-The first label for each participant will be two weeks after their study start date. This will ensure we have at least two weeks of daily surveys and geolocation data.
-
-We will use 3 repeats of 10 fold cross validation to generate group-level Bayesian priors from held-in data. These priors are more important for early labels where less data is available for a specific individual.
+We will use 3 repeats of 10 fold cross validation to generate group-level Bayesian priors from held-in data. These priors are more important for early labels where less data is available for a specific individual. 
 
 We will Report the Median posterior probability for auROC and Bayesian CI for our state-space model and conduct a bayesian model comparison where we compare the performance of the state-space models to our traditional machine learning model in study 3. This well help us determine if individualized models that account for time and latent states are superior for lapse risk prediction.
 
@@ -895,10 +892,10 @@ We will Report the Median posterior probability for auROC and Bayesian CI for ou
 
 :::
 
-:::{.column width = "80%"}
+:::{.column width = "90%"}
 ::: {.fragment}
-- Lapses in the next 2 weeks and next 1 month
-- Model contrasts: immediate vs. 2 weeks, immediate vs. 1 month, 2 weeks vs. 1 month
+- Lapses in a 24 hour window 2 weeks and 1 month into the future 
+- Model contrasts: immediate vs. 2-week lag, immediate vs. 1-month lag, 2-week vs. 1-month lag
 - Report posterior probability for difference in auROC and Bayesian CI for each model contrast
 :::
 :::
