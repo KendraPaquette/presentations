@@ -206,6 +206,7 @@ What's key here is that this assumes that the recommendations can be implemented
 
 1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
 
+
 2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., in a 24 hour window in the future)
 
 :::{.notes}
@@ -217,7 +218,7 @@ These “time-lagged” models could give people advanced warning to implement s
 :::
 
 
-## Ecological Momentary Assessment
+## EMA
 
 :::{.columns}
 :::{.column width = "58%"}
@@ -634,7 +635,7 @@ Our outcome for these studies is lapse or no lapse back to opioid use in a 24 ho
 ## Geolocation 
 
 :::{.columns}
-:::{.column width = "58%"}
+:::{.column width = "55%"}
 - Passively sensed
 
 - May provide insight into information difficult to measure with self-report
@@ -646,7 +647,7 @@ Our outcome for these studies is lapse or no lapse back to opioid use in a 24 ho
 
 :::
 
-:::{.column width = "2%"}
+:::{.column width = "5%"}
 :::
 
 
@@ -667,8 +668,8 @@ And while providing geolocation for this project was required, in our previous p
 
 - Type of location
 - Activity done at location
-- Pleasantness and Unpleasantness of experience
-- Helpfulness and harmfulness to recovery
+- Pleasantness/unpleasantness of experience
+- Helpfulness/harmfulness to recovery
 
 :::{.notes}
 Each month we asked participants self-report questions about their frequently visited locations. We did this as part of a longer monthly survey participants were paid to take each month.
@@ -754,8 +755,6 @@ On average participants completed about 71% of the daily surveys. There was some
 
 ## Proposed Study 3: Specific Aims
 
-Specific aims:   
-
 1. <span style="color: #c5050c;">**Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.**</span>
 
 :::{.columns}
@@ -794,8 +793,6 @@ We also will be using geolocation data in addition to self-report data. I alread
 
 ## Proposed Study 3: Specific Aims
 
-Specific aims:   
-
 1. Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
 
 2. <span style="color: #c5050c;">**Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.**</span>
@@ -833,8 +830,6 @@ We will conduct Bayesian group comparisons to assess the likelihood that each mo
 
 ## Proposed Study 3: Specific Aims
 
-Specific aims:   
-
 1. Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
 
 2. Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.
@@ -850,9 +845,7 @@ I will use shapley values as I did in tthe previous studies to understand how im
 
 ## Proposed Study 4: Specific Aims
 
-Specific aims:   
-
-1. <span style="color: #c5050c;">**Evaluate the performance of personalized state-space models that predict immediate opioid lapse risk from geolocation and daily surveys.**
+1. <span style="color: #c5050c;">**Evaluate the performance of state-space models that predict immediate opioid lapse risk from geolocation and daily surveys.**
 
 :::{.columns}
 :::{.column width = "7%"}
@@ -864,7 +857,6 @@ Specific aims:
 - Predict immediate (i.e., in the next 24 hours) lapses back to opioid use
 - 24-hour prediction windows roll day-by-day (6am to 6am)
 - First label starts on day 14
-- State-space model trained on individual data
 - Group-level Bayesian priors (from different individuals)
 - Repeated k-fold cross-validation
 - Report Median posterior probability for auROC and Bayesian CI
@@ -894,12 +886,11 @@ We will Report the Median posterior probability for auROC and Bayesian CI for ou
 
 ## Proposed Study 4: Specific Aims
 
-Specific aims:   
-
 1. Evaluate the performance of personalized state-space models that predict immediateopioid lapse risk from geolocation and daily surveys.
 
 2. <span style="color: #c5050c;">**Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk.**
 
+:::{.columns}
 :::{.column width = "7%"}
 
 :::
@@ -925,8 +916,6 @@ This will involve three model comparisons between the immediate, 2-week and 1-mo
 
 
 ## Proposed Study 4: Specific Aims
-
-Specific aims:   
 
 1. Evaluate the performance of personalized state-space models that predict immediateopioid lapse risk from geolocation and daily surveys.
 
@@ -1018,6 +1007,8 @@ What happens if someone completes survey after 12 pm and before noon next day? O
 ## EMA completion times
 
 ```{r}
+#| fig-align: center
+
 ema_completion
 ```
 
@@ -1026,6 +1017,8 @@ ema_completion
 ## Lapse times
 
 ```{r}
+#| fig-align: center
+
 lapse_fig
 ```
 

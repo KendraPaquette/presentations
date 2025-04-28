@@ -372,8 +372,8 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="ecological-momentary-assessment" class="slide level2">
-<h2>Ecological Momentary Assessment</h2>
+<section id="ema" class="slide level2">
+<h2>EMA</h2>
 <div class="columns">
 <div class="column" style="width:58%;">
 <ul>
@@ -942,14 +942,14 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <section id="geolocation" class="slide level2">
 <h2>Geolocation</h2>
 <div class="columns">
-<div class="column" style="width:58%;">
+<div class="column" style="width:55%;">
 <ul>
 <li><p>Passively sensed</p></li>
 <li><p>May provide insight into information difficult to measure with self-report</p></li>
 <li><p>Adds additional features for personalizing support recommendations</p></li>
 <li><p>Appears to be acceptable</p></li>
 </ul>
-</div><div class="column" style="width:2%;">
+</div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:40%;">
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/location.jpg?raw=true" class="absolute" style="top: 0px; right: 0px; height: 100%; "></p>
@@ -975,8 +975,8 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <ul>
 <li>Type of location</li>
 <li>Activity done at location</li>
-<li>Pleasantness and Unpleasantness of experience</li>
-<li>Helpfulness and harmfulness to recovery</li>
+<li>Pleasantness/unpleasantness of experience</li>
+<li>Helpfulness/harmfulness to recovery</li>
 </ul>
 <aside class="notes">
 <p>Each month we asked participants self-report questions about their frequently visited locations. We did this as part of a longer monthly survey participants were paid to take each month.</p>
@@ -1102,12 +1102,11 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="proposed-study-3-specific-aims" class="slide level2">
 <h2>Proposed Study 3: Specific Aims</h2>
-<p>Specific aims:</p>
 <ol type="1">
 <li><span style="color: #c5050c;"><strong>Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</strong></span></li>
 </ol>
 <div class="columns">
-<div class="column" style="width:10%;">
+<div class="column" style="width:7%;">
 
 </div><div class="column" style="width:80%;">
 <div>
@@ -1143,13 +1142,12 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="proposed-study-3-specific-aims-1" class="slide level2">
 <h2>Proposed Study 3: Specific Aims</h2>
-<p>Specific aims:</p>
 <ol type="1">
 <li><p>Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</p></li>
 <li><p><span style="color: #c5050c;"><strong>Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.</strong></span></p></li>
 </ol>
 <div class="columns">
-<div class="column" style="width:10%;">
+<div class="column" style="width:7%;">
 
 </div><div class="column" style="width:80%;">
 <div class="fragment">
@@ -1186,7 +1184,6 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="proposed-study-3-specific-aims-2" class="slide level2">
 <h2>Proposed Study 3: Specific Aims</h2>
-<p>Specific aims:</p>
 <ol type="1">
 <li><p>Evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</p></li>
 <li><p>Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.</p></li>
@@ -1206,17 +1203,90 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
           display:block!important;
       }</style></aside>
 </section>
-<section id="proposed-study-4" class="slide level2">
-<h2>Proposed Study 4</h2>
-<p>Specific aims:</p>
+<section id="proposed-study-4-specific-aims" class="slide level2">
+<h2>Proposed Study 4: Specific Aims</h2>
 <ol type="1">
-<li><p>Evaluate the performance of personalized state-space models that predict immediate (next day) opioid lapse risk from geolocation and daily surveys.</p></li>
+<li><span style="color: #c5050c;"><strong>Evaluate the performance of state-space models that predict immediate opioid lapse risk from geolocation and daily surveys.</strong></span></li>
+</ol>
+<div class="columns">
+<div class="column" style="width:7%;">
+
+</div><div class="column" style="width:80%;">
+<div>
+<ul>
+<li class="fragment">Predict immediate (i.e., in the next 24 hours) lapses back to opioid use</li>
+<li class="fragment">24-hour prediction windows roll day-by-day (6am to 6am)</li>
+<li class="fragment">First label starts on day 14</li>
+<li class="fragment">Group-level Bayesian priors (from different individuals)</li>
+<li class="fragment">Repeated k-fold cross-validation</li>
+<li class="fragment">Report Median posterior probability for auROC and Bayesian CI</li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>So up until this point I have only been focussed on using traditional machine learning approaches for predicting lapses. While machine learning has a lot of benefits as mentioned earlier for predicting complex clinical phenomena there are also limitations.</p>
+<p>The most notable, when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data.</p>
+<p>State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual’s own data to make future predictions about lapse risk for that single individual.</p>
+<p>The first aim of this study is to Evaluate the performance of personalized state-space models that predict immediate opioid lapse risk from geolocation and daily surveys.</p>
+<p>We will use same day-by-day rolling 24 hour windows as study 3.</p>
+<p>The first label for each participant will be two weeks after their study start date. This will ensure we have at least two weeks of daily surveys and geolocation data.</p>
+<p>We will use 3 repeats of 10 fold cross validation to generate group-level Bayesian priors from held-in data. These priors are more important for early labels where less data is available for a specific individual.</p>
+<p>We will Report the Median posterior probability for auROC and Bayesian CI for our state-space model and conduct a bayesian model comparison where we compare the performance of the state-space models to our traditional machine learning model in study 3. This well help us determine if individualized models that account for time and latent states are superior for lapse risk prediction.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="proposed-study-4-specific-aims-1" class="slide level2">
+<h2>Proposed Study 4: Specific Aims</h2>
+<ol type="1">
+<li><p>Evaluate the performance of personalized state-space models that predict immediateopioid lapse risk from geolocation and daily surveys.</p></li>
+<li><p><span style="color: #c5050c;"><strong>Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk.</strong></span></p></li>
+</ol>
+<div class="columns">
+<div class="column" style="width:7%;">
+
+</div><div class="column" style="width:80%;">
+<div class="fragment">
+<ul>
+<li>Lapses in the next 2 weeks and next 1 month</li>
+<li>Model contrasts: immediate vs.&nbsp;2 weeks, immediate vs.&nbsp;1 month, 2 weeks vs.&nbsp;1 month</li>
+<li>Report posterior probability for difference in auROC and Bayesian CI for each model contrast</li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.</p>
+<p>Therefore in our second aim we will use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).</p>
+<p>This will involve three model comparisons between the immediate, 2-week and 1-month lagged models. We will report the precise posterior probability for the difference in auROCs and the 95% Bayesian CIs for each model comparison.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="proposed-study-4-specific-aims-2" class="slide level2">
+<h2>Proposed Study 4: Specific Aims</h2>
+<ol type="1">
+<li><p>Evaluate the performance of personalized state-space models that predict immediateopioid lapse risk from geolocation and daily surveys.</p></li>
 <li><p>Use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).</p></li>
-<li><p>Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3 - race/ethnicity (not White vs.&nbsp;non-Hispanic White), income (below $25,000 vs.&nbsp;above $25,000), sex at birth (female vs.&nbsp;male), and geographic location (rural vs.&nbsp;other).</p></li>
+<li><p><span style="color: #c5050c;"><strong>Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3.</strong></span></p></li>
 </ol>
 <aside class="notes">
-<p>Compare the performance of state-space models to our traditional machine learning model in study 3 (chapter 4) to determine if individualized models that account for time are superior for lapse risk prediction.</p>
-<p>This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.</p>
+<p>We could imagine that personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen. Therefore we will also explicitly Assess model fairness in model performance for immediate lapses across the same important subgroups from study 3 as a third aim.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1228,33 +1298,6 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="proposed-study-4-1" class="slide level2">
-<h2>Proposed Study 4</h2>
-<p>Address limitations of previous studies by:</p>
-<ul>
-<li>Personalized models</li>
-<li>Single model for immediate and lagged predictions</li>
-</ul>
-<aside class="notes">
-<p>State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual’s own data to make future predictions about lapse risk for that single individual.</p>
-<p>We could imagine these personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen.</p>
-<p>A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="proposed-study-4-2" class="slide level2">
-<h2>Proposed Study 4</h2>
-<p>Methods:</p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
@@ -1727,11 +1770,11 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="ema-completion-times" class="slide level2">
 <h2>EMA completion times</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1739,11 +1782,11 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </section>
 <section id="lapse-times" class="slide level2">
 <h2>Lapse times</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
+<p><img data-src="proposal_2025_0430_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
