@@ -299,12 +299,8 @@ Kendra Wyant
 </ul>
 <div class="fragment">
 <ul>
-<li>Predict lapse tisk</li>
-</ul>
-</div>
-<div class="fragment">
-<ul>
-<li>Understand prospective risk factors</li>
+<li><p>Predict lapse risk</p></li>
+<li><p>Understand prospective risk factors</p></li>
 </ul>
 </div>
 <aside class="notes">
@@ -1029,7 +1025,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div>
 <aside class="notes">
-<p>Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more representation of men than women.</p>
+<p>Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more men than women.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1119,14 +1115,14 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div></div>
 <aside class="notes">
-<p>Our first aim is to evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</p>
-<p>We will only predict immediate lapses back to opioid use (i.e., in the next 24 hours) .</p>
-<p>The 24-hour prediction windows roll day-by-day starting at 6 am in the participant’s own time zone starting on day 7.</p>
-<p>Our methods will be similar as our previous studies - We will fit xgboost model configurations and use grouped nested k-fold cross-validation for model selection and evaluation.</p>
-<p>We will report the Median posterior probability for auROC and Bayesian CI</p>
+<p>In study 3 I am proposing to use similar methods from the previous studies to predict immediate lapses back to opioid use.</p>
 <p>This study will build on our previous studies in that it will allow us to determine whether lapse prediction models can be generalized to other drugs beyond alcohol. A successful model will demonstrate that lapse prediction can be done with a drug where its use is illegal and people may be less willing to provide information about lapses and risk factors.</p>
 <p>Participants provided data for 12 months. Thus, this study will also show the feasibility of using self-report data over long periods of recovery (i.e., 12 months).</p>
-<p>We also will be using geolocation data in addition to self-report data. I already mentioned some of the potential benefits of this addition, but we can imagine this would improve model performance.</p>
+<p>We also will be using geolocation data in addition to self-report data. I already mentioned some of the potential benefits of this addition.</p>
+<p>The first aim is to evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.</p>
+<p>The 24-hour prediction windows roll day-by-day starting at 6 am in the participant’s own time zone starting on day 7.</p>
+<p>We will fit xgboost model configurations and use grouped nested k-fold cross-validation for model selection and evaluation.</p>
+<p>We will report the Median posterior probability for auROC and Bayesian CI</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1159,7 +1155,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div></div>
 <aside class="notes">
-<p>Our second aim is to Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.</p>
+<p>Our second aim is to Assess model fairness in performance across important subgroups.</p>
 <p>These data offer more diversity with regard to race/ethnicity, income, and geographic location. We expect that improving the quality of the training data with respect to diversity will help to address issues of fairness.</p>
 <p>We are proposing four dichotomous groups, however I would love to hear thoughts on whether these groups make sense or seem appropriate during our discussion:</p>
 <ul>
@@ -1168,7 +1164,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <li>sex at birth (female vs.&nbsp;male)</li>
 <li>geographic location (rural vs.&nbsp;other)</li>
 </ul>
-<p>We will conduct Bayesian group comparisons to assess the likelihood that each model performs differently by group. We will report the precise posterior probability for the difference in auROCs and the 95% Bayesian CIs for each model comparison.</p>
+<p>We will conduct Bayesian group comparisons to assess the likelihood that each model performs differently by group.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1189,7 +1185,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <li><p><span style="color: #c5050c;"><strong>Describe the relative importance of features on model performance.</strong></span></p></li>
 </ol>
 <aside class="notes">
-<p>I will use shapley values as I did in tthe previous studies to understand how important features are on average and individually to the model’s predictions. I expect we will see new important features emerge from the expansion of our EMA items and the addition of geolocation data.</p>
+<p>I will use shapley values as I did in the previous studies to understand how important features are on average and individually to the model’s predictions. I expect we will see new important features emerge from the expansion of our EMA items and the addition of geolocation data.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1222,12 +1218,12 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div></div>
 <aside class="notes">
-<p>So up until this point I have only been focussed on using traditional machine learning algorithms for predicting lapses. While there are a lot of benefits for prediction with these algorithms complex a notable limitation, when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data.</p>
+<p>So up until this point I have only been focussed on using traditional machine learning algorithms for predicting lapses. While there are a lot of benefits for prediction with these algorithms, a notable limitation when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data.</p>
 <p>State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual’s own data to make future predictions about lapse risk for that single individual.</p>
 <p>The first aim of this study is to Evaluate the performance of personalized state-space models that predict immediate opioid lapse risk from geolocation and daily surveys.</p>
 <p>We will use same day-by-day rolling 24 hour windows as study 3.</p>
-<p>We will use 3 repeats of 10 fold cross validation to generate group-level Bayesian priors from held-in data. These priors are more important for early labels where less data is available for a specific individual.</p>
-<p>We will Report the Median posterior probability for auROC and Bayesian CI for our state-space model and conduct a bayesian model comparison where we compare the performance of the state-space models to our traditional machine learning model in study 3. This well help us determine if individualized models that account for time and latent states are superior for lapse risk prediction.</p>
+<p>We will use grouped k-fold cross validation to generate group-level Bayesian priors from participants in the held-in data. These priors are more important for early labels where less data is available for a specific individual.</p>
+<p>We will Report the Median posterior probability for auROC and Bayesian CI for our state-space model and conduct a bayesian model comparison where we compare the performance of the state-space models to our traditional machine learning model in study 3.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1259,9 +1255,9 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </div>
 </div></div>
 <aside class="notes">
-<p>A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.</p>
+<p>A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models. A single model can be used to predict a lapse in the next day or at any point in the future.</p>
 <p>Therefore in our second aim we will use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).</p>
-<p>This will involve three model comparisons between the immediate, 2-week and 1-month lagged models. We will report the precise posterior probability for the difference in auROCs and the 95% Bayesian CIs for each model comparison.</p>
+<p>This will involve three model comparisons between the immediate, 2-week and 1-month lagged models.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1282,7 +1278,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <li><p><span style="color: #c5050c;"><strong>Assess model fairness in model performance for immediate lapses across the same important subgroups assessed in study 3.</strong></span></p></li>
 </ol>
 <aside class="notes">
-<p>We could imagine that personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen. Therefore we will also explicitly Assess model fairness in model performance for immediate lapses across the same important subgroups from study 3 as a third aim.</p>
+<p>We could imagine that personalized models could be another solution for mitigating fairness issues previously seen, as they weight the individuals data more heavily than group estimates. Therefore we will also explicitly Assess model fairness in model performance for immediate lapses across the same subgroups from study 3.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1312,39 +1308,39 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">ai_an</td>
+<td style="text-align: left;">American Indian or Alaska Native</td>
 <td style="text-align: right;">19</td>
 <td style="text-align: right;">0.06</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">asian</td>
+<td style="text-align: left;">Asian</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">0.02</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">black</td>
+<td style="text-align: left;">Black</td>
 <td style="text-align: right;">53</td>
 <td style="text-align: right;">0.16</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">hispanic</td>
+<td style="text-align: left;">Hispanic</td>
 <td style="text-align: right;">29</td>
 <td style="text-align: right;">0.09</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">nat_hi</td>
+<td style="text-align: left;">Native Hawaiin or Pacific Islander</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">0.01</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">other</td>
+<td style="text-align: left;">Race not listed</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">0.02</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">white</td>
-<td style="text-align: right;">251</td>
-<td style="text-align: right;">0.77</td>
+<td style="text-align: left;">White only</td>
+<td style="text-align: right;">222</td>
+<td style="text-align: right;">0.69</td>
 </tr>
 </tbody>
 </table>
@@ -1352,254 +1348,81 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 
 </div>
 </div>
+<aside class="notes">
+<p>5 selected other: Multiracial, Native American, Arab, Jewish, God</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="raceethnicity-1" class="slide level2 scrollable">
 <h2>Race/Ethnicity</h2>
-<p>34 participants selected 2 or more races</p>
+<p>10 participants selected 2 or more races</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="lightable-classic caption-top" data-quarto-postprocess="true" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">subid</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">asian</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">white</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">hispanic</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">ai_an</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">black</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">nat_hi</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">other</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Black</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Hispanic</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">American Indian or Alaska Native</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Native Hawaiin or Pacific Islander</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Asian</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Race not listed</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1021</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1031</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1036</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1043</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1052</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1059</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
 <td style="text-align: right;">1087</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1090</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1092</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1094</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1115</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">1157</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
+<td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">1178</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">1186</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1188</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">1214</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1244</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1256</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">1276</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1303</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1319</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1326</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1344</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="even">
@@ -1607,69 +1430,26 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">1360</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1372</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1377</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">1398</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1400</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
+<td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">1413</td>
-<td style="text-align: left;">no</td>
+<td style="text-align: right;">1400</td>
+<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="odd">
@@ -1677,40 +1457,18 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">no</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">1415</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-</tr>
-<tr class="odd">
 <td style="text-align: right;">1417</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1431</td>
-<td style="text-align: left;">no</td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
 <td style="text-align: left;"><span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">yes</span></td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">no</td>
 </tr>
 </tbody>
 </table>
@@ -1747,7 +1505,7 @@ We used grouped nested k-fold cross-validation as our resampling method to ensur
 <ul>
 <li>proposed 6am to 6am.</li>
 <li>Daily Survey opens at 6 am every morning</li>
-<li>Could consider 12 pm to 12 pm to increase chances of getting Daily Survey from that day.</li>
+<li>Always using EMA from day before for lapse predictions</li>
 </ul>
 <aside class="notes">
 <p>6am to 6am would guarantee we get new survey if they complete it.</p>

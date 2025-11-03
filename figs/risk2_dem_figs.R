@@ -27,13 +27,20 @@ fig_oud <- oud |>
         plot.title = element_text(hjust = 0.5))
 
 fig_race <- race |>
-  mutate(race = if_else(race == "hispanic", "hisp", race)) |> 
+  mutate(race = factor(race, levels = c("Race not listed",
+                                        "Native Hawaiin or Pacific Islander",
+                                        "Hispanic",
+                                        "Black",
+                                        "Asian",
+                                        "American Indian or Alaska Native",
+                                        "White only"))) |> 
   ggplot(aes(x = race)) +
   geom_bar(stat = "count", fill = "#263238") +
   ggtitle(NULL) +
   labs(title = "Race", x = NULL, y = "Count") +
   theme(text = element_text(size = 20, face = "bold"),
-        plot.title = element_text(hjust = 0.5))
+        plot.title = element_text(hjust = 0.5)) +
+  coord_flip()
 
 fig_sex <- sex |>
   mutate(group = sex) |> 

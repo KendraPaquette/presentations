@@ -19,6 +19,26 @@ race <- intake |>
   select(subid, race = name) |> 
   mutate(race = str_remove(race, "race_")) 
 
+subs_1race <- race |> 
+  group_by(subid) |> 
+  count() |> 
+  filter(n == 1)
+
+subs_white_only <- race |> 
+  filter(subid %in% subs_1race$subid & race == "white")
+
+race <- race |> 
+  mutate(race = if_else(subid %in% subs_white_only$subid, "White only", race)) |> 
+  filter(!race == "white") |> 
+  mutate(race = case_match(race,
+                           "White only" ~ "White only",
+                           "ai_an" ~ "American Indian or Alaska Native",
+                           "asian" ~ "Asian",
+                           "black" ~ "Black",
+                           "hispanic" ~ "Hispanic",
+                           "nat_hi" ~ "Native Hawaiin or Pacific Islander",
+                           "other" ~ "Race not listed"))
+
 oud <- intake |> 
   select(subid, dsm_c)
 

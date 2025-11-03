@@ -165,10 +165,8 @@ Three, the model must perform fairly. The accuracy of the predictions and useful
 
 
 ::: {.fragment}
-- Predict lapse tisk
-:::
+- Predict lapse risk
 
-:::{.fragment}
 - Understand prospective risk factors
 :::
 
@@ -711,7 +709,7 @@ fig_race + fig_sex
 
 
 :::{.notes}
-Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more representation of men than women.
+Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more men than women.
 :::
 
 ## Participants (*N* = 324)
@@ -776,21 +774,21 @@ On average participants completed about 71% of the daily surveys. There was some
 :::
 
 :::{.notes}
-Our first aim is to evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
-
-We will only predict immediate lapses back to opioid use (i.e., in the next 24 hours) .
-
-The 24-hour prediction windows roll day-by-day starting at 6 am in the participant’s own time zone starting on day 7. 
-
-Our methods will be similar as our previous studies - We will fit xgboost model configurations and use grouped nested k-fold cross-validation for model selection and evaluation.
-
-We will report the Median posterior probability for auROC and Bayesian CI
+In study 3 I am proposing to use similar methods from the previous studies to predict immediate lapses back to opioid use. 
 
 This study will build on our previous studies in that it will allow us to determine whether lapse prediction models can be generalized to other drugs beyond alcohol. A successful model will demonstrate that lapse prediction can be done with a drug where its use is illegal and people may be less willing to provide information about lapses and risk factors. 
 
 Participants provided data for 12 months. Thus, this study will also show the feasibility of using self-report data over long periods of recovery (i.e., 12 months).
 
-We also will be using geolocation data in addition to self-report data. I already mentioned some of the potential benefits of this addition, but we can imagine this would improve model performance.
+We also will be using geolocation data in addition to self-report data. I already mentioned some of the potential benefits of this addition.
+
+The first aim is to evaluate the performance of a machine learning model that predicts opioid lapse risk from geolocation and daily surveys.
+
+The 24-hour prediction windows roll day-by-day starting at 6 am in the participant’s own time zone starting on day 7. 
+
+We will fit xgboost model configurations and use grouped nested k-fold cross-validation for model selection and evaluation.
+
+We will report the Median posterior probability for auROC and Bayesian CI
 :::
 
 ## Proposed Study 3: Specific Aims
@@ -815,7 +813,7 @@ We also will be using geolocation data in addition to self-report data. I alread
 :::
 
 :::{.notes}
-Our second aim is to Assess model fairness in performance across important subgroups with known disparities in substance use treatment access and/or outcomes.
+Our second aim is to Assess model fairness in performance across important subgroups.
 
 These data offer more diversity with regard to race/ethnicity, income, and geographic location. We expect that improving the quality of the training data with respect to diversity will help to address issues of fairness. 
 
@@ -826,7 +824,7 @@ We are proposing four dichotomous groups, however I would love to hear thoughts 
 - sex at birth (female vs. male)
 - geographic location (rural vs. other)
 
-We will conduct Bayesian group comparisons to assess the likelihood that each model performs differently by group. We will report the precise posterior probability for the difference in auROCs and the 95% Bayesian CIs for each model comparison.
+We will conduct Bayesian group comparisons to assess the likelihood that each model performs differently by group.
 :::
 
 
@@ -840,7 +838,7 @@ We will conduct Bayesian group comparisons to assess the likelihood that each mo
 
 :::{.notes}
 
-I will use shapley values as I did in tthe previous studies to understand how important features are on average and individually to the model's predictions. I expect we will see new important features emerge from the expansion of our EMA items and the addition of geolocation data. 
+I will use shapley values as I did in the previous studies to understand how important features are on average and individually to the model's predictions. I expect we will see new important features emerge from the expansion of our EMA items and the addition of geolocation data. 
 :::
 
 
@@ -866,7 +864,7 @@ I will use shapley values as I did in tthe previous studies to understand how im
 :::
 
 :::{.notes}
-So up until this point I have only been focussed on using traditional machine learning algorithms for predicting lapses. While there are a lot of benefits for prediction with these algorithms complex a notable limitation, when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data. 
+So up until this point I have only been focussed on using traditional machine learning algorithms for predicting lapses. While there are a lot of benefits for prediction with these algorithms, a notable limitation when it comes to predicting infrequent outcomes like lapses, is that the models are not built using an individuals own data. 
 
 State-space models are time series models that describe the relationship between the observed measured inputs and the unknown latent state while accounting for how this latent state evolves over time. They personalize lapse risk prediction by using an individual's own data to make future predictions about lapse risk for that single individual.
 
@@ -874,10 +872,9 @@ The first aim of this study is to Evaluate the performance of personalized state
 
 We will use same day-by-day rolling 24 hour windows as study 3.
 
-We will use 3 repeats of 10 fold cross validation to generate group-level Bayesian priors from held-in data. These priors are more important for early labels where less data is available for a specific individual. 
+We will use grouped k-fold cross validation to generate group-level Bayesian priors from participants in the held-in data. These priors are more important for early labels where less data is available for a specific individual. 
 
-We will Report the Median posterior probability for auROC and Bayesian CI for our state-space model and conduct a bayesian model comparison where we compare the performance of the state-space models to our traditional machine learning model in study 3. This well help us determine if individualized models that account for time and latent states are superior for lapse risk prediction.
-
+We will Report the Median posterior probability for auROC and Bayesian CI for our state-space model and conduct a bayesian model comparison where we compare the performance of the state-space models to our traditional machine learning model in study 3. 
 :::
 
 
@@ -904,11 +901,11 @@ We will Report the Median posterior probability for auROC and Bayesian CI for ou
 
 
 :::{.notes}
-A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models (compared to traditional machine learning approaches). A single model can be used to predict a lapse in the next day or at any point in the future.
+A benefit of time series models, like state-space models, is that they could potentially improve the efficiency and performance of lagged prediction models. A single model can be used to predict a lapse in the next day or at any point in the future.
 
 Therefore in our second aim we will use the same models from Aim 1 to evaluate their performance for predicting future lapse risk (i.e., lapse risk in the next two weeks and the next month).
 
-This will involve three model comparisons between the immediate, 2-week and 1-month lagged models. We will report the precise posterior probability for the difference in auROCs and the 95% Bayesian CIs for each model comparison.
+This will involve three model comparisons between the immediate, 2-week and 1-month lagged models. 
 :::
 
 
@@ -922,7 +919,7 @@ This will involve three model comparisons between the immediate, 2-week and 1-mo
 
 
 :::{.notes}
-We could imagine that personalized models perform better than traditional machine learning models and that they could be another solution for mitigating fairness issues previously seen. Therefore we will also explicitly Assess model fairness in model performance for immediate lapses across the same important subgroups from study 3 as a third aim. 
+We could imagine that personalized models could be another solution for mitigating fairness issues previously seen, as they weight the individuals data more heavily than group estimates. Therefore we will also explicitly Assess model fairness in model performance for immediate lapses across the same subgroups from study 3. 
 :::
 
 
@@ -947,10 +944,14 @@ race |>
   kableExtra::kable_classic()
 ```
 
+:::{.notes}
+5 selected other: Multiracial, Native American, Arab, Jewish, God
+:::
+
 
 ## Race/Ethnicity {.scrollable}
 
-34 participants selected 2 or more races
+10 participants selected 2 or more races
 ```{r}
 #| echo: false
 
@@ -992,8 +993,8 @@ Stigma around substance use (e.g., societal expectations for women regarding att
 ## Prediction Windows
 
 - proposed 6am to 6am. 
-- Daily Survey opens at 6 am every morning
-- Could consider 12 pm to 12 pm to increase chances of getting Daily Survey from that day.
+- Daily Survey opens at 6 am every morning 
+- Always using EMA from day before for lapse predictions
 
 :::{.notes}
 6am to 6am would guarantee we get new survey if they complete it.

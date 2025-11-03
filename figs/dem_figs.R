@@ -5,6 +5,8 @@ theme_set(theme_classic())
 
 dem <- read_csv(here::here("data/dem.csv"), 
                     show_col_types = FALSE) 
+race <- read_csv(here::here("data/risk1_race.csv"), 
+                show_col_types = FALSE) 
 
 fig_aud <- dem |>
   ggplot(aes(x = aud_total)) +
@@ -15,13 +17,20 @@ fig_aud <- dem |>
   theme(text = element_text(size = 20, face = "bold"),
         plot.title = element_text(hjust = 0.5))
 
-fig_race <- dem |>
+fig_race <- race |>
+  mutate(race = factor(race, levels = c("Multiracial or race not listed",
+                                        "Hispanic",
+                                        "Black",
+                                        "Asian",
+                                        "American Indian or Alaska Native",
+                                        "Non-Hispanic White"))) |> 
   ggplot(aes(x = race)) +
   geom_bar(stat = "count", fill = "#263238") +
   ggtitle(NULL) +
   labs(title = "Race", x = NULL, y = "Count") +
   theme(text = element_text(size = 20, face = "bold"),
-        plot.title = element_text(hjust = 0.5))
+        plot.title = element_text(hjust = 0.5)) +
+  coord_flip()
 
 fig_sex <- dem |>
   mutate(group = sex) |> 
