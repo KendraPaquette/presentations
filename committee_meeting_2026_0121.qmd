@@ -134,6 +134,7 @@ We evaluate the best full model’s probability predictions across three domains
 
 ## Study 3: Discrimination
 
+
 Full model auROC = 0.93 95% CI [0.92, 0.94]
 
 Baseline model auROC = .74 95% CI [0.71, 0.77]
@@ -154,8 +155,17 @@ OUD characteristics: we created ordinal features for recovery satisfaction, reco
 
 ## Study 3: Calibration and Overall Performance
 
+:::{.column width = "20%"}
+
+:::
+
+:::{.column width = "60%"}
 
 ![](https://github.com/KendraPaquette/presentations/blob/main/figs/performance.png?raw=true)
+:::
+
+:::{.column width = "20%"}
+:::
 
 
 :::{.notes}

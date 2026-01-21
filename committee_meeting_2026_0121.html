@@ -181,13 +181,145 @@ Kendra Wyant
 <li><p>Predict and characterize <em>immediate</em> (next-day) and <em>future</em> (next two weeks and next month) opioid lapse risk from geolocation and daily surveys using individual state-space models.</p></li>
 </ol>
 </section>
+<section id="study-3-participants" class="slide level2">
+<h2>Study 3: Participants</h2>
+<ul>
+<li><p>451 participants recruited from 47 states in the United States</p></li>
+<li><p>336 were eligible, consented, and remained on study for at least one month</p></li>
+<li><p>299 participants in final sample</p>
+<ul>
+<li>11 participants were excluded due to unusually low adherence to EMA or geolocation sensing</li>
+<li>13 participants were excluded due to insufficient context data for geolocation points (&lt;2 locations outside home)</li>
+<li>1 participant was excluded due to geolocation data indicating they were not residing in the United States</li>
+<li>11 participants were excluded due to evidence of careless responding on EMAs and/or no longer having a goal of abstinence</li>
+</ul></li>
+</ul>
+</section>
+<section id="study-3-participants-1" class="slide level2">
+<h2>Study 3: Participants</h2>
+<ul>
+<li>Mean days on study across participants: 297 days (range 32-395)</li>
+<li>83% of participants remained on study for at least 6 months</li>
+<li>On average, participants completed 73% of daily EMA prompts (range 24-100%)</li>
+<li>On average, participants provided 311 daily geolocation points (range 20-825)</li>
+</ul>
+</section>
+<section id="study-3-features" class="slide level2">
+<h2>Study 3: Features</h2>
+<ul>
+<li><p>674 features</p>
+<ol type="1">
+<li>Individual differences in demographic and OUD characteristics</li>
+<li>Day of the start of the prediction window</li>
+<li>Dynamic EMA and geolocation sensing data</li>
+</ol></li>
+<li><p>Full model = feature sets 1-3</p></li>
+<li><p>Baseline model = features sets 1 and 2</p></li>
+</ul>
+<aside class="notes">
+<p>All features (sets 1-3 above) were included in our full model. We also fit a baseline model that excluded the dynamic EMA and geolocation features (i.e., only using feature sets 1 and 2 above) to assess the incremental predictive value of these sensing features.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="study-3-labels" class="slide level2">
+<h2>Study 3: Labels</h2>
+<ul>
+<li>Prediction windows start at 6:00 am in participants’ local timezones and end at 5:59 am the next day</li>
+</ul>
+<aside class="notes">
+<p>Participants reported lapses on the first EMA item. If participants responded “yes” to the question “Have you used any opioids for non-medical reasons that you have not yet reported?”, they were prompted to select the day(s) and time(s) of the lapse(s). Times were reported in 6-hour increments (12:00am–5:59am, 6:00am–11:59am, 12:00pm–5:59pm, 6:00pm–11:59pm). These responses were used to label each prediction window as lapse or no lapse.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="study-3-performance" class="slide level2">
 <h2>Study 3: Performance</h2>
-<div class="column" style="width:40%;">
-<p>AuROC = .94</p>
+<p>6 x 5 cross-validation</p>
+<p>Evaluate on:</p>
+<ol type="1">
+<li><p>Discrimination</p></li>
+<li><p>Calibration</p></li>
+<li><p>Overall Performance</p></li>
+</ol>
+<p>Don’t evaluate classification and clinical utility (but open to hearing alternative perspectives on this decision).</p>
+<aside class="notes">
+<p>All participants data was either in held in or held out test set to avoid introducing bias.</p>
+<p>Fit: elastic net, XGBoost, Plan to also look at: random forest, a single-layer neural network, and a support vector machine</p>
+<p>We evaluate the best full model’s probability predictions across three domains: discrimination, calibration, and overall performance. Classification and clinical utility are two other important domains for evaluating a model intended to make or inform a decision (e.g., whether to send a support message to an individual). In our scenario there is no decision to be made. Hypothetically, every day an individual would receive a message regardless of lapse risk, equivalent to a treat all condition. Therefore, we have constrained our evaluation to focus on the probability estimates for evaluating performance.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="study-3-discrimination" class="slide level2">
+<h2>Study 3: Discrimination</h2>
+<p>Full model auROC = 0.93 95% CI [0.92, 0.94]</p>
+<p>Baseline model auROC = .74 95% CI [0.71, 0.77]</p>
+<p>Probability full model performed better = 1.0</p>
+<aside class="notes">
+<p>Our performance metric for model selection and evaluation was the area under the receiver operating characteristic curve (auROC)</p>
+<p>auROC is an aggregate measure of discrimination across all possible decision thresholds. This is important because optimal thresholds depend on the setting, outcome prevalence, and the relative costs of misclassification, and should be addressed separately (e.g., with a decision curve analysis).</p>
+<p>We used a Bayesian hierarchical generalized linear model to estimate the posterior distribution and 95% credible intervals (CI) for auROC for the 30 held-out test sets for our best full and baseline models.</p>
+<p>Dem: Ordinal features for age, education, and income based on predefined response ranges, an ordinal feature for RUCA code associated with home address (range 1-10), and dummy coded features for gender (male vs.&nbsp;not male) and race and ethnicity (non-Hispanic White vs.&nbsp;Hispanic and/or not White).</p>
+<p>OUD characteristics: we created ordinal features for recovery satisfaction, recovery motivation, recovery confidence, MOUD side effects experienced, perceived efficacy of MOUD medication, and likelihood of continuing MOUD (ranges 0-4), ordinal features for frequency of counseling sessions and self-help meetings attended in the past month (ranges 0-3), a quantitative feature for number of self-reported DSM-5 OUD symptoms, an ordinal feature for lifetime history of overdose (range 0-4), and dummy coded features for past month opioid use (yes vs.&nbsp;no), past month detox or residential treatment (yes vs.&nbsp;no), past month psychiatric medication (yes vs.&nbsp;no), preferred opioid (fentanyl vs.&nbsp;heroin vs.&nbsp;prescription opioid not for opioid treatment vs.&nbsp;medication for opioid treatment), and preferred route of administration (injection vs.&nbsp;oral vs.&nbsp;smoke vs.&nbsp;sniff/snort vs.&nbsp;other).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="study-3-calibration-and-overall-performance" class="slide level2">
+<h2>Study 3: Calibration and Overall Performance</h2>
+<div class="column" style="width:20%;">
+
 </div><div class="column" style="width:60%;">
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/figs/calibration.png?raw=true"></p>
-</div></section>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/figs/performance.png?raw=true"></p>
+</div><div class="column" style="width:20%;">
+
+</div><aside class="notes">
+<p>The left panel presents a calibration plot of raw and Platt scaled risk probabilities. Predicted probabilities (x-axis) are binned into deciles. Observed lapse probability (y-axis) represents the proportion of actual lapses observed in each bin. The dashed diagonal represents perfect calibration. Points below the line indicate overestimation and points above the line indicate underestimation. Raw probabilities are depicted as the dark purple line. Platt calibrated probabilities are depicted as the green dashed line. The rug plot along the x-axis depicts observation frequency in each bin. The right panel presents histograms of raw (uncalibrated) risk probability distributions separately by true lapse outcome.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="study-3-fairness" class="slide level2">
 <h2>Study 3: Fairness</h2>
 <div class="column" style="width:20%;">
@@ -196,13 +328,27 @@ Kendra Wyant
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/figs/fairness.png?raw=true" class="absolute" style="height: 80%; "></p>
 </div><div class="column" style="width:20%;">
 
-</div></section>
+</div><aside class="notes">
+<p>We performed five dichotomous subgroup analyses to assess the fairness of our model’s predictions. Using the same 30 held-out test sets and the same modeling procedure as above, we calculated the median posterior probability and 95% CI for auROC for each model separately by gender (not male vs.&nbsp;male), race/ethnicity (Hispanic and/or non-White vs.&nbsp;non-Hispanic White), income (below poverty line vs.&nbsp;above poverty line), geographic location (rural vs.&nbsp;urban)1, and education (high school or less vs.&nbsp;some college). We conducted Bayesian group comparisons to assess the likelihood that each model performs differently by group.</p>
+<p>Our fairness subgroup comparisons for the full model revealed no evidence that performance meaningfully differed by education (probability = 0.55) and strong evidence that performance differed by gender, income, race and ethnicity, and geographic location (probabilities &gt; 0.90). Notably, our model performed better for individuals with an annual income below the federal poverty line compared to individuals above the federal poverty line, thus favoring the disadvantaged group. While differences in performance estimates exist across subgroups, they are not likely clinically meaningful as all of our subgroups yielded median auROCs between 0.91 - 0.94</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="study-3-feature-importance" class="slide level2">
 <h2>Study 3: Feature Importance</h2>
 <div class="column" style="width:15%;">
 
 </div><div class="column" style="width:70%;">
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_1.png?raw=true" class="absolute" style="height: 80%; "></p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_1.png?raw=true"></p>
 </div><div class="column" style="width:15%;">
 
 </div></section>
@@ -211,10 +357,20 @@ Kendra Wyant
 <div class="column" style="width:15%;">
 
 </div><div class="column" style="width:70%;">
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_2.png?raw=true" class="absolute" style="height: 80%; "></p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_2.png?raw=true"></p>
 </div><div class="column" style="width:15%;">
 
 </div></section>
+<section id="proposed-change-of-scope" class="slide level2">
+<h2>Proposed Change of Scope</h2>
+<p>Move study 4 outside scope of dissertation.</p>
+<ol type="1">
+<li><p>Predict and characterize <em>immediate</em> alcohol lapse risk (i.e., in the next week, day, or hour) using machine learning methods.</p></li>
+<li><p>Predict and characterize <em>future</em> alcohol lapse risk (i.e., 1 day, 3 days, 1 week or 2 weeks in the future) using machine learning methods.</p></li>
+<li><p>Predict and characterize <em>immediate</em> (next-day) opioid lapse risk from geolocation and daily surveys using machine learning methods.</p></li>
+</ol>
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="images/arc_logo.png" class="slide-logo"></p>
