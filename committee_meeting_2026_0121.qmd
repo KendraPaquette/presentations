@@ -22,32 +22,25 @@ title-slide-attributes:
 
 ## Agenda
 
-1. Updates since April 
+1.  Updates since April
 
-2. Plan for remaining timeline
+2.  Plan for remaining timeline
 
-3. Dissertation progress
-
-
+3.  Dissertation progress
 
 ## Updates: Clinical
 
 Practicum at Mendota Mental Health Institue
 
-
 Internship Applications
-
-
 
 ## Updates: Research Products
 
 Chaired Symposium
 
-Publication 
+Publication
 
 2 more papers under review
-
-
 
 ## Timeline
 
@@ -61,28 +54,37 @@ Invited for APS symposium (waiting to hear if accepted)
 
 Defend Dissertation in late April or early May
 
-
 ## Dissertation Progress
 
 4 Studies:
 
-1. Predict and characterize *immediate* alcohol lapse risk (i.e., in the next week, day, or hour) using machine learning methods.
+1.  Predict and characterize *immediate* alcohol lapse risk (i.e., in the next week, day, or hour) using machine learning methods.
+
+2.  Predict and characterize *future* alcohol lapse risk (i.e., 1 day, 3 days, 1 week or 2 weeks in the future) using machine learning methods.
+
+3.  Predict and characterize *immediate* (next-day) opioid lapse risk from geolocation and daily surveys using machine learning methods.
+
+4.  Predict and characterize *immediate* (next-day) and *future* (next two weeks and next month) opioid lapse risk from geolocation and daily surveys using individual state-space models.
+
+## Study 3: Performance
+
+:::{.column width = "40%"}
+AuROC = .94
+:::
+
+:::{.column width = "60%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/calibration.png?raw=true)
+:::
+
+## Study 3: Fairness
+
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/fairness.png?raw=true)
 
 
-2. Predict and characterize *future* alcohol lapse risk (i.e., 1 day, 3 days, 1 week or 2 weeks in the future) using machine learning methods.
+## Study 3: Feature Importance
 
-3. Predict and characterize *immediate* (next-day) opioid lapse risk from geolocation and daily surveys using machine learning methods.
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_1.png?raw=true){.absolute height="80%"}
 
-4. Predict and characterize *immediate* (next-day) and *future* (next two weeks and next month) opioid lapse risk from geolocation and daily surveys using individual state-space models.
+## Study 3: Feature Importance
 
-
-## Study 3
-
-
-
-![](https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_1.png?raw=true)
-
-
-## Study 3
-
-![](https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_2?raw=true){.absolute top=0 right=0 height=100%}
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/feature_importance_2.png?raw=true){.absolute height="80%"}
