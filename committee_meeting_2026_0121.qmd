@@ -30,18 +30,23 @@ title-slide-attributes:
 
 ## Updates: Clinical
 
-:::{.column width = "50%"}
+:::{.column width = "20%"}
+
+:::
+
+:::{.column width = "30%"}
 
 ![](https://github.com/KendraPaquette/presentations/blob/main/figs/mendota.jpg?raw=true) 
 :::
 
 
-:::{.column width = "50%"}
+:::{.column width = "30%"}
 :::{.fragment}
 
-![](https://github.com/KendraPaquette/presentations/blob/main/figs/loading.png?raw=true) 
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/loading.jpg?raw=true) 
 :::
 :::
+
 
 
 :::{.notes}
@@ -60,6 +65,14 @@ Publication
 
 ## Timeline
 
+:::{.column width = "20%"}
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/calendar.png?raw=true) 
+:::
+
+:::{.column width = "80%"}
+
 Covariate selection paper
 
 Burden paper
@@ -69,10 +82,11 @@ Accepted poster presentation at Optimization Intervention Conference
 Invited for APS symposium (waiting to hear if accepted)
 
 Defend Dissertation in late April or early May
+:::
 
 ## Dissertation Progress
 
-4 Studies:
+**4 Studies:**
 
 1.  Predict and characterize *immediate* alcohol lapse risk (i.e., in the next week, day, or hour) using machine learning methods.
 
