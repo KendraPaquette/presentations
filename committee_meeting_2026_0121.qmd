@@ -57,10 +57,15 @@ Internship Applications
 
 ## Updates: Research Products
 
-![](https://github.com/KendraPaquette/presentations/blob/main/figs/cpa.png?raw=true) 
+:::{.column width = "50%"}
 
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/cpa.png?raw=true) 
+:::
+
+:::{.column width = "50%"}
 :::{.fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/figs/protocol.png?raw=true) 
+:::
 :::
 
 :::{.notes}
@@ -112,6 +117,10 @@ Publication
 
 4.  Predict and characterize *immediate* (next-day) and *future* (next two weeks and next month) opioid lapse risk from geolocation and daily surveys using individual state-space models.
 
+:::{.notes}
+I originally proposed a 6 chapter, 4 study dissertation. I am going to give you an update on my progress with study 3, but as a heads up at the end I am going to propose revising the scope to be a more traditional 5 chapter dissertation.
+:::
+
 ## Dissertation Progress
 
 4 Studies:
@@ -123,6 +132,8 @@ Publication
 3. <span style="color: #c5050c;">**Predict and characterize *immediate* (next-day) opioid lapse risk from geolocation and daily surveys using machine learning methods.**</span>
 
 4.  Predict and characterize *immediate* (next-day) and *future* (next two weeks and next month) opioid lapse risk from geolocation and daily surveys using individual state-space models.
+
+
 
 ## Study 3: Design
 
@@ -198,13 +209,8 @@ Each month we asked participants self-report questions about their frequently vi
     
 -   Missing data: mean=.02, range = 0-.11
 
--   Full model = feature sets 1-3
-
--   Baseline model = features sets 1 and 2
 
 :::{.notes}
-All features (sets 1-3 above) were included in our full model. We also fit a baseline model that excluded the dynamic EMA and geolocation features (i.e., only using feature sets 1 and 2 above) to assess the incremental predictive value of these sensing features.
-
 The proportion of missing values across features was low
 :::
 
@@ -234,7 +240,7 @@ Evaluate on:
 
 3.  Overall Performance
 
-Don't evaluate classification and clinical utility (but open to hearing alternative perspectives on this decision).
+
 
 :::{.notes}
 All participants data was either in held in or held out test set to avoid introducing bias.
@@ -246,11 +252,9 @@ We evaluate the best full model’s probability predictions across three domains
 
 ## Study 3: Discrimination
 
-Full model auROC = 0.93 95% CI \[0.92, 0.94\]
+auROC = 0.93 95% CI \[0.92, 0.94\]
 
-Baseline model auROC = .74 95% CI \[0.71, 0.77\]
 
-Probability full model performed better = 1.0
 
 :::{.notes}
 Our performance metric for model selection and evaluation was the area under the receiver operating characteristic curve (auROC)
@@ -298,7 +302,7 @@ The left panel presents a calibration plot of raw and Platt scaled risk probabil
 :::
 
 :::{.notes}
-We performed five dichotomous subgroup analyses to assess the fairness of our model’s predictions. Using the same 30 held-out test sets and the same modeling procedure as above, we calculated the median posterior probability and 95% CI for auROC for each model separately by gender (not male vs. male), race/ethnicity (Hispanic and/or non-White vs. non-Hispanic White), income (below poverty line vs. above poverty line), geographic location (rural vs. urban)1, and education (high school or less vs. some college). We conducted Bayesian group comparisons to assess the likelihood that each model performs differently by group.
+We performed five dichotomous subgroup analyses to assess the fairness of our model’s predictions. We calculated the median posterior probability and 95% CI for auROC for each model separately by gender (not male vs. male), race/ethnicity (Hispanic and/or non-White vs. non-Hispanic White), income (below poverty line vs. above poverty line), geographic location (rural vs. urban)1, and education (high school or less vs. some college). We conducted Bayesian group comparisons to assess the likelihood that each model performs differently by group.
 
 Our fairness subgroup comparisons for the full model revealed no evidence that performance meaningfully differed by education (probability = 0.55) and strong evidence that performance differed by gender, income, race and ethnicity, and geographic location (probabilities \> 0.90). Notably, our model performed better for individuals with an annual income below the federal poverty line compared to individuals above the federal poverty line, thus favoring the disadvantaged group. While differences in performance estimates exist across subgroups, they are not likely clinically meaningful as all of our subgroups yielded median auROCs between 0.91 - 0.94
 :::
@@ -323,7 +327,7 @@ Feature importance values provide insight into the features that have the most i
 
 Here I am showing you Shapley values aggregated across all participants and all observations to provide a relative rank ordering of the most important features.
 
-Also looking at individual shapley values to understand their relationship to risk
+However, it can be skewed toward features that exhibit infrequent but very large Shapley values, potentially overstating the importance of features that are strongly associated with the outcome, but only come up in a small subset of observations. This is most notably with lapse. Lapses were very infrequent but when they did occur they increased lapse probability tremendously.
 :::
 
 ## Study 3: Feature Importance
@@ -343,6 +347,11 @@ Also looking at individual shapley values to understand their relationship to ri
 
 :::{.notes}
 
+The second way we calculated feature importance was by calculating the proportion of study days that each feature emerged as the most important feature contributing to lapse. This approach summarizes how frequently a feature category is influential across observations (i.e., considering both magnitude and prevalence). 
+
+I am really excited about understanding the features contributing to lapse and how features can be mapped on to recovery recommendations. 
+- Also looking at individual shapley values to understand the direction of their relationship to risk
+- I am interested in exploring interactions between features.
 :::
 
 ## Proposed Change of Scope
@@ -354,3 +363,10 @@ Move study 4 outside scope of dissertation.
 2.  Predict and characterize *future* alcohol lapse risk (i.e., 1 day, 3 days, 1 week or 2 weeks in the future) using machine learning methods.
 
 3.  Predict and characterize *immediate* (next-day) opioid lapse risk from geolocation and daily surveys using machine learning methods.
+
+
+:::{.notes}
+to pursue exploring these interests more deeply and due to applying to internship this year instead of next year....
+
+Still plan to carry out study 4 but would like to do it on a different timeline from the rest of my dissertation.
+:::
