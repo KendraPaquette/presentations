@@ -57,31 +57,47 @@ Internship Applications
 
 ## Updates: Research Products
 
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/cpa.png?raw=true) 
+
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/protocol.png?raw=true) 
+:::
+
+:::{.notes}
 Chaired Symposium
 
 Publication
 
 2 more papers under review
+:::
 
 ## Timeline
 
 :::{.column width = "20%"}
 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/figs/calendar.png?raw=true) 
+![](https://github.com/KendraPaquette/presentations/blob/main/figs/calendar.png?raw=true){.absolute height="80%"}  
 :::
 
 :::{.column width = "80%"}
 
-Covariate selection paper
 
-Burden paper
+<br>
 
-Accepted poster presentation at Optimization Intervention Conference
+- Covariate selection paper
 
-Invited for APS symposium (waiting to hear if accepted)
+- Burden paper
 
-Defend Dissertation in late April or early May
+<br>
+<br>
+
+- Defend Dissertation
+
+- Accepted poster presentation at Optimization Intervention Conference
+
+- Invited for APS symposium (waiting to hear if accepted)
+
+
 :::
 
 ## Dissertation Progress
