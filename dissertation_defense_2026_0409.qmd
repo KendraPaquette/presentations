@@ -1,0 +1,939 @@
+---
+title: "Toward Precision Continuing Care: Predicting Lapse Risk in Substance Use Disorders Using Machine Learning"
+author: "Kendra Wyant"
+date: "April 9, 2026"
+institute: "University of Wisconsin-Madison"
+format: 
+  revealjs:
+    css: slides.css
+    incremental: false  
+    auto-stretch: false
+    logo: images/arc_logo.png
+    footer: "Dissertation Proposal"
+slide-number: false
+editor_options: 
+  chunk_output_type: console
+title-slide-attributes:
+  data-background-image: images/title_slide.png
+  data-background-size: cover
+  data-background-repeat: no
+  data-background-position: right top
+---
+
+
+## Substance Use Disorders
+
+::: {.columns}
+
+:::{.column width = "66%"}
+
+- Chronic condition
+
+:::{.fragment}
+- Initial treatments are effective
+:::
+
+:::{.fragment}
+- 1 in 10 individuals receive treatment
+:::
+
+:::{.fragment}
+- Episodic approach to care
+:::
+
+:::{.fragment}
+- Treatment Disparities exist for certain identities
+:::
+
+:::
+
+:::{.column width = "4%"}
+:::
+
+:::{.column width = "30%"}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){.absolute top=0 right=0 height=100%}
+:::
+:::
+
+::: {.notes}
+Substance use disorders are chronic condition with high relapse rates, substantial co-morbidity with mental and physical health issues, and increased mortality risk.
+
+Initial treatments, including medication and evidence-based psychosocial interventions, are effective. Unfortunately, many individuals never receive treatment. An estimated 1 in 10 individuals with a substance use disorder will receive any form of treatment. 
+
+And for those who do, engagement in treatment is often brief and episodic. Most receive care when they are symptomatic and already at a high risk of harm. Furthermore, traditional treatments are time limited, resources are stretched thin, and providers are operating at or above full capacity. As a result patients often leave treatment without proper supports in place. Resulting in a  a “revolving door” pattern in which individuals cycle repeatedly through acute episodes of care 
+
+
+Limitations of the current SUD treatment infrastructure are magnified for people with certain identities. Women, low income individuals, rural residents, and older adults may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. Marginalized groups, such as racial, ethnic, and sexual minorities may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of SUD and poorer treatment outcomes.
+
+Stark contrast to how we treat other chronic conditions, like diabetes and hypertension. 
+:::
+
+
+## Continuing Care
+
+
+- Continuing care is gold-standard for chronic conditions
+
+
+:::{.fragment}
+- Risk factors are individualized, numerous, dynamic, and interactive
+:::
+
+::: {.fragment}
+- Optimal supports to address risk factors vary across individuals and within an individual over time
+:::
+
+:::{.notes}
+
+
+Continuing care, including on-going monitoring, adaptive support, and when necessary re-engagement with more intensive treatment, is the gold standard for chronic health conditions. Similarly, substance use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
+
+Yet, our current treatment system lacks the capacity for long-term clinician-delivered care, and instead the primary focus is on symptom stabilization and harm reduction. 
+
+Without ongoing support, many individuals are left to navigate recovery alone, asking themselves: How can I best support my recovery today? Which tool in my toolkit fits what I need right now?
+
+The challenge is that risk factors for relapse are highly individualized, dynamic, and interactive — making self-monitoring difficult. And the optimal supports needed to address these risks vary both across individuals and within an individual over time.
+:::
+
+
+## Relapse Prevention
+
+::: {.columns}
+
+:::{.column width = "66%"}
+
+- Fluctuating process
+
+:::{.fragment}
+- Lapses are preceded by high-risk situations
+:::
+
+:::{.fragment}
+- High-risk situations differ between individuals and within an individual over time
+:::
+
+:::{.fragment}
+
+:::
+
+:::{.fragment}
+
+:::
+
+:::
+
+:::{.column width = "4%"}
+:::
+
+:::{.column width = "30%"}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/wave.png?raw=true){.absolute top=0 right=0 height=100%}
+:::
+:::
+
+
+
+:::{.notes}
+Lapses are instances of goal-inconsistent substance use. For example any use when the goal is abstinence or use that exceeds one’s set limit if the goal is moderation. Lapses are expected and can occur at any point during recovery. On their own necessarily indicate relapse or a full return to previous patterns of use. However, lapses are often an early warning sign of relapse. 
+And maladaptive responses to lapses can undermine recovery. For example, the abstinence violation effect is a well-studied phenomenon where someone who views a lapse as a failure is more likely to continue using substances after an initial lapse.
+
+We can also see how important lapse prevention is when looking at the opioid crisis where a single lapse could result in an overdose. 
+
+So, predicting lapses before they occur may be an important step in preventing relapse, treating SUDS
+
+
+There is an extant relapse prevention literature that characterizes the chronic non-linear nature of lapse, relapse, and recovery. This literature suggests that relapse is a fluctuating process, beginning prior to and extending beyond the return to substance use
+It also posits that lapses are preceded by a high-risk situation (e.g., emotional or cognitive states, environmental contingencies, physiological states) 
+These situations, if recognized, could be effective targets for treatments and interventions already known to be effective. 
+Importantly, high-risk situations differ between individuals and within an individual over-time. As such, identifying imminent risk of lapse is complex and traditional approaches to treatment may not be effective on their own for monitoring risk with the intention to provide treatment and intervention just-in-time, or before a lapse occurs.
+
+Recovery from substance use disorders is a non-linear and dynamic process (K. Witkiewitz & Marlatt, 2004). Lapses back to substance use are common and, on their own, do not necessarily constitute relapse (i.e., a full return to problematic use). Nevertheless, lapses must precede relapse and therefore can be viewed as early warning signs, making them clinically meaningful targets for intervention and prevention.
+
+An extant relapse prevention literature has identified a range of intrapersonal precursors to lapse and relapse. These include self‑efficacy (i.e., confidence in one’s ability to maintain abstinence), craving, motivation, emotional states, and coping‑related or substance‑use behaviors (Marlatt & Donovan, 2007; K. A. Witkiewitz & Marlatt, 2007; K. Witkiewitz & Marlatt, 2004). These risk factors differ across individuals and within an individual over time. They interact with one another and with interpersonal and environmental situations to influence lapse risk (Stanton, 2005; K. Witkiewitz & Marlatt, 2004). For example, cravings are typically short-lived urges. Individuals in recovery-supportive environments may be able to ride out these cravings successfully. However, in unsupportive environments (e.g., locations with easily available alcohol or exposure to other substance-related cues), the likelihood of lapse increases. Given the complex, interactive, and time-varying nature of lapse risk, self-monitoring is difficult.
+
+:::
+
+
+## Recovery Monitoring and Support System
+
+::: {.columns}
+:::{.column width = "50%"}
+
+:::{.fragment}
+- Personalized adaptive recommendations
+:::
+
+:::{.fragment}
+- Prompt individuals to engage with support at times of high risk
+:::
+
+:::
+
+
+
+:::{.column width = "50%"}
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true)
+:::
+:::
+:::
+
+:::{.notes}
+
+An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse, or goal-inconsistent substance use, after initial treatment and adjust their lifestyle, behaviors and support accordingly.
+
+Such a system could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk. 
+
+For example, individuals could receive daily messages about changes in their lapse risk, along with recommendations based on their key risk factors, like an urge-surfing recommendation for someone experiencing strong cravings.
+
+:::
+
+
+## Recovery Monitoring and Support System
+
+::: {.columns}
+:::{.column width = "49%"}
+
+:::{}
+- Personalized adaptive recommendations  
+:::
+
+:::{}
+- Prompt individuals to engage with support at times of high risk
+:::
+
+:::{}
+- Scalable to address unmet need
+:::
+
+:::
+
+:::{.column width = "1%"}
+:::
+
+:::{.column width = "50%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true)
+:::
+
+:::
+
+:::{.notes}
+
+Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in substance use disorder treatment.
+
+For such a system to exist, we need at least three things. 
+One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
+
+Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
+
+Three, the model must perform fairly. The accuracy of the predictions and usefulness and relevance of the recommendations should be similar for everyone.
+:::
+
+
+
+## Sensing Data and Machine Learning
+
+
+- Frequent and temporally precise measurement
+
+
+::: {.fragment}
+- Predict lapse risk
+
+- Understand prospective risk factors
+:::
+
+:::{.notes}
+
+Advances in both smartphone sensing and machine learning now make this possible. Smartphone sensing approaches (e.g., ecological momentary assessment, geolocation tracking) allow for frequent and temporally precise measurement of key risk factors to be used as inputs for lapse prediction.
+
+An array of techniques broadly from machine learning can be used to accurately predict lapse risk and highlight prospective risk factors.
+
+My Goal is to develop an algorithm that can be situated in a recovery monitoring and support system.
+
+
+Smartphone sensing approaches (e.g., ecological momentary assessment [EMA], geolocation sensing) can provide the frequent, longitudinal measurement of proximal risk factors that is necessary for prediction of future lapses with high temporal precision. Individuals with substance use disorders have demonstrated a willingness to provide EMA over extended periods of time with adequate adherence (Alexander et al., 2023; Jones et al., 2019; Wyant et al., 2023). Individuals with alcohol use disorder who provided geolocation data for up to three months reported generally finding this sensing method acceptable and being willing to provide the data for up to a year (Wyant et al., 2023). Moreover, the proliferation of smartphone usage in recent years makes smartphone sensing a potentially scalable and equitable method for improving lapse risk monitoring. As of 2025, roughly 91% of Americans own a smartphone and smartphone ownership is consistently high (>= 85%) across gender, race and ethnicity, socioeconomic status, and geographic location (Pew Research Center, 2025).
+
+Machine learning models can handle the high dimensional feature sets that may result from feature engineering densely sampled sensing data over time. They can also accommodate non-linear and interactive relationships between features and lapse probability. And methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time. Studies have begun to demonstrate how sensing features can be used to predict substance use with high accuracy (S. Bae et al., 2018; S. W. Bae et al., 2023; Heinz et al., 2025; Soyster et al., 2022; Walters et al., 2021). While these studies are promising, they are limited in their generalizability to a recovery monitoring and support system. First, the majority of these studies pedict substance use episodes in non-treatment seeking populations (S. Bae et al., 2018; S. W. Bae et al., 2023; Soyster et al., 2022; Walters et al., 2021). The precursors to goal-inconsistent substance use (i.e., lapses) in populations with substance use disorder may vastly differ from planned or intentional substance use episodes. Second, none of these studies explicitly assessed the fairness of the machine learning models. An automated recovery monitoring and support system offers opportunity for mitigating many of the accessibility, affordability, and stigma barriers that contribute to treatment disparities. However, algorithms that perform favorably for only a single majority group could widen existing disparities in access to resources and important clinical outcomes (Timmons et al., 2023).
+:::
+
+
+
+
+## EMA
+
+:::{.columns}
+:::{.column width = "58%"}
+- Direct and frequent insight into subjective feelings and experiences
+
+:::{.fragment}
+- Constructs easily map onto well-studied risk factors for lapse
+:::
+
+:::{.fragment}
+- Appears to be well-tolerated
+:::
+
+:::
+
+:::{.column width = "2%"}
+:::
+
+
+:::{.column width = "40%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=0 right=0 height=100%}
+:::
+:::
+
+:::{.notes}
+Ecological momentary assessment, or EMA, consists of daily or more frequent brief surveys optimized for someone to complete on their smartphone. It  is an active sensing method, meaning it requires action from the user of the app for data to be collected. This signal is unique in that it provides privileged access into subjective momentary experiences and allows for measuring several face-valid constructs of the relapse prevention model (e.g., we can ask people to directly report their craving, their level of self-efficacy, and their affect). 
+
+
+It offers direct and frequent insight into subjective feelings and experiences that can be easily mapped onto modular forms of treatment like the relapse prevention model 
+
+Furthermore, individuals with substance use disorders have found EMA to be acceptable for sustained measurement for up to a year with relatively high completion rates, suggesting it is feasible for long-term monitoring.
+
+:::
+
+
+## Geolocation 
+
+:::{.columns}
+:::{.column width = "55%"}
+- Passively sensed
+
+- May provide insight into information difficult to measure with self-report
+
+- Adds additional features for personalizing support recommendations
+
+- Appears to be acceptable
+
+
+:::
+
+:::{.column width = "5%"}
+:::
+
+
+:::{.column width = "40%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/location.jpg?raw=true){.absolute top=0 right=0 height=100%}
+:::
+:::
+
+:::{.notes}
+In addition to the self-report data, participants provided their continuous geolocation data. 
+
+Geolocation sensing is a passive sensing method that could compliment daily surveys well. It could provide insight into information difficult to measure with self-report (e.g., the amount of time spent in risky locations, or changes in routine that could indicate life stressors) or that would add additional burden by increasing the number of questions on the daily surveys. Furthermore, by adding more data sources gives us more features and that could mean better personalization of predictions and recommendations for more people. 
+
+And while providing geolocation for this project was required, in our previous project, it was optional ans we found nearly all participants opted in to providing geolocation data for a relatively small financial incentive (compared to their other payments). This leads us to believe geolocation sensing could be acceptable and feasible for use in a recovery monitoring and support system.
+
+Daily self-report surveys can reliably collect proximal risk factors for lapse, such as recent craving, abstinence self-efficacy, risky situations, and substance use behaviors. Research suggests that individuals can adhere to self-report sensing methods while using substances (Jones et al., 2019; Wyant et al., 2023). However, it is less clear to what extent people in recovery from illicit substance use disorders can, or are willing to, report risk information accurately enough to develop prediction models. People with SUDs may experience greater instability in their day-to-day lives (e.g., stigma or legal consequences may make access to healthcare, stable housing, or supportive relationships more difficult). This instability could make it difficult to recall and report recent behaviors and events promptly or accurately. It may also skew baseline perceptions of what constitutes a risky or stressful experience.
+
+Supplementing self-report data with passively sensed geolocation data could make up for imprecise reports of risk factors or be used for lapse prediction during periods of non-adherence to self-report surveys. Moreover, geolocation data could provide a complementary and distinct set of intervenable features. For example, geolocation data may provide insight into time spent in risky locations or changes in routine (e.g., job loss) that may indicate life stressors. These features may become even more powerful when combined with contextual information from public sources (e.g., census data, alcohol outlet density) or from self-report (e.g., self-evaluated riskiness of specific locations). Geolocation data have been demonstrated to contain sufficient signal for predicting craving (Epstein et al., 2020), a putative precursor to opioid lapse, and therefore represent a promising sensing method for predicting lapse risk.
+:::
+
+
+## Specific Aims
+
+1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., 1 day, 3 days, 1 week or 2 weeks in the future)
+
+3. 
+
+
+:::{.notes}
+
+This dissertation presents a series of studies aimed at addressing current limitations in the lapse prediction literature. Specifically, we designed three studies to develop fair and temporally precise machine learning models for predicting lapse risk for alcohol and opioid use that could be used in a recovery monitoring support system.
+
+To achieve this goal, we used two clinical samples of participants in early recovery from alcohol (Studies 1–2) and opioid use (Study 3) disorders with reported goals of abstinence. In Study 1 (Chapter 2), we developed three separate models that provide hour-by-hour probabilities of a future lapse back to alcohol use with increasing temporal precision: lapses in the next week, next day, and next hour. Model features were engineered from raw scores and longitudinal changes in responses to 4× daily EMAs. We used Shapley values to interpret how EMA features influenced lapse probability both across individuals and for specific lapse probability predictions.
+
+In Study 2 (Chapter 3), we demonstrated how the same 4× daily EMA data could be used to predict alcohol lapses occurring within a 24-hour window up to two weeks into the future. We examined several lags between the prediction time point and the start of the prediction window: 1 day, 3 days, 1 week, and 2 weeks. These models with lagged prediction windows provide insight into lapse risk with the added benefit of advanced warning, giving individuals extra time to make behavioral, social, or lifestyle changes. Study 2 also extended model evaluation to include fairness analyses by comparing model performance across subgroups with documented disparities in treatment access and outcomes.
+
+In Study 3 (Chapter 4), we extended lapse prediction to opioid use using a national sample of participants with opioid use disorder. This allowed us to evaluate whether lapse prediction algorithms generalize beyond alcohol to substances where use is illegal and lapses may be underreported. The dataset also included greater diversity in race/ethnicity, income, and geographic location (i.e., rural and urban settings), enabling evaluation of model fairness across a broader set of demographic groups. Model features were derived from both 1× daily EMA and passive geolocation sensing, capturing self-reported risk factors as well as behavioral patterns such as time spent in potentially high-risk locations and changes in routine. We also explored alternative methods for quantifying important features that could be communicated to individuals to explain lapse risk.
+:::
+
+
+
+
+
+
+
+
+## Study 1
+
+1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+
+## Participants (*N* = 151)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 8
+#| fig-align: center
+ 
+source("figs/dem_figs.R")
+
+fig_aud
+```
+
+
+:::{.notes}
+I am going to introduce the first dataset that we used for study 1 and study 2. 
+
+Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area. All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
+:::
+
+
+## Participants (*N* = 151)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+library(patchwork)
+
+fig_race + fig_sex
+```
+
+
+
+:::{.notes}
+Our sample was predominantly non-Hispanic White. We had equal representation of men and women.
+:::
+
+## Participants (*N* = 151)
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+fig_age + fig_income
+```
+
+:::{.notes}
+The average age was 41 years and average income was $34000.
+:::
+
+
+## Design
+
+- 3-month longitudinal study
+- Participants completed 4 surveys daily
+    - Craving, arousal, valence 
+    - Past stressful events, risky situations, pleasant events
+    - Future stressful events, risky situations, efficacy
+    - Alcohol use
+
+
+::: {.notes}
+
+Participants completed 4 daily surveys for up to three months
+
+Each survey had 10 items that asked about 
+The greatest intensity of craving, arousal, and valence since the last survey.  
+
+Stressful events, risky situations and pleasant events encountered since their last survey
+
+Future stressful events, risky situations and efficacy looking in the next week
+
+And any alcohol use they had not yet reported.
+:::
+
+## Design
+
+- 3-month longitudinal study
+- Participants completed 4 surveys daily
+    - Craving, arousal, valence 
+    - Past stressful events, risky situations, pleasant events
+    - Future stressful events, risky situations, efficacy
+    - Alcohol use
+
+- Outcome = lapse or no lapse
+- XGBoost algorithm
+- Grouped nested k-fold cross-validation
+
+
+
+::: {.notes}
+We used all 10 EMA items plus some demographic questions to engineer our features.   
+Time and day of alcohol use was used to generate our outcome labels of lapse or no lapse.  
+Our statistical algorithm was XGBoost.   
+We used grouped nested k-fold cross-validation as our resampling method to ensure our models were evaluated on new data from new individuals
+
+We used grouped nested cross validation – this method produces INDEPENDENT, UNBIASED estimates of how well the model performs in NEW DATA
+That means the data used for model evaluation was not used to train the models. Our data was also grouped by participant, so all of a participant’s data was either in training or test. We are evaluating how well our model does on new people.
+
+the other thing I want to make really clear is when I say predict I mean we are predicting on new held out test data but we are also predicting into the future. All of our features used in the models were collected before the lapse onset. 
+
+:::
+
+
+## EMA Completion
+
+:::{.columns}
+:::{.column width = "50%"}
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 7
+
+source("figs/lag_figs.R")
+
+fig_compliance
+```
+
+:::
+
+:::{.column width = "50%"}
+- 3.1 of 4 surveys completed daily (78.4% compliance)
+- 95% compliance for completing at least one survey daily
+:::
+:::
+
+:::{.notes}
+Participants on average completed 3 of the 4 EMAs each day and completed at least one EMA on 95.0% of days. 
+
+The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1 daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain high rates of EMA completion over the full three months.
+:::
+
+
+## Performance
+
+```{r}
+#| fig-align: center
+
+source("figs/ema_figs.R")
+source("figs/lag_figs.R")
+
+pp_plot_empty
+```
+
+
+:::{.notes}
+We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
+:::
+
+## Performance
+
+```{r}
+#| fig-align: center
+
+pp_plot
+```
+
+
+
+:::{.notes}
+here, from top to bottom, are the distributions of posterior probabilities for auroc for predicting lapses in the next week, day, and hour. Median posterior probabilities ranged from .90, to .93. 
+
+We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
+
+Hour model performed significantly better than Day and Week model
+
+Day model performed significantly better than Week model
+
+
+You will notice I am highlight the day model in red. This is because from here on out I will only be focussing prediction window widths of 24 hours, or 1 day. 
+
+Choose day level model because more temporally precise than week model and PPV for hour model is too low
+
+Add PPV/NPV 
+:::
+
+
+
+
+## Average Important Features
+
+```{r}
+#| fig-align: center
+
+global_0lag
+```
+
+
+:::{.notes}
+We also showed that we can use feature importance values to contextualize model performance. 
+
+Looking at our next day model, this plot shows on average, across all participants and all observations, how much each feature category contributes to the model's predictions.
+
+Past use, future efficacy, and craving were the top three features.
+:::
+
+
+## Individual Important Features
+
+```{r}
+#| fig-align: center
+
+local_0lag
+```
+
+:::{.notes}
+But, when it comes to making a personalized recommendation for a recovery activity or support, we want to know which feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?
+
+This figure shows the range of all individual feature importance values across all people and all days for the next day model.
+
+This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for some people at some moments these features are clinically important.
+:::
+
+## Conclusions
+
+- We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
+
+- We can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
+
+- These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately
+
+:::{.notes}
+
+In study 1 we found that
+
+
+- We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
+
+- and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
+
+- These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app
+
+:::
+
+
+
+## Study 2
+
+1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+
+2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., 1 day, 3 days, 1 week or 2 weeks in the future)
+
+:::{.notes}
+
+In study 1 We built models to predict immediate risk of a lapse back to alcohol use with varying temporal precision (anytime in the next week, next day, or next hour).
+
+These models can provide individuals insight into their immediate lapse risk and suggest recommendations that could be done in that moment. 
+
+Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
+
+What's key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible. 
+
+So in study 2:
+
+we built additional models to predict future risk of lapses back to alcohol use. In these models we shifted a 24 hour prediction window 1 day, 3 days, 1 week or 2 weeks into the future. 
+
+These “time-lagged” models could give people advanced warning to implement supports not immediately available to them, such as scheduling positive or pleasant activities, increasing social engagement, or attending a peer-led recovery meeting.
+:::
+
+
+
+
+## Performance
+
+```{r}
+#| fig-align: center
+
+lag_posteriors_empty
+```
+
+:::{.notes}
+
+Next I will show the posterior distributions for auROC for our lagged models, anchored to no lag on the top. 
+
+::::
+
+## Performance
+
+```{r}
+#| fig-align: center
+
+lag_posteriors
+```
+
+:::{.notes}
+As models were lagged further into the future model performance decreased. However, even at our most lagged model, 2-weeks into the future the median auROC was .84 which is typically considered good performance.
+:::
+
+## Model Fairness
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_empty + income_empty + sex_empty
+```
+
+
+:::{.notes}
+
+In study 1, we failed to assess model fairness. In recent years, the machine learning field has begun to understand the critical importance of evaluating model fairness when algorithms are used to inform important decisions or recommendations. 
+
+Therefore, in study 2 we explicitly evaluated how fair our models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
+:::
+
+## Model Fairness
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_no_lag + income_no_lag + sex_empty
+```
+
+
+:::{.notes}
+
+Our models performed  worse for participants who were not white and had an income below the federal poverty line. 
+
+The largest contributing factor is likely the lack of diversity in our training data.
+
+Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group (compared to 131 in the White group). We also saw a similar pattern in our income groups (with 49 people in the below poverty group and 102 people in the above poverty group).
+
+:::
+
+## Model Fairness
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+race_no_lag + income_no_lag + sex_no_lag
+```
+
+
+:::{.notes}
+
+We did however have equal representation of men and women, and we still saw differences in performance. I am not sure exactly why this is, but I have some hypotheses I would be happy to talk about during our discussion.
+
+:::
+
+
+
+
+## Conclusions
+
+- We can achieve clinically meaningful performance up to 2 weeks into the future
+
+- These models offer the benefit of advanced notice for treatment supports that are not immediately available
+
+- A more representative training sample is critical for developing fair models
+
+:::{.notes}
+In study 2 we found that we can achieve clinically meaningful performance up to two weeks into the future. 
+
+Model performance did decrease when prediction windows were shifted further into the future. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
+
+Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
+:::
+
+
+
+## Study 3
+
+:::{.notes}
+In the current study, we developed a machine learning model that predicts next-day opioid lapse risk using daily self-report and geolocation sensing data. Our study has several notable strengths. First, we recruited a national sample of participants across the United States who were diverse in regard to race and ethnicity, income, gender, sexual orientation, and geographic location. Second, participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published SUD prediction studies and allowed us to capture longer-term recovery trajectories. Third, our sample consisted of patients in early recovery from OUD receiving MOUD, ensuring that the study population closely reflected the intended clinical audience for our model. Fourth, we explicitly evaluated model performance across demographic subgroups to assess algorithmic fairness. Finally, we identified the most influential predictors using two complementary quantitative approaches, providing insight into the features that drive lapse risk predictions.
+:::
+
+## Participants (*N* = 324)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 8
+#| fig-align: center
+ 
+source("figs/risk2_dem_figs.R")
+
+fig_oud
+```
+
+
+:::{.notes}
+Our sample consisted of 296 participants in the US in early recovery from opioid use disorder. The majority of our participants had severe opioid use disorder.
+:::
+
+
+## Participants (*N* = 324)
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+fig_race + fig_sex
+```
+
+
+
+:::{.notes}
+Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more men than women.
+:::
+
+## Participants (*N* = 324)
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 12
+#| fig-align: center
+
+fig_age + fig_income
+```
+
+:::{.notes}
+Most participants were between 26-45 years and had an annual household income below $25,000
+:::
+
+## Adherence
+
+:::{.columns}
+:::{.column width = "50%"}
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 7
+
+source("figs/risk2_ema_figs.R")
+
+fig_risk2_compliance
+```
+
+:::
+
+:::{.column width = "50%"}
+- Mean days on study across participants was 278.32 days (range 30-392 days)
+- 77.7% of participants (230/296) remained on study for at least six months
+- On average participants completed 77.8% of the daily survey prompts (range 40-100%)
+- Participants provided, on average, 263.50 daily geolocation points (range 2.17-871.34)
+:::
+:::
+
+:::{.notes}
+On average participants completed about 71% of the daily surveys. There was some drop off in completion rates in the first three months and then itr remained pretty stable over the remaining 9 months.
+:::
+
+
+
+## Design
+
+- 12-month longitudinal study
+- Participants completed 1 daily suvey
+    - Craving, pain, risky situations, stressful events, and pleasant events
+    - Depressed, angry, anxious, relaxed, and happy
+    - Sleep quality
+    - MOUD adherence
+    - Motivation and confidence
+    - Opioid and other drug and alcohol use
+- Outcome = lapse or no lapse back to opioid use
+    
+:::{.notes}
+Participants completed 1X daily surveys for up to 12 months
+
+16 items -
+
+intensity of craving, pain, risky situations, stressful events, and pleasant events since their last survey.
+
+How depressed, angry, anxious, relaxed, and happy they have felt in the past 24 hours
+
+Their quality of sleep
+
+Whether they took their MOUD as prescribed. 
+
+How motivated and how confident they were to avoid using opioids,
+
+The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours 
+
+Our outcome for these studies is lapse or no lapse back to opioid use in a 24 hour window
+:::
+
+
+
+## Geolocation 
+
+- Type of location
+- Activity done at location
+- Pleasantness/unpleasantness of experience
+- Helpfulness/harmfulness to recovery
+
+:::{.notes}
+Each month we asked participants self-report questions about their frequently visited locations. We did this as part of a longer monthly survey participants were paid to take each month.
+
+For places participants visited more than twice in a month we asked:
+about the type of location, what they do there, how pleasant and unpleasant their experience is there, and how much this place helps and harms their recovery from opioids.
+:::
+
+
+## Performance
+
+
+
+
+
+## Conclusions
+
+
+
+## Future Directions
+
+- Abstinence only sample
+
+- Idiographic time series models
+
+
+## Future Directions
+
+- Optimize the delivery of risk-relevant feedback
+
+
+
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true){.absolute left=100 width=22%}
+:::
+
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true){.absolute left=250 bottom=10 width=35%}
+:::
+
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true){.absolute right=330 width=30%}
+:::
+
+:::{.fragment}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_4.png?raw=true){.absolute right=40 bottom=10 width=30%}
+:::
+
+::: {.notes}
+
+Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.  
+
+One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay current and future risk information to the individual. 
+
+Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.
+
+But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement.
+
+In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
+:::
+
+## Future Directions
+
+- Optimize the delivery of risk-relevant feedback
+
+- Use predictions as inputs into Agentic AI systems 
+
+::: {.notes}
+
+Finally, we could imagine using these predictions as inputs into agentic AI systems that could automatically deliver personalized recommendations or even directly engage with individuals to help them implement recommendations and facilitate connections to therapists and other care providers when risk levels are high (triage).
+
+:::
+
+
+## Acknowledgements 
+
+
