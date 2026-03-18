@@ -45,6 +45,7 @@ title-slide-attributes:
 - Treatment Disparities exist for certain identities
 :::
 
+
 :::
 
 :::{.column width = "4%"}
@@ -57,16 +58,19 @@ title-slide-attributes:
 :::
 
 ::: {.notes}
-Substance use disorders are chronic condition with high relapse rates, substantial co-morbidity with mental and physical health issues, and increased mortality risk.
+Substance use disorders are chronic conditions with high relapse rates, substantial co-morbidity with mental and physical health issues, and increased mortality risk.
 
-Initial treatments, including medication and evidence-based psychosocial interventions, are effective. Unfortunately, many individuals never receive treatment. An estimated 1 in 10 individuals with a substance use disorder will receive any form of treatment. 
+We have effective Medication and psychosocial interventions. But, nearly 90% of people with a substance use disorder do not receive any form of treatment. 
 
-And for those who do, engagement in treatment is often brief and episodic. Most receive care when they are symptomatic and already at a high risk of harm. Furthermore, traditional treatments are time limited, resources are stretched thin, and providers are operating at or above full capacity. As a result patients often leave treatment without proper supports in place. Resulting in a  a “revolving door” pattern in which individuals cycle repeatedly through acute episodes of care 
+For those who do,  care is typically brief and episodic, and crisis‑driven. Most enter treatment when they are symptomatic and already at a high risk of harm. Traditional treatments are time limited, resources are stretched thin, and providers are operating at or above full capacity. As a result patients often leave treatment without proper supports in place. Resulting in a  a “revolving door” pattern in which individuals cycle repeatedly through acute episodes of care 
 
+Limitations of current SUD treatment infrastructure are magnified for people with certain identities. Women, low income individuals, rural residents, and older adults may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. Marginalized groups, such as racial, ethnic, and sexual minorities may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of SUD and poorer treatment outcomes.
 
-Limitations of the current SUD treatment infrastructure are magnified for people with certain identities. Women, low income individuals, rural residents, and older adults may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. Marginalized groups, such as racial, ethnic, and sexual minorities may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of SUD and poorer treatment outcomes.
+Our treatment for SUD stands in stark contrast to how we treat other chronic conditions.
 
-Stark contrast to how we treat other chronic conditions, like diabetes and hypertension. 
+When someone has diabetes, we would never expect a brief episode of care to be sufficient; instead, we rely on ongoing monitoring, adherence to treatment, regular clinical follow-up, and healthy lifestyle choices to manage risk over time. 
+
+Substance use disorders are no different—except in how we treat them.
 :::
 
 
@@ -77,23 +81,22 @@ Stark contrast to how we treat other chronic conditions, like diabetes and hyper
 
 
 :::{.fragment}
-- Risk factors are individualized, numerous, dynamic, and interactive
+- Current SUD treatment infrastructure lacks capacity for long-term clinician-delivered care
 :::
 
 ::: {.fragment}
-- Optimal supports to address risk factors vary across individuals and within an individual over time
+- Individuals are left to navigate recovery alone
 :::
 
 :::{.notes}
-
-
 Continuing care, including on-going monitoring, adaptive support, and when necessary re-engagement with more intensive treatment, is the gold standard for chronic health conditions. Similarly, substance use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
 
-Yet, our current treatment system lacks the capacity for long-term clinician-delivered care, and instead the primary focus is on symptom stabilization and harm reduction. 
+For chronic conditions, continuing care—ongoing monitoring, adaptive support, and re‑engagement when risk increases—is the gold standard. The same is true for substance use disorders. Outcomes improve when treatment extends over longer periods and when patients are actively supported in their recovery over time.
 
-Without ongoing support, many individuals are left to navigate recovery alone, asking themselves: How can I best support my recovery today? Which tool in my toolkit fits what I need right now?
+But our current system simply does not have the capacity to deliver long‑term, clinician‑led care at scale.
 
-The challenge is that risk factors for relapse are highly individualized, dynamic, and interactive — making self-monitoring difficult. And the optimal supports needed to address these risks vary both across individuals and within an individual over time.
+Without ongoing support, people are left to navigate recovery on their own, asking:
+How risky is today? What do I need right now? Which recovery tool should I use and when?
 :::
 
 
@@ -103,23 +106,20 @@ The challenge is that risk factors for relapse are highly individualized, dynami
 
 :::{.column width = "66%"}
 
-- Fluctuating process
+- Recovery is a non-linear process
 
 :::{.fragment}
-- Lapses are preceded by high-risk situations
+- Lapses serve as early warning signs of relapse
 :::
 
 :::{.fragment}
-- High-risk situations differ between individuals and within an individual over time
+- Risk factors fluctuate and differ across individuals and within individuals over time
 :::
 
 :::{.fragment}
-
+- Self-monitoring of risk is difficult
 :::
 
-:::{.fragment}
-
-:::
 
 :::
 
@@ -135,23 +135,15 @@ The challenge is that risk factors for relapse are highly individualized, dynami
 
 
 :::{.notes}
-Lapses are instances of goal-inconsistent substance use. For example any use when the goal is abstinence or use that exceeds one’s set limit if the goal is moderation. Lapses are expected and can occur at any point during recovery. On their own necessarily indicate relapse or a full return to previous patterns of use. However, lapses are often an early warning sign of relapse. 
-And maladaptive responses to lapses can undermine recovery. For example, the abstinence violation effect is a well-studied phenomenon where someone who views a lapse as a failure is more likely to continue using substances after an initial lapse.
+The challenge is recovery is not linear. 
 
-We can also see how important lapse prevention is when looking at the opioid crisis where a single lapse could result in an overdose. 
+Lapses, or instances of goal‑inconsistent substance use, are common and and can occur at any point during recovery. On their own, they do not constiute relapse. But they must precede relapse, making them meaningful early warning signs.
 
-So, predicting lapses before they occur may be an important step in preventing relapse, treating SUDS
+The relapse prevention literature has identified a wide range of precipitants of lapse. But these risk factors fluctuate from day-to-day and differ across individuals and within individuals over time. 
 
+They interact with one another and with interpersonal and environmental situations to influence lapse risk.
 
-There is an extant relapse prevention literature that characterizes the chronic non-linear nature of lapse, relapse, and recovery. This literature suggests that relapse is a fluctuating process, beginning prior to and extending beyond the return to substance use
-It also posits that lapses are preceded by a high-risk situation (e.g., emotional or cognitive states, environmental contingencies, physiological states) 
-These situations, if recognized, could be effective targets for treatments and interventions already known to be effective. 
-Importantly, high-risk situations differ between individuals and within an individual over-time. As such, identifying imminent risk of lapse is complex and traditional approaches to treatment may not be effective on their own for monitoring risk with the intention to provide treatment and intervention just-in-time, or before a lapse occurs.
-
-Recovery from substance use disorders is a non-linear and dynamic process (K. Witkiewitz & Marlatt, 2004). Lapses back to substance use are common and, on their own, do not necessarily constitute relapse (i.e., a full return to problematic use). Nevertheless, lapses must precede relapse and therefore can be viewed as early warning signs, making them clinically meaningful targets for intervention and prevention.
-
-An extant relapse prevention literature has identified a range of intrapersonal precursors to lapse and relapse. These include self‑efficacy (i.e., confidence in one’s ability to maintain abstinence), craving, motivation, emotional states, and coping‑related or substance‑use behaviors (Marlatt & Donovan, 2007; K. A. Witkiewitz & Marlatt, 2007; K. Witkiewitz & Marlatt, 2004). These risk factors differ across individuals and within an individual over time. They interact with one another and with interpersonal and environmental situations to influence lapse risk (Stanton, 2005; K. Witkiewitz & Marlatt, 2004). For example, cravings are typically short-lived urges. Individuals in recovery-supportive environments may be able to ride out these cravings successfully. However, in unsupportive environments (e.g., locations with easily available alcohol or exposure to other substance-related cues), the likelihood of lapse increases. Given the complex, interactive, and time-varying nature of lapse risk, self-monitoring is difficult.
-
+Given the complex, interactive, and time-varying nature of lapse risk, self-monitoring is difficult.
 :::
 
 
@@ -173,9 +165,7 @@ An extant relapse prevention literature has identified a range of intrapersonal 
 
 
 :::{.column width = "50%"}
-:::{.fragment}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true)
-:::
 :::
 :::
 
@@ -195,9 +185,7 @@ For example, individuals could receive daily messages about changes in their lap
 ::: {.columns}
 :::{.column width = "49%"}
 
-:::{}
 - Personalized adaptive recommendations  
-:::
 
 :::{}
 - Prompt individuals to engage with support at times of high risk
@@ -336,11 +324,11 @@ Supplementing self-report data with passively sensed geolocation data could make
 
 ## Specific Aims
 
-1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+1. Evaluate and interpret models that predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use
 
-2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., 1 day, 3 days, 1 week or 2 weeks in the future)
+2. Evaluate and interpret models that predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use
 
-3. 
+3. Evaluate and interpret models that predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to opioid use
 
 
 :::{.notes}
@@ -363,7 +351,7 @@ In Study 3 (Chapter 4), we extended lapse prediction to opioid use using a natio
 
 ## Study 1
 
-1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+1. Evaluate and interpret models that predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use
 
 ## Participants (*N* = 151)
 
@@ -606,9 +594,9 @@ In study 1 we found that
 
 ## Study 2
 
-1. Predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use (i.e., in the next week, day, or hour)
+1. Evaluate and interpret models that predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use
 
-2. Predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use (i.e., 1 day, 3 days, 1 week or 2 weeks in the future)
+2. Evaluate and interpret models that predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use
 
 :::{.notes}
 
@@ -736,6 +724,12 @@ Finally, these models are not yet clinically implementable. The most notable fla
 
 
 ## Study 3
+
+1. Evaluate and interpret models that predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to alcohol use
+
+2. Evaluate and interpret models that predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use
+
+3. Evaluate and interpret models that predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to opioid use
 
 :::{.notes}
 In the current study, we developed a machine learning model that predicts next-day opioid lapse risk using daily self-report and geolocation sensing data. Our study has several notable strengths. First, we recruited a national sample of participants across the United States who were diverse in regard to race and ethnicity, income, gender, sexual orientation, and geographic location. Second, participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published SUD prediction studies and allowed us to capture longer-term recovery trajectories. Third, our sample consisted of patients in early recovery from OUD receiving MOUD, ensuring that the study population closely reflected the intended clinical audience for our model. Fourth, we explicitly evaluated model performance across demographic subgroups to assess algorithmic fairness. Finally, we identified the most influential predictors using two complementary quantitative approaches, providing insight into the features that drive lapse risk predictions.
