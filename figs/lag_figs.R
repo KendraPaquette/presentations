@@ -64,7 +64,6 @@ perf_lag <- ci_lag |>
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-  guides(color = guide_legend(nrow = 2, byrow = TRUE))
   
 perf_lag_empty <- ci_lag |>
   mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) |>
@@ -86,7 +85,6 @@ perf_lag_empty <- ci_lag |>
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
   
 # Global Shapley plot
@@ -198,8 +196,8 @@ ci_dem |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 
 fair_0lag_all <- ci_dem |> 
@@ -236,8 +234,8 @@ fair_0lag_all <- ci_dem |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 fair_0lag_empty <- ci_dem |> 
   filter(lag == "No lag") |> 
@@ -273,8 +271,8 @@ fair_0lag_empty <- ci_dem |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 fair_0lag_2 <- ci_dem |> 
   filter(lag == "No lag") |>
@@ -312,8 +310,8 @@ fair_0lag_2 <- ci_dem |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 
 fair_336lag_all <- ci_dem |> 
@@ -350,8 +348,8 @@ fair_336lag_all <- ci_dem |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 fair_336lag_empty <- ci_dem |> 
   filter(lag == "2 weeks") |> 
@@ -387,8 +385,8 @@ fair_336lag_empty <- ci_dem |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 fair_336lag_2 <- ci_dem |> 
   filter(lag == "2 weeks") |>
@@ -426,8 +424,8 @@ fair_336lag_2 <- ci_dem |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 
 

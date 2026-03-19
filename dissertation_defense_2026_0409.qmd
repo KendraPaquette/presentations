@@ -167,7 +167,7 @@ Given the complex nature of lapse risk, self-monitoring is difficult.
 
 
 :::{.column width = "50%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){height=50%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){height=30%}
 :::
 :::
 
@@ -230,11 +230,11 @@ Three, the model must perform fairly. Algorithms that perform favorably for only
 - At least 85% ownership across across gender, race/ethnicity, socioeconomic status, and geographic location subgroups
 
 ::: {.fragment}
-- frequent, longitudinal measurement of proximal risk
+- Frequent, longitudinal measurement of proximal risk
 :::
 
 :::{.fragment}
-- An array of techniques broadly from machine learning to accurately predict lapse risk and highlight prospective risk factors.
+- An array of techniques broadly from machine learning to accurately predict lapse risk and highlight prospective risk factors
 :::
 
 :::{.notes}
@@ -557,7 +557,7 @@ This level of precision is ideal for our goal usage of the model - conveying ris
 
 ```{r}
 #| fig-height: 5.5
-#| fig-width: 14
+#| fig-width: 10
 #| fig-align: center
 
 fair_0lag_empty
@@ -574,7 +574,7 @@ We explicitly evaluated how fair our day level models performed for three import
 
 ```{r}
 #| fig-height: 5.5
-#| fig-width: 14
+#| fig-width: 10
 #| fig-align: center
 
 fair_0lag_2
@@ -595,7 +595,7 @@ Even with our coarse dichotomous grouping of race we only had 20 participants in
 
 ```{r}
 #| fig-height: 5.5
-#| fig-width: 14
+#| fig-width: 10
 #| fig-align: center
 
 fair_0lag_all
@@ -620,27 +620,15 @@ global_0lag
 :::{.notes}
 We also showed that we can use feature importance values to contextualize model performance. 
 
-Looking at our next day model, this plot shows on average, across all participants and all observations, how much each feature category contributes to the model's predictions.
+We aggregated individual Shapley values across all participants and all observations to provide a relative rank ordering of the most important features. 
 
-Past use, future efficacy, and craving were the top three features.
+This plot shows on average, across all participants and all observations, how much each feature category contributes to the next day model's predictions.
+
+Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior. 
+
+Abstinence self-efficacy emerged as the second most important, indicating that participants had reasonably accurate insight into their near-term success abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.
 :::
 
-
-## Individual Important Features
-
-```{r}
-#| fig-align: center
-
-local_0lag
-```
-
-:::{.notes}
-But, when it comes to making a personalized recommendation for a recovery activity or support, we want to know which feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?
-
-This figure shows the range of all individual feature importance values across all people and all days for the next day model.
-
-This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for some people at some moments these features are clinically important.
-:::
 
 ## Conclusions
 
@@ -721,7 +709,7 @@ As models were lagged further into the future model performance decreased. Howev
 
 ```{r}
 #| fig-height: 5.5
-#| fig-width: 14
+#| fig-width: 10
 #| fig-align: center
 
 fair_336lag_all
@@ -788,7 +776,7 @@ A couple notable differences with this dataset aside from substance of use:
 
 For this study we recruited a national sample of participants across the United States who were diverse in regard to race and ethnicity, income, gender, sexual orientation, and geographic location. 
 
-Participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published SUD prediction studies and allowed us to capture longer-term recovery trajectories.
+Participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published substance use prediction studies and allowed us to capture longer-term recovery trajectories.
 :::
 
 ## Participants (*N* = 296)
@@ -840,34 +828,6 @@ fig_age + fig_income
 Most participants were between 26-45 years and had an annual household income below $25,000
 :::
 
-## Adherence
-
-:::{.columns}
-:::{.column width = "50%"}
-
-```{r}
-#| fig-height: 5.5
-#| fig-width: 7
-
-source("figs/risk2_ema_figs.R")
-
-fig_risk2_compliance
-```
-
-:::
-
-:::{.column width = "50%"}
-- Mean days on study across participants was 278.32 days (range 30-392 days)
-- 77.7% of participants (230/296) remained on study for at least six months
-- On average participants completed 77.8% of the daily survey prompts (range 40-100%)
-- Participants provided, on average, 263.50 daily geolocation points (range 2.17-871.34)
-:::
-:::
-
-:::{.notes}
-On average participants completed about 71% of the daily surveys. There was some drop off in completion rates in the first three months and then itr remained pretty stable over the remaining 9 months.
-:::
-
 
 
 ## Design
@@ -880,7 +840,7 @@ On average participants completed about 71% of the daily surveys. There was some
     - MOUD adherence
     - Motivation and confidence
     - Opioid and other drug and alcohol use
-- Outcome = lapse or no lapse back to opioid use
+
     
 :::{.notes}
 Participants completed 1X daily surveys for up to 12 months
@@ -899,7 +859,6 @@ How motivated and how confident they were to avoid using opioids,
 
 The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours 
 
-Our outcome for these studies is lapse or no lapse back to opioid use in a 24 hour window
 :::
 
 
@@ -918,22 +877,150 @@ For places participants visited more than twice in a month we asked:
 about the type of location, what they do there, how pleasant and unpleasant their experience is there, and how much this place helps and harms their recovery from opioids.
 :::
 
+## Adherence
+
+:::{.columns}
+:::{.column width = "50%"}
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 7
+
+source("figs/risk2_figs.R")
+
+fig_risk2_compliance
+```
+
+:::
+
+:::{.column width = "50%"}
+- Mean days on study = 278.32 days (range 30-392 days)
+- 1X daily EMA adherence = 77.8% of the daily survey prompts (range 40-100%)
+- Mean daily geolocation points = 263.50 points (range 2.17-871.34 points)
+:::
+:::
+
+:::{.notes}
+Mean days on study = 278.32 days (range 30-392 days)
+- 77.7% of participants (230/296) remained on study for at least six months
+On average participants completed 77.8% of the daily EMA prompts (range 40-100%)
+The plot on the left shows average ema completion rates by month on study
+
+daily geolocation points = 263.50 points (range 2.17-871.34 points)
+:::
+
+
 
 ## Performance
 
+```{r}
+#| fig-align: center
+#| fig-width: 8
+
+risk2_perf_1
+```
+
+:::{.notes}
+Our model performed very well with an overall auROC  of 0.94. To evaluate the incremental predictive value of EMA and geolocation sensing features, we also evaluated performance of models that ablated each set of features individually and together.
+:::
+
+## Performance
+
+```{r}
+#| fig-align: center
+#| fig-width: 8
+
+risk2_perf_all
+```
+
+:::{.notes}
+Model performance was comparable when geolocation features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with geolocation features. This suggests that geolocation data may not be adding any signal above and beyond what EMA is capturing. That being said Geolocation did capture some signal, in the ablated EMA model performance was still above chance at .63.
+:::
 
 
+## Model Fairness
+```{r}
+#| fig-align: center
+
+risk2_fair
+```
+
+:::{.notes}
+We evaluated our full model across five dichotomous subgroups -  gender, income, race and ethnicity, sexual orientation, and geographic location.
+
+There was evidence that model performance differed for all group comparisons. Notably, our model performed better for individuals with an annual income of less than \$25,000 compared to individuals with an annual income greater than \$25,000, thus favoring the disadvantaged group. 
+
+While differences in performance estimates exist, this model is likely still clinically meaningful across subgroups, as all subgroups yielded median auROCs between 0.91 - 0.95
+
+And it certainly is much better than our models in studies 1-2
+:::
+
+
+## Average Important Features
+
+```{r}
+#| fig-align: left
+#| fig-width: 7
+
+global_risk2
+```
+
+:::{.notes}
+
+Feature importance revealed the most important feature was differences in past opioid use. These feature was nearly two-fold more important than the next most important feature, raw urge ratings. This plot displays the top 30 (out of 186) feature categories, as defined by the 30 largest absolute mean shapley values.
+
+I also want to point out that although GPS may not be providing unique signal for prediction, some features still emerged as important features in the model. So it may be worthwhile still to have geolocation features in the model if we want more opportunities for intervention.
+
+As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution (in log odds). A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example only about 2% of observations contained lapses. This means that past opioid use very rarely came up as an important feature when looking at individual observations. However, when someone did lapse their probability of future lapses increased exponentially.
+:::
+
+## Average Important Features
+
+```{r}
+#| fig-align: left
+#| fig-width: 12
+
+global_risk2 + global_risk2_v2
+```
+
+:::{.notes}
+Another way we explored to determine feature importance was by calculating the proportion of observations in which each feature category had the highest Shapley value. This approach summarizes how frequently a feature category is influential across observations (i.e., considering both magnitude and prevalence). 
+
+In this approach, the most important feature was raw urge ratings, followed by raw abstinence confidence ratings. Differences in past opioid use was the third most important feature by this method, suggesting that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. Notably, in this approach several additional comparably important features emerged, including differences in past pleasant experiences, differences in past stimulant use, and differences in time spent in helpful locations.
+:::
+
+
+## Individual Important Features
+
+```{r}
+#| fig-align: center
+#| fig-width: 14
+
+local_risk2
+```
+
+:::{.notes}
+To understand the direction in which these feature categories adjusted the lapse risk predictions, we plotted Shapley-feature value partial dependence plots. Here I am showing you plots for the top three features. On the X-axis is feature value, you can think of the scores in terms of low, medium, high. And on the Y-axis is shapley value, so how much the prediction is being adjusted, with higher values increasing risk and lower values lowering risk.
+
+So for differences in past use. People who had never lapsed on study and therefore had a difference score of 0 had the lowest risk of future lapse. And unsurprisingly lapse risk increased dramatically when there were more frequent recent lapses compared to their overall baseline. Both urge and abstinence confidence had linear relationships with lapse risk. Higher urges and lower confidence in one's ability to maintain abstinence indicated high lapse risk.
+:::
 
 
 ## Conclusions
 
-
+:::{.notes}
+- limitations of gps
+:::
 
 ## Future Directions
 
 - Abstinence only sample
 
 - Idiographic time series models
+
+- Improve geolocation sensing
+
+- Expand risk features 
 
 
 ## Future Directions
@@ -968,7 +1055,7 @@ Another option would be to anchor the predicted probability to the individual. F
 
 But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement.
 
-In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
+In a currently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
 :::
 
 ## Future Directions
@@ -979,7 +1066,7 @@ In a recently funded grant in our lab, we plan to look what combination of risk-
 
 ::: {.notes}
 
-Finally, we could imagine using these predictions as inputs into agentic AI systems that could automatically deliver personalized recommendations or even directly engage with individuals to help them implement recommendations and facilitate connections to therapists and other care providers when risk levels are high (triage).
+Right now we’re using our model outputs us inputs into an LLM But, we could imagine in the near future using them as inputs into agentic AI systems that could automatically deliver personalized recommendations or even directly engage with individuals to help them implement recommendations and facilitate connections to therapists and other care providers when risk levels are high (triage).
 
 :::
 

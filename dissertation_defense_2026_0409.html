@@ -292,7 +292,7 @@ Kendra Wyant
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true" style="height:50.0%"></p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true" style="height:30.0%"></p>
 </div></div>
 <aside class="notes">
 <p>An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse after initial treatment and adjust their lifestyle, behaviors and support accordingly.</p>
@@ -357,12 +357,12 @@ Kendra Wyant
 </ul>
 <div class="fragment">
 <ul>
-<li>frequent, longitudinal measurement of proximal risk</li>
+<li>Frequent, longitudinal measurement of proximal risk</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>An array of techniques broadly from machine learning to accurately predict lapse risk and highlight prospective risk factors.</li>
+<li>An array of techniques broadly from machine learning to accurately predict lapse risk and highlight prospective risk factors</li>
 </ul>
 </div>
 <aside class="notes">
@@ -756,7 +756,7 @@ Kendra Wyant
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -781,7 +781,7 @@ Kendra Wyant
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -808,7 +808,7 @@ Kendra Wyant
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -840,35 +840,10 @@ Kendra Wyant
 </div>
 <aside class="notes">
 <p>We also showed that we can use feature importance values to contextualize model performance.</p>
-<p>Looking at our next day model, this plot shows on average, across all participants and all observations, how much each feature category contributes to the model’s predictions.</p>
-<p>Past use, future efficacy, and craving were the top three features.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="individual-important-features" class="slide level2">
-<h2>Individual Important Features</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-<aside class="notes">
-<p>But, when it comes to making a personalized recommendation for a recovery activity or support, we want to know which feature category is most important for a specific individual on a specific day. In other words, What does this individual need right now?</p>
-<p>This figure shows the range of all individual feature importance values across all people and all days for the next day model.</p>
-<p>This plot suggests that even feature categories with low average importance (e.g., past pleasant event) have a wide range of individual importance values, suggesting that for some people at some moments these features are clinically important.</p>
+<p>We aggregated individual Shapley values across all participants and all observations to provide a relative rank ordering of the most important features.</p>
+<p>This plot shows on average, across all participants and all observations, how much each feature category contributes to the next day model’s predictions.</p>
+<p>Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior.</p>
+<p>Abstinence self-efficacy emerged as the second most important, indicating that participants had reasonably accurate insight into their near-term success abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -938,7 +913,7 @@ Kendra Wyant
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -963,7 +938,7 @@ Kendra Wyant
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -988,7 +963,7 @@ Kendra Wyant
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1013,7 +988,7 @@ Kendra Wyant
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -1069,7 +1044,82 @@ Kendra Wyant
 <p>Now for study three we are going to switch datasets. In this study we developed a machine learning model that predicts next-day opioid lapse risk using daily self-report and geolocation sensing data.</p>
 <p>A couple notable differences with this dataset aside from substance of use:</p>
 <p>For this study we recruited a national sample of participants across the United States who were diverse in regard to race and ethnicity, income, gender, sexual orientation, and geographic location.</p>
-<p>Participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published SUD prediction studies and allowed us to capture longer-term recovery trajectories.</p>
+<p>Participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published substance use prediction studies and allowed us to capture longer-term recovery trajectories.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-296" class="slide level2">
+<h2>Participants (<em>N</em> = 296)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Our sample consisted of 296 participants in the US in early recovery from opioid use disorder. The majority of our participants had severe opioid use disorder.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-296-1" class="slide level2">
+<h2>Participants (<em>N</em> = 296)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more men than women.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-296-2" class="slide level2">
+<h2>Participants (<em>N</em> = 296)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Most participants were between 26-45 years and had an annual household income below $25,000</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1095,7 +1145,6 @@ Kendra Wyant
 <li>Motivation and confidence</li>
 <li>Opioid and other drug and alcohol use</li>
 </ul></li>
-<li>Outcome = lapse or no lapse back to opioid use</li>
 </ul>
 <aside class="notes">
 <p>Participants completed 1X daily surveys for up to 12 months</p>
@@ -1106,7 +1155,6 @@ Kendra Wyant
 <p>Whether they took their MOUD as prescribed.</p>
 <p>How motivated and how confident they were to avoid using opioids,</p>
 <p>The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours</p>
-<p>Our outcome for these studies is lapse or no lapse back to opioid use in a 24 hour window</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1142,17 +1190,223 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
+<section id="adherence" class="slide level2">
+<h2>Adherence</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-19-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Mean days on study = 278.32 days (range 30-392 days)</li>
+<li>1X daily EMA adherence = 77.8% of the daily survey prompts (range 40-100%)</li>
+<li>Mean daily geolocation points = 263.50 points (range 2.17-871.34 points)</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Mean days on study = 278.32 days (range 30-392 days) - 77.7% of participants (230/296) remained on study for at least six months On average participants completed 77.8% of the daily EMA prompts (range 40-100%) The plot on the left shows average ema completion rates by month on study</p>
+<p>daily geolocation points = 263.50 points (range 2.17-871.34 points)</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section id="performance-5" class="slide level2">
 <h2>Performance</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-20-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Our model performed very well with an overall auROC of 0.94. To evaluate the incremental predictive value of EMA and geolocation sensing features, we also evaluated performance of models that ablated each set of features individually and together.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="performance-6" class="slide level2">
+<h2>Performance</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-21-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Model performance was comparable when geolocation features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with geolocation features. This suggests that geolocation data may not be adding any signal above and beyond what EMA is capturing. That being said Geolocation did capture some signal, in the ablated EMA model performance was still above chance at .63.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="model-fairness-4" class="slide level2">
+<h2>Model Fairness</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We evaluated our full model across five dichotomous subgroups - gender, income, race and ethnicity, sexual orientation, and geographic location.</p>
+<p>There was evidence that model performance differed for all group comparisons. Notably, our model performed better for individuals with an annual income of less than $25,000 compared to individuals with an annual income greater than $25,000, thus favoring the disadvantaged group.</p>
+<p>While differences in performance estimates exist, this model is likely still clinically meaningful across subgroups, as all subgroups yielded median auROCs between 0.91 - 0.95</p>
+<p>And it certainly is much better than our models in studies 1-2</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="average-important-features-2" class="slide level2">
+<h2>Average Important Features</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-left" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Feature importance revealed the most important feature was differences in past opioid use. These feature was nearly two-fold more important than the next most important feature, raw urge ratings. This plot displays the top 30 (out of 186) feature categories, as defined by the 30 largest absolute mean shapley values.</p>
+<p>I also want to point out that although GPS may not be providing unique signal for prediction, some features still emerged as important features in the model. So it may be worthwhile still to have geolocation features in the model if we want more opportunities for intervention.</p>
+<p>As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution (in log odds). A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example only about 2% of observations contained lapses. This means that past opioid use very rarely came up as an important feature when looking at individual observations. However, when someone did lapse their probability of future lapses increased exponentially.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="average-important-features-3" class="slide level2">
+<h2>Average Important Features</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-left" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Another way we explored to determine feature importance was by calculating the proportion of observations in which each feature category had the highest Shapley value. This approach summarizes how frequently a feature category is influential across observations (i.e., considering both magnitude and prevalence).</p>
+<p>In this approach, the most important feature was raw urge ratings, followed by raw abstinence confidence ratings. Differences in past opioid use was the third most important feature by this method, suggesting that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. Notably, in this approach several additional comparably important features emerged, including differences in past pleasant experiences, differences in past stimulant use, and differences in time spent in helpful locations.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="individual-important-features" class="slide level2">
+<h2>Individual Important Features</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="dissertation_defense_2026_0409_files/figure-revealjs/unnamed-chunk-25-1.png" class="quarto-figure quarto-figure-center" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>To understand the direction in which these feature categories adjusted the lapse risk predictions, we plotted Shapley-feature value partial dependence plots. Here I am showing you plots for the top three features. On the X-axis is feature value, you can think of the scores in terms of low, medium, high. And on the Y-axis is shapley value, so how much the prediction is being adjusted, with higher values increasing risk and lower values lowering risk.</p>
+<p>So for differences in past use. People who had never lapsed on study and therefore had a difference score of 0 had the lowest risk of future lapse. And unsurprisingly lapse risk increased dramatically when there were more frequent recent lapses compared to their overall baseline. Both urge and abstinence confidence had linear relationships with lapse risk. Higher urges and lower confidence in one’s ability to maintain abstinence indicated high lapse risk.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="conclusions-2" class="slide level2">
 <h2>Conclusions</h2>
+<aside class="notes">
+<ul>
+<li>limitations of gps</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="future-directions" class="slide level2">
 <h2>Future Directions</h2>
 <ul>
 <li><p>Abstinence only sample</p></li>
 <li><p>Idiographic time series models</p></li>
+<li><p>Improve geolocation sensing</p></li>
+<li><p>Expand risk features</p></li>
 </ul>
 </section>
 <section id="future-directions-1" class="slide level2">
@@ -1177,7 +1431,7 @@ Kendra Wyant
 <p>One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay current and future risk information to the individual.</p>
 <p>Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.</p>
 <p>But another thing our model’s give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement.</p>
-<p>In a recently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes.</p>
+<p>In a currently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1197,7 +1451,7 @@ Kendra Wyant
 <li><p>Use predictions as inputs into Agentic AI systems</p></li>
 </ul>
 <aside class="notes">
-<p>Finally, we could imagine using these predictions as inputs into agentic AI systems that could automatically deliver personalized recommendations or even directly engage with individuals to help them implement recommendations and facilitate connections to therapists and other care providers when risk levels are high (triage).</p>
+<p>Right now we’re using our model outputs us inputs into an LLM But, we could imagine in the near future using them as inputs into agentic AI systems that could automatically deliver personalized recommendations or even directly engage with individuals to help them implement recommendations and facilitate connections to therapists and other care providers when risk levels are high (triage).</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
