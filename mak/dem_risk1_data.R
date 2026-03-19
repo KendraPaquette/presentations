@@ -1,7 +1,7 @@
 suppressPackageStartupMessages(library(tidyverse))
 
-path_processed <- "/Volumes/jjcurtin/studydata/risk/data_processed/ema"
-path_shared <- "/Volumes/jjcurtin/studydata/risk/data_processed/shared"
+path_processed <- "S:/risk/data_processed/ema"
+path_shared <- "S:/risk/data_processed/shared"
 
 
 disposition <- read_csv(file.path(path_processed, "disposition.csv"), 
@@ -37,7 +37,7 @@ race <- screen |>
   filter(!is.na(race))
 
 
-write_csv(screen, "data/dem.csv")
+write_csv(screen, "data/risk1_dem.csv")
 
 write_csv(race, "data/risk1_race.csv")
 

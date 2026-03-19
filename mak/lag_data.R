@@ -2,9 +2,9 @@ suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(source("https://github.com/jjcurtin/lab_support/blob/main/format_path.R?raw=true"))
 suppressPackageStartupMessages(library(tidyposterior))
 
-path_models_lag <- "/Volumes/jjcurtin/studydata/risk/models/lag"
-path_shared <- "/Volumes/jjcurtin/studydata/risk/data_processed/shared"
-path_ema<- "/Volumes/jjcurtin/studydata/risk/data_processed/ema"
+path_models_lag <- "S:/risk/models/lag"
+path_shared <- "S:/risk/data_processed/shared"
+path_ema<- "S:/risk/data_processed/ema"
 
 
 
@@ -16,16 +16,6 @@ ci <- read_csv(here::here(path_models_lag, "pp_perf_tibble.csv"),
                show_col_types = FALSE) |> 
   mutate(model = factor(model, levels = c("0 lag", "24 lag", "72 lag", "168 lag", "336 lag"),
                         labels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) 
-
-global_all <- read_rds(here::here(path_models_lag, "shap_global_all.rds")) |> 
-  filter(str_detect(variable_grp, "EMA")) |> 
-  mutate(variable_grp = str_remove(variable_grp, "\\(EMA item\\)"),
-         variable_grp = reorder(variable_grp, mean_value, sum),
-         model = factor(model, levels = c("336 lag", "168 lag", "72 lag", "24 lag", "0 lag"),
-                        labels = c("2 weeks", "1 week", "3 days", "1 day", "No lag" ))) |> 
-  filter(model %in% c("2 weeks", "No lag"))
-
-
 
 pp_tidy_dem <- read_csv(here::here(path_models_lag, "posteriors_dem.csv"), 
                         show_col_types = FALSE) |> 
@@ -48,33 +38,29 @@ ci_dem <- read_csv(here::here(path_models_lag, "pp_dem_all.csv"),
   filter(!is.na(lag))
 
 shap_feat_0 <- read_rds(here::here(path_models_lag, 
-                                   "outer_shapsgrp_1day_0_v3_nested_main.rds")) |> 
+                                   "final_shapsgrp_kfold_1_x_5_1day_0_v3_strat_lh_final.rds")) |> 
   filter(str_detect(variable_grp, "EMA")) |> 
   mutate(variable_grp = str_remove(variable_grp, "\\(EMA item\\)")) |> 
   group_by(variable_grp) |> 
-  summarize(min(value), max(value)) |> 
+  summarize(min = min(value), max = max(value), mean_value = mean(abs(value))) |> 
   mutate(model = "No lag")
 
 shap_feat_336 <- read_rds(here::here(path_models_lag, 
-                                     "outer_shapsgrp_1day_336_v3_nested_main.rds")) |> 
+                                     "final_shapsgrp_kfold_1_x_5_1day_336_v3_strat_lh_final.rds")) |> 
   filter(str_detect(variable_grp, "EMA")) |> 
   mutate(variable_grp = str_remove(variable_grp, "\\(EMA item\\)"))  |> 
   group_by(variable_grp) |> 
-  summarize(min(value), max(value)) |> 
+  summarize(min = min(value), max = max(value), mean_value = mean(abs(value))) |> 
   mutate(model = "2 weeks")
 
 shap_feat_0 |>
   bind_rows(shap_feat_336) |> 
-  rename(min = `min(value)`,
-         max = `max(value)`) |> 
-  write_csv("data/local_all.csv")
-
+  write_csv("data/lag_shap.csv")
 
 write_csv(pp_tidy, "data/lag_pp_tidy.csv")
 write_csv(ci, "data/lag_ci.csv")
-write_csv(global_all, "data/global_all.csv")
-write_csv(pp_tidy_dem, "data/pp_tidy_dem.csv")
-write_csv(ci_dem, "data/ci_dem.csv")
+write_csv(pp_tidy_dem, "data/lag_pp_tidy_dem.csv")
+write_csv(ci_dem, "data/lag_ci_dem.csv")
 
 
 # EMA compliance

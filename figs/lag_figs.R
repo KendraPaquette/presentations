@@ -3,26 +3,16 @@ theme_set(theme_classic())
 
 # Read in data
 
-pp_tidy <- read_csv(here::here("data/lag_pp_tidy.csv"), 
-                    show_col_types = FALSE) 
 
-ci <- read_csv(here::here("data/lag_ci.csv"), 
+ci_lag <- read_csv(here::here("data/lag_ci.csv"), 
                show_col_types = FALSE) 
 
-global_all <- read_csv(here::here("data/global_all.csv"),
+shap <- read_csv(here::here("data/lag_shap.csv"),
                        show_col_types = FALSE) |>
   mutate(model = factor(model, levels = c("2 weeks", "No lag")))
 
-local_all <- read_csv(here::here("data/local_all.csv"),
-                       show_col_types = FALSE) |> 
-  mutate(model = factor(model, levels = c("2 weeks", "No lag")))
-  
 
-pp_tidy_dem <- read_csv(here::here("data/pp_tidy_dem.csv"), 
-                        show_col_types = FALSE) |>
-  mutate(lag = factor(lag, levels = c("No lag", "2 weeks")))
-
-ci_dem <- read_csv(here::here("data/ci_dem.csv"), 
+ci_dem <- read_csv(here::here("data/lag_ci_dem.csv"), 
                    show_col_types = FALSE) |>
   mutate(lag = factor(lag, levels = c("No lag", "2 weeks")))
 
@@ -53,77 +43,65 @@ fig_compliance <- week_compliance_all |>
         legend.position = "bottom",
         text = element_text(size = 20))
 
-# Posterior probabilities Figures
-
-pp_empty <- pp_tidy |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model, color = model), linewidth = .5,  
-                 bins = 60) +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               color = "white", linewidth = .5, data = ci |>  filter(model %in% c("No lag")) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               color = "white", linewidth = .5, data = ci |>  filter(model %in% c("No lag")) ) +
-  facet_wrap(~model, ncol = 1) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Posterior Probability") +
-  scale_fill_manual(values = c("white", "white")) +
-  scale_color_manual(values = c("white", "white")) +
-  xlab("Area Under ROC Curve") +
-  expand_limits(x = c(.5, 1)) +
+# Performance
+perf_lag <- ci_lag |>
+  mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) |>
+  ggplot(aes(x = model, y = pp_median,  color = model)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = model, y = pp_lower, yend = pp_upper, color = model),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
   theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20))
-
-pp_no_lag <- pp_tidy |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model, color = model), linewidth = .5,  
-                 bins = 60) +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci |>  filter(model %in% c("No lag")) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci |>  filter(model %in% c("No lag")) ) +
-  facet_wrap(~model, ncol = 1) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Posterior Probability") +
-  scale_fill_manual(values = c("#b0bec5", "white")) +
-  scale_color_manual(values = c("black", "white")) +
-  xlab("Area Under ROC Curve") +
-  expand_limits(x = c(.5, 1)) +
+  theme(legend.position =  "none",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("#c5050c", "#263238", "#263238", "#263238", "#263238")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+  guides(color = guide_legend(nrow = 2, byrow = TRUE))
+  
+perf_lag_empty <- ci_lag |>
+  mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) |>
+  ggplot(aes(x = model, y = pp_median,  color = model)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = model, y = pp_lower, yend = pp_upper, color = model),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
   theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20))
+  theme(legend.position =  "none",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("#c5050c", "white", "white", "white", "white")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
-pp_full <- pp_tidy |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60) +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci |>  filter(model %in% c("No lag", "2 weeks")) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci |>  filter(model %in% c("No lag", "2 weeks")) ) +
-  facet_wrap(~model, ncol = 1) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Posterior Probability") +
-  scale_fill_manual(values = c("#b0bec5", "#ef9a9a")) +
-  xlab("Area Under ROC Curve") +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20))
-
+  
 # Global Shapley plot
-shap_levels <- global_all |> 
+shap_levels <- shap |> 
   mutate(variable_grp = reorder(variable_grp, mean_value, sum)) |>
   pull(variable_grp) |>
   levels()
 
-shap_levels_0lag <- global_all |> 
+shap_levels_0lag <- shap |> 
   filter(model == "No lag") |> 
   mutate(variable_grp = reorder(variable_grp, mean_value, sum)) |>
   pull(variable_grp) |>
   levels()
 
-global_0lag <- global_all |>
+global_0lag <- shap |>
   filter(model == "No lag") |> 
   mutate(variable_grp = factor(variable_grp, levels = shap_levels_0lag)) |> 
   ggplot() +
@@ -132,12 +110,12 @@ global_0lag <- global_all |>
   labs(y = "Mean(|Shapley Value|)",
        x = NULL,
        fill = NULL) +
-  scale_fill_manual(values = c("#c5050c", "#263238")) +
+  scale_fill_manual(values = c("#c5050c")) +
   theme(text = element_text(size = 20),
         legend.position = "none") +
   coord_flip()
 
-global <- global_all |>
+global <- shap |>
   mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |> 
   ggplot() +
   geom_bar(aes(x = variable_grp, y = mean_value, fill = model), 
@@ -145,13 +123,13 @@ global <- global_all |>
   labs(y = "Mean(|Shapley Value|)",
        x = NULL,
        fill = NULL) +
-  scale_fill_manual(values = c("#c5050c", "#263238")) +
+  scale_fill_manual(values = c("#263238", "#c5050c")) +
   theme(text = element_text(size = 20),
         legend.position = "right") +
   coord_flip()
 
 # Local Shapley plot
-local_0lag <- local_all |> 
+local_0lag <- shap |> 
   filter(model == "No lag") |> 
   mutate(variable_grp = factor(variable_grp, levels = shap_levels_0lag)) |> 
   ggplot() +
@@ -171,7 +149,7 @@ local_0lag <- local_all |>
   coord_flip()
 
 
-local <- local_all |> 
+local <- shap |> 
   mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |> 
   ggplot() +
   geom_segment(aes(x = variable_grp, y = min, yend = max, group = model,
@@ -191,258 +169,265 @@ local <- local_all |>
 
 
 # Fairness
-race_empty <- pp_tidy_dem |>
-  filter(lag == "No lag") |> 
-  filter(str_detect(group, "Race")) |> 
-  mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "white", linewidth = .5,  
-                 bins = 60, fill = "white") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, color = "white", data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag") |> 
-                 mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, color = "white", data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag")  |> 
-                 mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
-  facet_grid(model~group) +
-  scale_y_continuous("Posterior Probability") +
-  xlab(NULL) +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank())
 
-race_no_lag <- pp_tidy_dem |>
-  filter(lag == "No lag") |> 
-  filter(str_detect(group, "Race")) |> 
-  mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#ef9a9a") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag") |> 
-                 mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Race") & lag == "No lag")  |> 
-                 mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
-  facet_grid(model~group) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Posterior Probability") +
-  xlab(NULL) +
-  expand_limits(x = c(.5, 1)) +
+ci_dem |>
+  mutate(group = factor(model, 
+                        levels = c("Race (not White, White)", "Income (below poverty, above poverty)", "Sex (female, male)"),
+                        labels = c("Race/ethnicity", "Income", "Sex")),
+         fairness = if_else(model %in% c("female", 
+                                         "not white",
+                                         "below poverty"), 
+                            "Disadvantaged (female, Hispanic and/or not White, <$25,000 income)",
+                            "Advantaged (male, non-Hispanic White, $25,000+ income)"),
+         fairness = factor(fairness)) |>
+  ggplot(aes(x = group, y = pp_median, color = fairness, group = fairness)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = group, y = pp_lower, yend = pp_upper, color = fairness, group = fairness),
+               position = position_dodge(width = 0.5),
+               linewidth = 1) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
   theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank())
+  theme(legend.position =  "none",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("#c5050c", "#263238")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
-race_lag <- pp_tidy_dem |>
+
+fair_0lag_all <- ci_dem |> 
+  filter(lag == "No lag") |> 
+  mutate(group = case_match(model,
+                          "male" ~ "Sex",
+                          "female" ~ "Sex",
+                          "non-hispanic white" ~ "Race",
+                          "not white" ~ "Race",
+                          "below poverty" ~ "Income",
+                          "above poverty" ~ "Income"),
+       fairness = if_else(model %in% c("female", 
+                                       "not white",
+                                       "below poverty"), 
+                          "Disadvantaged (female, Hispanic and/or not White, <$25,000 income)",
+                          "Advantaged (male, non-Hispanic White, $25,000+ income)"),
+       fairness = factor(fairness),
+       group = factor(group, levels = c("Race",
+                                        "Income", "Sex"))) |>  
+  ggplot(aes(x = group, y = pp_median, color = fairness)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = group, y = pp_lower, yend = pp_upper, color = fairness),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
+  theme_classic() +
+  theme(legend.position = "bottom",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("#263238", "#c5050c")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
+
+fair_0lag_empty <- ci_dem |> 
+  filter(lag == "No lag") |> 
+  mutate(group = case_match(model,
+                            "male" ~ "Sex",
+                            "female" ~ "Sex",
+                            "non-hispanic white" ~ "Race",
+                            "not white" ~ "Race",
+                            "below poverty" ~ "Income",
+                            "above poverty" ~ "Income"),
+         fairness = if_else(model %in% c("female", 
+                                         "not white",
+                                         "below poverty"), 
+                            "Disadvantaged (female, Hispanic and/or not White, <$25,000 income)",
+                            "Advantaged (male, non-Hispanic White, $25,000+ income)"),
+         fairness = factor(fairness),
+         group = factor(group, levels = c("Race",
+                                          "Income", "Sex"))) |>  
+  ggplot(aes(x = group, y = pp_median, color = fairness)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = group, y = pp_lower, yend = pp_upper, color = fairness),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
+  theme_classic() +
+  theme(legend.position = "bottom",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("white", "white")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
+
+fair_0lag_2 <- ci_dem |> 
+  filter(lag == "No lag") |>
+  mutate(group = case_match(model,
+                            "male" ~ "Sex",
+                            "female" ~ "Sex",
+                            "non-hispanic white" ~ "Race",
+                            "not white" ~ "Race",
+                            "below poverty" ~ "Income",
+                            "above poverty" ~ "Income"),
+         fairness = if_else(model %in% c("female", 
+                                         "not white",
+                                         "below poverty"), 
+                            "Disadvantaged (female, Hispanic and/or not White, <$25,000 income)",
+                            "Advantaged (male, non-Hispanic White, $25,000+ income)"),
+         fairness = factor(fairness),
+         group = factor(group, levels = c("Race",
+                                          "Income", "Sex"))) |> 
+  filter(group != "Sex") |> 
+  ggplot(aes(x = group, y = pp_median, color = fairness)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = group, y = pp_lower, yend = pp_upper, color = fairness),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_x_discrete(drop = FALSE) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
+  theme_classic() +
+  theme(legend.position = "bottom",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("#263238", "#c5050c")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
+
+
+fair_336lag_all <- ci_dem |> 
   filter(lag == "2 weeks") |> 
-  filter(str_detect(group, "Race")) |> 
-  mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#ef9a9a") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Race") & lag == "2 weeks") |> 
-                 mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Race") & lag == "2 weeks")  |> 
-                 mutate(model = factor(model, levels = c("not white", "non-hispanic white"))) ) +
-  facet_grid(model~group) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Posterior Probability") +
-  xlab(NULL) +
-  expand_limits(x = c(.5, 1)) +
+  mutate(group = case_match(model,
+                            "male" ~ "Sex",
+                            "female" ~ "Sex",
+                            "non-hispanic white" ~ "Race",
+                            "not white" ~ "Race",
+                            "below poverty" ~ "Income",
+                            "above poverty" ~ "Income"),
+         fairness = if_else(model %in% c("female", 
+                                         "not white",
+                                         "below poverty"), 
+                            "Disadvantaged (female, Hispanic and/or not White, <$25,000 income)",
+                            "Advantaged (male, non-Hispanic White, $25,000+ income)"),
+         fairness = factor(fairness),
+         group = factor(group, levels = c("Race",
+                                          "Income", "Sex"))) |>  
+  ggplot(aes(x = group, y = pp_median, color = fairness)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = group, y = pp_lower, yend = pp_upper, color = fairness),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
   theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank())
+  theme(legend.position = "bottom",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("#263238", "#c5050c")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
-income_empty <- pp_tidy_dem |>
-  filter(lag == "No lag") |> 
-  filter(str_detect(group, "Income")) |> 
-  mutate(model = factor(model, levels = c("below poverty", "above poverty"))) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "white", linewidth = .5,  
-                 bins = 60, fill = "white") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, color = "white", data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag") |> 
-                 mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, color = "white", data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag")  |> 
-                 mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
-  facet_grid(model~group) +
-  scale_y_continuous(NULL) +
-  xlab("Area Under ROC Curve") +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        axis.line.y = element_blank())
-
-income_no_lag <- pp_tidy_dem |>
-  filter(lag == "No lag") |> 
-  filter(str_detect(group, "Income")) |> 
-  mutate(model = factor(model, levels = c("below poverty", "above poverty"))) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#ef9a9a") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag") |> 
-                 mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Income") & lag == "No lag")  |> 
-                 mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
-  facet_grid(model~group) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous(NULL) +
-  xlab("Area Under ROC Curve") +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        axis.line.y = element_blank())
-
-income_lag <- pp_tidy_dem |>
+fair_336lag_empty <- ci_dem |> 
   filter(lag == "2 weeks") |> 
-  filter(str_detect(group, "Income")) |> 
-  mutate(model = factor(model, levels = c("below poverty", "above poverty"))) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#ef9a9a") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Income") & lag == "2 weeks") |> 
-                 mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Income") & lag == "2 weeks")  |> 
-                 mutate(model = factor(model, levels = c("below poverty", "above poverty"))) ) +
-  facet_grid(model~group) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous(NULL) +
-  xlab("Area Under ROC Curve") +
-  expand_limits(x = c(.5, 1)) +
+  mutate(group = case_match(model,
+                            "male" ~ "Sex",
+                            "female" ~ "Sex",
+                            "non-hispanic white" ~ "Race",
+                            "not white" ~ "Race",
+                            "below poverty" ~ "Income",
+                            "above poverty" ~ "Income"),
+         fairness = if_else(model %in% c("female", 
+                                         "not white",
+                                         "below poverty"), 
+                            "Disadvantaged (female, Hispanic and/or not White, <$25,000 income)",
+                            "Advantaged (male, non-Hispanic White, $25,000+ income)"),
+         fairness = factor(fairness),
+         group = factor(group, levels = c("Race",
+                                          "Income", "Sex"))) |>  
+  ggplot(aes(x = group, y = pp_median, color = fairness)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = group, y = pp_lower, yend = pp_upper, color = fairness),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
   theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        axis.line.y = element_blank())
+  theme(legend.position = "bottom",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("white", "white")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
-sex_empty <- pp_tidy_dem |>
-  filter(lag == "No lag") |> 
-  filter(str_detect(group, "Sex")) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "white", linewidth = .5,  
-                 bins = 60, fill = "white") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, color = "white", data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag") ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, color = "white", data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag")  ) +
-  facet_grid(model~group) +
-  scale_y_continuous(NULL) +
-  xlab(NULL) +
-  expand_limits(x = c(.5, 1)) +
+fair_336lag_2 <- ci_dem |> 
+  filter(lag == "2 weeks") |>
+  mutate(group = case_match(model,
+                            "male" ~ "Sex",
+                            "female" ~ "Sex",
+                            "non-hispanic white" ~ "Race",
+                            "not white" ~ "Race",
+                            "below poverty" ~ "Income",
+                            "above poverty" ~ "Income"),
+         fairness = if_else(model %in% c("female", 
+                                         "not white",
+                                         "below poverty"), 
+                            "Disadvantaged (female, Hispanic and/or not White, <$25,000 income)",
+                            "Advantaged (male, non-Hispanic White, $25,000+ income)"),
+         fairness = factor(fairness),
+         group = factor(group, levels = c("Race",
+                                          "Income", "Sex"))) |> 
+  filter(group != "Sex") |> 
+  ggplot(aes(x = group, y = pp_median, color = fairness)) + 
+  geom_point(position = position_dodge(width = 0.5), size = 2) +
+  geom_line(position = position_dodge(width = 0.5)) +
+  geom_segment(mapping = aes(x = group, y = pp_lower, yend = pp_upper, color = fairness),
+               position = position_dodge(width = 0.5), linewidth = 1) +
+  scale_x_discrete(drop = FALSE) +
+  scale_y_continuous("auROC", limits = c(.50, 1.0)) +
+  labs(x = NULL,
+       color = NULL) +
   theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        axis.line.y = element_blank())
-
-sex_no_lag <- pp_tidy_dem |>
-  filter(lag == "No lag") |> 
-  filter(str_detect(group, "Sex")) |> 
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#ef9a9a") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag") ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, color = "black", data = ci_dem |> filter(str_detect(group, "Sex") & lag == "No lag")  ) +
-  facet_grid(model~group) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous(NULL) +
-  xlab(NULL) +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        axis.line.y = element_blank())
-
-sex_lag <- pp_tidy_dem |>
-  filter(lag == "2 weeks") |> 
-  filter(str_detect(group, "Sex")) |>
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model), color = "black", linewidth = .5,  
-                 bins = 60, fill = "#ef9a9a") +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Sex") & lag == "2 weeks") ) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, data = ci_dem |> filter(str_detect(group, "Sex") & lag == "2 weeks")  ) +
-  facet_grid(model~group) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous(NULL) +
-  xlab(NULL) +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() +
-  theme(legend.position = "none",
-        text = element_text(size = 20),
-        strip.text.y = element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank(),
-        axis.line.y = element_blank())
+  theme(legend.position = "bottom",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  scale_color_manual(values = c("#263238", "#c5050c")) +
+  geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
+  geom_hline(yintercept = 0.5, linetype = "dashed",  color = "#263238") +
+  geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  geom_label(aes(x = 1, y = 0.5, label = "Chance"),
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
+guides(color = guide_legend(nrow = 2, byrow = TRUE))
 
 
-pp_tidy <- read_csv(here::here("data/lag_pp_tidy.csv"), 
-                    show_col_types = FALSE) 
 
-ci <- read_csv(here::here("data/lag_ci.csv"), 
-               show_col_types = FALSE) |> 
-  mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks")))
-
-lag_posteriors <- pp_tidy |> 
-  mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) |>
-  ggplot() + 
-  geom_histogram(aes(x = posterior), fill = "#ef9a9a", color = "black", linewidth = .5,  
-                 bins = 60) +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median),
-               linewidth = .5, color = "black", data = ci) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper),
-               linewidth = .5, color = "black", data = ci) +
-  facet_wrap(~model, ncol = 1) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Count") +
-  xlab("Posterior probability for auROC") +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() 
-
-lag_posteriors_empty <- pp_tidy |> 
-  mutate(model = factor(model, levels = c("No lag", "1 day", "3 days", "1 week", "2 weeks"))) |>
-  ggplot() + 
-  geom_histogram(aes(x = posterior, fill = model, color = model), linewidth = .5,  
-                 bins = 60) +
-  geom_segment(mapping = aes(y = 3400, yend = 3800, x = pp_median, xend = pp_median, color = model),
-               linewidth = .5, data = ci) +
-  geom_segment(mapping = aes(y = 3600, yend = 3600, x = pp_lower, xend = pp_upper, color = model),
-               linewidth = .5, data = ci) +
-  facet_wrap(~model, ncol = 1) +
-  geom_vline(xintercept = .5, linewidth = .5, linetype = "dashed") +
-  scale_y_continuous("Count") +
-  scale_fill_manual(values = c("#ef9a9a", "white", "white", "white", "white")) +
-  scale_color_manual(values = c("black", "white", "white", "white", "white")) +
-  xlab("Posterior probability for auROC") +
-  expand_limits(x = c(.5, 1)) +
-  theme_classic() +
-  theme(legend.position = "none")

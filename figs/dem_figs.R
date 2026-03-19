@@ -3,7 +3,7 @@ theme_set(theme_classic())
 
 # Read in data
 
-dem <- read_csv(here::here("data/dem.csv"), 
+dem <- read_csv(here::here("data/risk1_dem.csv"), 
                     show_col_types = FALSE) 
 race <- read_csv(here::here("data/risk1_race.csv"), 
                 show_col_types = FALSE) 

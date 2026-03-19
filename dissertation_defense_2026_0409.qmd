@@ -45,6 +45,10 @@ title-slide-attributes:
 - Treatment Disparities exist for certain identities
 :::
 
+:::{.fragment}
+- We don't treat substance use disorders as chronic conditions
+:::
+
 
 :::
 
@@ -64,7 +68,7 @@ We have effective Medication and psychosocial interventions. But, nearly 90% of 
 
 For those who do receive care, treatment is often brief and episodic. Many individuals enter care only when symptoms are severe and risk is high. At the same time, services are time-limited, resources are constrained, and providers frequently operate at or beyond capacity. As a result, patients often leave treatment without adequate supports in place, contributing to a “revolving door” pattern in which individuals cycle repeatedly through acute episodes of care.
 
-Limitations of our treatment infrastructure are magnified for people with certain identities. Women, low income individuals, rural residents, and older adults may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. Marginalized groups, such as racial, ethnic, and sexual minorities may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.
+These limitations are magnified for people with certain identities. Women, low income individuals, rural residents, and older adults may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. Marginalized groups, such as racial, ethnic, and sexual minorities may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.
 
 Our treatment for substance use disorders stands in stark contrast to how we treat other chronic conditions.
 
@@ -89,7 +93,7 @@ Substance use disorders are no different—except in how we treat them.
 :::
 
 :::{.notes}
-Continuing care, including on-going monitoring, adaptive support, and when necessary re-engagement with more intensive treatment, is the gold standard for chronic health conditions. Similarly, substance use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
+Continuing care is the gold standard for chronic health conditions. Similarly, substance use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
 
 But our current system simply does not have the capacity to deliver long‑term, clinician‑led care at scale.
 
@@ -126,7 +130,7 @@ How risky is today? What do I need right now? Which recovery tool should I use a
 
 :::{.column width = "30%"}
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/wave.jpeg?raw=true)
+![](https://github.com/KendraPaquette/presentations/blob/main/images/wave.jpg?raw=true)
 :::
 :::
 
@@ -141,7 +145,7 @@ The relapse prevention literature has identified a wide range of precipitants of
 
 They interact with one another and with interpersonal and environmental situations to influence lapse risk.
 
-Given the complex, interactive, and time-varying nature of lapse risk, self-monitoring is difficult.
+Given the complex nature of lapse risk, self-monitoring is difficult.
 :::
 
 
@@ -163,13 +167,13 @@ Given the complex, interactive, and time-varying nature of lapse risk, self-moni
 
 
 :::{.column width = "50%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){.absolute top=0 right=0 height=100%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){height=50%}
 :::
 :::
 
 :::{.notes}
 
-An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse, or goal-inconsistent substance use, after initial treatment and adjust their lifestyle, behaviors and support accordingly.
+An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse after initial treatment and adjust their lifestyle, behaviors and support accordingly.
 
 Such a system could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk. 
 
@@ -199,7 +203,7 @@ For example, individuals could receive daily messages about changes in their lap
 :::
 
 :::{.column width = "50%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){.absolute top=0 right=0 height=100%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){height=50%}
 :::
 
 :::
@@ -213,7 +217,7 @@ One, the system must be able to collect a rich and densely sampled source (or so
 
 Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
 
-Three, the model must perform fairly. A recovery monitoring and support system offers opportunity for mitigating many of the accessibility, affordability, and stigma barriers that contribute to treatment disparities. However, algorithms that perform favorably for only a single majority group could widen existing disparities in access to resources and important clinical outcomes
+Three, the model must perform fairly. Algorithms that perform favorably for only a single majority group could widen existing disparities in access to resources and important clinical outcomes
 :::
 
 
@@ -237,12 +241,12 @@ Three, the model must perform fairly. A recovery monitoring and support system o
 
 Advances in both smartphone sensing and machine learning now make this possible. 
 
-The proliferation of smartphone usage in recent years makes smartphone sensing a potentially scalable and equitable method for improving lapse risk monitoring. As of 2025, roughly 91% of Americans own a smartphone and smartphone ownership is consistently high across gender, race and ethnicity, socioeconomic status, and geographic location subgroups.
+The proliferation of smartphone usage in recent years makes smartphone sensing a potentially scalable and equitable method for improving lapse risk monitoring. As of 2025, roughly 91% of Americans own a smartphone and smartphone ownership is consistently high across important demographic subgroups.
 
 Smartphone sensing approaches can provide the frequent, longitudinal measurement of proximal risk factors that is necessary for prediction of future lapses with high temporal precision.
 
 
-Machine learning models can handle the high dimensional feature sets that may result from feature engineering densely sampled sensing data over time. And they can accommodate non-linear and interactive relationships between features and lapse probability. Methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time. 
+Machine learning models can handle high dimensional sensing feature sets and can accommodate non-linear and interactive relationships between features and lapse probability. Methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time. 
 
 Two sensing methods I am particularly excited about are EMA and geolocation sensing.
 :::
@@ -339,15 +343,15 @@ Lastly, adding more data sources gives us more features, which can support bette
 
 :::{.notes}
 
-This dissertation presents a series of studies aimed at addressing current limitations in the lapse prediction literature. Specifically, we designed three studies to develop fair and temporally precise machine learning models for predicting lapse risk for alcohol and opioid use that could be used in a recovery monitoring support system.
+Today I am going to present a series of three studies aimed to develop machine learning models for predicting lapse risk that could be used in a recovery monitoring support system.
 
 To achieve this goal, we used two clinical samples of participants in early recovery from alcohol (Studies 1–2) and opioid use (Study 3) disorders with reported goals of abstinence. 
 
-In Study 1, we evaluate and interpret three separate models that provide hour-by-hour probabilities of an immediate lapse back to alcohol use with increasing temporal precision: lapses in the next week, next day, and next hour, using features engineered from a 4X daily EMA
+In Study 1, we evaluate and interpret three separate models that provide hour-by-hour probabilities of an immediate lapse back to alcohol use with increasing temporal precision: lapses in the next week, next day, and next hour, using features engineered from a 4X daily EMA. These immediate risk models can provide personalized support recommendations to address immediate risks for possible lapses.
 
-In Study 2, we evaluate and interpret models that use the same 4× daily EMA features to predict alcohol lapses occurring within a 24-hour window up to two weeks into the future. We examined several lags between the prediction time point and the start of the prediction window: 1 day, 3 days, 1 week, and 2 weeks. These models with lagged prediction windows provide insight into lapse risk with the added benefit of advanced warning, giving individuals extra time to make behavioral, social, or lifestyle changes. 
+In Study 2, we evaluate and interpret models that use the same 4× daily EMA features to predict alcohol lapses occurring within a 24-hour window up to two weeks into the future. These models with lagged prediction windows provide insight into lapse risk with the added benefit of advanced warning, giving individuals extra time to make behavioral, social, or lifestyle changes. 
 
-In Study 3, we extended lapse prediction to opioid use using a national sample of participants with opioid use disorder. This allowed us to evaluate whether lapse prediction algorithms generalize beyond alcohol to substances where use is illegal and lapses may be underreported. The dataset also included greater diversity in race/ethnicity, income, and geographic location (i.e., rural and urban settings), enabling evaluation of model fairness across a broader set of demographic groups. Model features were derived from both 1× daily EMA and self-contextualized geolocation sensing.
+In Study 3, we extended lapse prediction to opioid use using a national sample of participants with opioid use disorder. This allowed us to evaluate whether lapse prediction algorithms generalize beyond alcohol to substances where use is illegal and lapses may be underreported. The dataset also included greater diversity in race/ethnicity, income, and geographic location (i.e., rural and urban settings), enabling a more robust evaluation of model fairness. Model features were derived from both 1× daily EMA and self-contextualized geolocation sensing.
 :::
 
 
@@ -372,7 +376,7 @@ fig_aud
 :::{.notes}
 I am going to introduce the first dataset that we used for study 1 and study 2. 
 
-Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area. All of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
+Our sample consisted of 151 participants with moderate to severe alcohol use disorder living in the Madison, WI area. As a reminder, all of our participants had a goal of abstinence which made it easier for us to identify discrete lapse onsets.
 :::
 
 
@@ -432,6 +436,8 @@ Stressful events, risky situations and pleasant events encountered since their l
 Future stressful events, risky situations and efficacy looking in the next week
 
 And any alcohol use they had not yet reported.
+
+We used all 10 EMA items plus some demographic questions to engineer our features. 
 :::
 
 ## Design
@@ -446,20 +452,21 @@ And any alcohol use they had not yet reported.
 - Outcome = lapse or no lapse
 - XGBoost algorithm
 - Grouped nested k-fold cross-validation
+- True prediction into the future
 
 
 
 ::: {.notes}
-We used all 10 EMA items plus some demographic questions to engineer our features.   
-Time and day of alcohol use was used to generate our outcome labels of lapse or no lapse.  
-Our statistical algorithm was XGBoost.   
-We used grouped nested k-fold cross-validation as our resampling method to ensure our models were evaluated on new data from new individuals
+There are a couple of additional methods details that are important to know and they apply to all three studies.
+  
+The start time and day of substance use reported on EMA was used to generate our outcome labels of lapse or no lapse. 
+
+We considered several candidate statistical algorithms, but for all studies the best performing algorithm was XGBoost.  
 
 We used grouped nested cross validation – this method produces INDEPENDENT, UNBIASED estimates of how well the model performs in NEW DATA
-That means the data used for model evaluation was not used to train the models. Our data was also grouped by participant, so all of a participant’s data was either in training or test. We are evaluating how well our model does on new people.
+That means the data used for model evaluation was not used to train the models. Our data was also grouped by participant, so all of a participant’s data was either in training or test.
 
-the other thing I want to make really clear is when I say predict I mean we are predicting on new held out test data but we are also predicting into the future. All of our features used in the models were collected before the lapse onset. 
-
+Lastly, all of our features used in the models were collected before the lapse onset. So when I say predict I mean we are predicting on new data from new individuals but we are also predicting into the future. 
 :::
 
 
@@ -500,7 +507,7 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 source("figs/ema_figs.R")
 source("figs/lag_figs.R")
 
-pp_plot_empty
+perf_ema_empty
 ```
 
 
@@ -513,29 +520,92 @@ We used area under the roc curve to evaluate model performance. auroc is the pro
 ```{r}
 #| fig-align: center
 
-pp_plot
+perf_ema
 ```
 
 
 
 :::{.notes}
-here, from top to bottom, are the distributions of posterior probabilities for auroc for predicting lapses in the next week, day, and hour. Median posterior probabilities ranged from .90, to .93. 
+here, from left to right, are the median aurocs and credible intervals for predicting lapses in the next week, day, and hour. Median posterior probabilities ranged from .90, to .93. 
 
 We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
 
-Hour model performed significantly better than Day and Week model
+Hour model performed better than Day and Week model
 
-Day model performed significantly better than Week model
+Day model performed better than Week model
+:::
+
+## Performance
+
+```{r}
+#| fig-align: center
+
+perf_ema_red
+```
 
 
-You will notice I am highlight the day model in red. This is because from here on out I will only be focussing prediction window widths of 24 hours, or 1 day. 
 
-Choose day level model because more temporally precise than week model and PPV for hour model is too low
+:::{.notes}
+Now that we established that we can predict lapse at different levels of precision we made a choice to move forward with only the day level model.
 
-Add PPV/NPV 
+This level of precision is ideal for our goal usage of the model - conveying risk information to patients in the context of a recovery monitoring support system. A week may not be precise enough and using the hour model would require us to send risk information out every hour. 
 :::
 
 
+## Model Fairness
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+fair_0lag_empty
+```
+
+
+:::{.notes}
+
+We explicitly evaluated how fair our day level models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
+:::
+
+## Model Fairness
+
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+fair_0lag_2
+```
+
+
+:::{.notes}
+
+Our models performed  worse for participants who were not white and had an income below the federal poverty line. 
+
+The largest contributing factor is likely the lack of diversity in our training data.
+
+Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group (compared to 131 in the White group). We also saw a similar pattern in our income groups (with 49 people in the below poverty group and 102 people in the above poverty group).
+
+:::
+
+## Model Fairness
+
+```{r}
+#| fig-height: 5.5
+#| fig-width: 14
+#| fig-align: center
+
+fair_0lag_all
+```
+
+
+:::{.notes}
+
+We did however have equal representation of men and women, and we still saw differences in performance. This was a bit surprising. I am not sure exactly why this difference exists but one hypothesis is that it is related to the features themself. We chose our EMA items using domain expertise from decades of research on the factors that predict relapse. However, up until 1993 women were mostly excluded from substance use treatment research. As a result, it is possible that these constructs more accurately predict relapse risk for men than women. And of course it is possible that this also applies to other groups under-represented in the literature.
+:::
 
 
 ## Average Important Features
@@ -578,7 +648,11 @@ This plot suggests that even feature categories with low average importance (e.g
 
 - We can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
 
+- A lack of diversity in the training data makes these models not yet ready for implementation
+
 - These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately
+
+
 
 :::{.notes}
 
@@ -589,7 +663,13 @@ In study 1 we found that
 
 - and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
 
+- these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
+
 - These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app
+
+- Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
+
+What's key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible. 
 
 :::
 
@@ -602,18 +682,7 @@ In study 1 we found that
 2. Evaluate and interpret models that predict <span style="color: #c5050c;">**future risk**</span> of a lapse back to alcohol use using 4x daily EMA
 
 :::{.notes}
-
-In study 1 We built models to predict immediate risk of a lapse back to alcohol use with varying temporal precision (anytime in the next week, next day, or next hour).
-
-These models can provide individuals insight into their immediate lapse risk and suggest recommendations that could be done in that moment. 
-
-Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
-
-What's key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible. 
-
-So in study 2:
-
-we built additional models to predict future risk of lapses back to alcohol use. In these models we shifted a 24 hour prediction window 1 day, 3 days, 1 week or 2 weeks into the future. 
+So in study 2, we built additional models to predict future risk of lapses back to alcohol use. In these models we shifted a 24 hour prediction window 1 day, 3 days, 1 week or 2 weeks into the future. 
 
 These “time-lagged” models could give people advanced warning to implement supports not immediately available to them, such as scheduling positive or pleasant activities, increasing social engagement, or attending a peer-led recovery meeting.
 :::
@@ -626,12 +695,12 @@ These “time-lagged” models could give people advanced warning to implement s
 ```{r}
 #| fig-align: center
 
-lag_posteriors_empty
+perf_lag_empty
 ```
 
 :::{.notes}
 
-Next I will show the posterior distributions for auROC for our lagged models, anchored to no lag on the top. 
+Next I will show the performance for our lagged models, anchored to our immediate (no lag) day level model from study 1
 
 ::::
 
@@ -640,53 +709,13 @@ Next I will show the posterior distributions for auROC for our lagged models, an
 ```{r}
 #| fig-align: center
 
-lag_posteriors
+perf_lag
 ```
 
 :::{.notes}
 As models were lagged further into the future model performance decreased. However, even at our most lagged model, 2-weeks into the future the median auROC was .84 which is typically considered good performance.
 :::
 
-## Model Fairness
-
-
-```{r}
-#| fig-height: 5.5
-#| fig-width: 14
-#| fig-align: center
-
-race_empty + income_empty + sex_empty
-```
-
-
-:::{.notes}
-
-In study 1, we failed to assess model fairness. In recent years, the machine learning field has begun to understand the critical importance of evaluating model fairness when algorithms are used to inform important decisions or recommendations. 
-
-Therefore, in study 2 we explicitly evaluated how fair our models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
-:::
-
-## Model Fairness
-
-
-```{r}
-#| fig-height: 5.5
-#| fig-width: 14
-#| fig-align: center
-
-race_no_lag + income_no_lag + sex_empty
-```
-
-
-:::{.notes}
-
-Our models performed  worse for participants who were not white and had an income below the federal poverty line. 
-
-The largest contributing factor is likely the lack of diversity in our training data.
-
-Even with our coarse dichotomous grouping of race we only had 20 participants in the not White group (compared to 131 in the White group). We also saw a similar pattern in our income groups (with 49 people in the below poverty group and 102 people in the above poverty group).
-
-:::
 
 ## Model Fairness
 
@@ -695,16 +724,32 @@ Even with our coarse dichotomous grouping of race we only had 20 participants in
 #| fig-width: 14
 #| fig-align: center
 
-race_no_lag + income_no_lag + sex_no_lag
+fair_336lag_all
 ```
 
 
 :::{.notes}
-
-We did however have equal representation of men and women, and we still saw differences in performance. I am not sure exactly why this is, but I have some hypotheses I would be happy to talk about during our discussion.
-
+Here I am showing the fairness analyses for our most lagged model (2 weeks). Given we are using the same data set it is not surprising that we saw the same fairness patterns in model performance. Though it appears these discrepancies in performance may even be worse when predicting further out into the future. 
 :::
 
+## Average Important Features
+
+```{r}
+#| fig-align: center
+
+global
+```
+
+
+:::{.notes}
+Here I am showing you the average contribution of each feature category to the model's predictions for our immediate model from study 1 in red and our two week lagged model in grey. 
+
+Several feature categories displayed sizeable differences in global importance by lag time. A couple interesting observations 
+
+The importance of abstinence self-efficacy dropped by more than 50% in the 2-week lagged model relative to the immediate model. This may indicate that self-efficacy during early recovery is unstable even across shorter periods of time such that their current self-efficacy does not strongly predict abstinence success even two weeks into the future. 
+
+Past and anticipated risky situations were more important in the 2-week lagged vs. the immediate model, suggesting that the impact of these situations on lapses back to use may be delayed.
+:::
 
 
 
@@ -714,14 +759,16 @@ We did however have equal representation of men and women, and we still saw diff
 
 - These models offer the benefit of advanced notice for treatment supports that are not immediately available
 
-- A more representative training sample is critical for developing fair models
+- Important lapse risk factors may differ depending on the time scale of the prediction
+
 
 :::{.notes}
 In study 2 we found that we can achieve clinically meaningful performance up to two weeks into the future. 
 
 Model performance did decrease when prediction windows were shifted further into the future. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
 
-Finally, these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
+Important lapse risk factors may differ depending on the time scale of the prediction
+
 :::
 
 
@@ -735,10 +782,16 @@ Finally, these models are not yet clinically implementable. The most notable fla
 3. Evaluate and interpret models that predict <span style="color: #c5050c;">**immediate risk**</span> of a lapse back to opioid use using 1x daily EMA and geolocation sensing
 
 :::{.notes}
-In the current study, we developed a machine learning model that predicts next-day opioid lapse risk using daily self-report and geolocation sensing data. Our study has several notable strengths. First, we recruited a national sample of participants across the United States who were diverse in regard to race and ethnicity, income, gender, sexual orientation, and geographic location. Second, participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published SUD prediction studies and allowed us to capture longer-term recovery trajectories. Third, our sample consisted of patients in early recovery from OUD receiving MOUD, ensuring that the study population closely reflected the intended clinical audience for our model. Fourth, we explicitly evaluated model performance across demographic subgroups to assess algorithmic fairness. Finally, we identified the most influential predictors using two complementary quantitative approaches, providing insight into the features that drive lapse risk predictions.
+Now for study three we are going to switch datasets. In this study we developed a machine learning model that predicts next-day opioid lapse risk using daily self-report and geolocation sensing data. 
+
+A couple notable differences with this dataset aside from substance of use:
+
+For this study we recruited a national sample of participants across the United States who were diverse in regard to race and ethnicity, income, gender, sexual orientation, and geographic location. 
+
+Participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published SUD prediction studies and allowed us to capture longer-term recovery trajectories.
 :::
 
-## Participants (*N* = 324)
+## Participants (*N* = 296)
 
 ```{r}
 #| fig-height: 5.5
@@ -756,7 +809,7 @@ Our sample consisted of 296 participants in the US in early recovery from opioid
 :::
 
 
-## Participants (*N* = 324)
+## Participants (*N* = 296)
 
 ```{r}
 #| fig-height: 5.5
@@ -772,7 +825,7 @@ fig_race + fig_sex
 Our sample was predominantly White, but had some more representation of Black and Hispanic participants compared to our previous sample. We had slightly more men than women.
 :::
 
-## Participants (*N* = 324)
+## Participants (*N* = 296)
 
 
 ```{r}
