@@ -20,6 +20,12 @@ title-slide-attributes:
   data-background-position: right top
 ---
 
+<!--Claire notes:
+I like the comparison to diabetes, and I'd even argue that the only reason they are treated any differently is stigma
+I'm wondering if you might benefit from having a slide before your specific aims just talking about overall what your dissertation aims to address? And then you could introduce your specific aims slide by being like "and I'm going to tackle this overall goal using three studies"?
+I'd be careful how you talk about how the opioid set is more diverse -- it's more diverse but it's not really that diverse, so I just would take care to not use super strong language (I think you did a fine job of this)
+When you talk about study 3 adherence, maybe note that the geolocation points you see are also impacted by how much a person is moving? Low points might just mean someone is stationary, has their phone off for a benign reason, etc. and not that they necessarily decided to turn it off
+For study 3 I'd reference the difference between raw and difference features (maybe with a concrete example) before you show the shapley values so that people are oriented to what those mean-->
 
 ## Substance Use Disorders
 
@@ -326,8 +332,6 @@ Geolocation sensing is a passive sensing method that could complement EMA well. 
 e.g., low location variance or increased time spent at home could signal reduced mobility, social withdrawal, or disengagement
 
 geolocation features may become even more powerful when combined with contextual information from public sources (e.g., census data, alcohol outlet density data) or from self-report (e.g., self-evaluated riskiness of specific locations). 
-
-Lastly, adding more data sources gives us more features, which can support better personalization of predictions and recommendations across individuals. Sp, the goal with geolocation data may not be to improve prediction beyond self-report EMA but to enhance coverage of risk factors and individual-level precision. 
 
 :::
 
@@ -833,7 +837,7 @@ Most participants were between 26-45 years and had an annual household income be
 ## Design
 
 - 12-month longitudinal study
-- Participants completed 1 daily suvey
+- Participants completed 1 daily survey
     - Craving, pain, risky situations, stressful events, and pleasant events
     - Depressed, angry, anxious, relaxed, and happy
     - Sleep quality
@@ -1008,8 +1012,23 @@ So for differences in past use. People who had never lapsed on study and therefo
 
 ## Conclusions
 
+- EMA remains to be a feasible and predictive signal even when measured for up to a year
+
+- GPS didn't hurt predictions but also didn't add any value above and beyond daily surveys
+
+- Prediction vs. explanatory goals
+
 :::{.notes}
-- limitations of gps
+- EMA remains to be a feasible and predictive signal even when measured over a year.
+
+ - Overall, GPS didn't hurt predictions but also didn't add any value above and beyond daily surveys. Appears to overlap with EMA. 
+
+- If all you care about is prediction, you don't need gps. If you desire a more nuanced understanding of risk across a more diverse array of risk features than gps is helpful.
+
+- GPS may be better if we did not rely on only known locations but could passively contextualize locations. May be better with more robust sensing methods.
+
+
+
 :::
 
 ## Future Directions
@@ -1017,8 +1036,6 @@ So for differences in past use. People who had never lapsed on study and therefo
 - Abstinence only sample
 
 - Idiographic time series models
-
-- Improve geolocation sensing
 
 - Expand risk features 
 
