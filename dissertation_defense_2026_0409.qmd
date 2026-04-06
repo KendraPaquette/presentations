@@ -776,7 +776,7 @@ As models were lagged further into the future model performance decreased. Howev
 :::
 
 
-## Model Fairness
+## Model Fairness (2-week lag)
 
 ```{r}
 #| fig-height: 5.85
@@ -794,14 +794,15 @@ Here I am showing the fairness analyses for our most lagged model (2 weeks). Giv
 ## Feature Importance
 
 ```{r}
-#| fig-align: center
+#| fig-align: left
+#| fig-width: 8.25
 
 global
 ```
 
 
 :::{.notes}
-Here I am showing you the average contribution of each feature category to the model's predictions for our immediate model from study 1 in red and our two week lagged model in grey. 
+Here I am showing you the average contribution of each feature category to the model's predictions for our immediate model from study 1 in red and our two week lagged model in grey. So this is that traditional characterization of overall feature importance by mean absolute shapley value.
 
 Several feature categories displayed sizeable differences in global importance by lag time. A couple interesting observations 
 
@@ -812,7 +813,16 @@ Past and anticipated risky situations were more important in the 2-week lagged v
 
 ## Feature Importance
 
+```{r}
+#| fig-align: left
+#| fig-width: 12
 
+global_no_legend + global_v2
+```
+
+:::{.notes}
+Now lets look at how the proportion of days each feature was the top feature by lag time. In red is the immediate no lag model so we see the same patterns as before there. With the two week lagged model in grey, we see that past and future risky situations remained to be a top feature. Additionally, valence and arousal emerge as top features on more days compared to the immediate model. This is interesting and suggests that although valence and arousal can fluctuate rapidly, they may reflect a vulnerability to lapse that accumulates over time, rather than immediately triggering a lapse.
+:::
 
 ## Conclusions
 
@@ -1000,7 +1010,7 @@ I will note that we have a wide range here, however it is difficult to provide a
 
 ```{r}
 #| fig-align: center
-#| fig-width: 8
+#| fig-width: 12
 
 risk2_perf_1
 ```
@@ -1013,7 +1023,7 @@ Our model performed very well with an overall auROC  of 0.94. To evaluate the in
 
 ```{r}
 #| fig-align: center
-#| fig-width: 8
+#| fig-width: 12
 
 risk2_perf_all
 ```

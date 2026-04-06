@@ -150,7 +150,7 @@ risk2_fair <- pp_dem_risk2 |>
 # performance
 risk2_perf_all <- ci_risk2 |>
   mutate(model = factor(model, levels = c("full", "ablated geolocation", "ablated daily survey",  "ablated daily survey and geolocation"),
-                        labels = c("full", "ablated geolocation", "ablated EMA", "ablated EMA and geolocation"))) |>
+                        labels = c("full", "ablated GPS", "ablated EMA", "ablated EMA and GPS"))) |>
   ggplot(aes(x = model, y = pp_median,  color = model)) + 
   geom_point(position = position_dodge(width = 0.5), size = 2) +
   geom_line(position = position_dodge(width = 0.5)) +

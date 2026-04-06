@@ -13,6 +13,8 @@ shap <- read_csv(here::here("data/lag_shap.csv"),
 
 shap_risk1 <- read_rds(here::here("data/risk1_shap.rds"))
 
+shap_risk1_336 <- read_rds(here::here("data/risk1_shap_336.rds"))
+
 
 ci_dem <- read_csv(here::here("data/lag_ci_dem.csv"), 
                    show_col_types = FALSE) |>
@@ -152,6 +154,27 @@ global_0lag_v2 <- shaps_day_max |>
         legend.position = "right") +
   coord_flip()
 
+
+n_obs <- max(shap_risk1_336$id_obs)
+
+shaps_day_max_336 <- shap_risk1_336 |>
+  group_by(id_obs) |>
+  slice_max(value) |> 
+  group_by(variable_grp) |> 
+  summarise(n = n(),
+            prop = n/n_obs) |> 
+  ungroup() 
+
+
+shaps_day_max <- shaps_day_max |> 
+  mutate(model = "No lag") |>
+  bind_rows(shaps_day_max_336 |> 
+              mutate(model = "2 weeks") |> 
+              filter(!str_detect(variable_grp, "demographic")) |> 
+              filter(!str_detect(variable_grp, "other")) |>
+              mutate(variable_grp = str_remove(variable_grp, " \\(EMA item\\)"))) |> 
+  mutate(model = factor(model, levels = c("2 weeks", "No lag")))
+
 global <- shap |>
   mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |> 
   ggplot() +
@@ -165,6 +188,36 @@ global <- shap |>
         legend.position = "right",
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   coord_flip()
+
+global_no_legend <- shap |>
+  mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |> 
+  ggplot() +
+  geom_bar(aes(x = variable_grp, y = mean_value, fill = model), 
+           stat = "identity", position = "dodge") +
+  labs(y = "Mean(|Shapley Value|)",
+       x = NULL,
+       fill = NULL) +
+  scale_fill_manual(values = c("#263238", "#c5050c")) +
+  theme(text = element_text(size = 20),
+        legend.position = "none",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  coord_flip()
+
+global_v2 <- shaps_day_max |>
+  mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |> 
+  ggplot(mapping = aes(x = variable_grp, y = prop)) +
+  geom_bar(aes(fill = model), stat = "identity", position = "dodge") +
+    labs(y = "Proportion of days as top feature",
+         x = NULL,
+         fill = NULL) +
+  scale_fill_manual(values = c("#263238", "#c5050c")) +
+  theme(text = element_text(size = 20),
+        legend.position = "right",
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  coord_flip()
+
 
 
 
