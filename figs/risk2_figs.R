@@ -6,7 +6,14 @@ theme_set(theme_classic())
 compliance <- read_csv("data/risk2_adherence.csv",
                        show_col_types = FALSE)
 
-shaps <- read_rds("data/risk2_shap.rds") 
+shaps_global <- read_rds("data/risk2_shap_global.rds") |> 
+  filter(!str_detect(variable_grp, "demographic")) |> 
+  filter(!str_detect(variable_grp, "other")) |> 
+  filter(!str_detect(variable_grp, "label_day")) |> 
+  filter(!str_detect(variable_grp, "employment")) |> 
+  filter(!str_detect(variable_grp, "orientation")) |> 
+  filter(!str_detect(variable_grp, "race")) |> 
+  filter(!str_detect(variable_grp, "gender"))
 
 pp_dem_risk2 <- read_csv("data/risk2_pp_dem.csv", show_col_types = FALSE)
 
@@ -40,17 +47,17 @@ fig_risk2_compliance <- compliance |>
 
 
 # Feature importance
-shap_levels <- shaps |> 
+shap_levels <- shaps_global |> 
   group_by(variable_grp) |>
   summarize(mean_value = mean(abs(value)), .groups = "drop") |> 
   arrange(desc(mean_value)) |> 
-  slice_head(n = 30) |> 
+  slice_head(n = 20) |> 
   arrange(mean_value) |> 
   pull(variable_grp)
 
-n_obs <- max(shaps$id_obs)
+n_obs <- max(shaps_global$id_obs)
 
-shaps_day_max <- shaps |>
+shaps_day_max <- shaps_global |>
   group_by(id_obs) |>
   slice_max(value) |> 
   group_by(variable_grp) |> 
@@ -59,7 +66,7 @@ shaps_day_max <- shaps |>
   ungroup() 
 
 
-global_risk2 <- shaps |>
+global_risk2 <- shaps_global |>
   group_by(variable_grp) |>
   summarize(mean_value = mean(abs(value)), .groups = "drop") |> 
   filter(variable_grp %in% shap_levels) |> 
@@ -71,8 +78,7 @@ global_risk2 <- shaps |>
        x = NULL,
        fill = NULL) +
   theme_classic() +
-  theme(axis.text=element_text(size=9.5),
-        legend.key.size = unit(0.25, "cm"),
+  theme(text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
         legend.position = "right") +
   coord_flip()
@@ -88,31 +94,13 @@ global_risk2_v2 <- shaps_day_max |>
        x = NULL,
        fill = NULL) +
   theme_classic() +
-  theme(axis.text=element_text(size=9.5),
+  theme(text = element_text(size = 20),
         axis.text.y = element_blank(),
         axis.ticks.y = element_blank(),
-        legend.key.size = unit(0.25, "cm"),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
         legend.position = "right") +
   coord_flip()
 
-local_risk2 <- shaps|>
-  filter(variable_grp %in% c("Past opioid use, Diff (EMA)", "Urge, Raw (EMA)", "Abstinence confidence, Raw (EMA)")) |>
-  mutate(variable_grp = factor(variable_grp, levels = c("Past opioid use, Diff (EMA)", "Urge, Raw (EMA)", "Abstinence confidence, Raw (EMA)"))) |>
-  ggplot(aes(x = rfvalue, y = value)) +
-  geom_point(alpha = .3) +
-  geom_smooth(method = "gam", formula = y ~ s(x, k = 5, bs = "cs"), se = FALSE) +
-  facet_wrap(~ variable_grp, scales = "free", ncol = 3) +
-  labs(
-    title = "SHAP Variable Relationships",
-    x = "z-score raw feature score",
-    y = "Shapley value"
-  ) +
-  theme_classic() +
-  theme(
-    strip.text = element_text(size = 8),
-    plot.title = element_text(size = 14, face = "bold")
-  )
 
 # fairness
 risk2_fair <- pp_dem_risk2 |>
@@ -147,6 +135,7 @@ risk2_fair <- pp_dem_risk2 |>
        color = NULL) +
   theme_classic() +
   theme(legend.position = "bottom",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#263238", "#c5050c")) +
   guides(color = guide_legend(nrow = 2, byrow = TRUE)) +
@@ -172,6 +161,7 @@ risk2_perf_all <- ci_risk2 |>
        color = NULL) +
   theme_classic() +
   theme(legend.position =  "none",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#c5050c", "#263238", "#263238", "#263238")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -195,6 +185,7 @@ risk2_perf_1 <- ci_risk2 |>
        color = NULL) +
   theme_classic() +
   theme(legend.position =  "none",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#c5050c", "white", "white", "white")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +

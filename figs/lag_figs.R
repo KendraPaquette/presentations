@@ -11,6 +11,8 @@ shap <- read_csv(here::here("data/lag_shap.csv"),
                        show_col_types = FALSE) |>
   mutate(model = factor(model, levels = c("2 weeks", "No lag")))
 
+shap_risk1 <- read_rds(here::here("data/risk1_shap.rds"))
+
 
 ci_dem <- read_csv(here::here("data/lag_ci_dem.csv"), 
                    show_col_types = FALSE) |>
@@ -56,6 +58,7 @@ perf_lag <- ci_lag |>
        color = NULL) +
   theme_classic() +
   theme(legend.position =  "none",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#c5050c", "#263238", "#263238", "#263238", "#263238")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -77,6 +80,7 @@ perf_lag_empty <- ci_lag |>
        color = NULL) +
   theme_classic() +
   theme(legend.position =  "none",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#c5050c", "white", "white", "white", "white")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -109,8 +113,43 @@ global_0lag <- shap |>
        x = NULL,
        fill = NULL) +
   scale_fill_manual(values = c("#c5050c")) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
   theme(text = element_text(size = 20),
-        legend.position = "none") +
+        legend.position = "none",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
+  coord_flip()
+
+n_obs <- max(shap_risk1$id_obs)
+
+shaps_day_max <- shap_risk1 |>
+  group_by(id_obs) |>
+  slice_max(value) |> 
+  group_by(variable_grp) |> 
+  summarise(n = n(),
+            prop = n/n_obs) |> 
+  ungroup() 
+
+
+shaps_day_max <- shaps_day_max |> 
+  filter(!str_detect(variable_grp, "demographic")) |>
+  filter(!str_detect(variable_grp, "other")) |>
+  mutate(variable_grp = str_remove(variable_grp, " \\(EMA item\\)"))
+
+global_0lag_v2 <- shaps_day_max |> 
+  filter(variable_grp %in% shap_levels) |>
+  mutate(variable_grp = factor(variable_grp, levels = shap_levels)) |>
+  ggplot(mapping = aes(x = variable_grp, y = prop)) +
+  geom_bar(fill = "#263238", 
+           stat = "identity", position = "dodge") +
+  labs(y = "Proportion of days as top feature",
+       x = NULL,
+       fill = NULL) +
+  theme_classic() +
+  theme(text = element_text(size = 20),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        legend.position = "right") +
   coord_flip()
 
 global <- shap |>
@@ -123,8 +162,11 @@ global <- shap |>
        fill = NULL) +
   scale_fill_manual(values = c("#263238", "#c5050c")) +
   theme(text = element_text(size = 20),
-        legend.position = "right") +
+        legend.position = "right",
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   coord_flip()
+
+
 
 # Local Shapley plot
 local_0lag <- shap |> 
@@ -189,6 +231,7 @@ ci_dem |>
        color = NULL) +
   theme_classic() +
   theme(legend.position =  "none",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#c5050c", "#263238")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -227,6 +270,7 @@ fair_0lag_all <- ci_dem |>
        color = NULL) +
   theme_classic() +
   theme(legend.position = "bottom",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#263238", "#c5050c")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -264,6 +308,7 @@ fair_0lag_empty <- ci_dem |>
        color = NULL) +
   theme_classic() +
   theme(legend.position = "bottom",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("white", "white")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -303,6 +348,7 @@ fair_0lag_2 <- ci_dem |>
        color = NULL) +
   theme_classic() +
   theme(legend.position = "bottom",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#263238", "#c5050c")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -341,6 +387,7 @@ fair_336lag_all <- ci_dem |>
        color = NULL) +
   theme_classic() +
   theme(legend.position = "bottom",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#263238", "#c5050c")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -378,6 +425,7 @@ fair_336lag_empty <- ci_dem |>
        color = NULL) +
   theme_classic() +
   theme(legend.position = "bottom",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("white", "white")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +
@@ -417,6 +465,7 @@ fair_336lag_2 <- ci_dem |>
        color = NULL) +
   theme_classic() +
   theme(legend.position = "bottom",
+        text = element_text(size = 20),
         panel.border = element_rect(colour = "black", fill = NA, linewidth = 1)) +
   scale_color_manual(values = c("#263238", "#c5050c")) +
   geom_hline(yintercept = 1.0, linetype = "dashed",  color = "#263238") +

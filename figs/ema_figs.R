@@ -26,8 +26,8 @@ perf_ema_empty <- ci |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  theme(text = element_text(size = 20))
 
 perf_ema <- ci |>
   ggplot(aes(x = model, y = median,  color = model)) + 
@@ -47,8 +47,8 @@ perf_ema <- ci |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  theme(text = element_text(size = 20))
 
 perf_ema_red <- ci |>
   ggplot(aes(x = model, y = median,  color = model)) + 
@@ -68,6 +68,6 @@ perf_ema_red <- ci |>
   geom_label(aes(x = 1, y = 1.0, label = "Perfect"),
              inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
   geom_label(aes(x = 1, y = 0.5, label = "Chance"),
-             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0)
-guides(color = guide_legend(nrow = 2, byrow = TRUE))
+             inherit.aes = FALSE, fill = "white", color = "#263238", label.size = 0) +
+  theme(text = element_text(size = 20))
 

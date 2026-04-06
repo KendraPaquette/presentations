@@ -9,7 +9,7 @@ format:
     incremental: false  
     auto-stretch: false
     logo: images/arc_logo.png
-    footer: "Dissertation Proposal"
+    footer: ""
 slide-number: false
 editor_options: 
   chunk_output_type: console
@@ -20,12 +20,7 @@ title-slide-attributes:
   data-background-position: right top
 ---
 
-<!--Claire notes:
-I like the comparison to diabetes, and I'd even argue that the only reason they are treated any differently is stigma
-I'm wondering if you might benefit from having a slide before your specific aims just talking about overall what your dissertation aims to address? And then you could introduce your specific aims slide by being like "and I'm going to tackle this overall goal using three studies"?
-I'd be careful how you talk about how the opioid set is more diverse -- it's more diverse but it's not really that diverse, so I just would take care to not use super strong language (I think you did a fine job of this)
-When you talk about study 3 adherence, maybe note that the geolocation points you see are also impacted by how much a person is moving? Low points might just mean someone is stationary, has their phone off for a benign reason, etc. and not that they necessarily decided to turn it off
-For study 3 I'd reference the difference between raw and difference features (maybe with a concrete example) before you show the shapley values so that people are oriented to what those mean-->
+
 
 ## Substance Use Disorders
 
@@ -48,11 +43,11 @@ For study 3 I'd reference the difference between raw and difference features (ma
 :::
 
 :::{.fragment}
-- Treatment Disparities exist for certain identities
+- Treatment disparities exist
 :::
 
 :::{.fragment}
-- We don't treat substance use disorders as chronic conditions
+- We do not treat substance use disorders as chronic conditions
 :::
 
 
@@ -63,7 +58,7 @@ For study 3 I'd reference the difference between raw and difference features (ma
 
 :::{.column width = "30%"}
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){.absolute top=0 right=0 height=100%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true){.absolute top=100 right=0 height=80%}
 :::
 :::
 
@@ -168,12 +163,14 @@ Given the complex nature of lapse risk, self-monitoring is difficult.
 - Prompt individuals to engage with support at times of high risk
 :::
 
+
+:::{.fragment}
+- Scalable to address unmet need
+:::
 :::
 
-
-
 :::{.column width = "50%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){height=30%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){.absolute top=100 right=0 height=80%}
 :::
 :::
 
@@ -185,6 +182,8 @@ Such a system could offer personalized, adaptive recommendations aligned with ev
 
 For example, individuals could receive daily messages about changes in their lapse risk, along with recommendations based on their key risk factors, like an urge-surfing recommendation for someone experiencing strong cravings.
 
+Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in substance use disorder treatment.
+
 :::
 
 
@@ -193,14 +192,14 @@ For example, individuals could receive daily messages about changes in their lap
 ::: {.columns}
 :::{.column width = "49%"}
 
-- Personalized adaptive recommendations  
+1. Collect densely sampled risk-relevant data
 
-:::{}
-- Prompt individuals to engage with support at times of high risk
+:::{.fragment}
+2. Access to an accurate and interpretable model
 :::
 
-:::{}
-- Scalable to address unmet need
+:::{.fragment}
+3. Perform fairly
 :::
 
 :::
@@ -209,14 +208,12 @@ For example, individuals could receive daily messages about changes in their lap
 :::
 
 :::{.column width = "50%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){height=50%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){.absolute top=100 right=0 height=80%}
 :::
 
 :::
 
 :::{.notes}
-
-Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in substance use disorder treatment.
 
 For such a system to exist, we need at least three things. 
 One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
@@ -233,14 +230,16 @@ Three, the model must perform fairly. Algorithms that perform favorably for only
 
 - 91% of Americans own a smartphone 
 
+:::{}
 - At least 85% ownership across across gender, race/ethnicity, socioeconomic status, and geographic location subgroups
+:::
 
 ::: {.fragment}
 - Frequent, longitudinal measurement of proximal risk
 :::
 
 :::{.fragment}
-- An array of techniques broadly from machine learning to accurately predict lapse risk and highlight prospective risk factors
+- An array of techniques from machine learning to predict lapse risk and highlight prospective risk factors
 :::
 
 :::{.notes}
@@ -281,7 +280,7 @@ Two sensing methods I am particularly excited about are EMA and geolocation sens
 
 
 :::{.column width = "40%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=0 right=0 height=100%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=100 right=0 height=80%}
 :::
 :::
 
@@ -322,7 +321,7 @@ EMA appears to be well tolerated with adherence rates in substance using populat
 
 
 :::{.column width = "40%"}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/location.jpg?raw=true){.absolute top=0 right=0 height=100%}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/location.jpg?raw=true){.absolute top=100 right=0 height=80%}
 :::
 :::
 
@@ -332,6 +331,38 @@ Geolocation sensing is a passive sensing method that could complement EMA well. 
 e.g., low location variance or increased time spent at home could signal reduced mobility, social withdrawal, or disengagement
 
 geolocation features may become even more powerful when combined with contextual information from public sources (e.g., census data, alcohol outlet density data) or from self-report (e.g., self-evaluated riskiness of specific locations). 
+
+:::
+
+
+## Recovery Monitoring and Support System
+
+::: {.columns}
+:::{.column width = "49%"}
+
+1. Collect densely sampled risk-relevant data
+
+:::{}
+2. Access to an accurate and interpretable model
+:::
+
+:::{}
+3. Perform fairly
+:::
+
+:::
+
+:::{.column width = "1%"}
+:::
+
+:::{.column width = "50%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true){.absolute top=100 right=0 height=80%}
+:::
+
+:::
+
+:::{.notes}
+Today I am going to present a series of studies aimed at improving continuing care for SUDS by demonstrating the feasibility of building an automated recovery monitoring and support system. Across three studies, we address key prerequisites for such a system, including assessing potential sensing methods for their ability to predict lapse with varying levels of temporal precision and evaluating the interpretability and fairness of model outputs.
 
 :::
 
@@ -346,16 +377,15 @@ geolocation features may become even more powerful when combined with contextual
 
 
 :::{.notes}
-
-Today I am going to present a series of three studies aimed to develop machine learning models for predicting lapse risk that could be used in a recovery monitoring support system.
-
 To achieve this goal, we used two clinical samples of participants in early recovery from alcohol (Studies 1–2) and opioid use (Study 3) disorders with reported goals of abstinence. 
 
-In Study 1, we evaluate and interpret three separate models that provide hour-by-hour probabilities of an immediate lapse back to alcohol use with increasing temporal precision: lapses in the next week, next day, and next hour, using features engineered from a 4X daily EMA. These immediate risk models can provide personalized support recommendations to address immediate risks for possible lapses.
+In Study 1, we evaluate and interpret three separate models that provide probabilities of an immediate lapse back to alcohol use with increasing temporal precision: lapses in the next week, next day, and next hour, using features engineered from a 4X daily EMA. These immediate risk models can provide personalized support recommendations to address risks for possible lapses in that moment.
 
 In Study 2, we evaluate and interpret models that use the same 4× daily EMA features to predict alcohol lapses occurring within a 24-hour window up to two weeks into the future. These models with lagged prediction windows provide insight into lapse risk with the added benefit of advanced warning, giving individuals extra time to make behavioral, social, or lifestyle changes. 
 
-In Study 3, we extended lapse prediction to opioid use using a national sample of participants with opioid use disorder. This allowed us to evaluate whether lapse prediction algorithms generalize beyond alcohol to substances where use is illegal and lapses may be underreported. The dataset also included greater diversity in race/ethnicity, income, and geographic location (i.e., rural and urban settings), enabling a more robust evaluation of model fairness. Model features were derived from both 1× daily EMA and self-contextualized geolocation sensing.
+In Study 3, we extended lapse prediction to opioid use using a national sample of participants with opioid use disorder. This allowed us to evaluate whether lapse prediction algorithms generalize beyond alcohol to substances where use is illegal and lapses may be underreported. We also supplemented EMA with geolocation to assess an alternative less budensome sensing method.
+
+Across all three studies we evaluated the interpretability and fairness of model outputs.
 :::
 
 
@@ -445,13 +475,6 @@ We used all 10 EMA items plus some demographic questions to engineer our feature
 :::
 
 ## Design
-
-- 3-month longitudinal study
-- Participants completed 4 surveys daily
-    - Craving, arousal, valence 
-    - Past stressful events, risky situations, pleasant events
-    - Future stressful events, risky situations, efficacy
-    - Alcohol use
 
 - Outcome = lapse or no lapse
 - XGBoost algorithm
@@ -560,7 +583,7 @@ This level of precision is ideal for our goal usage of the model - conveying ris
 
 
 ```{r}
-#| fig-height: 5.5
+#| fig-height: 5.85
 #| fig-width: 10
 #| fig-align: center
 
@@ -577,7 +600,7 @@ We explicitly evaluated how fair our day level models performed for three import
 
 
 ```{r}
-#| fig-height: 5.5
+#| fig-height: 5.85
 #| fig-width: 10
 #| fig-align: center
 
@@ -598,7 +621,7 @@ Even with our coarse dichotomous grouping of race we only had 20 participants in
 ## Model Fairness
 
 ```{r}
-#| fig-height: 5.5
+#| fig-height: 5.85
 #| fig-width: 10
 #| fig-align: center
 
@@ -612,38 +635,80 @@ We did however have equal representation of men and women, and we still saw diff
 :::
 
 
-## Average Important Features
+## Feature Importance
+
+
+
+:::{.notes}
+We can use metrics of feature importance to understand which features are influencing our models predictions on average.
+
+Since our best performing model was XGBoost we calculated Shapley values. Shapley values indicate how much a feature score for a specific observation adjusted the prediction relative to the mean prediction across all observations.
+
+:::
+
+
+## Feature Importance
 
 ```{r}
-#| fig-align: center
+#| fig-align: left
+#| fig-width: 7.5
 
 global_0lag
 ```
 
 
 :::{.notes}
-We also showed that we can use feature importance values to contextualize model performance. 
-
-We aggregated individual Shapley values across all participants and all observations to provide a relative rank ordering of the most important features. 
-
-This plot shows on average, across all participants and all observations, how much each feature category contributes to the next day model's predictions.
+We aggregated the shapley values by calculating the mean absolute shapley value across all observatios to to see how much each feature category, on average, contributes to the next day model's predictions.
 
 Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior. 
 
 Abstinence self-efficacy emerged as the second most important, indicating that participants had reasonably accurate insight into their near-term success abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.
+
+As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses. This means that past opioid use very rarely came up as an important feature when looking at individual observations. However, when someone did lapse their probability of future lapses increased exponentially.
+
+And what we really care about is what feature is most important for a specific individual on a specific day.
+
+So perhaps what we really want to know is how often these features came up as the most important feature on a given day. 
+:::
+
+## Feature Importance
+
+```{r}
+#| fig-align: left
+#| fig-width: 12
+
+global_0lag + global_0lag_v2
+```
+
+:::{.notes}
+The plot on the right summarises the proportion of observations in which each feature category had the highest Shapley value. So now considering the magnitude of the influence and the prevalance.
+
+This plot shows that although past use was the most influential feature overall, it was only the most influential feature on a subset of days. 
+
+In fact, past and future self-reported stressful events came up as the most important feature on the most days despite this having a small influence on predictions globally.
+
+Which shows that that while some features have low average importance (across all individuals and observations), they can be highly important on certain days for certain individuals. 
+
+Thus, this approach more closely aligns with our precision-guided goal of understanding which risk factor is most influential for a specific individual at a specific moment. 
+
 :::
 
 
 ## Conclusions
 
-- We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
+- We can predict probabilities of lapse at varying levels of temporal precision with excellent performance
 
+:::{.fragment}
 - We can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
+:::
 
+:::{.fragment}
 - A lack of diversity in the training data makes these models not yet ready for implementation
+:::
 
-- These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately
-
+:::{.fragment}
+- Well-suited for personalized treatment recommendations that can be done immediately
+:::
 
 
 :::{.notes}
@@ -680,6 +745,8 @@ These “time-lagged” models could give people advanced warning to implement s
 :::
 
 
+## Lagged Predictions
+
 
 
 ## Performance
@@ -712,7 +779,7 @@ As models were lagged further into the future model performance decreased. Howev
 ## Model Fairness
 
 ```{r}
-#| fig-height: 5.5
+#| fig-height: 5.85
 #| fig-width: 10
 #| fig-align: center
 
@@ -724,7 +791,7 @@ fair_336lag_all
 Here I am showing the fairness analyses for our most lagged model (2 weeks). Given we are using the same data set it is not surprising that we saw the same fairness patterns in model performance. Though it appears these discrepancies in performance may even be worse when predicting further out into the future. 
 :::
 
-## Average Important Features
+## Feature Importance
 
 ```{r}
 #| fig-align: center
@@ -743,21 +810,26 @@ The importance of abstinence self-efficacy dropped by more than 50% in the 2-wee
 Past and anticipated risky situations were more important in the 2-week lagged vs. the immediate model, suggesting that the impact of these situations on lapses back to use may be delayed.
 :::
 
+## Feature Importance
+
 
 
 ## Conclusions
 
 - We can achieve clinically meaningful performance up to 2 weeks into the future
 
-- These models offer the benefit of advanced notice for treatment supports that are not immediately available
+:::{.fragment}
+- These models offer the benefit of advanced notice for interventions not immediately available
+:::
 
+:::{.fragment}
 - Important lapse risk factors may differ depending on the time scale of the prediction
-
+:::
 
 :::{.notes}
 In study 2 we found that we can achieve clinically meaningful performance up to two weeks into the future. 
 
-Model performance did decrease when prediction windows were shifted further into the future. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
+Model performance did decrease when prediction windows were shifted further into the future. Still, the benefit of advanced notice of lapse risk so that interventions not immediately available can be implemented likely outweighs the cost to performance.
 
 Important lapse risk factors may differ depending on the time scale of the prediction
 
@@ -797,7 +869,7 @@ fig_oud
 
 
 :::{.notes}
-Our sample consisted of 296 participants in the US in early recovery from opioid use disorder. The majority of our participants had severe opioid use disorder.
+Our sample consisted of 296 participants in the US in early recovery from opioid use disorder. To be eligible, participants must have been enrolled in a medication for OUD program or recently completed a residential treatment program. The majority of our participants had severe opioid use disorder.
 :::
 
 
@@ -879,6 +951,7 @@ Each month we asked participants self-report questions about their frequently vi
 
 For places participants visited more than twice in a month we asked:
 about the type of location, what they do there, how pleasant and unpleasant their experience is there, and how much this place helps and harms their recovery from opioids.
+
 :::
 
 ## Adherence
@@ -899,8 +972,14 @@ fig_risk2_compliance
 
 :::{.column width = "50%"}
 - Mean days on study = 278.32 days (range 30-392 days)
+
+:::{}
 - 1X daily EMA adherence = 77.8% of the daily survey prompts (range 40-100%)
+:::
+
+:::{.fragment}
 - Mean daily geolocation points = 263.50 points (range 2.17-871.34 points)
+:::
 :::
 :::
 
@@ -911,6 +990,8 @@ On average participants completed 77.8% of the daily EMA prompts (range 40-100%)
 The plot on the left shows average ema completion rates by month on study
 
 daily geolocation points = 263.50 points (range 2.17-871.34 points)
+
+I will note that we have a wide range here, however it is difficult to provide an adherence summary of geolocation. Sampling rates are impacted by how much a person is moving. Low points might mean someone is stationary, it might mean they purposefully turned their geolocation tracking off or it might mean their phone died, they have poor internet connection to transmit their geolocation data or other technological issues. 
 :::
 
 
@@ -960,63 +1041,57 @@ And it certainly is much better than our models in studies 1-2
 :::
 
 
-## Average Important Features
+## Feature Importance
 
 ```{r}
 #| fig-align: left
-#| fig-width: 7
+#| fig-width: 7.5
+#| fig-height: 6
 
 global_risk2
 ```
 
 :::{.notes}
+Here are our 20 most important features. 
+
 
 Feature importance revealed the most important feature was differences in past opioid use. These feature was nearly two-fold more important than the next most important feature, raw urge ratings. This plot displays the top 30 (out of 186) feature categories, as defined by the 30 largest absolute mean shapley values.
 
 I also want to point out that although GPS may not be providing unique signal for prediction, some features still emerged as important features in the model. So it may be worthwhile still to have geolocation features in the model if we want more opportunities for intervention.
 
-As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution (in log odds). A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example only about 2% of observations contained lapses. This means that past opioid use very rarely came up as an important feature when looking at individual observations. However, when someone did lapse their probability of future lapses increased exponentially.
+
 :::
 
-## Average Important Features
+## Feature Importance
 
 ```{r}
 #| fig-align: left
 #| fig-width: 12
+#| fig-height: 6
 
 global_risk2 + global_risk2_v2
 ```
 
 :::{.notes}
-Another way we explored to determine feature importance was by calculating the proportion of observations in which each feature category had the highest Shapley value. This approach summarizes how frequently a feature category is influential across observations (i.e., considering both magnitude and prevalence). 
+
 
 In this approach, the most important feature was raw urge ratings, followed by raw abstinence confidence ratings. Differences in past opioid use was the third most important feature by this method, suggesting that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. Notably, in this approach several additional comparably important features emerged, including differences in past pleasant experiences, differences in past stimulant use, and differences in time spent in helpful locations.
 :::
 
 
-## Individual Important Features
-
-```{r}
-#| fig-align: center
-#| fig-width: 14
-
-local_risk2
-```
-
-:::{.notes}
-To understand the direction in which these feature categories adjusted the lapse risk predictions, we plotted Shapley-feature value partial dependence plots. Here I am showing you plots for the top three features. On the X-axis is feature value, you can think of the scores in terms of low, medium, high. And on the Y-axis is shapley value, so how much the prediction is being adjusted, with higher values increasing risk and lower values lowering risk.
-
-So for differences in past use. People who had never lapsed on study and therefore had a difference score of 0 had the lowest risk of future lapse. And unsurprisingly lapse risk increased dramatically when there were more frequent recent lapses compared to their overall baseline. Both urge and abstinence confidence had linear relationships with lapse risk. Higher urges and lower confidence in one's ability to maintain abstinence indicated high lapse risk.
-:::
 
 
 ## Conclusions
 
 - EMA remains to be a feasible and predictive signal even when measured for up to a year
 
+:::{.fragment}
 - GPS didn't hurt predictions but also didn't add any value above and beyond daily surveys
+:::
 
+:::{.fragment}
 - Prediction vs. explanatory goals
+:::
 
 :::{.notes}
 - EMA remains to be a feasible and predictive signal even when measured over a year.
@@ -1088,6 +1163,13 @@ Right now we’re using our model outputs us inputs into an LLM But, we could im
 :::
 
 
-## Acknowledgements 
+## Thank You! 
 
+
+:::{.notes}
+John for letting me lead these exciting analyses for his grants, mentorship
+Lab 
+Cohort
+Family
+:::
 
