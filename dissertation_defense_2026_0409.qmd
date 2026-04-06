@@ -32,10 +32,10 @@ title-slide-attributes:
 
 :::{.fragment}
 - Initial treatments are effective
-:::
 
-:::{.fragment}
+:::{}
 - 1 in 10 individuals receive treatment
+:::
 :::
 
 :::{.fragment}
@@ -44,10 +44,6 @@ title-slide-attributes:
 
 :::{.fragment}
 - Treatment disparities exist
-:::
-
-:::{.fragment}
-- We do not treat substance use disorders as chronic conditions
 :::
 
 
@@ -69,15 +65,21 @@ We have effective Medication and psychosocial interventions. But, nearly 90% of 
 
 For those who do receive care, treatment is often brief and episodic. Many individuals enter care only when symptoms are severe and risk is high. At the same time, services are time-limited, resources are constrained, and providers frequently operate at or beyond capacity. As a result, patients often leave treatment without adequate supports in place, contributing to a “revolving door” pattern in which individuals cycle repeatedly through acute episodes of care.
 
-These limitations are magnified for people with certain identities. Women, low income individuals, rural residents, and older adults may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. Marginalized groups, such as racial, ethnic, and sexual minorities may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.
+These limitations are magnified for people for certain demographic subgroups who may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. And marginalized groups may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.
 
+:::
+
+
+##
+
+
+:::{.notes}
 Our treatment for substance use disorders stands in stark contrast to how we treat other chronic conditions.
 
 When someone has diabetes, we would never expect a brief episode of care to be sufficient; instead, we rely on ongoing monitoring, adherence to treatment, regular clinical follow-up, and healthy lifestyle choices to manage risk over time. 
 
 Substance use disorders are no different—except in how we treat them.
 :::
-
 
 ## Continuing Care
 
