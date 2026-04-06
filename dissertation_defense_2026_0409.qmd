@@ -747,6 +747,11 @@ These “time-lagged” models could give people advanced warning to implement s
 
 ## Lagged Predictions
 
+![](https://github.com/KendraPaquette/presentations/blob/main/images/methods_figure_no_lag.jpg?raw=true){fig-align="center"}
+
+
+## Lagged Predictions
+![](https://github.com/KendraPaquette/presentations/blob/main/images/methods_figure.jpg?raw=true){fig-align="center"}
 
 
 ## Performance
@@ -791,7 +796,7 @@ fair_336lag_all
 Here I am showing the fairness analyses for our most lagged model (2 weeks). Given we are using the same data set it is not surprising that we saw the same fairness patterns in model performance. Though it appears these discrepancies in performance may even be worse when predicting further out into the future. 
 :::
 
-## Feature Importance
+## Feature Importance (2-week lag)
 
 ```{r}
 #| fig-align: left
@@ -811,7 +816,7 @@ The importance of abstinence self-efficacy dropped by more than 50% in the 2-wee
 Past and anticipated risky situations were more important in the 2-week lagged vs. the immediate model, suggesting that the impact of these situations on lapses back to use may be delayed.
 :::
 
-## Feature Importance
+## Feature Importance (2-week lag)
 
 ```{r}
 #| fig-align: left
