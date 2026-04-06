@@ -73,6 +73,8 @@ These limitations are magnified for people for certain demographic subgroups who
 ##
 
 
+![](https://github.com/KendraPaquette/presentations/blob/main/images/diabetes.jpg?raw=true){fig-align="center"}
+
 :::{.notes}
 Our treatment for substance use disorders stands in stark contrast to how we treat other chronic conditions.
 
