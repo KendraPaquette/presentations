@@ -28,7 +28,7 @@ title-slide-attributes:
 
 :::{.column width = "66%"}
 
-- Chronic condition
+- Chronic conditions
 
 :::{.fragment}
 - Initial treatments are effective
@@ -73,7 +73,9 @@ These limitations are magnified for people for certain demographic subgroups who
 ##
 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/diabetes.jpg?raw=true){fig-align="center"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/diabetes_2.png?raw=true){.absolute left=200 height="80%"}
+
+
 
 :::{.notes}
 Our treatment for substance use disorders stands in stark contrast to how we treat other chronic conditions.
@@ -120,11 +122,11 @@ How risky is today? What do I need right now? Which recovery tool should I use a
 :::
 
 :::{.fragment}
-- Risk factors fluctuate and differ across individuals and within individuals over time
+- Risk factors differ across individuals and within individuals over time
 :::
 
 :::{.fragment}
-- Self-monitoring of risk is difficult
+- Self-monitoring is difficult
 :::
 
 
@@ -199,7 +201,7 @@ Moreover, it would provide a scalable option for long-term monitoring, addressin
 1. Collect densely sampled risk-relevant data
 
 :::{.fragment}
-2. Access to an accurate and interpretable model
+2. Access an accurate and interpretable model
 :::
 
 :::{.fragment}
@@ -239,7 +241,7 @@ Three, the model must perform fairly. Algorithms that perform favorably for only
 :::
 
 ::: {.fragment}
-- Frequent, longitudinal measurement of proximal risk
+- Frequent longitudinal measurement of proximal risk
 :::
 
 :::{.fragment}
@@ -263,7 +265,7 @@ Two sensing methods I am particularly excited about are EMA and geolocation sens
 
 
 
-## EMA
+## Ecological Momentary Assessment
 
 :::{.columns}
 :::{.column width = "58%"}
@@ -655,7 +657,8 @@ Since our best performing model was XGBoost we calculated Shapley values. Shaple
 
 ```{r}
 #| fig-align: left
-#| fig-width: 7.5
+#| fig-width: 7.3
+#| fig-height: 5.75
 
 global_0lag
 ```
@@ -680,6 +683,7 @@ So perhaps what we really want to know is how often these features came up as th
 ```{r}
 #| fig-align: left
 #| fig-width: 12
+#| fig-height: 5.85
 
 global_0lag + global_0lag_v2
 ```
@@ -788,7 +792,7 @@ As models were lagged further into the future model performance decreased. Howev
 ## Model Fairness (2-week lag)
 
 ```{r}
-#| fig-height: 5.85
+#| fig-height: 5.7
 #| fig-width: 10
 #| fig-align: center
 
@@ -804,7 +808,8 @@ Here I am showing the fairness analyses for our most lagged model (2 weeks). Giv
 
 ```{r}
 #| fig-align: left
-#| fig-width: 8.25
+#| fig-width: 8.1
+#| fig-height: 5.75
 
 global
 ```
@@ -825,6 +830,7 @@ Past and anticipated risky situations were more important in the 2-week lagged v
 ```{r}
 #| fig-align: left
 #| fig-width: 12
+#| fig-height: 5.85
 
 global_no_legend + global_v2
 ```
@@ -993,7 +999,7 @@ fig_risk2_compliance
 - Mean days on study = 278.32 days (range 30-392 days)
 
 :::{}
-- 1X daily EMA adherence = 77.8% of the daily survey prompts (range 40-100%)
+- 1X daily EMA adherence = 77.8% (range 40-100%)
 :::
 
 :::{.fragment}
@@ -1019,7 +1025,7 @@ I will note that we have a wide range here, however it is difficult to provide a
 
 ```{r}
 #| fig-align: center
-#| fig-width: 12
+#| fig-width: 10
 
 risk2_perf_1
 ```
@@ -1032,7 +1038,7 @@ Our model performed very well with an overall auROC  of 0.94. To evaluate the in
 
 ```{r}
 #| fig-align: center
-#| fig-width: 12
+#| fig-width: 10
 
 risk2_perf_all
 ```
@@ -1045,6 +1051,7 @@ Model performance was comparable when geolocation features were removed from the
 ## Model Fairness
 ```{r}
 #| fig-align: center
+#| fig-height: 5.85
 
 risk2_fair
 ```
@@ -1102,30 +1109,30 @@ In this approach, the most important feature was raw urge ratings, followed by r
 
 ## Conclusions
 
-- EMA remains to be a feasible and predictive signal even when measured for up to a year
+- EMA is a feasible even when measured for up to a year
 
 :::{.fragment}
-- GPS didn't hurt predictions but also didn't add any value above and beyond daily surveys
+- GPS does not offer any unique incremental predictive value beyond EMA
 :::
 
 :::{.fragment}
-- Prediction vs. explanatory goals
+- It may still be worthwhile to include GPS features
 :::
 
 :::{.notes}
-- EMA remains to be a feasible and predictive signal even when measured over a year.
+EMA remains to be a feasible and predictive signal even when measured over a year.
 
- - Overall, GPS didn't hurt predictions but also didn't add any value above and beyond daily surveys. Appears to overlap with EMA. 
+If the goal is prediction, GPS features are not necessary as they do not offer any unique incremental predictive value beyond EMA. 
 
-- If all you care about is prediction, you don't need gps. If you desire a more nuanced understanding of risk across a more diverse array of risk features than gps is helpful.
+However, if the goal is to have a more nuanced understanding of lapse risk across a more diverse array of risk features than GPS is helpful. Adding GPS features did not hurt model performance and several of them emerged in the top subset of features. 
 
-- GPS may be better if we did not rely on only known locations but could passively contextualize locations. May be better with more robust sensing methods.
-
-
+These findings suggest that although GPS features may not provide unique signal for prediction, it may be worthwhile to still include them in the model to expand opportunities for intervention and provide precision-oriented recovery support.
 
 :::
 
 ## Future Directions
+
+- Improve GPS sensing
 
 - Abstinence only sample
 

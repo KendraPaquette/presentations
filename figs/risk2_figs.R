@@ -120,8 +120,8 @@ risk2_fair <- pp_dem_risk2 |>
                                          "below poverty",
                                          "small town/rural",
                                          "not heterosexual"), 
-                            "Disadvantaged (not male, Hispanic and/or not White, <$25,000 income, rural, not heterosexual)",
-                            "Advantaged (male, non-Hispanic White, $25,000+ income, urban, heterosexual)"),
+                            "Disadvantaged (not male, Hispanic and/or not White, <$25,000, not heterosexual, rural)",
+                            "Advantaged (male, non-Hispanic White, $25,000+, heterosexual, urban)"),
          fairness = factor(fairness),
          group = factor(group, levels = c("Gender", "Race",
                                           "Income", "Orientation", "Geography"))) |>  
