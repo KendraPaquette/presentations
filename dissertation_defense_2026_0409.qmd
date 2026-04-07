@@ -73,7 +73,7 @@ These limitations are magnified for people for certain demographic subgroups who
 ##
 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/diabetes_2.png?raw=true){.absolute left=200 height="80%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/diabetes_2.png?raw=true){.absolute top=100 left=200 height="80%"}
 
 
 
@@ -755,11 +755,7 @@ These “time-lagged” models could give people advanced warning to implement s
 
 ## Lagged Predictions
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/methods_figure_no_lag.jpg?raw=true){fig-align="center"}
-
-
-## Lagged Predictions
-![](https://github.com/KendraPaquette/presentations/blob/main/images/methods_figure.jpg?raw=true){fig-align="center"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 right=200 height=80%}
 
 
 ## Performance

@@ -347,7 +347,7 @@ fair_0lag_empty <- ci_dem |>
                                          "not white",
                                          "below poverty"), 
                             "Disadvantaged (Hispanic and/or not White, <$25,000, female)",
-                            "Advantaged (non-Hispanic White, $25,000+ income, male)"),
+                            "Advantaged (non-Hispanic White, $25,000+, male)"),
          fairness = factor(fairness),
          group = factor(group, levels = c("Race",
                                           "Income", "Sex"))) |>  
