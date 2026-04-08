@@ -257,7 +257,7 @@ The proliferation of smartphone usage in recent years makes smartphone sensing a
 Smartphone sensing approaches can provide the frequent, longitudinal measurement of proximal risk factors that is necessary for prediction of future lapses with high temporal precision.
 
 
-Machine learning models can handle high dimensional sensing feature sets and can accommodate non-linear and interactive relationships between features and lapse probability. Methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time. 
+Machine learning models can handle high dimensional sensing feature sets and can accommodate non-linear and interactive relationships between features and lapse probability. And methods from interpretable machine learning can be used to understand which risk features contribute most strongly to a lapse prediction for a specific individual at a specific moment in time. 
 
 Two sensing methods I am particularly excited about are EMA and geolocation sensing.
 :::
@@ -365,7 +365,7 @@ geolocation features may become even more powerful when combined with contextual
 :::
 
 :::{.notes}
-Today I am going to present a series of studies aimed at improving continuing care for SUDS by demonstrating the feasibility of building an automated recovery monitoring and support system. Across three studies, we address key prerequisites for such a system, including assessing potential sensing methods for their ability to predict lapse accurately and timely and evaluating the interpretability and fairness of model outputs.
+Today I am going to present a series of studies aimed at improving continuing care for SUDS by demonstrating the feasibility of building an automated recovery monitoring and support system. Across three studies, I will address the key features needed for such a system, including assessing potential sensing methods for their ability to predict lapse accurately and timely and evaluating the interpretability and fairness of model outputs.
 
 :::
 
@@ -380,11 +380,11 @@ Today I am going to present a series of studies aimed at improving continuing ca
 
 
 :::{.notes}
-To achieve this goal, we used two clinical samples of participants in early recovery from alcohol (Studies 1–2) and opioid use (Study 3) disorders with reported goals of abstinence. 
+To achieve this goal, we used two clinical samples of participants in early recovery from alcohol use disorder (Studies 1–2) and opioid use disorder (Study 3) with reported goals of abstinence. 
 
-In Study 1, we evaluate and interpret three separate models that provide probabilities of an immediate lapse back to alcohol use with increasing temporal precision: lapses in the next week, next day, and next hour, using features engineered from a 4X daily EMA. These immediate risk models can provide personalized support recommendations to address risks for possible lapses in that moment.
+In Study 1, we evaluated and interpreted three separate models that provided probabilities of an immediate lapse back to alcohol use with increasing temporal precision: lapses in the next week, next day, and next hour, using features engineered from a 4X daily EMA. These immediate risk models can provide personalized support recommendations to address risks for possible lapses in that moment.
 
-In Study 2, we evaluate and interpret models that use the same 4× daily EMA features to predict alcohol lapses occurring within a 24-hour window up to two weeks into the future. These models with lagged prediction windows provide insight into lapse risk with the added benefit of advanced warning, giving individuals extra time to make behavioral, social, or lifestyle changes. 
+In Study 2, we evaluated and interpreted models that use the same 4× daily EMA features to predict alcohol lapses occurring within a 24-hour window up to two weeks into the future. These models with lagged prediction windows provide insight into lapse risk with the added benefit of advanced warning, giving individuals extra time to make behavioral, social, or lifestyle changes. 
 
 In Study 3, we extended lapse prediction to opioid use using a national sample of participants with opioid use disorder. This allowed us to evaluate whether lapse prediction algorithms generalize beyond alcohol to substances where use is illegal and lapses may be underreported. We also supplemented EMA with geolocation to assess an alternative less budensome sensing method.
 
@@ -528,6 +528,19 @@ Participants on average completed 3 of the 4 EMAs each day and completed at leas
 The plot on the left shows the percentage of EMA completion looking at the full 4x daily protocol (in red) and completion of at least 1 daily EMA (in grey) over the number of weeks on study. We found participants on average were able to sustain high rates of EMA completion over the full three months.
 :::
 
+## Immediate Models
+
+
+:::{.notes}
+We fit three immediate models that differed in the width of the prediction window.
+
+Prediction window widths were 1 week, 1 day, and 1 hour (shown in yellow).
+
+the vertical dashed line represents the prediction time point (so when we are making the prediction). 
+
+So from top to bottom we are predicting whether at a specific timepoint someone will lapse back to alcohol use in the next week, next day, or next hour.
+:::
+
 
 ## Performance
 
@@ -542,7 +555,7 @@ perf_ema_empty
 
 
 :::{.notes}
-We used area under the roc curve to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
+We used area under the roc curve (auROC) to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
 :::
 
 ## Performance
@@ -556,13 +569,13 @@ perf_ema
 
 
 :::{.notes}
-here, from left to right, are the median aurocs and credible intervals for predicting lapses in the next week, day, and hour. Median posterior probabilities ranged from .90, to .93. 
+here, from left to right, are the median aurocs and credible intervals for predicting lapses in the next week, day, and hour. Median auROCs ranged from .90, to .93. 
 
-We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
+Our Hour model the far right performed better than both the Day and Week model
 
-Hour model performed better than Day and Week model
+And the Day model performed better than Week model
 
-Day model performed better than Week model
+Overall these models are doing very well as auROCs above .90 are typically considered to be excellent performance.
 :::
 
 ## Performance
@@ -576,9 +589,12 @@ perf_ema_red
 
 
 :::{.notes}
-Now that we established that we can predict lapse at different levels of precision we made a choice to move forward with only the day level model.
+We established that we can predict lapse at different levels of precision.
 
 This level of precision is ideal for our goal usage of the model - conveying risk information to patients in the context of a recovery monitoring support system. A week may not be precise enough and using the hour model would require us to send risk information out every hour. 
+
+
+Moving forward I am going to be only considering models with a 24-hour or 1 day prediction window.
 :::
 
 
@@ -764,7 +780,7 @@ I just want to be clear about what I mean when I say lagged predictions. So in s
 
 In this study my prediction window widths are all 24 hours (shown in yellow)
 
-the vertical dashed line represents the prediction time point (so when we are making the prediction). 
+like before the vertical dashed line represents the prediction time point 
 
 :::
 
