@@ -536,12 +536,11 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 
 :::{.notes}
 We fit three immediate models that differed in the width of the prediction window.
+The prediction windows were 1 week, 1 day, and 1 hour (shown in yellow).
 
-Prediction window widths were 1 week, 1 day, and 1 hour (shown in yellow).
+The vertical dashed line represents the prediction time point—when the model is making the prediction.
 
-the vertical dashed line represents the prediction time point (so when we are making the prediction). 
-
-So from top to bottom we are predicting whether at a specific timepoint someone will lapse back to alcohol use in the next week, next day, or next hour.
+So moving from top to bottom, we’re asking: at this exact moment, will the person lapse in the next week, next day, or next hour?
 :::
 
 
@@ -574,7 +573,7 @@ perf_ema
 :::{.notes}
 here, from left to right, are the median aurocs and credible intervals for predicting lapses in the next week, day, and hour. Median auROCs ranged from .90, to .93. 
 
-Our Hour model the far right performed better than both the Day and Week model
+Our Hour model on the far right performed better than both the Day and Week model
 
 And the Day model performed better than Week model
 
@@ -598,9 +597,9 @@ But lets briefly zoom back out to our broader goal—building a recovery monitor
 
 A weekly prediction window is likely too coarse to be actionable, while an hourly model would require delivering risk updates every hour, which is not practical in a real-world setting.
 
-In contrast, the next day (or next 24-hour) prediction window strikes a balance between precision and usability. It allows us to provide timely, meaningful risk information without overwhelming the individual.
+In contrast, the next day (or next 24-hour) prediction window strikes a balance between these two extremes. It allows us to provide timely, meaningful risk information without overwhelming the individual.
 
-Moving forward, I will focus exclusively on models 24-hour prediction windows.
+Moving forward, I am going to focus exclusively on models with 24-hour prediction windows.
 :::
 
 
@@ -618,7 +617,7 @@ fair_0lag_empty
 
 :::{.notes}
 
-We explicitly evaluated how fair our next day models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
+We explicitly evaluated how fair our next day models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (Hispanic and/or not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
 :::
 
 ## Model Fairness (Next-day)
@@ -684,7 +683,7 @@ global_0lag
 
 
 :::{.notes}
-We aggregated the shapley values by calculating the mean absolute shapley value across all observations to see how much each feature category, on average, contributes to the next day model's predictions.
+We aggregated the shapley values by calculating the mean absolute shapley value across all observations to see how much each feature, on average, contributed to the next day model's predictions.
 
 Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior. 
 
@@ -739,15 +738,15 @@ This shows that that while some features may have low average importance (across
 In study 1 we found that
 
 
-- We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance
+We can predict probabilities of lapse at varying levels of temporal precision with excellent performance
 
-- and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
+and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
 
-- these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
+these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.
 
-- These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app
+These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app
 
-- Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
+Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
 
 What's key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible. 
 
@@ -778,7 +777,7 @@ These “time-lagged” models could give people advanced warning to implement s
 
 :::{.notes}
 
-I just want to be clear about what I mean when I say lagged predictions. So in study one I was manipulating the prediction window width that is will a lapse occur in the next week, next day, or hour. 
+I just want to take a moment to be clear about what I mean when I say lagged predictions. So in study one I was manipulating the prediction window width. 
 
 In this study my prediction window widths are all 24 hours (shown in yellow)
 
@@ -798,7 +797,7 @@ like before the vertical dashed line represents the prediction time point
 
 :::{.notes}
 
-This first row depicts the immediate model I showed you previously. At a specific time point what is the probability of a lapse in the next hour.
+This first row depicts the immediate model I showed you previously. At a specific time point what is the probability of a lapse in the next 24 hours
 
 In the following rows I begin to lag this prediction window further away from the prediction timepoint with the grey shaded portion of the bar representing this lag time.
 
@@ -891,7 +890,7 @@ perf_lag
 ```
 
 :::{.notes}
-As models were lagged further into the future model performance decreased. However, even at our most lagged model, 2-weeks into the future the median auROC was .84 which is typically considered good performance.
+As models were lagged further into the future model performance decreased. However, even at our most lagged model, 2-weeks into the future the median auROC was .84 which is considered good performance.
 :::
 
 
@@ -922,7 +921,7 @@ global
 
 
 :::{.notes}
-Here I am showing you the average contribution of each feature category to the model's predictions for our immediate model from study 1 in red and our two week lagged model in grey. So this is that traditional characterization of overall feature importance by mean absolute shapley value.
+Here are the average contribution of each feature to the model's predictions for our immediate model from study 1 in red and our two week lagged model in grey. So this is that traditional characterization of overall feature importance by mean absolute shapley value.
 
 Several feature categories displayed sizeable differences in global importance by lag time. A couple interesting observations 
 
@@ -1295,6 +1294,8 @@ Another option is to allow individuals to self-define goal-inconsistent use (e.g
 - Improve GPS sensing
 
 - Include individuals with non-abstinent recovery goals
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/happy.png?raw=true){.absolute top=320 left=350 height="48%"}
 
 
 :::{.notes}

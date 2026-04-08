@@ -720,10 +720,9 @@ Kendra Wyant
 <h2>Immediate Models</h2>
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/immediate.png?raw=true" class="absolute" style="top: 100px; left: 150px; height: 80%; "></p>
 <aside class="notes">
-<p>We fit three immediate models that differed in the width of the prediction window.</p>
-<p>Prediction window widths were 1 week, 1 day, and 1 hour (shown in yellow).</p>
-<p>the vertical dashed line represents the prediction time point (so when we are making the prediction).</p>
-<p>So from top to bottom we are predicting whether at a specific timepoint someone will lapse back to alcohol use in the next week, next day, or next hour.</p>
+<p>We fit three immediate models that differed in the width of the prediction window. The prediction windows were 1 week, 1 day, and 1 hour (shown in yellow).</p>
+<p>The vertical dashed line represents the prediction time point—when the model is making the prediction.</p>
+<p>So moving from top to bottom, we’re asking: at this exact moment, will the person lapse in the next week, next day, or next hour?</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -774,7 +773,7 @@ Kendra Wyant
 </div>
 <aside class="notes">
 <p>here, from left to right, are the median aurocs and credible intervals for predicting lapses in the next week, day, and hour. Median auROCs ranged from .90, to .93.</p>
-<p>Our Hour model the far right performed better than both the Day and Week model</p>
+<p>Our Hour model on the far right performed better than both the Day and Week model</p>
 <p>And the Day model performed better than Week model</p>
 <p>Overall these models are doing very well - auROCs above .90 are typically considered to be excellent performance.</p>
 <style type="text/css">
@@ -804,8 +803,8 @@ Kendra Wyant
 <p>So we’ve established that we can predict lapse at different levels of precision.</p>
 <p>But lets briefly zoom back out to our broader goal—building a recovery monitoring and support system that communicates daily risk to individuals.</p>
 <p>A weekly prediction window is likely too coarse to be actionable, while an hourly model would require delivering risk updates every hour, which is not practical in a real-world setting.</p>
-<p>In contrast, the next day (or next 24-hour) prediction window strikes a balance between precision and usability. It allows us to provide timely, meaningful risk information without overwhelming the individual.</p>
-<p>Moving forward, I will focus exclusively on models 24-hour prediction windows.</p>
+<p>In contrast, the next day (or next 24-hour) prediction window strikes a balance between these two extremes. It allows us to provide timely, meaningful risk information without overwhelming the individual.</p>
+<p>Moving forward, I am going to focus exclusively on models with 24-hour prediction windows.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -830,7 +829,7 @@ Kendra Wyant
 </div>
 </div>
 <aside class="notes">
-<p>We explicitly evaluated how fair our next day models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs.&nbsp;non-Hispanic White), income (below poverty vs.&nbsp;above poverty), and sex at birth (female vs.&nbsp;male).</p>
+<p>We explicitly evaluated how fair our next day models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (Hispanic and/or not White vs.&nbsp;non-Hispanic White), income (below poverty vs.&nbsp;above poverty), and sex at birth (female vs.&nbsp;male).</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -924,7 +923,7 @@ Kendra Wyant
 </div>
 </div>
 <aside class="notes">
-<p>We aggregated the shapley values by calculating the mean absolute shapley value across all observations to see how much each feature category, on average, contributes to the next day model’s predictions.</p>
+<p>We aggregated the shapley values by calculating the mean absolute shapley value across all observations to see how much each feature, on average, contributed to the next day model’s predictions.</p>
 <p>Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior.</p>
 <p>Abstinence self-efficacy emerged as second most important, indicating that participants had reasonably accurate insight into their near-term abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.</p>
 <p>As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses and just under half of our participants didn’t lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.</p>
@@ -991,13 +990,11 @@ Kendra Wyant
 </div>
 <aside class="notes">
 <p>In study 1 we found that</p>
-<ul>
-<li><p>We can predict hour by hour probabilities of lapse at varying levels of temporal precision with excellent performance</p></li>
-<li><p>and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time</p></li>
-<li><p>these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.</p></li>
-<li><p>These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app</p></li>
-<li><p>Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.</p></li>
-</ul>
+<p>We can predict probabilities of lapse at varying levels of temporal precision with excellent performance</p>
+<p>and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time</p>
+<p>these models are not yet clinically implementable. The most notable flaw being the unfairness of model performance for non-majority groups.</p>
+<p>These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app</p>
+<p>Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.</p>
 <p>What’s key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1036,7 +1033,7 @@ Kendra Wyant
 <h2>Lagged Predictions</h2>
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true" class="absolute" style="z-index:1;top: 100px; left: 150px; height: 80%; "></p>
 <aside class="notes">
-<p>I just want to be clear about what I mean when I say lagged predictions. So in study one I was manipulating the prediction window width that is will a lapse occur in the next week, next day, or hour.</p>
+<p>I just want to take a moment to be clear about what I mean when I say lagged predictions. So in study one I was manipulating the prediction window width.</p>
 <p>In this study my prediction window widths are all 24 hours (shown in yellow)</p>
 <p>like before the vertical dashed line represents the prediction time point</p>
 <style type="text/css">
@@ -1056,7 +1053,7 @@ Kendra Wyant
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true" class="absolute" style="z-index:1;top: 100px; left: 150px; height: 80%; "></p>
 <p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/arrow.png?raw=true" class="absolute" style="z-index:2;top: 225px; left: 150px; height: 10%; "></p>
 <aside class="notes">
-<p>This first row depicts the immediate model I showed you previously. At a specific time point what is the probability of a lapse in the next hour.</p>
+<p>This first row depicts the immediate model I showed you previously. At a specific time point what is the probability of a lapse in the next 24 hours</p>
 <p>In the following rows I begin to lag this prediction window further away from the prediction timepoint with the grey shaded portion of the bar representing this lag time.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1179,7 +1176,7 @@ Kendra Wyant
 </div>
 </div>
 <aside class="notes">
-<p>As models were lagged further into the future model performance decreased. However, even at our most lagged model, 2-weeks into the future the median auROC was .84 which is typically considered good performance.</p>
+<p>As models were lagged further into the future model performance decreased. However, even at our most lagged model, 2-weeks into the future the median auROC was .84 which is considered good performance.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1229,7 +1226,7 @@ Kendra Wyant
 </div>
 </div>
 <aside class="notes">
-<p>Here I am showing you the average contribution of each feature category to the model’s predictions for our immediate model from study 1 in red and our two week lagged model in grey. So this is that traditional characterization of overall feature importance by mean absolute shapley value.</p>
+<p>Here are the average contribution of each feature to the model’s predictions for our immediate model from study 1 in red and our two week lagged model in grey. So this is that traditional characterization of overall feature importance by mean absolute shapley value.</p>
 <p>Several feature categories displayed sizeable differences in global importance by lag time. A couple interesting observations</p>
 <p>The importance of abstinence self-efficacy dropped by more than 50% in the 2-week lagged model relative to the immediate model. This may indicate that self-efficacy during early recovery is unstable even across shorter periods of time such that their current self-efficacy does not strongly predict abstinence success even two weeks into the future.</p>
 <p>Past and anticipated risky situations were more important in the 2-week lagged vs.&nbsp;the immediate model, suggesting that the impact of these situations on lapses back to use may be delayed.</p>
@@ -1667,13 +1664,94 @@ Kendra Wyant
 <section id="future-directions" class="slide level2">
 <h2>Future Directions</h2>
 <ul>
-<li><p>Improve GPS sensing</p></li>
-<li><p>Abstinence only sample</p></li>
-<li><p>Idiographic time series models</p></li>
-<li><p>Expand risk features</p></li>
+<li>Expand risk features</li>
 </ul>
+<aside class="notes">
+<p>In terms of where to go next. One consideration might be to extend the number of risk features we are measuring to increase our ability to personalize recommendations.</p>
+<p>EMA was shown to be a robust sensing method for lapse prediction even when dropped to only 1 daily survey. Adding additional items could improve model performance among subgroups where performance disparities exist. For example, some research suggests interpersonal relationship problems and hormonal changes are more salient lapse risk factors for women compared to men. However, we can’t add too many additional items without making our survey immensely more burdensome for people to complete.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="future-directions-1" class="slide level2">
+<h2>Future Directions</h2>
+<ul>
+<li><p>Expand risk features</p></li>
+<li><p>Improve GPS sensing</p></li>
+</ul>
+<aside class="notes">
+<p>One way to expand risk features without increasing burden is to supplement self-report data with more passive sensing methods. We started to do this with GPS data in study 3.</p>
+<p>And while our results may appear somewhat discouraging for its predictive value it does much better than other passive methods I have explored like cellular communications. So I believe theres still a case to be made for using GPS data and we had some methodological limitations worth noting.</p>
+<p>First Although geolocation data can, in principle, be collected continuously, in practice these data are difficult to collect reliably. In our study, geolocation features had substantially higher rates of missingness compared to daily surveys.</p>
+<p>Second, our feature engineering pipeline relied on known locations with self-reported context. Passive methods for contextualizing location could provide risk-relevant contextual information across the full range of locations participants visited. For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations).</p>
+<p>As geolocation sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="future-directions-2" class="slide level2">
+<h2>Future Directions</h2>
+<ul>
+<li><p>Expand risk features</p></li>
+<li><p>Improve GPS sensing</p></li>
+<li><p>Include individuals with non-abstinent recovery goals</p></li>
+</ul>
+<aside class="notes">
+<p>Another area important to explore is how our models might generalize to individuals with non-abstinent recovery goals.</p>
+<p>Our models were trained to predict goal-inconsistent use, which for all of our participants pursuing abstinence meant any alcohol use. The definition of goal-inconsistent use is less straightforward for individuals who do not aim to abstain and may vary considerably from person to person.</p>
+<p>This may require considering alternative outcomes. For example, heavy drinking days—often defined as risky or hazardous use—may represent a more consistent marker of goal-inconsistent behavior across individuals in recovery.</p>
+<p>Another option is to allow individuals to self-define goal-inconsistent use (e.g., drinking on a weekday, drinking more than planned) and to train models in samples with more diverse recovery goals.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="future-directions-3" class="slide level2">
+<h2>Future Directions</h2>
+<ul>
+<li><p>Expand risk features</p></li>
+<li><p>Improve GPS sensing</p></li>
+<li><p>Include individuals with non-abstinent recovery goals</p></li>
+</ul>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/happy.png?raw=true" class="absolute" style="top: 320px; left: 350px; height: 48%; "></p>
+<aside class="notes">
+<p>More broadly, focusing exclusively on drinking or substance use as the primary outcome may overlook other clinically meaningful indicators of recovery. Outcomes such as well-being, mental health, functional status, and quality of life may be equally—if not more—important markers of progress.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="future-directions-4" class="slide level2">
 <h2>Future Directions</h2>
 <ul>
 <li>Optimize the delivery of risk-relevant feedback</li>
@@ -1696,26 +1774,12 @@ Kendra Wyant
 <p>Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.</p>
 <p>But another thing our model’s give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement.</p>
 <p>In a currently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="future-directions-2" class="slide level2">
-<h2>Future Directions</h2>
-<ul>
-<li><p>Optimize the delivery of risk-relevant feedback</p></li>
-<li><p>Use predictions as inputs into Agentic AI systems</p></li>
-</ul>
-<aside class="notes">
-<p>Right now we’re using our model outputs us inputs into an LLM But, we could imagine in the near future using them as inputs into agentic AI systems that could automatically deliver personalized recommendations or even directly engage with individuals to help them implement recommendations and facilitate connections to therapists and other care providers when risk levels are high (triage).</p>
+<p>A challenge for embedding lapse prediction models into a recovery monitoring and support system is determining how to effectively communicate model outputs to individuals. Our models generate quantitative predictions of lapse probability. These probabilities could be converted into categorical classifications (e.g., lapse vs.&nbsp;no lapse) by applying a decision threshold. Although we observed high sensitivity and specificity when thresholds were selected to balance these metrics, the positive predictive value (PPV) of categorical predictions was moderate to low in our full models. As a result, we believe categorical predictions should be communicated to patients with extreme caution, if at all. Instead, we favor the use of quantitative lapse probabilities as continuous risk indicators to guide supportive interventions and monitoring intensity.</p>
+<p>However, raw probability estimates present a different problem. They may be difficult for patients, especially for those with low numeracy, to interpret intuitively (e.g., distinguishing the practical meaning of a 79% versus a 64% lapse probability) <span class="citation" data-cites="garcia-retameroCommunicatingHealthRisks2013">[@garcia-retameroCommunicatingHealthRisks2013]</span>. Anchoring risk estimates to an individual’s personal baseline may enhance interpretability. For example, by emphasizing whether risk is higher or lower than in the prior week or relative to their typical pattern. Additionally, combining quantitative scores with coarser qualitative descriptors (e.g., low, moderate, high risk) may further support comprehension without oversimplification.</p>
+<p>Beyond risk probabilities, our models also identify the most influential features contributing to each prediction. These locally important features create opportunities to contextualize risk feedback by highlighting key drivers of vulnerability (e.g., craving, stress, social isolation) and pairing them with domain-informed recovery recommendations. Emerging best practices from interpretable machine learning suggest this information may make the machine learning model less of a “black box”, which may build trust, or allow individuals to engage more thoughtfully (e.g., questioning false positives, scrutinizing model behavior) and gain insight <span class="citation" data-cites="dacruzUsingInterpretabilityApproaches2021 shinEffectsExplainabilityCausability2021">[@dacruzUsingInterpretabilityApproaches2021; @shinEffectsExplainabilityCausability2021]</span>.</p>
+<p>Despite these opportunities, there is currently no consensus on how best to present predictive feedback in a manner that maximizes engagement, trust, and clinical utility. Prior research suggests that increasing transparency in machine learning systems, such as by revealing contributing factors, can improve perceived credibility and user acceptance <span class="citation" data-cites="kizilcecHowMuchInformation2016 kuleszaPrinciplesExplanatoryDebugging2015 limWhyWhyNot2009">[@kizilcecHowMuchInformation2016; @kuleszaPrinciplesExplanatoryDebugging2015; @limWhyWhyNot2009]</span>. In the context of recovery monitoring, selective transparency may also promote self-awareness and learning, potentially yielding additional clinical benefits <span class="citation" data-cites="kuleszaPrinciplesExplanatoryDebugging2015 kuleszaFixingProgramMy2009">[@kuleszaPrinciplesExplanatoryDebugging2015; @kuleszaFixingProgramMy2009]</span>. At the same time, overly detailed or complex explanations may undermine confidence by exposing model uncertainty, revealing occasional errors, or burdening users with unnecessary information <span class="citation" data-cites="buntAreExplanationsAlways2012 springerProgressiveDisclosureWhen2020">[@buntAreExplanationsAlways2012; @springerProgressiveDisclosureWhen2020]</span>. Thus, determining the optimal balance between transparency and simplicity remains an open empirical question.</p>
+<p>As immediate next steps, we have begun to address the gap in understanding how to deliver risk‑related feedback within a recovery monitoring and support system. We have recently launched an NIAAA‑funded study focused on optimizing daily support messages delivered by such a system <span class="citation" data-cites="wyantMaximizingEngagementTrust2025">[@wyantMaximizingEngagementTrust2025]</span>. This work will explicitly examine which combinations of key message components, including lapse probability, important features, and recovery recommendations, maximize engagement, trust, and clinical outcomes.</p>
+<p>In this grant, messages are generated by feeding model outputs into a large language model to produce daily messages with sufficient variation. In the near future, however, these model outputs may be integrated into a more fully autonomous, agentic support system capable of dynamically delivering personalized recommendations, engaging individuals in interactive problem‑solving, facilitating connections to therapists or peer support specialists, and initiating triage processes when risk reaches clinically concerning levels.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
