@@ -689,7 +689,7 @@ Past use was the most important feature. This is not surprising given that our o
 
 Abstinence self-efficacy emerged as second most important, indicating that participants had reasonably accurate insight into their near-term abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.
 
-As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses and just under half of our participants didn't lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.
+As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses and almost half of our participants didn't lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.
 
 So perhaps what we really want to know is how often these features came up as the most important feature on a given day for a given individual. 
 :::
@@ -705,7 +705,7 @@ global_0lag + global_0lag_v2
 ```
 
 :::{.notes}
-The plot on the right summarises the proportion of observations in which each feature category had the highest Shapley value. So now considering the magnitude of the influence and the prevalance.
+The plot on the right summarises the proportion of observations in which each feature had the highest Shapley value. So now considering the magnitude of the influence and the prevalance.
 
 This plot shows that although past use was the most influential feature overall, it was only the most influential feature on a subset of days. 
 
@@ -746,7 +746,7 @@ these models are not yet clinically implementable. The most notable flaw being t
 
 These models that predict and characterize immediate risk of lapse are well-suited for personalized treatment recommendations that can be done immediately, for example within an app
 
-Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence or moderation when self-efficacy is low.
+Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence when self-efficacy is low.
 
 What's key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible. 
 
@@ -877,7 +877,7 @@ perf_lag_empty
 
 :::{.notes}
 
-Next I will show the performance for our lagged models, anchored to our immediate (no lag) day level model from study 1
+Next I will show the performance for our lagged models, anchored to our immediate (no lag) day level model from study 1 shown here in red
 
 ::::
 
@@ -921,13 +921,13 @@ global
 
 
 :::{.notes}
-Here are the average contribution of each feature to the model's predictions for our immediate model from study 1 in red and our two week lagged model in grey. So this is that traditional characterization of overall feature importance by mean absolute shapley value.
+Here are the average contributions of each feature to the model's predictions for our immediate model from study 1 in red and our two week lagged model in grey. So this is that traditional characterization of overall feature importance by mean absolute shapley value.
 
 Several feature categories displayed sizeable differences in global importance by lag time. A couple interesting observations 
 
-The importance of abstinence self-efficacy dropped by more than 50% in the 2-week lagged model relative to the immediate model. This may indicate that self-efficacy during early recovery is unstable even across shorter periods of time such that their current self-efficacy does not strongly predict abstinence success even two weeks into the future. 
+The importance of abstinence self-efficacy dropped by more than 50% in the 2-week lagged model relative to the immediate model. This may indicate that self-efficacy during early recovery is unstable even across shorter periods of time such that their current self-efficacy may predict immediate abstinence success but not necessarily success two weeks into the future. 
 
-Past and anticipated risky situations were more important in the 2-week lagged vs. the immediate model, suggesting that the impact of these situations on lapses back to use may be delayed.
+We also saw that past and anticipated risky situations were more important in the 2-week lagged model compared to the immediate model. This could suggest that the impact of these situations on lapses back to use may be delayed.
 :::
 
 ## Feature Importance (2-week lag)
@@ -941,7 +941,7 @@ global_no_legend + global_v2
 ```
 
 :::{.notes}
-Now lets look at how the proportion of days each feature was the top feature by lag time. In red is the immediate no lag model so we see the same patterns as before there. With the two week lagged model in grey, we see that past and future risky situations remained to be a top feature. Additionally, valence and arousal emerge as top features on more days compared to the immediate model. This is interesting and suggests that although valence and arousal can fluctuate rapidly, they may reflect a vulnerability to lapse that accumulates over time, rather than immediately triggering a lapse.
+This next plot shows the proportion of days each feature was the top feature by lag time. In red is the immediate no lag model so we see the same patterns as before there. With the two week lagged model in grey, we see that past and future risky situations remained to be a top feature. Additionally, valence and arousal emerged as a top feature on more days compared to the immediate model. I found this interesting because valence and arousal can fluctuate rapidly. But this could mean that changes in these states reflect a vulnerability to lapse that accumulates over time, rather than immediately triggering a lapse.
 :::
 
 ## Conclusions
@@ -959,7 +959,7 @@ Now lets look at how the proportion of days each feature was the top feature by 
 :::{.notes}
 In study 2 we found that we can achieve clinically meaningful performance up to two weeks into the future. 
 
-Model performance did decrease when prediction windows were shifted further into the future. Still, the benefit of advanced notice of lapse risk so that interventions not immediately available can be implemented likely outweighs the cost to performance.
+Model performance did decrease when prediction windows were shifted further into the future. Still, the benefit of advanced notice of lapse risk likely outweighs the cost to performance.
 
 Important lapse risk factors may differ depending on the time scale of the prediction
 
@@ -978,11 +978,11 @@ Important lapse risk factors may differ depending on the time scale of the predi
 :::{.notes}
 Now for study three we are going to switch datasets. In this study we developed a machine learning model that predicts next-day opioid lapse risk using daily self-report and geolocation sensing data. 
 
-A couple notable differences with this dataset aside from substance of use:
+A couple differences with this dataset aside from substance of use:
 
-For this study we recruited a national sample of participants across the United States who were diverse in regard to race and ethnicity, income, gender, sexual orientation, and geographic location. 
+First, we recruited a national sample of participants across the United States in attempt to increase diversity of our participants.
 
-Participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published substance use prediction studies and allowed us to capture longer-term recovery trajectories.
+Second, participants provided sensing data and opioid lapse reports for up to one year, a duration that exceeds previously published substance use prediction studies and allowed us to capture longer-term recovery trajectories.
 :::
 
 ## Participants (*N* = 296)
@@ -1114,12 +1114,13 @@ fig_risk2_compliance
 :::
 
 :::{.notes}
-Mean days on study = 278.32 days (range 30-392 days)
-- 77.7% of participants (230/296) remained on study for at least six months
-On average participants completed 77.8% of the daily EMA prompts (range 40-100%)
+Participants remained on study for an average of 278 days 
+
+And on average participants completed 77.8% of the daily EMA prompts 
+
 The plot on the left shows average ema completion rates by month on study
 
-daily geolocation points = 263.50 points (range 2.17-871.34 points)
+Participants provided an average of 263 daily geolocation points
 
 I will note that we have a wide range here, however it is difficult to provide an adherence summary of geolocation. Sampling rates are impacted by how much a person is moving. Low points might mean someone is stationary, it might mean they purposefully turned their geolocation tracking off or it might mean their phone died, they have poor internet connection to transmit their geolocation data or other technological issues. 
 :::
