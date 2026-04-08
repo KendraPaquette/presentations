@@ -9,7 +9,7 @@ format:
     incremental: false  
     auto-stretch: false
     logo: images/arc_logo.png
-    footer: ""
+    footer: "Dissertation Defense"
 slide-number: false
 editor_options: 
   chunk_output_type: console
@@ -65,7 +65,7 @@ We have effective Medication and psychosocial interventions. But, nearly 90% of 
 
 For those who do receive care, treatment is often brief and episodic. Many individuals enter care only when symptoms are severe and risk is high. At the same time, services are time-limited, resources are constrained, and providers frequently operate at or beyond capacity. As a result, patients often leave treatment without adequate supports in place, contributing to a “revolving door” pattern in which individuals cycle repeatedly through acute episodes of care.
 
-These limitations are magnified for people for certain demographic subgroups who may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. And marginalized groups may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.
+These limitations are magnified for people from certain demographic subgroups who may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. And marginalized groups may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.
 
 :::
 
@@ -296,7 +296,7 @@ Ecological momentary assessment, or EMA, consists of daily or more frequent brie
 e.g., we can ask people to directly report their craving, their level of self-efficacy, and their affect. 
 
 
-EMA appears to be well tolerated with adherence rates in substance using populations being only modestly lower than other clinical samples.
+EMA appears to be well tolerated with adherence rates in substance using populations being comparable to other clinical samples.
 
 :::
 
@@ -316,9 +316,6 @@ EMA appears to be well tolerated with adherence rates in substance using populat
 - Locations can be contextualized
 :::
 
-:::{.fragment}
-- Adds additional features for personalizing support recommendations
-:::
 
 :::
 
@@ -368,7 +365,7 @@ geolocation features may become even more powerful when combined with contextual
 :::
 
 :::{.notes}
-Today I am going to present a series of studies aimed at improving continuing care for SUDS by demonstrating the feasibility of building an automated recovery monitoring and support system. Across three studies, we address key prerequisites for such a system, including assessing potential sensing methods for their ability to predict lapse with varying levels of temporal precision and evaluating the interpretability and fairness of model outputs.
+Today I am going to present a series of studies aimed at improving continuing care for SUDS by demonstrating the feasibility of building an automated recovery monitoring and support system. Across three studies, we address key prerequisites for such a system, including assessing potential sensing methods for their ability to predict lapse accurately and timely and evaluating the interpretability and fairness of model outputs.
 
 :::
 
@@ -755,15 +752,103 @@ These “time-lagged” models could give people advanced warning to implement s
 
 ## Lagged Predictions
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 right=200 height=80%}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+
+
 
 
 :::{.notes}
 
-I just want to be clear about what I mean when I say lagged predictions
+I just want to be clear about what I mean when I say lagged predictions. So in study one I was manipulating the prediction window width that is will a lapse occur in the next week, next day, or hour. 
 
+In this study my prediction window widths are all 24 hours (shown in yellow)
+
+the vertical dashed line represents the prediction time point (so when we are making the prediction). 
 
 :::
+
+
+## Lagged Predictions
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/arrow.png?raw=true){.absolute top=225 left=150 height=10% style="z-index:2;"}
+
+
+:::{.notes}
+
+This first row depicts the immediate model I showed you previously. At a specific time point what is the probability of a lapse in the next hour.
+
+In the following rows I begin to lag this prediction window further away from the prediction timepoint with the grey shaded portion of the bar representing this lag time.
+
+:::
+
+
+## Lagged Predictions
+
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/arrow.png?raw=true){.absolute top=300 left=150 height=10% style="z-index:2;"}
+
+
+:::{.notes}
+
+So here the prediction window is lagged by one day. This means at a specific time point what is the probability of a lapse in a 24 hour window 1 day from now.
+
+:::
+
+
+## Lagged Predictions
+
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/arrow.png?raw=true){.absolute top=375 left=150 height=10% style="z-index:2;"}
+
+
+:::{.notes}
+
+what is the probability of a lapse three days from now
+
+:::
+
+
+## Lagged Predictions
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/arrow.png?raw=true){.absolute top=440 left=150 height=10% style="z-index:2;"}
+
+
+:::{.notes}
+
+1 week from now
+
+:::
+
+
+
+## Lagged Predictions
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lag.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/arrow.png?raw=true){.absolute top=510 left=150 height=10% style="z-index:2;"}
+
+
+:::{.notes}
+
+and two weeks from now
+:::
+
+
 
 ## Performance
 
