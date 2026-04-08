@@ -1238,13 +1238,70 @@ These findings suggest that although GPS features may not provide unique signal 
 
 ## Future Directions
 
+- Expand risk features
+
+
+:::{.notes}
+In terms of where to go next. One consideration might be to extend the number of risk features we are measuring to increase our ability to personalize recommendations.
+
+EMA was shown to be a robust sensing method for lapse prediction even when dropped to only 1 daily survey. Adding additional items could improve model performance among subgroups where performance disparities exist. For example, some research suggests interpersonal relationship problems and hormonal changes are more salient lapse risk factors for women compared to men. However, we can't add too many additional items without making our survey immensely more burdensome for people to complete.
+
+:::
+
+
+## Future Directions
+
+- Expand risk features
+
 - Improve GPS sensing
 
-- Abstinence only sample
 
-- Idiographic time series models
+:::{.notes}
+One way to expand risk features without increasing burden is to supplement self-report data with more passive sensing methods. We started to do this with GPS data in study 3. 
 
-- Expand risk features 
+And while our results may appear somewhat discouraging for its predictive value it does much better than other passive methods I have explored like cellular communications. So I believe theres still a case to be made for using GPS data and we had some methodological limitations worth noting.
+
+First Although geolocation data can, in principle, be collected continuously, in practice these data are difficult to collect reliably. In our study, geolocation features had substantially higher rates of missingness compared to daily surveys. 
+
+Second, our feature engineering pipeline relied on known locations with self-reported context. Passive methods for contextualizing location could provide risk-relevant contextual information across the full range of locations participants visited. For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations). 
+
+As geolocation sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.
+:::
+
+## Future Directions
+
+- Expand risk features
+
+- Improve GPS sensing
+
+- Include individuals with non-abstinent recovery goals
+
+
+:::{.notes}
+Another area important to explore is how our models might generalize to individuals with non-abstinent recovery goals.
+
+Our models were trained to predict goal-inconsistent use, which for all of our participants pursuing abstinence meant any alcohol use. The definition of goal-inconsistent use is less straightforward for individuals who do not aim to abstain and may vary considerably from person to person.
+
+This may require considering alternative outcomes. For example, heavy drinking days—often defined as risky or hazardous use—may represent a more consistent marker of goal-inconsistent behavior across individuals in recovery.
+
+Another option is to allow individuals to self-define goal-inconsistent use (e.g., drinking on a weekday, drinking more than planned) and to train models in samples with more diverse recovery goals.
+:::
+
+
+## Future Directions
+
+- Expand risk features
+
+- Improve GPS sensing
+
+- Include individuals with non-abstinent recovery goals
+
+
+:::{.notes}
+More broadly, focusing exclusively on drinking or substance use as the primary outcome may overlook other clinically meaningful indicators of recovery. Outcomes such as well-being, mental health, functional status, and quality of life may be equally—if not more—important markers of progress.
+:::
+
+
 
 
 ## Future Directions
@@ -1280,19 +1337,23 @@ Another option would be to anchor the predicted probability to the individual. F
 But another thing our model's give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement.
 
 In a currently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes. 
+
+
+
+A challenge for embedding lapse prediction models into a recovery monitoring and support system is determining how to effectively communicate model outputs to individuals. Our models generate quantitative predictions of lapse probability. These probabilities could be converted into categorical classifications (e.g., lapse vs. no lapse) by applying a decision threshold. Although we observed high sensitivity and specificity when thresholds were selected to balance these metrics, the positive predictive value (PPV) of categorical predictions was moderate to low in our full models. As a result, we believe categorical predictions should be communicated to patients with extreme caution, if at all. Instead, we favor the use of quantitative lapse probabilities as continuous risk indicators to guide supportive interventions and monitoring intensity.
+
+However, raw probability estimates present a different problem. They may be difficult for patients, especially for those with low numeracy, to interpret intuitively (e.g., distinguishing the practical meaning of a 79% versus a 64% lapse probability) [@garcia-retameroCommunicatingHealthRisks2013]. Anchoring risk estimates to an individual’s personal baseline may enhance interpretability. For example, by emphasizing whether risk is higher or lower than in the prior week or relative to their typical pattern. Additionally, combining quantitative scores with coarser qualitative descriptors (e.g., low, moderate, high risk) may further support comprehension without oversimplification.
+
+Beyond risk probabilities, our models also identify the most influential features contributing to each prediction. These locally important features create opportunities to contextualize risk feedback by highlighting key drivers of vulnerability (e.g., craving, stress, social isolation) and pairing them with domain-informed recovery recommendations. Emerging best practices from interpretable machine learning suggest this information may make the machine learning model less of a "black box", which may build trust, or allow individuals to engage more thoughtfully (e.g., questioning false positives, scrutinizing model behavior) and gain insight [@dacruzUsingInterpretabilityApproaches2021; @shinEffectsExplainabilityCausability2021].
+
+Despite these opportunities, there is currently no consensus on how best to present predictive feedback in a manner that maximizes engagement, trust, and clinical utility. Prior research suggests that increasing transparency in machine learning systems, such as by revealing contributing factors, can improve perceived credibility and user acceptance [@kizilcecHowMuchInformation2016; @kuleszaPrinciplesExplanatoryDebugging2015; @limWhyWhyNot2009]. In the context of recovery monitoring, selective transparency may also promote self-awareness and learning, potentially yielding additional clinical benefits [@kuleszaPrinciplesExplanatoryDebugging2015; @kuleszaFixingProgramMy2009]. At the same time, overly detailed or complex explanations may undermine confidence by exposing model uncertainty, revealing occasional errors, or burdening users with unnecessary information [@buntAreExplanationsAlways2012; @springerProgressiveDisclosureWhen2020]. Thus, determining the optimal balance between transparency and simplicity remains an open empirical question.
+
+As immediate next steps, we have begun to address the gap in understanding how to deliver risk‑related feedback within a recovery monitoring and support system. We have recently launched an NIAAA‑funded study focused on optimizing daily support messages delivered by such a system [@wyantMaximizingEngagementTrust2025]. This work will explicitly examine which combinations of key message components, including lapse probability, important features, and recovery recommendations, maximize engagement, trust, and clinical outcomes.
+
+In this grant, messages are generated by feeding model outputs into a large language model to produce daily messages with sufficient variation. In the near future, however, these model outputs may be integrated into a more fully autonomous, agentic support system capable of dynamically delivering personalized recommendations, engaging individuals in interactive problem‑solving, facilitating connections to therapists or peer support specialists, and initiating triage processes when risk reaches clinically concerning levels.
 :::
 
-## Future Directions
 
-- Optimize the delivery of risk-relevant feedback
-
-- Use predictions as inputs into Agentic AI systems 
-
-::: {.notes}
-
-Right now we’re using our model outputs us inputs into an LLM But, we could imagine in the near future using them as inputs into agentic AI systems that could automatically deliver personalized recommendations or even directly engage with individuals to help them implement recommendations and facilitate connections to therapists and other care providers when risk levels are high (triage).
-
-:::
 
 
 ## Thank You! 
