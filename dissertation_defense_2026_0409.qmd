@@ -531,6 +531,9 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 ## Immediate Models
 
 
+![](https://github.com/KendraPaquette/presentations/blob/main/images/immediate.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+
+
 :::{.notes}
 We fit three immediate models that differed in the width of the prediction window.
 
