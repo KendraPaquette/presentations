@@ -531,7 +531,7 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 ## Immediate Models
 
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/immediate.png?raw=true){.absolute top=100 left=150 height=80% style="z-index:1;"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/immediate.png?raw=true){.absolute top=100 left=150 height=80%}
 
 
 :::{.notes}
@@ -578,7 +578,7 @@ Our Hour model the far right performed better than both the Day and Week model
 
 And the Day model performed better than Week model
 
-Overall these models are doing very well as auROCs above .90 are typically considered to be excellent performance.
+Overall these models are doing very well - auROCs above .90 are typically considered to be excellent performance.
 :::
 
 ## Performance
@@ -592,16 +592,19 @@ perf_ema_red
 
 
 :::{.notes}
-We established that we can predict lapse at different levels of precision.
+So we’ve established that we can predict lapse at different levels of precision.
 
-This level of precision is ideal for our goal usage of the model - conveying risk information to patients in the context of a recovery monitoring support system. A week may not be precise enough and using the hour model would require us to send risk information out every hour. 
+But lets briefly zoom back out to our broader goal—building a recovery monitoring and support system that communicates daily risk to individuals.
 
+A weekly prediction window is likely too coarse to be actionable, while an hourly model would require delivering risk updates every hour, which is not practical in a real-world setting.
 
-Moving forward I am going to be only considering models with a 24-hour or 1 day prediction window.
+In contrast, the next day (or next 24-hour) prediction window strikes a balance between precision and usability. It allows us to provide timely, meaningful risk information without overwhelming the individual.
+
+Moving forward, I will focus exclusively on models 24-hour prediction windows.
 :::
 
 
-## Model Fairness
+## Model Fairness (Next-day)
 
 
 ```{r}
@@ -615,10 +618,10 @@ fair_0lag_empty
 
 :::{.notes}
 
-We explicitly evaluated how fair our day level models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
+We explicitly evaluated how fair our next day models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs. non-Hispanic White), income (below poverty vs. above poverty), and sex at birth (female vs. male).
 :::
 
-## Model Fairness
+## Model Fairness (Next-day)
 
 
 ```{r}
@@ -640,7 +643,7 @@ Even with our coarse dichotomous grouping of race we only had 20 participants in
 
 :::
 
-## Model Fairness
+## Model Fairness (Next-day)
 
 ```{r}
 #| fig-height: 5.85
@@ -657,7 +660,7 @@ We did however have equal representation of men and women, and we still saw diff
 :::
 
 
-## Feature Importance
+## Feature Importance (Next-day)
 
 
 
@@ -669,7 +672,7 @@ Since our best performing model was XGBoost we calculated Shapley values. Shaple
 :::
 
 
-## Feature Importance
+## Feature Importance (Next-day)
 
 ```{r}
 #| fig-align: left
@@ -681,20 +684,18 @@ global_0lag
 
 
 :::{.notes}
-We aggregated the shapley values by calculating the mean absolute shapley value across all observatios to to see how much each feature category, on average, contributes to the next day model's predictions.
+We aggregated the shapley values by calculating the mean absolute shapley value across all observations to see how much each feature category, on average, contributes to the next day model's predictions.
 
 Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior. 
 
-Abstinence self-efficacy emerged as the second most important, indicating that participants had reasonably accurate insight into their near-term success abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.
+Abstinence self-efficacy emerged as second most important, indicating that participants had reasonably accurate insight into their near-term abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.
 
-As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses. This means that past opioid use very rarely came up as an important feature when looking at individual observations. However, when someone did lapse their probability of future lapses increased exponentially.
+As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses and just under half of our participants didn't lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.
 
-And what we really care about is what feature is most important for a specific individual on a specific day.
-
-So perhaps what we really want to know is how often these features came up as the most important feature on a given day. 
+So perhaps what we really want to know is how often these features came up as the most important feature on a given day for a given individual. 
 :::
 
-## Feature Importance
+## Feature Importance (Next-day)
 
 ```{r}
 #| fig-align: left
@@ -711,9 +712,7 @@ This plot shows that although past use was the most influential feature overall,
 
 In fact, past and future self-reported stressful events came up as the most important feature on the most days despite this having a small influence on predictions globally.
 
-Which shows that that while some features have low average importance (across all individuals and observations), they can be highly important on certain days for certain individuals. 
-
-Thus, this approach more closely aligns with our precision-guided goal of understanding which risk factor is most influential for a specific individual at a specific moment. 
+This shows that that while some features may have low average importance (across all individuals and observations), they can be highly important on certain days for certain individuals and are worthwhile to keep in the model for delivering feedback personalized to the person and the moment.
 
 :::
 

@@ -718,7 +718,7 @@ Kendra Wyant
 </section>
 <section id="immediate-models" class="slide level2">
 <h2>Immediate Models</h2>
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/immediate.png?raw=true" class="absolute" style="z-index:1;top: 100px; left: 150px; height: 80%; "></p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/immediate.png?raw=true" class="absolute" style="top: 100px; left: 150px; height: 80%; "></p>
 <aside class="notes">
 <p>We fit three immediate models that differed in the width of the prediction window.</p>
 <p>Prediction window widths were 1 week, 1 day, and 1 hour (shown in yellow).</p>
@@ -776,7 +776,7 @@ Kendra Wyant
 <p>here, from left to right, are the median aurocs and credible intervals for predicting lapses in the next week, day, and hour. Median auROCs ranged from .90, to .93.</p>
 <p>Our Hour model the far right performed better than both the Day and Week model</p>
 <p>And the Day model performed better than Week model</p>
-<p>Overall these models are doing very well as auROCs above .90 are typically considered to be excellent performance.</p>
+<p>Overall these models are doing very well - auROCs above .90 are typically considered to be excellent performance.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -801,9 +801,11 @@ Kendra Wyant
 </div>
 </div>
 <aside class="notes">
-<p>We established that we can predict lapse at different levels of precision.</p>
-<p>This level of precision is ideal for our goal usage of the model - conveying risk information to patients in the context of a recovery monitoring support system. A week may not be precise enough and using the hour model would require us to send risk information out every hour.</p>
-<p>Moving forward I am going to be only considering models with a 24-hour or 1 day prediction window.</p>
+<p>So we’ve established that we can predict lapse at different levels of precision.</p>
+<p>But lets briefly zoom back out to our broader goal—building a recovery monitoring and support system that communicates daily risk to individuals.</p>
+<p>A weekly prediction window is likely too coarse to be actionable, while an hourly model would require delivering risk updates every hour, which is not practical in a real-world setting.</p>
+<p>In contrast, the next day (or next 24-hour) prediction window strikes a balance between precision and usability. It allows us to provide timely, meaningful risk information without overwhelming the individual.</p>
+<p>Moving forward, I will focus exclusively on models 24-hour prediction windows.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -816,8 +818,8 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="model-fairness" class="slide level2">
-<h2>Model Fairness</h2>
+<section id="model-fairness-next-day" class="slide level2">
+<h2>Model Fairness (Next-day)</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -828,7 +830,7 @@ Kendra Wyant
 </div>
 </div>
 <aside class="notes">
-<p>We explicitly evaluated how fair our day level models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs.&nbsp;non-Hispanic White), income (below poverty vs.&nbsp;above poverty), and sex at birth (female vs.&nbsp;male).</p>
+<p>We explicitly evaluated how fair our next day models performed for three important subgroups with known disparities in access to substance use treatment and substance use outcomes – race and ethnicity (not White vs.&nbsp;non-Hispanic White), income (below poverty vs.&nbsp;above poverty), and sex at birth (female vs.&nbsp;male).</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -841,8 +843,8 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="model-fairness-1" class="slide level2">
-<h2>Model Fairness</h2>
+<section id="model-fairness-next-day-1" class="slide level2">
+<h2>Model Fairness (Next-day)</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -868,8 +870,8 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="model-fairness-2" class="slide level2">
-<h2>Model Fairness</h2>
+<section id="model-fairness-next-day-2" class="slide level2">
+<h2>Model Fairness (Next-day)</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -893,8 +895,8 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="feature-importance" class="slide level2">
-<h2>Feature Importance</h2>
+<section id="feature-importance-next-day" class="slide level2">
+<h2>Feature Importance (Next-day)</h2>
 <aside class="notes">
 <p>We can use metrics of feature importance to understand which features are influencing our models predictions on average.</p>
 <p>Since our best performing model was XGBoost we calculated Shapley values. Shapley values indicate how much a feature score for a specific observation adjusted the prediction relative to the mean prediction across all observations.</p>
@@ -910,8 +912,8 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="feature-importance-1" class="slide level2">
-<h2>Feature Importance</h2>
+<section id="feature-importance-next-day-1" class="slide level2">
+<h2>Feature Importance (Next-day)</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
@@ -922,12 +924,11 @@ Kendra Wyant
 </div>
 </div>
 <aside class="notes">
-<p>We aggregated the shapley values by calculating the mean absolute shapley value across all observatios to to see how much each feature category, on average, contributes to the next day model’s predictions.</p>
+<p>We aggregated the shapley values by calculating the mean absolute shapley value across all observations to see how much each feature category, on average, contributes to the next day model’s predictions.</p>
 <p>Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior.</p>
-<p>Abstinence self-efficacy emerged as the second most important, indicating that participants had reasonably accurate insight into their near-term success abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.</p>
-<p>As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses. This means that past opioid use very rarely came up as an important feature when looking at individual observations. However, when someone did lapse their probability of future lapses increased exponentially.</p>
-<p>And what we really care about is what feature is most important for a specific individual on a specific day.</p>
-<p>So perhaps what we really want to know is how often these features came up as the most important feature on a given day.</p>
+<p>Abstinence self-efficacy emerged as second most important, indicating that participants had reasonably accurate insight into their near-term abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.</p>
+<p>As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses and just under half of our participants didn’t lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.</p>
+<p>So perhaps what we really want to know is how often these features came up as the most important feature on a given day for a given individual.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -940,8 +941,8 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="feature-importance-2" class="slide level2">
-<h2>Feature Importance</h2>
+<section id="feature-importance-next-day-2" class="slide level2">
+<h2>Feature Importance (Next-day)</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-left">
@@ -955,8 +956,7 @@ Kendra Wyant
 <p>The plot on the right summarises the proportion of observations in which each feature category had the highest Shapley value. So now considering the magnitude of the influence and the prevalance.</p>
 <p>This plot shows that although past use was the most influential feature overall, it was only the most influential feature on a subset of days.</p>
 <p>In fact, past and future self-reported stressful events came up as the most important feature on the most days despite this having a small influence on predictions globally.</p>
-<p>Which shows that that while some features have low average importance (across all individuals and observations), they can be highly important on certain days for certain individuals.</p>
-<p>Thus, this approach more closely aligns with our precision-guided goal of understanding which risk factor is most influential for a specific individual at a specific moment.</p>
+<p>This shows that that while some features may have low average importance (across all individuals and observations), they can be highly important on certain days for certain individuals and are worthwhile to keep in the model for delivering feedback personalized to the person and the moment.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1552,7 +1552,7 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="model-fairness-3" class="slide level2">
+<section id="model-fairness" class="slide level2">
 <h2>Model Fairness</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1580,7 +1580,7 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="feature-importance-3" class="slide level2">
+<section id="feature-importance" class="slide level2">
 <h2>Feature Importance</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
@@ -1607,7 +1607,7 @@ Kendra Wyant
           display:block!important;
       }</style></aside>
 </section>
-<section id="feature-importance-4" class="slide level2">
+<section id="feature-importance-1" class="slide level2">
 <h2>Feature Importance</h2>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
