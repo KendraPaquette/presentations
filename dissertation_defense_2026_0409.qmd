@@ -1229,13 +1229,13 @@ And in our second approach for feature importance, we founf the most important f
 :::{.notes}
 In study 3 we found that 
 
-EMA remains to be a feasible and predictive signal even when measured over a year.
+EMA remains to be a feasible and predictive signal even when measured for up to a year.
 
 If the goal is prediction, GPS features are not necessary as they do not offer any unique incremental predictive value beyond EMA. 
 
 However, if the goal is to have a more nuanced understanding of lapse risk across a more diverse array of risk features than GPS is helpful. Adding GPS features did not hurt model performance and several of them emerged in the top subset of features. 
 
-These findings suggest that although GPS features may not provide unique signal for prediction, it may be worthwhile to still include them in the model to expand opportunities for intervention and provide precision-oriented recovery support.
+So although GPS features may not provide unique signal for prediction, it may be worthwhile to still include them in the model to expand opportunities for intervention and personalized recovery support.
 
 :::
 
@@ -1264,11 +1264,11 @@ One way to expand risk features without increasing burden is to supplement self-
 
 And while our results may appear somewhat discouraging for its predictive value it does much better than other passive methods I have explored like cellular communications. So I believe theres still a case to be made for using GPS data and we had some methodological limitations worth noting.
 
-First Although geolocation data can, in principle, be collected continuously, in practice these data are difficult to collect reliably. In our study, geolocation features had substantially higher rates of missingness compared to daily surveys. 
+First Although gps data can, in principle, be collected continuously, in practice these data are difficult to collect reliably. In our study, gps features had substantially higher rates of missingness compared to daily surveys. 
 
 Second, our feature engineering pipeline relied on known locations with self-reported context. Passive methods for contextualizing location could provide risk-relevant contextual information across the full range of locations participants visited. For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations). 
 
-As geolocation sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.
+As gps sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.
 :::
 
 ## Future Directions
