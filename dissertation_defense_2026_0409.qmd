@@ -1283,10 +1283,7 @@ And while our results may appear somewhat discouraging for its predictive value 
 
 First Although gps data can, in principle, be collected continuously, in practice these data are difficult to collect reliably. In our study, we had much higher rates of missingness for gps features compared to ema features. 
 
-Second, our feature engineering pipeline relied on known locations where people provided self-reported context. Passive methods for contextualizing location could provide risk-relevant information across the full range of locations people visit. 
-For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations). 
-
-As gps sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.
+Second, our feature engineering pipeline relied on known locations where people provided self-reported context. Passive methods for contextualizing location could provide risk-relevant information across the full range of locations people visit.
 :::
 
 ## Future Directions
@@ -1295,11 +1292,14 @@ As gps sensing methods become more robust and missingness is reduced, these feat
 
 - Improve GPS sensing
 
+![](https://github.com/KendraPaquette/presentations/blob/main/images/map.png?raw=true){.absolute top=250 left=350 height="60%"}
 
 :::{.notes}
-For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations). 
+For example, Chris Janssen and others in our lab have begun to explore how GPS coordinates could be enriched using publicly available datasets, such as alcohol outlet density or area deprivation indices. 
 
-As gps sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.
+We could also imagine scraping the web for AA meeting times and locations.
+
+As GPS sensing methods become more robust and missingness is reduced, GPS features may become more powerful for predicting lapse risk.
 :::
 
 ## Future Directions
@@ -1312,13 +1312,13 @@ As gps sensing methods become more robust and missingness is reduced, these feat
 
 
 :::{.notes}
-Another area important to explore is how our models might generalize to individuals with non-abstinent recovery goals.
+Another thing I have been thinking about is how our models might generalize to individuals with non-abstinent recovery goals.
 
 Our models were trained to predict goal-inconsistent use, which for all of our participants pursuing abstinence meant any alcohol use. The definition of goal-inconsistent use is less straightforward for individuals who do not aim to abstain and may vary considerably from person to person.
 
-This may require considering alternative outcomes. For example, heavy drinking days—often defined as risky or hazardous use—may represent a more consistent marker of goal-inconsistent behavior across individuals in recovery.
+This may require considering alternative outcomes for our models to be trained on. Heavy drinking days are a common metric of risky or hazardous drinking. This may represent a more consistent marker of goal-inconsistent behavior across individuals in recovery.
 
-Another option is to allow individuals to self-define goal-inconsistent use (e.g., drinking on a weekday, drinking more than planned) and to train models in samples with more diverse recovery goals.
+Another option is to allow individuals to self-define what goal-inconsistent use is for them (e.g., drinking on a weekday, drinking more than planned) and then train models on samples of individuals with more diverse recovery goals.
 :::
 
 
@@ -1330,11 +1330,11 @@ Another option is to allow individuals to self-define goal-inconsistent use (e.g
 
 - Include individuals with non-abstinent recovery goals
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/happy.png?raw=true){.absolute top=320 left=350 height="48%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/happy.png?raw=true){.absolute top=320 left=330 height="48%"}
 
 
 :::{.notes}
-More broadly, focusing exclusively on drinking or substance use as the primary outcome may overlook other clinically meaningful indicators of recovery. Outcomes such as well-being, mental health, functional status, and quality of life may be equally—if not more—important markers of progress.
+However, focusing exclusively on drinking or substance use as the primary outcome may overlook other clinically meaningful indicators of recovery. Outcomes such as well-being, mental health, functional status, and quality of life may be equally—if not more—important markers of progress. So we could even imagine changing our models from predicting lapse to predicting a marker of recovery health.
 :::
 
 
@@ -1346,23 +1346,11 @@ More broadly, focusing exclusively on drinking or substance use as the primary o
 
 
 
-:::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_1.png?raw=true){.absolute left=100 width=22%}
-:::
-
-:::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_2.png?raw=true){.absolute left=250 bottom=10 width=35%}
-:::
-
-:::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_3.png?raw=true){.absolute right=330 width=30%}
-:::
-
-:::{.fragment}
-![](https://github.com/KendraPaquette/presentations/blob/main/images/bubble_4.png?raw=true){.absolute right=40 bottom=10 width=30%}
-:::
-
 ::: {.notes}
+Lastly the area I am most excited about for immediate next steps is understanding how best to communicate our model outputs to individuals.
+
+
+
 
 Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.  
 
