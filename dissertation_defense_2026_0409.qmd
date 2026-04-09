@@ -1108,7 +1108,7 @@ fig_risk2_compliance
 :::
 
 :::{.fragment}
-- Mean daily geolocation points = 263.50 points (range 2.17-871.34 points)
+- Mean daily GPS points = 263.50 points (range 2.17-871.34 points)
 :::
 :::
 :::
@@ -1120,9 +1120,9 @@ And on average participants completed 77.8% of the daily EMA prompts
 
 The plot on the left shows average ema completion rates by month on study
 
-Participants provided an average of 263 daily geolocation points
+Participants provided an average of 263 daily gps points
 
-I will note that we have a wide range here, however it is difficult to provide an adherence summary of geolocation. Sampling rates are impacted by how much a person is moving. Low points might mean someone is stationary, it might mean they purposefully turned their geolocation tracking off or it might mean their phone died, they have poor internet connection to transmit their geolocation data or other technological issues. 
+I will note that we have a wide range here, however it is difficult to provide an adherence summary of GPS Sampling rates are impacted by how much a person is moving. So low points might mean someone is stationary or it might mean they purposefully turned their GPS tracking off or their phone die or they have poor internet connection to transmit their GPS data to us. 
 :::
 
 
@@ -1137,7 +1137,9 @@ risk2_perf_1
 ```
 
 :::{.notes}
-Our model performed very well with an overall auROC  of 0.94. To evaluate the incremental predictive value of EMA and geolocation sensing features, we also evaluated performance of models that ablated each set of features individually and together.
+Our full model that included both sets of sensing features performed very well with an overall auROC  of 0.94. 
+
+To understand the incremental predictive value of EMA and GPS sensing features, we also evaluated performance of models that ablated each set of features individually and together.
 :::
 
 ## Performance
@@ -1150,7 +1152,7 @@ risk2_perf_all
 ```
 
 :::{.notes}
-Model performance was comparable when geolocation features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with geolocation features. This suggests that geolocation data may not be adding any signal above and beyond what EMA is capturing. That being said Geolocation did capture some signal, in the ablated EMA model performance was still above chance at .63.
+Model performance was comparable when GPS features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with GPS features. This suggests that GPS data may not be adding any signal above and beyond what EMA is capturing. That being said GPS did capture some signal, in the ablated EMA model performance was still above chance at .63.
 :::
 
 
@@ -1184,12 +1186,11 @@ global_risk2
 ```
 
 :::{.notes}
-Here are our 20 most important features. 
+We had quite a few more features in this study. Here are our 20 most important features. 
 
+Feature importance revealed the most important feature was past opioid use. This feature was nearly two-fold more important than the next most important feature, urge ratings. 
 
-Feature importance revealed the most important feature was differences in past opioid use. These feature was nearly two-fold more important than the next most important feature, raw urge ratings. This plot displays the top 30 (out of 186) feature categories, as defined by the 30 largest absolute mean shapley values.
-
-I also want to point out that although GPS may not be providing unique signal for prediction, some features still emerged as important features in the model. So it may be worthwhile still to have geolocation features in the model if we want more opportunities for intervention.
+I also want to point out that although GPS may not be providing unique signal for prediction, several features still emerged as important features in the model. So it may be worthwhile still to have GPS features in the model if we want more opportunities for intervention.
 
 
 :::
@@ -1207,7 +1208,7 @@ global_risk2 + global_risk2_v2
 :::{.notes}
 
 
-In this approach, the most important feature was raw urge ratings, followed by raw abstinence confidence ratings. Differences in past opioid use was the third most important feature by this method, suggesting that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. Notably, in this approach several additional comparably important features emerged, including differences in past pleasant experiences, differences in past stimulant use, and differences in time spent in helpful locations.
+And in our second approach for feature importance, we founf the most important feature was urge ratings, followed by abstinence confidence ratings. Past opioid use was the third most important feature using this method. So again this suggests that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. Notably, in this approach several additional comparably important features emerged, including past pleasant experiences, past sedative and stimulant use, time spent in helpful locations, and location variance.
 :::
 
 
@@ -1226,6 +1227,8 @@ In this approach, the most important feature was raw urge ratings, followed by r
 :::
 
 :::{.notes}
+In study 3 we found that 
+
 EMA remains to be a feasible and predictive signal even when measured over a year.
 
 If the goal is prediction, GPS features are not necessary as they do not offer any unique incremental predictive value beyond EMA. 
