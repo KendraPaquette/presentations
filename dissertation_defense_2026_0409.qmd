@@ -152,7 +152,7 @@ The relapse prevention literature has identified a wide range of precipitants of
 
 They interact with one another and with interpersonal and environmental situations to influence lapse risk.
 
-Given the complex nature of lapse risk, self-monitoring is difficult.
+So given this complex nature of lapse risk, self-monitoring is difficult.
 :::
 
 
@@ -536,11 +536,11 @@ The plot on the left shows the percentage of EMA completion looking at the full 
 
 :::{.notes}
 We fit three immediate models that differed in the width of the prediction window.
-The prediction windows were 1 week, 1 day, and 1 hour (shown in yellow).
+The prediction windows shown here in yellow were 1 week, 1 day, and 1 hour.
 
-The vertical dashed line represents the prediction time point—when the model is making the prediction.
+The vertical dashed line represents the prediction time point— that is when the model is making the prediction.
 
-So moving from top to bottom, we’re asking: at this exact moment, will the person lapse in the next week, next day, or next hour?
+So moving from top to bottom, we’re asking: at this exact moment, will the person lapse in the next week, next day, and next hour?
 :::
 
 
@@ -593,9 +593,9 @@ perf_ema_red
 :::{.notes}
 So we’ve established that we can predict lapse at different levels of precision.
 
-But lets briefly zoom back out to our broader goal—building a recovery monitoring and support system that communicates daily risk to individuals.
+But lets briefly zoom back out to our broader goal—building a recovery monitoring and support system that communicates risk to individuals.
 
-A weekly prediction window is likely too coarse to be actionable, while an hourly model would require delivering risk updates every hour, which is not practical in a real-world setting.
+A weekly prediction window is likely too coarse to be actionable, while an hourly model would require delivering risk updates every hour, which is not practical for implementation.
 
 In contrast, the next day (or next 24-hour) prediction window strikes a balance between these two extremes. It allows us to provide timely, meaningful risk information without overwhelming the individual.
 
@@ -666,7 +666,7 @@ We did however have equal representation of men and women, and we still saw diff
 :::{.notes}
 We can use metrics of feature importance to understand which features are influencing our models predictions on average.
 
-Since our best performing model was XGBoost we calculated Shapley values. Shapley values indicate how much a feature score for a specific observation adjusted the prediction relative to the mean prediction across all observations.
+Since our best performing model was XGBoost we calculated Shapley values. Shapley values indicate how much a feature score for a specific observation adjusts the prediction from the mean score across all observations.
 
 :::
 
@@ -687,7 +687,7 @@ We aggregated the shapley values by calculating the mean absolute shapley value 
 
 Past use was the most important feature. This is not surprising given that our outcome was lapse, and past behavior is often the best predictor of future behavior. 
 
-Abstinence self-efficacy emerged as second most important, indicating that participants had reasonably accurate insight into their near-term abstinence success. Craving was also an important predictor that it may be an important target for intervention to support early recovery efforts.
+Future efficacy emerged as second most important, indicating that participants had reasonably accurate insight into their near-term abstinence success. Craving was also an important predictor that may be an important target for early recovery support.
 
 As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 8% of observations contained lapses and almost half of our participants didn't lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.
 
@@ -748,7 +748,7 @@ These models that predict and characterize immediate risk of lapse are well-suit
 
 Earlier I gave the example of an urge surfing recommendation. This could also include recommending a guided relaxation video when someone is reporting recent stressful events or encouraging individuals to reflect on recent past successes or reasons for choosing abstinence when self-efficacy is low.
 
-What's key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible. 
+What's key here is that this assumes that the recommendations can be implemented immediately, but for the best clinical recommendation this might not be feasible. Just imagine trying to schedule a therapy appointment in the next 24 hours.
 
 :::
 
@@ -925,7 +925,7 @@ Here are the average contributions of each feature to the model's predictions fo
 
 Several feature categories displayed sizeable differences in global importance by lag time. A couple interesting observations 
 
-The importance of abstinence self-efficacy dropped by more than 50% in the 2-week lagged model relative to the immediate model. This may indicate that self-efficacy during early recovery is unstable even across shorter periods of time such that their current self-efficacy may predict immediate abstinence success but not necessarily success two weeks into the future. 
+The importance of future efficacy dropped by more than 50% in the 2-week lagged model relative to the immediate model. This may indicate that self-efficacy during early recovery is unstable even across shorter periods of time such that their current self-efficacy may predict immediate abstinence success but not necessarily success two weeks into the future. 
 
 We also saw that past and anticipated risky situations were more important in the 2-week lagged model compared to the immediate model. This could suggest that the impact of these situations on lapses back to use may be delayed.
 :::
@@ -1122,7 +1122,7 @@ The plot on the left shows average ema completion rates by month on study
 
 Participants provided an average of 263 daily gps points
 
-I will note that we have a wide range here, however it is difficult to provide an adherence summary of GPS Sampling rates are impacted by how much a person is moving. So low points might mean someone is stationary or it might mean they purposefully turned their GPS tracking off or their phone die or they have poor internet connection to transmit their GPS data to us. 
+I will note that we do have a wide range here. It is difficult to provide an adherence summary of GPS. Sampling rates are impacted by how much a person is moving. So low points might mean someone is stationary or it might mean they purposefully turned their GPS tracking off or their phone die or they have poor internet connection to transmit their GPS data to us. 
 :::
 
 
@@ -1152,7 +1152,7 @@ risk2_perf_all
 ```
 
 :::{.notes}
-Model performance was comparable when GPS features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with GPS features. This suggests that GPS data may not be adding any signal above and beyond what EMA is capturing. That being said GPS did capture some signal, in the ablated EMA model performance was still above chance at .63.
+Model performance was comparable when GPS features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with GPS features. This suggests that GPS data may not be adding any signal above and beyond what EMA is capturing. That being said GPS did capture some signal, with the ablated EMA model performing still above chance at .63.
 :::
 
 
@@ -1188,9 +1188,9 @@ global_risk2
 :::{.notes}
 We had quite a few more features in this study. Here are our 20 most important features. 
 
-Feature importance revealed the most important feature was past opioid use. This feature was nearly two-fold more important than the next most important feature, urge ratings. 
+Feature importance revealed the most important feature was past opioid use. This feature was nearly four times more important than the next most important feature, urge ratings. 
 
-I also want to point out that although GPS may not be providing unique signal for prediction, several features still emerged as important features in the model. So it may be worthwhile still to have GPS features in the model if we want more opportunities for intervention.
+I also want to point out that although GPS may not be providing unique signal for prediction, several features still emerged as important features in the model, including time spent at places where religious activities are performed, and time spent at helpful and harmful locations.
 
 
 :::
@@ -1208,7 +1208,7 @@ global_risk2 + global_risk2_v2
 :::{.notes}
 
 
-And in our second approach for feature importance, we founf the most important feature was urge ratings, followed by abstinence confidence ratings. Past opioid use was the third most important feature using this method. So again this suggests that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. Notably, in this approach several additional comparably important features emerged, including past pleasant experiences, past sedative and stimulant use, time spent in helpful locations, and location variance.
+In our second approach for feature importance, we found the most important feature was urge ratings, followed by abstinence confidence ratings. Past opioid use was the third most important feature using this method. So again this suggests that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. Notably, in this approach several additional comparably important features emerged, including past pleasant experiences, past sedative and stimulant use, time spent in helpful locations, and location variance.
 :::
 
 
@@ -1246,8 +1246,25 @@ So although GPS features may not provide unique signal for prediction, it may be
 
 :::{.notes}
 In terms of where to go next. One consideration might be to extend the number of risk features we are measuring to increase our ability to personalize recommendations.
+:::
 
-EMA was shown to be a robust sensing method for lapse prediction even when dropped to only 1 daily survey. Adding additional items could improve model performance among subgroups where performance disparities exist. For example, some research suggests interpersonal relationship problems and hormonal changes are more salient lapse risk factors for women compared to men. However, we can't add too many additional items without making our survey immensely more burdensome for people to complete.
+## Future Directions
+
+- Expand risk features
+
+
+
+![](https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true){.absolute top=100 right=0 height=80%}
+
+
+:::{.notes}
+EMA was shown to be a robust sensing method for lapse prediction even when dropped to only 1 daily survey.
+
+We could imagine adding additional questions to our EMA. This could potentially improve model performance for subgroups where performance disparities still existed, such as with race, orientation, and geographic location.
+
+I did find it interesting that fairness improved for women in study 3 and it makes me wonder if this is related to some of the additional items included on our EMA or from GPS.
+
+However, we can't add too many additional items without making our survey much more burdensome for people to complete.
 
 :::
 
@@ -1264,9 +1281,23 @@ One way to expand risk features without increasing burden is to supplement self-
 
 And while our results may appear somewhat discouraging for its predictive value it does much better than other passive methods I have explored like cellular communications. So I believe theres still a case to be made for using GPS data and we had some methodological limitations worth noting.
 
-First Although gps data can, in principle, be collected continuously, in practice these data are difficult to collect reliably. In our study, gps features had substantially higher rates of missingness compared to daily surveys. 
+First Although gps data can, in principle, be collected continuously, in practice these data are difficult to collect reliably. In our study, we had much higher rates of missingness for gps features compared to ema features. 
 
-Second, our feature engineering pipeline relied on known locations with self-reported context. Passive methods for contextualizing location could provide risk-relevant contextual information across the full range of locations participants visited. For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations). 
+Second, our feature engineering pipeline relied on known locations where people provided self-reported context. Passive methods for contextualizing location could provide risk-relevant information across the full range of locations people visit. 
+For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations). 
+
+As gps sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.
+:::
+
+## Future Directions
+
+- Expand risk features
+
+- Improve GPS sensing
+
+
+:::{.notes}
+For example, latitude and longitude coordinates could be enriched using publicly available datasets (e.g., alcohol outlet density, area deprivation index, and Narcotics Anonymous meeting times and locations). 
 
 As gps sensing methods become more robust and missingness is reduced, these features may become more powerful for lapse prediction.
 :::
