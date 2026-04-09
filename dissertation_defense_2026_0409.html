@@ -1801,22 +1801,34 @@ Kendra Wyant
 </section>
 <section id="future-directions-6" class="slide level2">
 <h2>Future Directions</h2>
-<ul>
-<li>Optimize the delivery of risk-relevant feedback</li>
-</ul>
+<div class="fragment">
+<ol type="1">
+<li>Probability</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li>Risk trends</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>Most important feature</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="4" type="1">
+<li>Recovery recommendation</li>
+</ol>
+</div>
 <aside class="notes">
-<p>Lastly the area I am most excited about for immediate next steps is understanding how best to communicate our model outputs to individuals.</p>
-<p>Returning again to the idea that these models will be most effective embedded in a recovery monitoring and support system.</p>
-<p>One crucial step is to investigate how to communicate information from our model output to individuals. Our models give us predicted probabilities of a lapse. One option would be to create thresholds for what constitutes low, medium, or high risk and relay current and future risk information to the individual.</p>
-<p>Another option would be to anchor the predicted probability to the individual. For example, is their risk higher or lower compared to the previous week.</p>
-<p>But another thing our model’s give us are the most important features driving that lapse prediction. We could imagine contextualizing lapse risk by alerting individuals to the most important predictor of their risk or using domain expertise to provide specific recommendations for recovery engagement.</p>
-<p>In a currently funded grant in our lab, we plan to look what combination of risk-relevant information lead to optimal engagement and clinical recovery outcomes.</p>
-<p>A challenge for embedding lapse prediction models into a recovery monitoring and support system is determining how to effectively communicate model outputs to individuals. Our models generate quantitative predictions of lapse probability. These probabilities could be converted into categorical classifications (e.g., lapse vs.&nbsp;no lapse) by applying a decision threshold. Although we observed high sensitivity and specificity when thresholds were selected to balance these metrics, the positive predictive value (PPV) of categorical predictions was moderate to low in our full models. As a result, we believe categorical predictions should be communicated to patients with extreme caution, if at all. Instead, we favor the use of quantitative lapse probabilities as continuous risk indicators to guide supportive interventions and monitoring intensity.</p>
-<p>However, raw probability estimates present a different problem. They may be difficult for patients, especially for those with low numeracy, to interpret intuitively (e.g., distinguishing the practical meaning of a 79% versus a 64% lapse probability) <span class="citation" data-cites="garcia-retameroCommunicatingHealthRisks2013">[@garcia-retameroCommunicatingHealthRisks2013]</span>. Anchoring risk estimates to an individual’s personal baseline may enhance interpretability. For example, by emphasizing whether risk is higher or lower than in the prior week or relative to their typical pattern. Additionally, combining quantitative scores with coarser qualitative descriptors (e.g., low, moderate, high risk) may further support comprehension without oversimplification.</p>
-<p>Beyond risk probabilities, our models also identify the most influential features contributing to each prediction. These locally important features create opportunities to contextualize risk feedback by highlighting key drivers of vulnerability (e.g., craving, stress, social isolation) and pairing them with domain-informed recovery recommendations. Emerging best practices from interpretable machine learning suggest this information may make the machine learning model less of a “black box”, which may build trust, or allow individuals to engage more thoughtfully (e.g., questioning false positives, scrutinizing model behavior) and gain insight <span class="citation" data-cites="dacruzUsingInterpretabilityApproaches2021 shinEffectsExplainabilityCausability2021">[@dacruzUsingInterpretabilityApproaches2021; @shinEffectsExplainabilityCausability2021]</span>.</p>
-<p>Despite these opportunities, there is currently no consensus on how best to present predictive feedback in a manner that maximizes engagement, trust, and clinical utility. Prior research suggests that increasing transparency in machine learning systems, such as by revealing contributing factors, can improve perceived credibility and user acceptance <span class="citation" data-cites="kizilcecHowMuchInformation2016 kuleszaPrinciplesExplanatoryDebugging2015 limWhyWhyNot2009">[@kizilcecHowMuchInformation2016; @kuleszaPrinciplesExplanatoryDebugging2015; @limWhyWhyNot2009]</span>. In the context of recovery monitoring, selective transparency may also promote self-awareness and learning, potentially yielding additional clinical benefits <span class="citation" data-cites="kuleszaPrinciplesExplanatoryDebugging2015 kuleszaFixingProgramMy2009">[@kuleszaPrinciplesExplanatoryDebugging2015; @kuleszaFixingProgramMy2009]</span>. At the same time, overly detailed or complex explanations may undermine confidence by exposing model uncertainty, revealing occasional errors, or burdening users with unnecessary information <span class="citation" data-cites="buntAreExplanationsAlways2012 springerProgressiveDisclosureWhen2020">[@buntAreExplanationsAlways2012; @springerProgressiveDisclosureWhen2020]</span>. Thus, determining the optimal balance between transparency and simplicity remains an open empirical question.</p>
-<p>As immediate next steps, we have begun to address the gap in understanding how to deliver risk‑related feedback within a recovery monitoring and support system. We have recently launched an NIAAA‑funded study focused on optimizing daily support messages delivered by such a system <span class="citation" data-cites="wyantMaximizingEngagementTrust2025">[@wyantMaximizingEngagementTrust2025]</span>. This work will explicitly examine which combinations of key message components, including lapse probability, important features, and recovery recommendations, maximize engagement, trust, and clinical outcomes.</p>
-<p>In this grant, messages are generated by feeding model outputs into a large language model to produce daily messages with sufficient variation. In the near future, however, these model outputs may be integrated into a more fully autonomous, agentic support system capable of dynamically delivering personalized recommendations, engaging individuals in interactive problem‑solving, facilitating connections to therapists or peer support specialists, and initiating triage processes when risk reaches clinically concerning levels.</p>
+<p>Lastly the area I am most excited about for immediate next steps is understanding how best to communicate our model outputs to individuals within the context of a recovery monitoring and support system.</p>
+<p>For example, our model produces quantitative predictions of lapse probability. We could provide this as a continuous risk score.</p>
+<p>Characterize these probabilities as trends. For example, whether risk this week is higher or lower than in the prior week.</p>
+<p>Beyond risk probabilities, our models also identify the most influential features contributing to each prediction. We could provide feedback about which feature is putting them at highest risk for lapse.</p>
+<p>We could also provide a recovery recommendation based on the most important feature.</p>
+<p>In our lab, we are currently launching a study where we will look at what combination of risk-relevant information leads to optimal engagement and clinical recovery outcomes.</p>
+<p>Its also exciting to think about how in that so distant future we may have the tools to feed our model outputs into a more fully autonomous support system capable of dynamically generating and delivering personalized recommendations, engaging individuals in interactive problem‑solving and conversation, and facilitating connections to therapists or peer support specialists when needed.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1831,9 +1843,9 @@ Kendra Wyant
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/thankyou_1.png?raw=true" class="absolute" style="top: 0px; left: 0px; width: 100%; height: 100%; "></p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/Slide1.png?raw=true" class="absolute" style="top: 0px; left: 20px; "></p>
 <aside class="notes">
-<p>John for letting me lead these exciting analyses for his grants, mentorship Lab Committee Cohort</p>
+<p>John for his mentorship, for letting me lead these exciting analyses, and for being so supportive when I had Addie All of the former and current students in my lab My Committee My Cohort</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1848,7 +1860,7 @@ Kendra Wyant
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
-<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/thankyou_2.png?raw=true" class="absolute" style="top: 0px; left: 0px; width: 100%; height: 100%; "></p>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/Slide2.png?raw=true" class="absolute" style="top: 0px; left: 20px; "></p>
 <aside class="notes">
 <p>Family</p>
 <style type="text/css">
