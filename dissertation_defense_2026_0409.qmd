@@ -1358,7 +1358,7 @@ However, focusing exclusively on drinking or substance use as the primary outcom
 4. Recovery recommendation
 :::
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/phone.png?raw=true){.absolute top="200" right="10" width="80%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/phone.png?raw=true){.absolute top="200" right="10" width="40%"}
 
 ::: {.notes}
 Lastly the area I am most excited about for immediate next steps is understanding how best to communicate our model outputs to individuals within the context of a recovery monitoring and support system.
