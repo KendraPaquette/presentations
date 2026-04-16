@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="mpa_2026_0417_files/libs/clipboard/clipboard.min.js"></script>
+<script src="mpa_2026_0417_files/libs/quarto-html/tabby.min.js"></script>
+<script src="mpa_2026_0417_files/libs/quarto-html/popper.min.js"></script>
+<script src="mpa_2026_0417_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="mpa_2026_0417_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="mpa_2026_0417_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="mpa_2026_0417_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="Kendra Wyant and John Curtin">
+  <meta name="dcterms.date" content="2026-04-17">
+  <title>Dynamic Prediction of Opioid Lapse Risk Using Machine Learning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="mpa_2026_0417_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="mpa_2026_0417_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="mpa_2026_0417_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="slides.css">
+  <link href="mpa_2026_0417_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="mpa_2026_0417_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="mpa_2026_0417_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="mpa_2026_0417_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="images/title_slide.png" data-background-position="right top" data-background-repeat="no" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">Dynamic Prediction of Opioid Lapse Risk Using Machine Learning</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Kendra Wyant and John Curtin 
+</div>
+        <p class="quarto-title-affiliation">
+            University of Wisconsin-Madison
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-04-17</p>
+</section>
+<section id="substance-use-disorders" class="slide level2">
+<h2>Substance Use Disorders</h2>
+<div class="columns">
+<div class="column" style="width:66%;">
+<ul>
+<li>Chronic conditions</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Initial treatments are effective</li>
+</ul>
+<div>
+<ul>
+<li>1 in 10 individuals receive treatment</li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>Episodic approach to care</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Treatment disparities exist</li>
+</ul>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/crowd.png?raw=true" class="absolute" style="top: 100px; right: 0px; height: 80%; "></p>
+</div></div>
+<aside class="notes">
+<p>Substance use disorders are chronic conditions with high relapse rates</p>
+<p>We have effective Medication and psychosocial interventions. But, nearly 90% of people with a substance use disorder do not receive any form of treatment.</p>
+<p>For those who do receive care, treatment is often brief and episodic. Many individuals enter care only when symptoms are severe and risk is high. At the same time, services are time-limited, resources are constrained, and providers frequently operate at or beyond capacity. As a result, patients often leave treatment without adequate supports in place, contributing to a “revolving door” pattern in which individuals cycle repeatedly through acute episodes of care.</p>
+<p>These limitations are magnified for people from certain demographic subgroups who may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. And marginalized groups may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="continuing-care" class="slide level2">
+<h2>Continuing Care</h2>
+<ul>
+<li>Continuing care is gold-standard for chronic conditions</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Current SUD treatment infrastructure lacks capacity for long-term clinician-delivered care</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Individuals are left to navigate recovery alone</li>
+</ul>
+</div>
+<aside class="notes">
+<p>Continuing care is the gold standard for chronic health conditions. Similarly, substance use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery.</p>
+<p>But our current system simply does not have the capacity to deliver long‑term, clinician‑led care at scale.</p>
+<p>Without ongoing support, people are left to navigate recovery on their own, asking: How risky is today? What do I need right now? Which recovery tool should I use and when?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="relapse-prevention" class="slide level2">
+<h2>Relapse Prevention</h2>
+<div class="columns">
+<div class="column" style="width:66%;">
+<ul>
+<li>Recovery is a non-linear process</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Lapses serve as early warning signs of relapse</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Risk factors differ across individuals and within individuals over time</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Self-monitoring is difficult</li>
+</ul>
+</div>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:30%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/wave.jpg?raw=true"></p>
+</div></div>
+<aside class="notes">
+<p>The challenge is recovery is not linear.</p>
+<p>Lapses, or instances of goal‑inconsistent substance use, are common and and can occur at any point during recovery. On their own, they do not constitute relapse. But they must precede relapse, making them meaningful early warning signs.</p>
+<p>The relapse prevention literature has identified a wide range of precipitants of lapse. But these risk factors fluctuate from day-to-day and differ across individuals and within individuals over time.</p>
+<p>They interact with one another and with interpersonal and environmental situations to influence lapse risk.</p>
+<p>So given this complex nature of lapse risk, self-monitoring is difficult.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="recovery-monitoring-and-support-system" class="slide level2">
+<h2>Recovery Monitoring and Support System</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<ul>
+<li>Personalized adaptive recommendations</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Prompt individuals to engage with support at times of high risk</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Scalable to address unmet need</li>
+</ul>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true" class="absolute" style="top: 100px; right: 0px; height: 80%; "></p>
+</div></div>
+<aside class="notes">
+<p>An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse after initial treatment and adjust their lifestyle, behaviors and support accordingly.</p>
+<p>Such a system could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk.</p>
+<p>For example, individuals could receive daily messages about changes in their lapse risk, along with recommendations based on their key risk factors, like an urge-surfing recommendation for someone experiencing strong cravings.</p>
+<p>Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in substance use disorder treatment.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="recovery-monitoring-and-support-system-1" class="slide level2">
+<h2>Recovery Monitoring and Support System</h2>
+<div class="columns">
+<div class="column" style="width:49%;">
+<ol type="1">
+<li>Collect densely sampled risk-relevant data</li>
+</ol>
+<div class="fragment">
+<ol start="2" type="1">
+<li>Access an accurate and interpretable model</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>Perform fairly</li>
+</ol>
+</div>
+</div><div class="column" style="width:1%;">
+
+</div><div class="column" style="width:50%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/sensingsystem2.png?raw=true" class="absolute" style="top: 100px; right: 0px; height: 80%; "></p>
+</div></div>
+<aside class="notes">
+<p>For such a system to exist, we need at least three things. One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.</p>
+<p>Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto.</p>
+<p>Three, the model must perform fairly. Algorithms that perform favorably for only a single majority group could widen existing disparities in access to resources and important clinical outcomes</p>
+<p>Advances in both smartphone sensing and machine learning now make this possible. Two sensing methods I am particularly excited about are EMA and geolocation sensing.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ecological-momentary-assessment" class="slide level2">
+<h2>Ecological Momentary Assessment</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<ul>
+<li>Direct and frequent insight into subjective feelings and experiences</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Constructs easily map onto well-studied risk factors for lapse</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Appears to be well-tolerated</li>
+</ul>
+</div>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:40%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/ema.png?raw=true" class="absolute" style="top: 100px; right: 0px; height: 80%; "></p>
+</div></div>
+<aside class="notes">
+<p>Ecological momentary assessment, or EMA, consists of daily or more frequent brief surveys optimized for someone to complete on their smartphone. This signal is unique in that it provides privileged access into subjective momentary experiences and allows for measuring several face-valid constructs of the relapse prevention model</p>
+<p>e.g., we can ask people to directly report their craving, their level of self-efficacy, and their affect.</p>
+<p>EMA appears to be well tolerated with adherence rates in substance using populations being comparable to other clinical samples.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="geolocation" class="slide level2">
+<h2>Geolocation</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<ul>
+<li>Passively sensed</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>May provide insight into information difficult to measure with self-report</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Locations can be contextualized</li>
+</ul>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:40%;">
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/location.jpg?raw=true" class="absolute" style="top: 100px; right: 0px; height: 80%; "></p>
+</div></div>
+<aside class="notes">
+<p>Geolocation sensing is a passive sensing method that could complement EMA well. It may provide a distinct set of intervenable features from information that is difficult to measure with self-report or that would add additional burden by increasing the number of questions on the daily surveys.</p>
+<p>e.g., low location variance or increased time spent at home could signal reduced mobility, social withdrawal, or disengagement</p>
+<p>geolocation features may become even more powerful when combined with contextual information from public sources (e.g., census data, alcohol outlet density data) or from self-report (e.g., self-evaluated riskiness of specific locations).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="aim" class="slide level2">
+<h2>Aim</h2>
+<p>Evaluate and interpret models that predict immediate risk of a lapse back to opioid use using 1X EMA and geolocation sensing</p>
+<aside class="notes">
+<p>Today I am going to demonstrate the feasibility of building an automated recovery monitoring and support system by evaluating and interpreting models that predict immediate risk of a lapse back to opioid use using 1x EMA and geolocation sensing.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-296" class="slide level2">
+<h2>Participants (<em>N</em> = 296)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We recruited a national sample of 296 participants in early recovery from opioid use disorder. To be eligible, participants must have been enrolled in a medication for OUD program or recently completed a residential treatment program. The majority of our participants had severe opioid use disorder.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-296-1" class="slide level2">
+<h2>Participants (<em>N</em> = 296)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Our sample was predominantly White. We had slightly more men than women.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="participants-n-296-2" class="slide level2">
+<h2>Participants (<em>N</em> = 296)</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Most participants were between 26-45 years and had an annual household income below $25,000</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="design" class="slide level2">
+<h2>Design</h2>
+<ul>
+<li>12-month longitudinal study</li>
+<li>Participants completed 1X daily EMA
+<ul>
+<li>Craving, pain, risky situations, stressful events, and pleasant events</li>
+<li>Depressed, angry, anxious, relaxed, and happy</li>
+<li>Sleep quality</li>
+<li>MOUD adherence</li>
+<li>Motivation and confidence</li>
+<li>Opioid and other drug and alcohol use</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>Participants completed 1x daily EMA for up to 12 months</p>
+<p>16 items -</p>
+<p>intensity of craving, pain, risky situations, stressful events, and pleasant events since their last survey.</p>
+<p>How depressed, angry, anxious, relaxed, and happy they have felt in the past 24 hours</p>
+<p>Their quality of sleep</p>
+<p>Whether they took their MOUD as prescribed.</p>
+<p>How motivated and how confident they were to avoid using opioids,</p>
+<p>The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="geolocation-1" class="slide level2">
+<h2>Geolocation</h2>
+<ul>
+<li>Type of location</li>
+<li>Activity done at location</li>
+<li>Pleasantness/unpleasantness of experience</li>
+<li>Helpfulness/harmfulness to recovery</li>
+</ul>
+<aside class="notes">
+<p>Each month we asked participants self-report questions about their frequently visited locations. We did this as part of a longer monthly survey participants were paid to take each month.</p>
+<p>For places participants visited more than twice in a month we asked: about the type of location, what they do there, how pleasant and unpleasant their experience is there, and how much this place helps and harms their recovery from opioids.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="design-1" class="slide level2">
+<h2>Design</h2>
+<ul>
+<li>Outcome = lapse or no lapse</li>
+<li>XGBoost algorithm</li>
+<li>Grouped nested k-fold cross-validation</li>
+<li>True prediction into the future</li>
+</ul>
+<aside class="notes">
+<p>The start time and day of opioid use reported on the EMA was used to generate our outcome labels of lapse or no lapse.</p>
+<p>We considered several candidate statistical algorithms, but the best performing algorithm was XGBoost.</p>
+<p>We used grouped nested cross validation – this method produces independent estimates of how well the model performs in NEW DATA That means the data used for model evaluation was not used to train the models. Our data was also grouped by participant, so all of a participant’s data was either in training or test.</p>
+<p>Lastly, all of our features used in the models were collected before the lapse onset. So when I say predict I mean we are predicting on new data from new individuals but we are also predicting into the future.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="adherence" class="slide level2">
+<h2>Adherence</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-4-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Mean days on study = 278.32 days (range 30-392 days)</li>
+</ul>
+<div>
+<ul>
+<li>1X daily EMA adherence = 77.8% (range 40-100%)</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Mean daily GPS points = 263.50 points (range 2.17-871.34 points)</li>
+</ul>
+</div>
+</div></div>
+<aside class="notes">
+<p>Participants remained on study for an average of 278 days</p>
+<p>And on average participants completed 77.8% of the daily EMA prompts</p>
+<p>The plot on the left shows average ema completion rates by month on study</p>
+<p>Participants provided an average of 263 daily gps points</p>
+<p>I will note that we do have a wide range here. It is difficult to provide an adherence summary of GPS. Sampling rates are impacted by how much a person is moving. So low points might mean someone is stationary or it might mean they purposefully turned their GPS tracking off or their phone die or they have poor internet connection to transmit their GPS data to us.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="performance" class="slide level2">
+<h2>Performance</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We used area under the roc curve (auROC) to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case. Scores can range from .5, Chance performance - 1, perfect performance.</p>
+<p>So our full model that included both sets of sensing features performed very well with an overall auROC of 0.94.</p>
+<p>To understand the incremental predictive value of EMA and GPS sensing features, we also evaluated performance of models that ablated each set of features individually and together.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="performance-1" class="slide level2">
+<h2>Performance</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Model performance was comparable when GPS features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with GPS features. This suggests that GPS data may not be adding any signal above and beyond what EMA is capturing. That being said GPS did capture some signal, with the ablated EMA model performing still above chance at .63.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="model-fairness" class="slide level2">
+<h2>Model Fairness</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We evaluated our full model across five dichotomous subgroups - gender, income, race and ethnicity, sexual orientation, and geographic location.</p>
+<p>There was evidence that model performance differed for all group comparisons. Notably, our model performed better for individuals with an annual income of less than $25,000 compared to individuals with an annual income greater than $25,000, thus favoring the disadvantaged group.</p>
+<p>While differences in performance estimates exist, this model is likely still clinically meaningful across subgroups, as all subgroups yielded median auROCs between 0.91 - 0.95</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="feature-importance" class="slide level2">
+<h2>Feature Importance</h2>
+<aside class="notes">
+<p>We can use metrics of feature importance to understand which features are influencing our models predictions on average.</p>
+<p>Since our best performing model was XGBoost we calculated Shapley values. Shapley values indicate how much a feature score for a specific observation adjusts the prediction from the mean score across all observations.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="feature-importance-1" class="slide level2">
+<h2>Feature Importance</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-left" width="720"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>We aggregated the shapley values by calculating the mean absolute shapley value to see how much each feature, on average, contributed to the model’s predictions.</p>
+<p>This plot shows the 20 most important features.</p>
+<p>The most important feature was past opioid use. This feature was nearly four times more important than the next most important feature, urge ratings.</p>
+<p>I also want to point out that although GPS may not be providing unique signal for prediction, several features still emerged as important features in the model, including time spent at places where religious activities are performed, and time spent at helpful and harmful locations.</p>
+<p>As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature’s contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 2% of observations contained lapses and almost half of our participants didn’t lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.</p>
+<p>So perhaps what we really want to know is how often these features came up as the most important feature on a given day for a given individual.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="feature-importance-2" class="slide level2">
+<h2>Feature Importance</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="mpa_2026_0417_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-left" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The plot on the right summarises the proportion of observations in which each feature had the highest Shapley value. So now considering the magnitude of the influence and the prevalance.</p>
+<p>This plot shows that although past use was the most influential feature overall, it was only the most influential feature on a subset of days.</p>
+<p>In this approach we found the most important feature was urge ratings, followed by abstinence confidence ratings. Past opioid use was the third most important feature. So again this suggests that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features.</p>
+<p>Notably, in this approach several additional comparably important features emerged, including past pleasant experiences, past sedative and stimulant use, time spent in helpful locations, and location variance.</p>
+<p>This shows that that while some features may have low average importance (across all individuals and observations), they can be highly important on certain days for certain individuals and are worthwhile to keep in the model for delivering feedback personalized to the person and the moment.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li>We can predict probabilities of next-day opioid lapses with excellent performance</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>We can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>EMA is feasible even when measured for up to a year</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>GPS does not offer any unique incremental predictive value beyond EMA</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>It may still be worthwhile to include GPS features</li>
+</ul>
+</div>
+<aside class="notes">
+<p>This study demonstrates we can predict probabilities of next-day opioid lapses with excellent performance</p>
+<p>and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time</p>
+<p>EMA appears to be a feasible and predictive signal even when measured for up to a year.</p>
+<p>If the goal is prediction, GPS features are not necessary as they do not offer any unique incremental predictive value beyond EMA.</p>
+<p>However, if the goal is to have a more nuanced understanding of lapse risk across a more diverse array of risk features than GPS is helpful. Adding GPS features did not hurt model performance and several of them emerged in the top subset of features.</p>
+<p>So although GPS features may not provide unique signal for prediction, it may be worthwhile to still include them in the model to expand opportunities for intervention and personalized recovery support.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="future-directions" class="slide level2">
+<h2>Future Directions</h2>
+<div class="fragment">
+<ol type="1">
+<li>Probability</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="2" type="1">
+<li>Risk trends</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li>Most important feature</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="4" type="1">
+<li>Recovery recommendation</li>
+</ol>
+</div>
+<p><img data-src="https://github.com/KendraPaquette/presentations/blob/main/images/phone.png?raw=true" class="absolute" style="top: 200px; right: 10px; width: 40%; "></p>
+<aside class="notes">
+<p>An area I am most excited about for immediate next steps is understanding how best to communicate our model outputs to individuals within the context of a recovery monitoring and support system.</p>
+<p>For example, our model produces quantitative predictions of lapse probability. We could provide this as a continuous risk score.</p>
+<p>Characterize these probabilities as trends. For example, whether risk this week is higher or lower than in the prior week.</p>
+<p>Beyond risk probabilities, our models also identify the most influential features contributing to each prediction. We could provide feedback about which feature is putting them at highest risk for lapse.</p>
+<p>We could also provide a recovery recommendation based on the most important feature.</p>
+<p>However, the optimal combination of this information for the best engagement and clinical outcomes is still an open question and something our lab is currently looking at.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="images/arc_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Midwestern Psychological Association</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="mpa_2026_0417_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="mpa_2026_0417_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

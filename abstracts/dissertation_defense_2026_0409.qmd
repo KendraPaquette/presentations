@@ -1314,7 +1314,7 @@ As GPS sensing methods become more robust and missingness is reduced, GPS featur
 :::{.notes}
 Another thing I have been thinking about is how our models might generalize to individuals with non-abstinent recovery goals.
 
-Our models were trained to predict goal-inconsistent use, which for all of our participants pursuing abstinence meant any alcohol use. The definition of goal-inconsistent use is less straightforward for individuals who do not aim to abstain and may vary considerably from person to person.
+Our models were trained to predict goal-inconsistent use, which for all of our participants pursuing abstinence meant any substance use. The definition of goal-inconsistent use is less straightforward for individuals who do not aim to abstain and may vary considerably from person to person.
 
 This may require considering alternative outcomes for our models to be trained on. Heavy drinking days are a common metric of risky or hazardous drinking. This may represent a more consistent marker of goal-inconsistent behavior across individuals in recovery.
 
