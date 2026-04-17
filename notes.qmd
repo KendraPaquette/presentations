@@ -1,0 +1,231 @@
+---
+title: "Speaker Notes: Dynamic Prediction of Opioid Lapse Risk Using Machine Learning"
+author: "Kendra Wyant and John Curtin"
+date: "April 17, 2026"
+format:
+  pdf: default
+  html:
+    embed-resources: true
+    css: |
+      body {
+        font-size: 1.3em;
+        line-height: 1.6;
+      }
+      h1 {
+        font-size: 2em;
+        margin-top: 1em;
+      }
+      h2 {
+        font-size: 1.8em;
+      }
+---
+
+# Substance Use Disorders
+
+Substance use disorders are chronic conditions with high relapse rates.
+
+We have effective Medication and psychosocial interventions. But, nearly 90% of people with a substance use disorder do not receive any form of treatment. 
+
+For those who do receive care, treatment is often brief and episodic. Many individuals enter care only when symptoms are severe and risk is high. At the same time, services are time-limited, resources are constrained, and providers frequently operate at or beyond capacity. As a result, patients often leave treatment without adequate supports in place, contributing to a "revolving door" pattern in which individuals cycle repeatedly through acute episodes of care.
+
+These limitations are magnified for people from certain demographic subgroups who may face unique barriers to treatment, including financial constraints, limited service availability, and mobility or transportation challenges. And marginalized groups may additionally experience minority stress, stigma, discrimination, and isolation leading to higher rates of substance use disorders and poorer treatment outcomes.
+
+# Continuing Care
+
+Continuing care is the gold standard for chronic health conditions. Similarly, substance use treatment is most effective when provided over longer durations and with active efforts to keep patients engaged in their recovery. 
+
+But our current system simply does not have the capacity to deliver long‑term, clinician‑led care at scale.
+
+Without ongoing support, people are left to navigate recovery on their own, asking:
+How risky is today? What do I need right now? Which recovery tool should I use and when?
+
+# Relapse Prevention
+
+The challenge is recovery is not linear. 
+
+Lapses, or instances of goal‑inconsistent substance use, are common and and can occur at any point during recovery. On their own, they do not constitute relapse. But they must precede relapse, making them meaningful early warning signs.
+
+The relapse prevention literature has identified a wide range of precipitants of lapse. But these risk factors fluctuate from day-to-day and differ across individuals and within individuals over time. 
+
+They interact with one another and with interpersonal and environmental situations to influence lapse risk.
+
+So given this complex nature of lapse risk, self-monitoring is difficult.
+
+# Recovery Monitoring and Support System
+
+An algorithm-guided recovery monitoring and support system could help individuals monitor their current and future risk of lapse after initial treatment and adjust their lifestyle, behaviors and support accordingly.
+
+Such a system could offer personalized, adaptive recommendations aligned with evidenced-based care and prompt individuals to engage with support at times of high risk. 
+
+For example, individuals could receive daily messages about changes in their lapse risk, along with recommendations based on their key risk factors, like an urge-surfing recommendation for someone experiencing strong cravings.
+
+Moreover, it would provide a scalable option for long-term monitoring, addressing the substantial unmet need for continuing care in substance use disorder treatment.
+
+# Recovery Monitoring and Support System (Requirements)
+
+For such a system to exist, we need at least three things. 
+
+One, the system must be able to collect a rich and densely sampled source (or sources) of risk-relevant data.
+
+Two, the system must have access to a model that can predict substance use with high performance and have interpretable model inputs for support recommendations to be mapped onto. 
+
+Three, the model must perform fairly. Algorithms that perform favorably for only a single majority group could widen existing disparities in access to resources and important clinical outcomes
+
+Advances in both smartphone sensing and machine learning now make this possible. Two sensing methods I am particularly excited about are EMA and geolocation sensing.
+
+# Ecological Momentary Assessment
+
+Ecological momentary assessment, or EMA, consists of daily or more frequent brief surveys optimized for someone to complete on their smartphone. This signal is unique in that it provides privileged access into subjective momentary experiences and allows for measuring several face-valid constructs of the relapse prevention model 
+
+For example, we can ask people to directly report their craving, their level of self-efficacy, and their affect. 
+
+EMA appears to be well tolerated with adherence rates in substance using populations being comparable to other clinical samples.
+
+# Geolocation 
+
+Geolocation sensing is a passive sensing method that could complement EMA well. It may provide a distinct set of intervenable features from information that is difficult to measure with self-report or that would add additional burden by increasing the number of questions on the daily surveys.
+
+For example, low location variance or increased time spent at home could signal reduced mobility, social withdrawal, or disengagement
+
+Geolocation features may become even more powerful when combined with contextual information from public sources (e.g., census data, alcohol outlet density data) or from self-report (e.g., self-evaluated riskiness of specific locations). 
+
+# Aim
+
+Today I am going to demonstrate the feasibility of building an automated recovery monitoring and support system by evaluating and interpreting models that predict immediate risk of a lapse back to opioid use using 1x EMA and geolocation sensing. 
+
+# Participants (N = 296)
+
+We recruited a national sample of 296 participants in early recovery from opioid use disorder. To be eligible, participants must have been enrolled in a medication for OUD program or recently completed a residential treatment program. The majority of our participants had severe opioid use disorder.
+
+# Participants Demographics
+
+Our sample was predominantly White. We had slightly more men than women.
+
+Most participants were between 26-45 years and had an annual household income below $25,000
+
+# Design
+
+Participants completed 1x daily EMA for up to 12 months
+
+16 items -
+
+intensity of craving, pain, risky situations, stressful events, and pleasant events since their last survey.
+
+How depressed, angry, anxious, relaxed, and happy they have felt in the past 24 hours
+
+Their quality of sleep
+
+Whether they took their MOUD as prescribed. 
+
+How motivated and how confident they were to avoid using opioids,
+
+The dates and times of any previously unreported past opioid use and any other drugs or alcohol used in the past 24 hours 
+
+# Geolocation Data Collection
+
+Each month we asked participants self-report questions about their frequently visited locations. We did this as part of a longer monthly survey participants were paid to take each month.
+
+For places participants visited more than twice in a month we asked:
+about the type of location, what they do there, how pleasant and unpleasant their experience is there, and how much this place helps and harms their recovery from opioids.
+
+# Design Details
+
+The start time and day of opioid use reported on the EMA was used to generate our outcome labels of lapse or no lapse. 
+
+We considered several candidate statistical algorithms, but the best performing algorithm was XGBoost.  
+
+We used grouped nested cross validation – this method produces independent estimates of how well the model performs in NEW DATA. That means the data used for model evaluation was not used to train the models. Our data was also grouped by participant, so all of a participant's data was either in training or test.
+
+Lastly, all of our features used in the models were collected before the lapse onset. So when I say predict I mean we are predicting on new data from new individuals but we are also predicting into the future. 
+
+# Adherence
+
+Participants remained on study for an average of 278 days 
+
+And on average participants completed 77.8% of the daily EMA prompts 
+
+The plot on the left shows average ema completion rates by month on study
+
+Participants provided an average of 263 daily gps points
+
+I will note that we do have a wide range here. It is difficult to provide an adherence summary of GPS. Sampling rates are impacted by how much a person is moving. So low points might mean someone is stationary or it might mean they purposefully turned their GPS tracking off or their phone die or they have poor internet connection to transmit their GPS data to us. 
+
+# Performance
+
+We used area under the roc curve (auROC) to evaluate model performance. auroc is the probability that a randomly selected positive case will be assigned a higher probability compared to a randomly selected negative case.  Scores can range from .5, Chance performance - 1, perfect performance.
+
+So our full model that included both sets of sensing features performed very well with an overall auROC  of 0.94. 
+
+To understand the incremental predictive value of EMA and GPS sensing features, we also evaluated performance of models that ablated each set of features individually and together.
+
+# Performance (Ablation Analysis)
+
+Model performance was comparable when GPS features were removed from the model. And performance dramatically fell when ema features were removed on their own or in combination with GPS features. This suggests that GPS data may not be adding any signal above and beyond what EMA is capturing. That being said GPS did capture some signal, with the ablated EMA model performing still above chance at .63.
+
+# Model Fairness
+
+We evaluated our full model across five dichotomous subgroups -  gender, income, race and ethnicity, sexual orientation, and geographic location.
+
+There was evidence that model performance differed for all group comparisons. Notably, our model performed better for individuals with an annual income of less than $25,000 compared to individuals with an annual income greater than $25,000, thus favoring the disadvantaged group. 
+
+While differences in performance estimates exist, this model is likely still clinically meaningful across subgroups, as all subgroups yielded median auROCs between 0.91 - 0.95
+
+# Feature Importance
+
+We can use metrics of feature importance to understand which features are influencing our models predictions on average.
+
+Since our best performing model was XGBoost we calculated Shapley values. Shapley values indicate how much a feature score for a specific observation adjusts the prediction from the mean score across all observations.
+
+# Feature Importance (Global)
+
+We aggregated the shapley values by calculating the mean absolute shapley value to see how much each feature, on average, contributed to the model's predictions.
+
+This plot shows the 20 most important features. 
+
+The most important feature was past opioid use. This feature was nearly four times more important than the next most important feature, urge ratings. 
+
+I also want to point out that although GPS may not be providing unique signal for prediction, several features still emerged as important features in the model, including time spent at places where religious activities are performed, and time spent at helpful and harmful locations.
+
+As a reminder this approach summarizes overall feature importance by averaging the magnitude of each feature's contribution. A down-side is that it can be skewed toward features that exhibit infrequent but very large Shapley values. So for example less than 2% of observations contained lapses and almost half of our participants didn't lapse at all on study. This means that past use may not actually represent what feature was most important on most days for most individuals.
+
+So perhaps what we really want to know is how often these features came up as the most important feature on a given day for a given individual.
+
+# Feature Importance (Prevalence)
+
+The plot on the right summarises the proportion of observations in which each feature had the highest Shapley value. So now considering the magnitude of the influence and the prevalance.
+
+This plot shows that although past use was the most influential feature overall, it was only the most influential feature on a subset of days. 
+
+In this approach we found the most important feature was urge ratings, followed by abstinence confidence ratings. Past opioid use was the third most important feature. So again this suggests that while it has a strong relationship with lapse risk, it is not as prevalent across observations as other features. 
+
+Notably, in this approach several additional comparably important features emerged, including past pleasant experiences, past sedative and stimulant use, time spent in helpful locations, and location variance.
+
+This shows that that while some features may have low average importance (across all individuals and observations), they can be highly important on certain days for certain individuals and are worthwhile to keep in the model for delivering feedback personalized to the person and the moment.
+
+# Conclusions
+
+This study demonstrates we can predict probabilities of next-day opioid lapses with excellent performance
+
+and we can characterize the relative importance of features contributing to these risk probabilities for specific individuals at specific moments in time
+
+EMA appears to be a feasible and predictive signal even when measured for up to a year.
+
+If the goal is prediction, GPS features are not necessary as they do not offer any unique incremental predictive value beyond EMA. 
+
+However, if the goal is to have a more nuanced understanding of lapse risk across a more diverse array of risk features than GPS is helpful. Adding GPS features did not hurt model performance and several of them emerged in the top subset of features. 
+
+So although GPS features may not provide unique signal for prediction, it may be worthwhile to still include them in the model to expand opportunities for intervention and personalized recovery support.
+
+# Future Directions
+
+An area I am most excited about for immediate next steps is understanding how best to communicate our model outputs to individuals within the context of a recovery monitoring and support system.
+
+For example, our model produces quantitative predictions of lapse probability. We could provide this as a continuous risk score.
+
+Characterize these probabilities as trends. For example, whether risk this week is higher or lower than in the prior week.
+
+Beyond risk probabilities, our models also identify the most influential features contributing to each prediction. We could provide feedback about which feature is putting them at highest risk for lapse. 
+
+We could also provide a recovery recommendation based on the most important feature.
+
+However, the optimal combination of this information for the best engagement and clinical outcomes is still an open question and something our lab is currently looking at.
