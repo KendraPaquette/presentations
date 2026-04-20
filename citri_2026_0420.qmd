@@ -9,7 +9,7 @@ format:
     incremental: false  
     auto-stretch: false
     logo: images/arc_logo.png
-    footer: "UW-Madison CITRI"
+    footer: "UW-Madison CTRI"
 slide-number: false
 embed-resources: true
 editor_options: 
@@ -1388,7 +1388,7 @@ Its also exciting to think about how in that so distant future we may have the t
 
 :::
 
-:::{.column width = "45%"}
+:::{.column width = "55%"}
 Addiction Research Cente  
 
 - John J. Curtin, PI
@@ -1398,7 +1398,7 @@ Addiction Research Cente
 - Susan Wanta
 :::
 
-:::{.column width = "50%"}
+:::{.column width = "35%"}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/lab.png?raw=true)
 
 <span style="font-size: 30px;">This research was supported by NIAAA R01 AA024391 and NIDA R01 DA047315 research grants to John J. Curtin</span>
