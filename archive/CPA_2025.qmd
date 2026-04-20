@@ -681,25 +681,16 @@ Finally, we have begun to build models that combine EMA with data from other low
 :::
 
 :::{.column width = "45%"}
-Contributors:  
+Addiction Research Center  
 
 - John J. Curtin, PI
-- Gaylen Fronk
-- Jiachen Yu
 - Sarah Sant'Ana
 - Claire Punturieri
+- Jiachen Yu
 - Susan Wanta
-- Madison Herrmann
-- Colin Maggard
 :::
 
 :::{.column width = "50%"}
-<span style="font-size: 30px;">Study Website:</span>
-
-
-![](https://github.com/KendraPaquette/presentations/blob/main/images/qr.png?raw=true){style="display: block; margin: auto; height: 30vh; width: auto;"}
-
-\
 
 <span style="font-size: 30px;">This research was supported by NIAAA R01 AA024391 to John J. Curtin</span>
 

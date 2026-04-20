@@ -11,6 +11,7 @@ format:
     logo: images/arc_logo.png
     footer: "UW-Madison CITRI"
 slide-number: false
+embed-resources: true
 editor_options: 
   chunk_output_type: console
 title-slide-attributes:
@@ -1379,24 +1380,38 @@ Its also exciting to think about how in that so distant future we may have the t
 
 
 
-## 
+## Acknowledgements
 
-![](https://github.com/KendraPaquette/presentations/blob/main/images/Slide1.png?raw=true){.absolute top="0" left="20" width="100%" height="100%"}
+:::{.columns}
 
-:::{.notes}
-John for his mentorship, for letting me lead these exciting analyses, and for being so supportive when I had Addie
-All of the former and current students in my lab
-My Committee
-My Cohort
+:::{.column width = "5%"}
+
+:::
+
+:::{.column width = "45%"}
+Addiction Research Cente  
+
+- John J. Curtin, PI
+- Sarah Sant'Ana
+- Claire Punturieri
+- Jiachen Yu
+- Susan Wanta
+:::
+
+:::{.column width = "50%"}
+![](https://github.com/KendraPaquette/presentations/blob/main/images/lab.png?raw=true)
+
+<span style="font-size: 30px;">This research was supported by NIAAA R01 AA024391 and NIDA R01 DA047315 research grants to John J. Curtin</span>
+
 :::
 
 
-##
-
-
-![](https://github.com/KendraPaquette/presentations/blob/main/images/Slide2.png?raw=true){.absolute top="0" left="20" width="100%" height="100%"}
-
-:::{.notes}
-Family
 :::
 
+:::{.notes}
+I would like to thank all of the people who have contributed to the ideas and research presented today. 
+
+The QR code on the screen links to our study website where we have made the manuscript and all annotated analysis scripts available for this project.
+
+I'm happy to answer any questions now.
+:::
