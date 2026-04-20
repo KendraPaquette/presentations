@@ -1385,7 +1385,7 @@ Its also exciting to think about how in that so distant future we may have the t
 :::{.columns}
 
 
-:::{.column width = "50%"}
+:::{.column width = "45%"}
 Addiction Research Center  
 
 - John J. Curtin, PI
@@ -1396,10 +1396,10 @@ Addiction Research Center
 - Susan Wanta
 :::
 
-:::{.column width = "50%"}
+:::{.column width = "55%"}
 ![](https://github.com/KendraPaquette/presentations/blob/main/images/lab.png?raw=true)
 
-<span style="font-size: 30px;">This research was supported by NIAAA R01 AA024391 and NIDA R01 DA047315 research grants to John J. Curtin</span>
+<span style="font-size: 15px;">Supported by NIAAA R01 AA024391 & NIDA R01 DA047315 to John J. Curtin</span>
 
 :::
 
